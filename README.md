@@ -5,7 +5,7 @@
 Clonar el repositorio:
 
 ```
-git clone https://github.com/cleongh/plantillaphaser
+git clone https://github.com/P3IBOL711/Proyecto_DVI.git
 ```
 
 Podemos modificar el archivo `package.json` para configurar nuestro proyecto (nombre, autor...)
