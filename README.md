@@ -1,7 +1,7 @@
-# TITULO DEL VIDEOJUEGO
+# SPELL KEEPER
 
 ## EQUIPO DE DESARROLLO
-[INSERTE NOMBRE DEL JUEGO] fue concebido el 2 de febrero por el estudio Spells & Bytes Studios formado por Gonzalo Bertolín Díez, Sandra Conde González, Pablo Folgueira Galán y Alfonso García-Carrasco Puerta.
+***Spell Keeper*** fue concebido el 2 de febrero por el estudio **Spells & Bytes Studios** formado por Gonzalo Bertolín Díez, Sandra Conde González, Pablo Folgueira Galán y Alfonso García-Carrasco Puerta.
 
 ## SINOPSIS
 Onin, el ser más poderoso de Fadaith, ha sido hechizado y despojado de todos sus objetos mágicos por su mayor enemigo, Orkodan, que se ha hecho con el control de su castillo, trayendo con él todo tipo de criaturas que intentarán sembrar el caos. Ahora, sin memoria, debe adentrarse en el para recuperar todo el poder que le arrebataron, y así mantener el mal lejos de Fadaith. En su camino se encontrará con los enemigos que han invadido su hogar, pero también con armas y objetos mágicos que le ayudarán a derrotarlos y a superar los peligros que deberá afrontar para derrotar a Orkodan.
@@ -41,15 +41,19 @@ Además, el mercader tratará de ayudarle vendiéndole objetos mágicos y armas 
 - ### JARDINES
     - Plantas Carnívoras
     - Sapos
-    - Murciélagos
+    - Arañas
+    - Insectos
+    - Minotauros
 - ### BIBLIOTECA
     - Fantasmas
     - Libros
     - Candelabros
+    - Murciélagos
 - ### CASTILLO
     - Caballeros
     - Dragones
     - Gárgolas
+    - Diablo
 
 ## ESTADÍSTICAS DE LOS ENEMIGOS
 - **Vida:** número que representa la vida del enemigo.
