@@ -37,7 +37,7 @@ Además, el mercader tratará de ayudarle vendiéndole objetos mágicos y armas 
 - **Velocidad de movimiento:** velocidad a la que se mueve el jugador.
 - **Suerte:** probabilidad que influirá en los objetos y armas que podrá conseguir el jugador.
 
-## [ENEMIGOS] (https://drive.google.com/drive/folders/1IDnaGCgFBoSohZxMgfcPsKvY0-nSoqTA?usp=sharing)
+## ENEMIGOS
 - ### JARDINES
     - Plantas Carnívoras
     - Sapos
