@@ -14,6 +14,45 @@ export default class Player extends Phaser.GameObjects.Sprite {
      * @param {number} y Coordenada Y
      */
     constructor(scene, x, y) {
+        super(scene,x,y, 'player');
+        //Estadisticas del jugador
+        /*
+            Vida
+            Modificadores de vida
+
+            Mana
+            Modificadores de mana
+
+            Multiplicadores a las armas
+
+            Velocidad de movimiento
+            Modificadores de la velocidad de movimiento
+            Multiplicadores de la velocidad de movimiento
+
+            Suerte
+            Modificadores ocultos de la suerte
+        */
+
+        //CAPADO inferiormente a 1 y superiormente a 10, cada numero son 2 golpes
+        this.lifeModifier = 0;
+        this.life = 3 + this.lifeModifier;
+
+        //CAPADO inferiormente a 10 y superiormente a 1000
+        //Cuando no se tiene mana suficiente para hacer el ataque, se hace igual con una potencia proporcional al mana gastado de lo que cuesta el ataque
+        this.manaModifier = 0;
+        this.mana = 250 + this.manaModifier;
+
+        this.weaponMultiplier = 1;
+
+        //CAPADO, definir caps
+        this.MovSpeedModifier = 0;
+        this.MovSpeedMultiplier = 1;
+        this.MovSpeed = (300 + this.MovSpeedModifier)*this.MovSpeedMultiplier;
+
+        this.hiddenLuckModifier = 0;
+        this.luck = 5;
+    }
+    constructor(scene, x, y) {
         super(scene, x, y, 'player');
         this.score = 0;
         this.scene.add.existing(this);
