@@ -51,6 +51,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         this.hiddenLuckModifier = 0;
         this.luck = 5;
+
+        this.scene.add.existing(this);
+        
     }
     constructor(scene, x, y) {
         super(scene, x, y, 'player');
