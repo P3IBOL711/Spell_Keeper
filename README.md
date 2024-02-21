@@ -39,7 +39,7 @@ Además, el mercader tratará de ayudarle vendiéndole objetos mágicos y armas 
 
 ## [ENEMIGOS] (https://drive.google.com/drive/folders/1IDnaGCgFBoSohZxMgfcPsKvY0-nSoqTA?usp=sharing)
 - ### JARDINES
-    - Plantas Carnívoras
+    - Plantas Carnívora
     - Sapos
     - Arañas
     - Insectos
