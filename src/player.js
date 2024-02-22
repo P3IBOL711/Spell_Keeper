@@ -30,12 +30,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
         //CAPADO, definir caps
         this.MovSpeedModifier = moveMod;
         this.MovSpeedMultiplier = moveMult;
-        this.MovSpeed = (300 + this.MovSpeedModifier)*this.MovSpeedMultiplier;
+        this.MovSpeed = (100 + this.MovSpeedModifier)*this.MovSpeedMultiplier;
 
         this.hiddenLuckModifier = luckMod;
         this.luck = 5;
 
         this.scene.add.existing(this);
+        this.scene.physics.add.existing(this);
+
         this.body.setCollideWorldBounds();
         this.cursors = this.scene.input.keyboard.createCursorKeys();
 
@@ -68,7 +70,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
      * Actualiza la UI con la puntuación actual
      */
     updateScore() {
-        this.label.text = 'Score: ' + this.score;
+        //this.label.text = 'Score: ' + this.score;
     }
 
     /**
@@ -97,10 +99,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
         //MOVIMIENTO DEL JUGADOR (de momento es estatico)
         //preguntar si es else if y ademas pregutnar que pasa si solo pones if, (moverse en 8 direcciones)
         if(this.cursors.up.isDown){
-            this.body.setVelocityY(this.MovSpeed);
+            this.body.setVelocityY(-this.MovSpeed);
         }
         else if(this.cursors.down.isDown){
-            this.body.setVelocityY(-this.MovSpeed);
+            this.body.setVelocityY(this.MovSpeed);
         }
         else if(this.cursors.left.isDown){
             this.body.setVelocityX(-this.MovSpeed);
@@ -108,7 +110,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
         else if(this.cursors.right.isDown){
             this.body.setVelocityX(this.MovSpeed);
         }
-        
+
+        else {
+            this.body.setVelocityX(0);
+            this.body.setVelocityY(0);
+        }
         /*
         //BOTON DEL ESCUDO, IMPLEMENTAR
         if(this.cursors.shift.isDown){
