@@ -38,3 +38,7 @@ fs.readdirSync(roomsPath).forEach(file => {
 
 });
 
+roomArray.forEach(element => {
+    console.log("$element")
+});
+
