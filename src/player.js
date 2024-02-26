@@ -1,3 +1,4 @@
+import Dungeongen from './dungeongen.js';
 import Star from './star.ts';
 import Phaser from 'phaser'
 
@@ -15,6 +16,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
      */
     constructor(scene, x, y, lifeMod, manaMod, weaponMult, moveMod, moveMult, luckMod) {
         super(scene,x,y, 'player');
+
+
+        //TODO BORRAR ANTES DE ENVIAR
+        let dg = new Dungeongen();
+
 
         //CAPADO inferiormente a 1 y superiormente a 10, cada numero son 2 golpes
         this.lifeModifier = lifeMod;
@@ -95,7 +101,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.body.setVelocityX(0);
         }*/
 
-
+       
         //MOVIMIENTO DEL JUGADOR (de momento es estatico)
         //preguntar si es else if y ademas pregutnar que pasa si solo pones if, (moverse en 8 direcciones)
         if(this.cursors.up.isDown){
@@ -110,6 +116,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
         else if(this.cursors.right.isDown){
             this.body.setVelocityX(this.MovSpeed);
         }
+
+       
+
 
         else {
             this.body.setVelocityX(0);
