@@ -3,6 +3,7 @@ import Phaser from 'phaser'
 
 import player from '../assets/sprites/player.png'
 import knight_walk from '../assets/armory/sprites/knight/knight_walk-sheet.png'
+import knight_attack from '../assets/armory/sprites/knight/knight_attack_01-sheet.png'
 import room from '../assets/armory/sprites/Hab_Prueba.png'
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
@@ -30,6 +31,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('player', player);
     this.load.image('escena', room);
     this.load.spritesheet('knight_walk_spritesheet', knight_walk, { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('knight_attack_spritesheet', knight_attack, { frameWidth: 50, frameHeight: 62 });
   }
 
   /**

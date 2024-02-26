@@ -11,7 +11,7 @@ export default class Knight extends Phaser.GameObjects.Sprite {
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      */
-    constructor(scene, x, y) {
+    constructor(scene, x, y, target) {
         super(scene, x, y, 'knight_walk_spritesheet');
 
         this.anims.create({
@@ -21,14 +21,19 @@ export default class Knight extends Phaser.GameObjects.Sprite {
             repeat: -1
         });
 
+        this.anims.create({
+            key: 'attack',
+            frames: this.anims.generateFrameNumbers('knight_attack_spritesheet', { start: 0, end: 2 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        // Queremos que el enemigo no se salga de los límites del mundo
-        this.body.setCollideWorldBounds();
-
-        this.play('walking');
         // Velocidad 0 por defecto
-        this.speed = 5;
+        this.speed = 20;
+
+        this.target = target;
     }
 
     /**
@@ -41,6 +46,16 @@ export default class Knight extends Phaser.GameObjects.Sprite {
         // IMPORTANTE: Si no ponemos esta instrucción y el sprite está animado
         // no se podrá ejecutar la animación del sprite. 
         super.preUpdate(t, dt);
+        
+        if (Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y) >= 50){
+            this.play('walking', true);
+            this.scene.physics.moveToObject(this, this.target, this.speed);
+        }
+        else {
+            this.play('attack', true);
+            this.body.setVelocity(0);
+        }
+
     }
 
 }
