@@ -14,7 +14,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
      * @param {number} y Coordenada Y
      */
     constructor(scene, x, y, lifeMod, manaMod, weaponMult, moveMod, moveMult, luckMod) {
-        super(scene,x,y, 'player');
+        super(scene, x, y, 'player');
 
         //CAPADO inferiormente a 1 y superiormente a 10, cada numero son 2 golpes
         this.lifeModifier = lifeMod;
@@ -35,12 +35,47 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.hiddenLuckModifier = luckMod;
         this.luck = 5;
 
+        this.cursors = this.scene.input.keyboard.createCursorKeys();
+
+        //ANIMACIONES
+        this.anims.create({
+            key:'idle',
+            frames: this.anims.generateFrameNumbers('player_spritesheet', { frames: [0] }),
+            frameRate: 8,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key:'walkLeft',
+            frames: this.anims.generateFrameNumbers('player_spritesheet',{ frames: [8, 9, 10, 11] }),
+            frameRate: 8,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key:'walkRight',
+            frames: this.anims.generateFrameNumbers('player_spritesheet',{ frames: [8, 9, 10, 11] }),
+            frameRate: 8,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key:'walkUp',
+            frames: this.anims.generateFrameNumbers('player_spritesheet',{frames: [4, 5, 6, 7]}),
+            frameRate: 8,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key:'walkDown',
+            frames: this.anims.generateFrameNumbers('player_spritesheet',{ frames: [1, 2, 3] }),
+            frameRate: 8,
+            repeat: -1
+        });
+
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-
         this.body.setCollideWorldBounds(true);
-        this.body.setCol
-        this.cursors = this.scene.input.keyboard.createCursorKeys();
 
         /*
         super(scene, x, y, 'player');
@@ -82,37 +117,29 @@ export default class Player extends Phaser.GameObjects.Sprite {
      */
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-        /*
-        if (this.cursors.up.isDown && this.body.onFloor()) {
-            this.body.setVelocityY(this.jumpSpeed);
-        }
-        if (this.cursors.left.isDown) {
-            this.body.setVelocityX(-this.speed);
-        }
-        else if (this.cursors.right.isDown) {
-            this.body.setVelocityX(this.speed);
-        }
-        else {
-            this.body.setVelocityX(0);
-        }*/
 
-
-        //MOVIMIENTO DEL JUGADOR (de momento es estatico)
-        //preguntar si es else if y ademas pregutnar que pasa si solo pones if, (moverse en 8 direcciones)
+        //MOVIMIENTO DEL JUGADOR 
         this.body.setVelocity(0);
+        this.anims.play('idle', true);
+
         if(this.cursors.left.isDown){
+            this.anims.play('walkLeft', true);
             this.body.setVelocityX(-this.MovSpeed);
         }
         else if(this.cursors.right.isDown){
+            this.anims.play('walkRight', true);
             this.body.setVelocityX(this.MovSpeed);
         }
         
         if(this.cursors.up.isDown){
+            this.anims.play('walkUp', true);
             this.body.setVelocityY(-this.MovSpeed);
         }
         else if(this.cursors.down.isDown){
+            this.anims.play('walkDown', true);
             this.body.setVelocityY(this.MovSpeed);
         }
+
         /*
         //BOTON DEL ESCUDO, IMPLEMENTAR
         if(this.cursors.shift.isDown){
