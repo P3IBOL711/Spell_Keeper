@@ -38,7 +38,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
 
-        this.body.setCollideWorldBounds();
+        this.body.setCollideWorldBounds(true);
+        this.body.setCol
         this.cursors = this.scene.input.keyboard.createCursorKeys();
 
         /*
@@ -98,22 +99,19 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         //MOVIMIENTO DEL JUGADOR (de momento es estatico)
         //preguntar si es else if y ademas pregutnar que pasa si solo pones if, (moverse en 8 direcciones)
-        if(this.cursors.up.isDown){
-            this.body.setVelocityY(-this.MovSpeed);
-        }
-        else if(this.cursors.down.isDown){
-            this.body.setVelocityY(this.MovSpeed);
-        }
-        else if(this.cursors.left.isDown){
+        this.body.setVelocity(0);
+        if(this.cursors.left.isDown){
             this.body.setVelocityX(-this.MovSpeed);
         }
         else if(this.cursors.right.isDown){
             this.body.setVelocityX(this.MovSpeed);
         }
-
-        else {
-            this.body.setVelocityX(0);
-            this.body.setVelocityY(0);
+        
+        if(this.cursors.up.isDown){
+            this.body.setVelocityY(-this.MovSpeed);
+        }
+        else if(this.cursors.down.isDown){
+            this.body.setVelocityY(this.MovSpeed);
         }
         /*
         //BOTON DEL ESCUDO, IMPLEMENTAR
