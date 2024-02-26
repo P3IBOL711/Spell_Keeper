@@ -12,16 +12,17 @@ let config = {
     width: 1000,
     height: 500,
     scale: {
-        // mode: Phaser.Scale.FIT,  
-        autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
+        mode: Phaser.Scale.FIT,  
+        //autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
+        autoCenter: Phaser.Scale.CENTER_BOTH
     },
     pixelArt: true,
     scene: [Boot, Level, End],
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 400 },
-            debug: false
+            //gravity: { y: 400 },
+            debug: true
         }
     }
 };
