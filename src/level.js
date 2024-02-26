@@ -27,9 +27,9 @@ export default class Level extends Phaser.Scene {
         img.displayWidth = this.sys.game.config.width;
         img.displayHeight = this.sys.game.config.height;
         this.player = new Player(this, 200, 300, 0, 0, 1, 0, 1, 0);
-
+        this.player.setScale(0.5);
         this.knight = new Knight(this, 400, 300);
-
+        this.knight.setScale(3);
     }
 
 }
