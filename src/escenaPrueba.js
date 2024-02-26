@@ -11,29 +11,24 @@ import Phaser from 'phaser'
  * El juego termina cuando el jugador ha recogido 10 estrellas.
  * @extends Phaser.Scene
  */
-export default class Level extends Phaser.Scene {
+export default class EscenaPrueba extends Phaser.Scene {
     /**
      * Constructor de la escena
      */
     constructor() {
-        super({ key: 'level' });
+        super({ key: 'escenaPrueba' });
     }
+    /*init: se ejecuta cuando se carga la escena. Aquí se pueden pasar datos entre escenas.
+      preload: aquí hay que cargar los recursos antes de que sean usados.
+      create: una vez que la clase está instanciada y el motor está a punto, se llama a este método para inicializar.
+      update(time, delta): se llama cada ciclo de juego, para modificar el estado.
+    */
 
     /**
      * Creación de los elementos de la escena principal de juego
      */
     create() {
-        this.stars = 10;
-        this.bases = this.add.group();
         this.player = new Player(this, 200, 300, 0, 0, 1, 0, 1, 0);
-
-        new Platform(this, this.player, this.bases, 150, 350);
-        new Platform(this, this.player, this.bases, 850, 350);
-        new Platform(this, this.player, this.bases, 500, 200);
-        new Platform(this, this.player, this.bases, 150, 100);
-        new Platform(this, this.player, this.bases, 850, 100);
-        this.spawn();
-
     }
 
     /**
@@ -58,7 +53,6 @@ export default class Level extends Phaser.Scene {
         else {
             let s = this.bases.children.entries;
             this.spawn(s.filter(o => o !== base));
-
         }
     }
 }

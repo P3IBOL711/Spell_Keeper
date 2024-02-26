@@ -13,49 +13,35 @@ export default class Player extends Phaser.GameObjects.Sprite {
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      */
-    constructor(scene, x, y) {
+    constructor(scene, x, y, lifeMod, manaMod, weaponMult, moveMod, moveMult, luckMod) {
         super(scene,x,y, 'player');
-        //Estadisticas del jugador
-        /*
-            Vida
-            Modificadores de vida
-
-            Mana
-            Modificadores de mana
-
-            Multiplicadores a las armas
-
-            Velocidad de movimiento
-            Modificadores de la velocidad de movimiento
-            Multiplicadores de la velocidad de movimiento
-
-            Suerte
-            Modificadores ocultos de la suerte
-        */
 
         //CAPADO inferiormente a 1 y superiormente a 10, cada numero son 2 golpes
-        this.lifeModifier = 0;
+        this.lifeModifier = lifeMod;
         this.life = 3 + this.lifeModifier;
 
         //CAPADO inferiormente a 10 y superiormente a 1000
         //Cuando no se tiene mana suficiente para hacer el ataque, se hace igual con una potencia proporcional al mana gastado de lo que cuesta el ataque
-        this.manaModifier = 0;
+        this.manaModifier = manaMod;
         this.mana = 250 + this.manaModifier;
 
-        this.weaponMultiplier = 1;
+        this.weaponMultiplier = weaponMult;
 
         //CAPADO, definir caps
-        this.MovSpeedModifier = 0;
-        this.MovSpeedMultiplier = 1;
-        this.MovSpeed = (300 + this.MovSpeedModifier)*this.MovSpeedMultiplier;
+        this.MovSpeedModifier = moveMod;
+        this.MovSpeedMultiplier = moveMult;
+        this.MovSpeed = (100 + this.MovSpeedModifier)*this.MovSpeedMultiplier;
 
-        this.hiddenLuckModifier = 0;
+        this.hiddenLuckModifier = luckMod;
         this.luck = 5;
 
         this.scene.add.existing(this);
-        
-    }
-    constructor(scene, x, y) {
+        this.scene.physics.add.existing(this);
+
+        this.body.setCollideWorldBounds();
+        this.cursors = this.scene.input.keyboard.createCursorKeys();
+
+        /*
         super(scene, x, y, 'player');
         this.score = 0;
         this.scene.add.existing(this);
@@ -68,6 +54,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.label = this.scene.add.text(10, 10, "");
         this.cursors = this.scene.input.keyboard.createCursorKeys();
         this.updateScore();
+        */
     }
 
     /**
@@ -83,7 +70,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
      * Actualiza la UI con la puntuación actual
      */
     updateScore() {
-        this.label.text = 'Score: ' + this.score;
+        //this.label.text = 'Score: ' + this.score;
     }
 
     /**
@@ -94,6 +81,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
      */
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
+        /*
         if (this.cursors.up.isDown && this.body.onFloor()) {
             this.body.setVelocityY(this.jumpSpeed);
         }
@@ -105,7 +93,34 @@ export default class Player extends Phaser.GameObjects.Sprite {
         }
         else {
             this.body.setVelocityX(0);
+        }*/
+
+
+        //MOVIMIENTO DEL JUGADOR (de momento es estatico)
+        //preguntar si es else if y ademas pregutnar que pasa si solo pones if, (moverse en 8 direcciones)
+        if(this.cursors.up.isDown){
+            this.body.setVelocityY(-this.MovSpeed);
         }
+        else if(this.cursors.down.isDown){
+            this.body.setVelocityY(this.MovSpeed);
+        }
+        else if(this.cursors.left.isDown){
+            this.body.setVelocityX(-this.MovSpeed);
+        }
+        else if(this.cursors.right.isDown){
+            this.body.setVelocityX(this.MovSpeed);
+        }
+
+        else {
+            this.body.setVelocityX(0);
+            this.body.setVelocityY(0);
+        }
+        /*
+        //BOTON DEL ESCUDO, IMPLEMENTAR
+        if(this.cursors.shift.isDown){
+
+        }
+        */
     }
 
 }
