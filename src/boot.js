@@ -1,11 +1,6 @@
 import Phaser from 'phaser'
 
-
-import platform from '../assets/sprites/platform.png'
-import base from '../assets/sprites/base.png'
-import star from '../assets/sprites/star.png'
-import player from '../assets/sprites/player.png'
-import playerSpritesheet from '../assets/cSprites/characters/Mage_Walking.png'
+import player from '../assets/cSprites/characters/Mage_Walking.png'
 import escena from '../assets/armory/sprites/Hab_Prueba.png'
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
@@ -29,13 +24,8 @@ export default class Boot extends Phaser.Scene {
   preload() {
     // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
     this.load.setPath('assets/sprites/');
-    /*this.load.image('platform', platform);
-    this.load.image('base', base);
-    this.load.image('star', star)*/
     //this.load.image('player', player);
-    this.load.spritesheet('player_spritesheet', 
-                           playerSpritesheet,
-                           {frameHeight: 32, frameWidth: 32});
+    this.load.spritesheet('player_spritesheet', player, {frameHeight: 32, frameWidth: 32});
     this.load.image('escenaPrueba', escena);
   }
 

@@ -40,36 +40,29 @@ export default class Player extends Phaser.GameObjects.Sprite {
         //ANIMACIONES
         this.anims.create({
             key:'idle',
-            frames: this.anims.generateFrameNumbers('player_spritesheet', { frames: [0] }),
-            frameRate: 8,
-            repeat: -1
-        });
-
-        this.anims.create({
-            key:'walkLeft',
-            frames: this.anims.generateFrameNumbers('player_spritesheet',{ frames: [8, 9, 10, 11] }),
-            frameRate: 8,
-            repeat: -1
-        });
-
-        this.anims.create({
-            key:'walkRight',
-            frames: this.anims.generateFrameNumbers('player_spritesheet',{ frames: [8, 9, 10, 11] }),
-            frameRate: 8,
-            repeat: -1
-        });
-
-        this.anims.create({
-            key:'walkUp',
-            frames: this.anims.generateFrameNumbers('player_spritesheet',{frames: [4, 5, 6, 7]}),
-            frameRate: 8,
+            frames: this.anims.generateFrameNumbers('player_spritesheet', { start: 0, end: 0 }),
+            frameRate: 10,
             repeat: -1
         });
 
         this.anims.create({
             key:'walkDown',
-            frames: this.anims.generateFrameNumbers('player_spritesheet',{ frames: [1, 2, 3] }),
-            frameRate: 8,
+            frames: this.anims.generateFrameNumbers('player_spritesheet',{ start: 0, end: 3 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key:'walkUp',
+            frames: this.anims.generateFrameNumbers('player_spritesheet',{ start: 4, end: 7 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key:'walkRight',
+            frames: this.anims.generateFrameNumbers('player_spritesheet',{ start: 8, end: 11 }),
+            frameRate: 10,
             repeat: -1
         });
 
@@ -118,25 +111,27 @@ export default class Player extends Phaser.GameObjects.Sprite {
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
 
-        //MOVIMIENTO DEL JUGADOR 
+        //MOVIMIENTO DEL JUGADOR
+        this.play('idle', true);
         this.body.setVelocity(0);
-        this.anims.play('idle', true);
 
         if(this.cursors.left.isDown){
-            this.anims.play('walkLeft', true);
+            this.setFlipX(true);
+            this.play('walkRight', true);
             this.body.setVelocityX(-this.MovSpeed);
         }
         else if(this.cursors.right.isDown){
-            this.anims.play('walkRight', true);
+            this.setFlipX(false);
+            this.play('walkRight', true);
             this.body.setVelocityX(this.MovSpeed);
         }
         
         if(this.cursors.up.isDown){
-            this.anims.play('walkUp', true);
+            this.play('walkUp', true);
             this.body.setVelocityY(-this.MovSpeed);
         }
         else if(this.cursors.down.isDown){
-            this.anims.play('walkDown', true);
+            this.play('walkDown', true);
             this.body.setVelocityY(this.MovSpeed);
         }
 
