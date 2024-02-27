@@ -1,7 +1,7 @@
 import Phaser from 'phaser'
 
 
-import player from '../assets/sprites/player.png'
+import player from '../assets/cSprites/characters/Mage_Walking.png'
 import knight_walk from '../assets/armory/sprites/knight/knight_walk-sheet.png'
 import knight_attack from '../assets/armory/sprites/knight/knight_attack_01-sheet.png'
 import room from '../assets/armory/sprites/Hab_Prueba.png'
@@ -28,7 +28,7 @@ export default class Boot extends Phaser.Scene {
 
     // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
     this.load.setPath('assets/sprites/');
-    this.load.image('player', player);
+    this.load.spritesheet('player_spritesheet', player, { frameWidth: 32, frameHeight: 32 });
     this.load.image('escena', room);
     this.load.spritesheet('knight_walk_spritesheet', knight_walk, { frameWidth: 32, frameHeight: 32 });
     this.load.spritesheet('knight_attack_spritesheet', knight_attack, { frameWidth: 50, frameHeight: 62 });

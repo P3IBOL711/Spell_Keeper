@@ -35,12 +35,39 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.hiddenLuckModifier = luckMod;
         this.luck = 5;
 
+        this.anims.create({
+            key: 'idle',
+            frames: this.anims.generateFrameNumbers('player_spritesheet', { start: 0, end: 0 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'walking_down',
+            frames: this.anims.generateFrameNumbers('player_spritesheet', { start: 0, end: 3 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'walking_up',
+            frames: this.anims.generateFrameNumbers('player_spritesheet', { start: 4, end: 7 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'walking_left',
+            frames: this.anims.generateFrameNumbers('player_spritesheet', { start: 8, end: 11 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
 
         this.body.setCollideWorldBounds();
         this.cursors = this.scene.input.keyboard.createCursorKeys();
-
         /*
         super(scene, x, y, 'player');
         this.score = 0;
@@ -99,19 +126,26 @@ export default class Player extends Phaser.GameObjects.Sprite {
         //MOVIMIENTO DEL JUGADOR (de momento es estatico)
         //preguntar si es else if y ademas pregutnar que pasa si solo pones if, (moverse en 8 direcciones)
         if(this.cursors.up.isDown){
+            this.play('walking_up', true);
             this.body.setVelocityY(-this.MovSpeed);
         }
         else if(this.cursors.down.isDown){
+            this.play('walking_down', true);
             this.body.setVelocityY(this.MovSpeed);
         }
         else if(this.cursors.left.isDown){
+            this.setFlipX(true);
+            this.play('walking_left', true);
             this.body.setVelocityX(-this.MovSpeed);
         }
         else if(this.cursors.right.isDown){
+            this.setFlipX(false);
+            this.play('walking_left', true);
             this.body.setVelocityX(this.MovSpeed);
         }
 
         else {
+            this.play('idle', true);
             this.body.setVelocityX(0);
             this.body.setVelocityY(0);
         }

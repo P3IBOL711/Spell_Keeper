@@ -12,7 +12,7 @@ export default class Knight extends Phaser.GameObjects.Sprite {
      * @param {number} y Coordenada Y
      */
     constructor(scene, x, y, target) {
-        super(scene, x, y, 'knight_walk_spritesheet');
+        super(scene, x, y, 'knight');
 
         this.anims.create({
             key: 'walking',
