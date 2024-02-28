@@ -10,7 +10,8 @@ export default class Knight extends Phaser.GameObjects.Sprite {
      * @param {Phaser.Scene} scene Escena a la que pertenece el enemigo
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
-     */
+    */
+
     constructor(scene, x, y, target) {
         super(scene, x, y, 'knight');
 
@@ -34,6 +35,8 @@ export default class Knight extends Phaser.GameObjects.Sprite {
         this.speed = 20;
 
         this.target = target;
+
+        this.body.setSize(this.width * 0.4, this.height * 0.9, true);
     }
 
     /**
