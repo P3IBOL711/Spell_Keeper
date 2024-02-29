@@ -29,6 +29,8 @@ export default class Knight extends Phaser.GameObjects.Sprite {
             repeat: -1
         });
 
+        this.setScale(3);
+
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         // Velocidad 0 por defecto
@@ -51,6 +53,10 @@ export default class Knight extends Phaser.GameObjects.Sprite {
         super.preUpdate(t, dt);
         
         if (Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y) >= 50){
+            if (this.body.velocity.x < 0)
+                this.setFlipX(true);
+            else 
+                this.setFlipX(false);
             this.play('walking', true);
             this.scene.physics.moveToObject(this, this.target, this.speed);
         }
