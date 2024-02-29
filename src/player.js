@@ -112,10 +112,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
         super.preUpdate(t, dt);
 
         //MOVIMIENTO DEL JUGADOR
-        this.play('idle', true);
-        this.body.setVelocity(0);
+        //this.play('idle', true);
+        //this.body.setVelocity(0);
 
-        if(this.cursors.left.isDown){
+      /*  if(this.cursors.left.isDown){
             this.setFlipX(true);
             this.play('walkRight', true);
             this.body.setVelocityX(-this.MovSpeed);
@@ -133,14 +133,45 @@ export default class Player extends Phaser.GameObjects.Sprite {
         else if(this.cursors.down.isDown){
             this.play('walkDown', true);
             this.body.setVelocityY(this.MovSpeed);
+        }*/
+        
+        let quieto = true;
+        if(this.cursors.left.isDown){
+            this.setFlipX(true);
+            quieto=false;
+            this.play('walkRight', true);
+            this.body.setVelocityX(-this.MovSpeed);
+        }
+        else if(this.cursors.right.isDown){
+            quieto=false;
+            this.setFlipX(false);
+            this.play('walkRight', true);
+            this.body.setVelocityX(this.MovSpeed);
+        }
+        
+        if(this.cursors.up.isDown){
+            quieto=false;
+            this.play('walkUp', true);
+            this.body.setVelocityY(-this.MovSpeed);
+        }
+        else if(this.cursors.down.isDown){
+            quieto=false;
+            this.play('walkDown', true);
+            this.body.setVelocityY(this.MovSpeed);
         }
 
+        if(quieto) {
+            this.play('idle', true);
+            this.body.setVelocity(0);
+        }
         /*
         //BOTON DEL ESCUDO, IMPLEMENTAR
         if(this.cursors.shift.isDown){
 
         }
         */
+
+        
     }
 
 }
