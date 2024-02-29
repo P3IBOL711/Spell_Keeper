@@ -16,6 +16,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, lifeMod, manaMod, weaponMult, moveMod, moveMult, luckMod) {
         super(scene, x, y, 'player');
 
+        /****ESTADISTICAS****/
         //CAPADO inferiormente a 1 y superiormente a 10, cada numero son 2 golpes
         this.lifeModifier = lifeMod;
         this.life = 3 + this.lifeModifier;
@@ -35,9 +36,12 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.hiddenLuckModifier = luckMod;
         this.luck = 5;
 
+        /****CONTROLES****/
         this.cursors = this.scene.input.keyboard.createCursorKeys();
+        this.meleeMode = true;
 
-        //ANIMACIONES
+
+        /****ANIMACIONES****/
         this.anims.create({
             key:'idle',
             frames: this.anims.generateFrameNumbers('player_spritesheet', { start: 0, end: 0 }),
@@ -69,37 +73,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.body.setCollideWorldBounds(true);
-
-        /*
-        super(scene, x, y, 'player');
-        this.score = 0;
-        this.scene.add.existing(this);
-        this.scene.physics.add.existing(this);
-        // Queremos que el jugador no se salga de los límites del mundo
-        this.body.setCollideWorldBounds();
-        this.speed = 300;
-        this.jumpSpeed = -400;
-        // Esta label es la UI en la que pondremos la puntuación del jugador
-        this.label = this.scene.add.text(10, 10, "");
-        this.cursors = this.scene.input.keyboard.createCursorKeys();
-        this.updateScore();
-        */
-    }
-
-    /**
-     * El jugador ha recogido una estrella por lo que este método añade un punto y
-     * actualiza la UI con la puntuación actual.
-     */
-    point() {
-        this.score++;
-        this.updateScore();
-    }
-
-    /**
-     * Actualiza la UI con la puntuación actual
-     */
-    updateScore() {
-        //this.label.text = 'Score: ' + this.score;
     }
 
     /**
@@ -112,29 +85,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
         super.preUpdate(t, dt);
 
         //MOVIMIENTO DEL JUGADOR
-        //this.play('idle', true);
-        //this.body.setVelocity(0);
-
-      /*  if(this.cursors.left.isDown){
-            this.setFlipX(true);
-            this.play('walkRight', true);
-            this.body.setVelocityX(-this.MovSpeed);
-        }
-        else if(this.cursors.right.isDown){
-            this.setFlipX(false);
-            this.play('walkRight', true);
-            this.body.setVelocityX(this.MovSpeed);
-        }
-        
-        if(this.cursors.up.isDown){
-            this.play('walkUp', true);
-            this.body.setVelocityY(-this.MovSpeed);
-        }
-        else if(this.cursors.down.isDown){
-            this.play('walkDown', true);
-            this.body.setVelocityY(this.MovSpeed);
-        }*/
-        
         let quieto = true;
         if(this.cursors.left.isDown){
             this.setFlipX(true);
@@ -160,10 +110,12 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.body.setVelocityY(this.MovSpeed);
         }
 
+        //TA CUTRON, hay que cambiarlo por algo mas limipio
         if(quieto) {
             this.play('idle', true);
             this.body.setVelocity(0);
         }
+
         /*
         //BOTON DEL ESCUDO, IMPLEMENTAR
         if(this.cursors.shift.isDown){
@@ -171,7 +123,34 @@ export default class Player extends Phaser.GameObjects.Sprite {
         }
         */
 
-        
+        //Cursor de ataque
+        /*
+        this.input.on('pointerup', pointer =>  {
+            if(pointer.leftButtonReleased()) {
+                this.meleeMode = false;
+            }
+
+            if(pointer.rightButtonReleased()) {
+                if(this.meleeMode)
+                    meeleAttack();
+                else
+                    rangedAttack();
+            }
+        });
+        */
     }
 
+    /*
+    //Metodo que ejecuta el ataque cuerpo a cuerpo con el arma melee 
+    //equipada en ese momento
+    meeleAttack(){
+        //Va el inventario donde se escoje el arma correspondiente y hacew la animacion de ataque con el arma, si impacta hace daño
+    }
+
+    //Metodo que ejecuta el ataque a distancia con el arma
+    //equipada por el jugador en ese momento desde el inventario
+    rangedAttack(){
+        //Va al inventario y creas
+    }
+    */
 }
