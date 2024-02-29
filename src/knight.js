@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import HitBox from './hitbox';
 
 /**
  * Clase que representa un enemigo del juego.
@@ -38,35 +39,27 @@ export default class Knight extends Phaser.GameObjects.Sprite {
         this.target = target;
 
         this.body.setSize(this.width * 0.4, this.height * 0.9, true);
-
-        let attackZone = this.scene.add.zone(this.x, this.y, 60, 100);
-        this.on(Phaser.Animations.Events.ANIMATION_UPDATE, (anim, frame, sprite, frameKey) => {
+        
+        // SE PODRIA MEJORAR CON this.on(animationstart) PERO NO SABEMOS HACERLO
+        this.on(Phaser.Animations.Events.ANIMATION_START, () => {
             if (this.anims.getName() === 'attack'){
-                this.scene.physics.world.enable(attackZone);
-                if (this.flipX){
-                    attackZone.x = this.x - 25;   
-                }
-                else{
-                    attackZone.x = this.x + 25;                 
-                }
-                this.body.setSize(this.width * 0.2, this.height * 0.5, true);
-                this.body.setOffset(25);
-            }
-            else if (this.anims.getName() === 'walking'){
-                this.body.setSize(this.width * 0.4, this.height * 0.9, true);
-                //attackZone.visible = false;
+                if (this.flipX)
+                    this.attackZone = new HitBox(this.scene, this.x - 25, this.y - 25, 60, 100, this.target, this.damage);
+                else
+                    this.attackZone = new HitBox(this.scene, this.x + 25, this.y + 25, 60, 100, this.target, this.damage);
             }
         })
 
-        this.scene.physics.add.overlap(attackZone, this.target, () =>{
-            //console.log("overlapped");
-            
+        this.on(Phaser.Animations.Events.ANIMATION_STOP, () => {
+            if (this.anims.getName() === 'attack'){
+                this.attackZone.destroy(true);
+            }
         })
+
         /* PREGUNTAS
             - Como funciona el offset
-            - Como desactivar la zona cuando no estas atacando
-            - Como quitar vida y si es en overlap o collide
-            - Como cuadrar los sprites cuando cambia la animacion a ataque*/
+            - Como cuadrar los sprites cuando cambia la animacion a ataque      
+        */
     }
 
     /**
@@ -81,16 +74,19 @@ export default class Knight extends Phaser.GameObjects.Sprite {
         super.preUpdate(t, dt);
         
         if (Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y) >= 50){
-            if (this.body.velocity.x < 0)
-                this.setFlipX(true);
-            else 
-                this.setFlipX(false);
+
+            this.setFlipX(this.body.velocity.x < 0);
+
             this.play('walking', true);
             this.scene.physics.moveToObject(this, this.target, this.speed);
         }
         else {
+            // creáis la zone de ataque
+
+            // cambiáis la animación (que ya está)
             this.play('attack', true);
             this.body.setVelocity(0);
+            
         }
 
     }
