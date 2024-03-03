@@ -1,3 +1,4 @@
+import PlayerPointer from './PlayerPointer.js';
 import Star from './star.ts';
 import Phaser from 'phaser'
 
@@ -37,8 +38,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.luck = 5;
 
         /****CONTROLES****/
-        this.cursors = this.scene.input.keyboard.createCursorKeys();
+        this.w = this.scene.input.keyboard.addKey('W');
+        this.a = this.scene.input.keyboard.addKey('A');
+        this.s = this.scene.input.keyboard.addKey('S');
+        this.d = this.scene.input.keyboard.addKey('D');
         this.meleeMode = true;
+        
+        this.cursor = new PlayerPointer(this.scene, this.x, this.y-30);
 
 
         /****ANIMACIONES****/
@@ -70,9 +76,31 @@ export default class Player extends Phaser.GameObjects.Sprite {
             repeat: -1
         });
 
+        //Cursor de ataque: NOTAS
+        //SI QUIERES QUE SEA FUERA DE LA HITBOX DEL JUGADOR TIENES QUE CREAR UN CURSOR Y HACERLE EL LOCK Y QUE ESTE TENGA INTERACTIVE
+        //PARA HACER QUE CUANDO PASE EL CURSOR POR ENICMA DE LOS ENEMIGOS CAMBIE DE TAMAÑO O INDICAR QUE SE PUEDE ATACAR, poner  a todo .setInteractive y hacer los callbacks
+
+        this.on('pointerup', pointer =>  {
+            if(pointer.leftButtonReleased()) {
+                if(this.meleeMode)
+                    this.meleeMode = false;
+                else
+                    this.meleeMode = true;
+            }
+
+            if(pointer.rightButtonReleased()) {
+                if(this.meleeMode)
+                    meeleAttack();
+                else
+                    rangedAttack();
+            }
+        });
+
+        /**RELATIVO A LA ESCENA**/
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.body.setCollideWorldBounds(true);
+        
     }
 
     /**
@@ -86,25 +114,25 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         //MOVIMIENTO DEL JUGADOR
         let quieto = true;
-        if(this.cursors.left.isDown){
+        if(this.a.isDown){
             this.setFlipX(true);
             quieto=false;
             this.play('walkRight', true);
             this.body.setVelocityX(-this.MovSpeed);
         }
-        else if(this.cursors.right.isDown){
+        else if(this.d.isDown){
             quieto=false;
             this.setFlipX(false);
             this.play('walkRight', true);
             this.body.setVelocityX(this.MovSpeed);
         }
         
-        if(this.cursors.up.isDown){
+        if(this.w.isDown){
             quieto=false;
             this.play('walkUp', true);
             this.body.setVelocityY(-this.MovSpeed);
         }
-        else if(this.cursors.down.isDown){
+        else if(this.s.isDown) {
             quieto=false;
             this.play('walkDown', true);
             this.body.setVelocityY(this.MovSpeed);
@@ -122,35 +150,23 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         }
         */
-
-        //Cursor de ataque
-        /*
-        this.input.on('pointerup', pointer =>  {
-            if(pointer.leftButtonReleased()) {
-                this.meleeMode = false;
-            }
-
-            if(pointer.rightButtonReleased()) {
-                if(this.meleeMode)
-                    meeleAttack();
-                else
-                    rangedAttack();
-            }
-        });
-        */
     }
 
-    /*
     //Metodo que ejecuta el ataque cuerpo a cuerpo con el arma melee 
     //equipada en ese momento
-    meeleAttack(){
+    meeleAttack() {
         //Va el inventario donde se escoje el arma correspondiente y hacew la animacion de ataque con el arma, si impacta hace daño
+        
     }
 
     //Metodo que ejecuta el ataque a distancia con el arma
     //equipada por el jugador en ese momento desde el inventario
     rangedAttack(){
-        //Va al inventario y creas
+        //Va al inventario y con el arma equipada en ese momento, el arma crea la hitbox del ataque correspondiente y lo lanza en la direccion del click
     }
-    */
+
+    /**Funcion que se llama cuando el jugador recibe daño */
+    receiveDmg(damage) {
+        this.life -= damage;
+    }
 }
