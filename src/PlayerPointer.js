@@ -15,6 +15,8 @@ export default class PlayerPointer extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y) {
         super(scene, x, y, 'playerPointer');
 
+        this.setInteractive();
+
         /** Al crear el pointer, solicitas el bloqueo de raton para usarlo como mira
          *  el puntero cambiara de sprite cuando este en modo melee y modo rango
          *  (preguntar si implementar una teclar para quitar el pointerlock y decir que asi solo te mueves)
@@ -33,8 +35,9 @@ export default class PlayerPointer extends Phaser.GameObjects.Sprite {
             this.y = Phaser.Math.Wrap(this.y, 0, game.renderer.height);
         });
         
-        this.setInteractive();
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
+
+
     }
 }

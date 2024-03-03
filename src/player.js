@@ -76,24 +76,30 @@ export default class Player extends Phaser.GameObjects.Sprite {
             repeat: -1
         });
 
+        this.rotation;
+
         //Cursor de ataque: NOTAS
         //SI QUIERES QUE SEA FUERA DE LA HITBOX DEL JUGADOR TIENES QUE CREAR UN CURSOR Y HACERLE EL LOCK Y QUE ESTE TENGA INTERACTIVE
         //PARA HACER QUE CUANDO PASE EL CURSOR POR ENICMA DE LOS ENEMIGOS CAMBIE DE TAMAÑO O INDICAR QUE SE PUEDE ATACAR, poner  a todo .setInteractive y hacer los callbacks
 
-        this.on('pointerup', pointer =>  {
-            if(pointer.leftButtonReleased()) {
+        this.input.on('pointerup', pointer =>  {
+            if(pointer.rightButtonReleased()) {
                 if(this.meleeMode)
                     this.meleeMode = false;
                 else
                     this.meleeMode = true;
             }
+        });
 
-            if(pointer.rightButtonReleased()) {
-                if(this.meleeMode)
-                    meeleAttack();
-                else
-                    rangedAttack();
-            }
+        this.input.on('pointermove', pointer => {
+            this.rotation = Phaser.Math.Angle.BetweenPoints(this, pointer);
+        });
+
+        this.input.on('pointerdown', pointer => {
+            if(this.meleeMode)
+                this.meeleAttack();
+            else
+                this.rangedAttack();
         });
 
         /**RELATIVO A LA ESCENA**/
@@ -163,6 +169,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     //equipada por el jugador en ese momento desde el inventario
     rangedAttack(){
         //Va al inventario y con el arma equipada en ese momento, el arma crea la hitbox del ataque correspondiente y lo lanza en la direccion del click
+        
     }
 
     /**Funcion que se llama cuando el jugador recibe daño */
