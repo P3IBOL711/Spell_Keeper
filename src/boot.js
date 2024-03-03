@@ -2,8 +2,8 @@ import Phaser from 'phaser'
 
 
 import player from '../assets/cSprites/characters/Mage_Walking.png'
-import knight_walk from '../assets/armory/sprites/knight/knight_walk-sheet.png'
-import knight_attack from '../assets/armory/sprites/knight/knight_attack_01-sheet.png'
+import knight from '../assets/armory/sprites/knight/knight_spritesheet.png'
+import skeleton from '../assets/armory/sprites/skeleton/skeleton_spritesheet.png'
 import room from '../assets/armory/sprites/Hab_Prueba.png'
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
@@ -30,8 +30,8 @@ export default class Boot extends Phaser.Scene {
     this.load.setPath('assets/sprites/');
     this.load.spritesheet('player_spritesheet', player, { frameWidth: 32, frameHeight: 32 });
     this.load.image('escena', room);
-    this.load.spritesheet('knight_walk_spritesheet', knight_walk, { frameWidth: 32, frameHeight: 32 });
-    this.load.spritesheet('knight_attack_spritesheet', knight_attack, { frameWidth: 50, frameHeight: 62 });
+    this.load.spritesheet('knight_spritesheet', knight, { frameWidth: 64, frameHeight: 64 });
+    this.load.spritesheet('skeleton_spritesheet', skeleton, { frameWidth: 64, frameHeight: 64 });
   }
 
   /**

@@ -1,3 +1,4 @@
+import Skeleton from './archer_skeleton.js';
 import Knight from './knight.js';
 import Player from './player.js';
 import Phaser from 'phaser'
@@ -27,7 +28,8 @@ export default class Level extends Phaser.Scene {
         img.displayWidth = this.sys.game.config.width;
         img.displayHeight = this.sys.game.config.height;
         this.player = new Player(this, 200, 300, 0, 0, 1, 0, 1, 0);
-        this.knight = new Knight(this, 400, 300, this.player);       
+        this.knight = new Knight(this, 400, 300, this.player);
+        this.skeleton = new Skeleton(this, 600, 300, this.player);     
     }
 
     /**

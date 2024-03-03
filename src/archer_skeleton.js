@@ -4,7 +4,7 @@ import HitBox from './hitbox';
 /**
  * Clase que representa un enemigo del juego.
  */
-export default class Knight extends Phaser.GameObjects.Sprite {
+export default class Skeleton extends Phaser.GameObjects.Sprite {
 
     /**
      * Constructor del jugador
@@ -14,27 +14,27 @@ export default class Knight extends Phaser.GameObjects.Sprite {
     */
 
     constructor(scene, x, y, target) {
-        super(scene, x, y, 'knight');
+        super(scene, x, y, 'skeleton');
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
 
         this.anims.create({
             key: 'walking',
-            frames: this.anims.generateFrameNumbers('knight_spritesheet', { start: 0, end: 7 }),
+            frames: this.anims.generateFrameNumbers('skeleton_spritesheet', { start: 0, end: 7 }),
             frameRate: 10,
             repeat: -1
         });
 
         this.anims.create({
             key: 'attack',
-            frames: this.anims.generateFrameNumbers('knight_spritesheet', { start: 8, end: 10 }),
+            frames: this.anims.generateFrameNumbers('skeleton_spritesheet', { start: 8, end: 10 }),
             frameRate: 10,
             repeat: -1
         });
 
         this.anims.create({
             key: 'die',
-            frames: this.anims.generateFrameNumbers('knight_spritesheet', { start: 11, end: 15 }),
+            frames: this.anims.generateFrameNumbers('skeleton_spritesheet', { start: 11, end: 15 }),
             frameRate: 10,
             repeat: -1
         });
@@ -45,23 +45,18 @@ export default class Knight extends Phaser.GameObjects.Sprite {
 
         this.target = target;
 
-        this.life = 10;
-
-        this.body.setSize(this.width * 0.4, this.height * 0.85, true);
+        this.body.setSize(this.width * 0.45, this.height * 0.85, true);
 
         // SE PODRIA MEJORAR CON this.on(animationstart) PERO NO SABEMOS HACERLO
         this.on(Phaser.Animations.Events.ANIMATION_START, () => {
             if (this.anims.getName() === 'attack'){
-                if (this.flipX)
-                    this.attackZone = new HitBox(this.scene, this.x - 65, this.y - 10, 60, 120, this.target, this.damage);
-                else
-                    this.attackZone = new HitBox(this.scene, this.x + 65, this.y - 10, 60, 120, this.target, this.damage);
+
             }
         })
 
         this.on(Phaser.Animations.Events.ANIMATION_STOP, () => {
             if (this.anims.getName() === 'attack'){
-                this.attackZone.destroy(true);
+               
             }
         })
 
@@ -89,18 +84,19 @@ export default class Knight extends Phaser.GameObjects.Sprite {
         super.preUpdate(t, dt);
         // Preguntar si podría ser mas eficiente
         if(this.flipX)
-            this.body.setOffset(this.width * 0.38, this.height * 0.26);
+            this.body.setOffset(this.width * 0.38, this.height * 0.32);
         else
-            this.body.setOffset(this.width * 0.40, this.height * 0.26);
+            this.body.setOffset(this.width * 0.40, this.height * 0.32);
 
-        if (Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y) >= 50){
-            this.setFlipX(this.body.velocity.x < 0);
+        if (Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y) > 300){
+            this.setFlipX(this.body.velocity.x <= 0);
             this.play('walking', true);
             this.scene.physics.moveToObject(this, this.target, this.speed);
         }
         else {
             // creáis la zone de ataque
             // cambiáis la animación (que ya está)
+
             this.play('attack', true);
             this.body.setVelocity(0);
             
