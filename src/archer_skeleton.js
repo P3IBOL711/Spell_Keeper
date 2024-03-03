@@ -39,6 +39,13 @@ export default class Skeleton extends Phaser.GameObjects.Sprite {
             repeat: -1
         });
 
+        this.timer = this.time.addEvent({
+                delay: 2000,
+                paused: true
+            });
+
+        this.timer.paused = true;
+
         this.setScale(3);
 
         this.speed = 20;
@@ -98,6 +105,7 @@ export default class Skeleton extends Phaser.GameObjects.Sprite {
             // cambiáis la animación (que ya está)
 
             this.play('attack', true);
+            this.timer.paused = false;
             this.body.setVelocity(0);
             
         }
