@@ -1,10 +1,11 @@
 import Phaser from 'phaser'
 import HitBox from './hitbox';
+import Enemy from './enemy';
 
 /**
  * Clase que representa un enemigo del juego.
  */
-export default class Knight extends Phaser.GameObjects.Sprite {
+export default class Knight extends Enemy {
 
     /**
      * Constructor del jugador
@@ -15,8 +16,7 @@ export default class Knight extends Phaser.GameObjects.Sprite {
 
     constructor(scene, x, y, target) {
         super(scene, x, y, 'knight');
-        this.scene.add.existing(this);
-        this.scene.physics.add.existing(this);
+
 
         this.anims.create({
             key: 'walking',

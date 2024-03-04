@@ -1,4 +1,5 @@
 import Skeleton from './archer_skeleton.js';
+import Arrow from './arrow.js';
 import Knight from './knight.js';
 import Player from './player.js';
 import Phaser from 'phaser'
@@ -30,6 +31,7 @@ export default class Level extends Phaser.Scene {
         this.player = new Player(this, 200, 300, 0, 0, 1, 0, 1, 0);
         this.knight = new Knight(this, 400, 300, this.player);
         this.skeleton = new Skeleton(this, 600, 300, this.player);     
+        this.arrow = new Arrow(this, 800, 300, 1000, 1000);
     }
 
     /**

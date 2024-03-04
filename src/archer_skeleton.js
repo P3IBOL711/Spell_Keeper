@@ -1,10 +1,11 @@
 import Phaser from 'phaser'
 import HitBox from './hitbox';
+import Enemy from './enemy';
 
 /**
  * Clase que representa un enemigo del juego.
  */
-export default class Skeleton extends Phaser.GameObjects.Sprite {
+export default class Skeleton extends Enemy {
 
     /**
      * Constructor del jugador
@@ -15,9 +16,7 @@ export default class Skeleton extends Phaser.GameObjects.Sprite {
 
     constructor(scene, x, y, target) {
         super(scene, x, y, 'skeleton');
-        this.scene.add.existing(this);
-        this.scene.physics.add.existing(this);
-
+        
         this.anims.create({
             key: 'idle',
             frames: this.anims.generateFrameNumbers('skeleton_spritesheet', { start: 0, end: 0 }),
