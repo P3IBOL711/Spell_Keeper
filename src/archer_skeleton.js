@@ -19,6 +19,13 @@ export default class Skeleton extends Phaser.GameObjects.Sprite {
         this.scene.physics.add.existing(this);
 
         this.anims.create({
+            key: 'idle',
+            frames: this.anims.generateFrameNumbers('skeleton_spritesheet', { start: 0, end: 0 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        this.anims.create({
             key: 'walking',
             frames: this.anims.generateFrameNumbers('skeleton_spritesheet', { start: 0, end: 7 }),
             frameRate: 10,
@@ -28,8 +35,8 @@ export default class Skeleton extends Phaser.GameObjects.Sprite {
         this.anims.create({
             key: 'attack',
             frames: this.anims.generateFrameNumbers('skeleton_spritesheet', { start: 8, end: 10 }),
-            frameRate: 10,
-            repeat: -1
+            frameRate: 7,
+            repeat: 0
         });
 
         this.anims.create({
@@ -39,12 +46,14 @@ export default class Skeleton extends Phaser.GameObjects.Sprite {
             repeat: -1
         });
 
-        this.timer = this.time.addEvent({
-                delay: 2000,
-                paused: true
-            });
+        this.timerAttack = this.scene.time.addEvent({
+            delay: 1000,
+            callback: this.onTimerAttack,
+            callbackScope: this,
+            loop: true
+        });
 
-        this.timer.paused = true;
+        this.timerAttack.paused = true;
 
         this.setScale(3);
 
@@ -54,7 +63,7 @@ export default class Skeleton extends Phaser.GameObjects.Sprite {
 
         this.body.setSize(this.width * 0.45, this.height * 0.85, true);
 
-        // SE PODRIA MEJORAR CON this.on(animationstart) PERO NO SABEMOS HACERLO
+        // SE PODRIA MEJORAR CON this.event.on(animationstart) PERO NO SABEMOS HACERLO
         this.on(Phaser.Animations.Events.ANIMATION_START, () => {
             if (this.anims.getName() === 'attack'){
 
@@ -79,6 +88,13 @@ export default class Skeleton extends Phaser.GameObjects.Sprite {
         }
     }
 
+    onTimerAttack () {
+        this.play('idle', true);
+        this.stop();
+        this.chain(['attack', 'idle']);
+        this.body.setVelocity(0);
+    }
+
     /**
      * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
      * Como se puede ver, no se tratan las colisiones con las estrellas, ya que estas colisiones 
@@ -96,18 +112,15 @@ export default class Skeleton extends Phaser.GameObjects.Sprite {
             this.body.setOffset(this.width * 0.40, this.height * 0.32);
 
         if (Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y) > 300){
+            this.timerAttack.paused = true;
             this.setFlipX(this.body.velocity.x <= 0);
             this.play('walking', true);
             this.scene.physics.moveToObject(this, this.target, this.speed);
         }
         else {
             // creáis la zone de ataque
-            // cambiáis la animación (que ya está)
-
-            this.play('attack', true);
-            this.timer.paused = false;
-            this.body.setVelocity(0);
-            
+            // cambiáis la animación (que ya está)            
+            this.timerAttack.paused = false;
         }
 
     }
