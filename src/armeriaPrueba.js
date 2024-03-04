@@ -33,5 +33,7 @@ export default class ArmeriaPrueba extends Phaser.Scene {
         img.displayHeight = this.sys.game.config.height;
         this.player = new Player(this, 200, 300, 0, 0, 1, 0, 1, 0);
         this.player.setScale(3.0);
+
+        
     }
 }

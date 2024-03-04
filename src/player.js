@@ -1,5 +1,5 @@
-import PlayerPointer from './PlayerPointer.js';
-import Star from './star.ts';
+import bullet from './bullet.js'
+
 import Phaser from 'phaser'
 
 /**
@@ -36,6 +36,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         this.hiddenLuckModifier = luckMod;
         this.luck = 5;
+        this.reticle;
 
         /****CONTROLES****/
         this.w = this.scene.input.keyboard.addKey('W');
@@ -43,9 +44,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.s = this.scene.input.keyboard.addKey('S');
         this.d = this.scene.input.keyboard.addKey('D');
         this.meleeMode = true;
-        
-        this.cursor = new PlayerPointer(this.scene, this.x, this.y-30);
-
 
         /****ANIMACIONES****/
         this.anims.create({
@@ -76,13 +74,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
             repeat: -1
         });
 
-        this.rotation;
-
         //Cursor de ataque: NOTAS
         //SI QUIERES QUE SEA FUERA DE LA HITBOX DEL JUGADOR TIENES QUE CREAR UN CURSOR Y HACERLE EL LOCK Y QUE ESTE TENGA INTERACTIVE
         //PARA HACER QUE CUANDO PASE EL CURSOR POR ENICMA DE LOS ENEMIGOS CAMBIE DE TAMAÑO O INDICAR QUE SE PUEDE ATACAR, poner  a todo .setInteractive y hacer los callbacks
 
-        this.input.on('pointerup', pointer =>  {
+        this.scene.input.on('pointerup', pointer =>  {
             if(pointer.rightButtonReleased()) {
                 if(this.meleeMode)
                     this.meleeMode = false;
@@ -91,22 +87,37 @@ export default class Player extends Phaser.GameObjects.Sprite {
             }
         });
 
-        this.input.on('pointermove', pointer => {
-            this.rotation = Phaser.Math.Angle.BetweenPoints(this, pointer);
+        this.scene.input.on('pointerdown', pointer => {
+            if(this.meleeMode)
+                this.meeleAttack(pointer);
+            else
+                this.rangedAttack(pointer);
         });
 
-        this.input.on('pointerdown', pointer => {
-            if(this.meleeMode)
-                this.meeleAttack();
-            else
-                this.rangedAttack();
+        this.playerBullets = this.scene.physics.add.group({ classType: bullet, runChildUpdate: true });
+
+        /**Pointer Lock (o el intento de) */
+        this.scene.input.on('mousedown', () => {
+            this.scene.input.mouse.releasePointerLock();
         });
+
+        this.scene.input.keyboard.on('keydown_Q', event => {
+            if (this.scene.input.mouse.locked) { this.scene.input.mouse.releasePointerLock(); }
+        }, 0);
+
+        this.scene.input.on('pointermove', pointer => {
+            if (this.scene.input.mouse.locked)
+            {
+                this.reticle.x += pointer.movementX;
+                this.reticle.y += pointer.movementY;
+            }
+        });
+
 
         /**RELATIVO A LA ESCENA**/
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.body.setCollideWorldBounds(true);
-        
+        this.body.setCollideWorldBounds(true);   
     }
 
     /**
@@ -160,20 +171,35 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     //Metodo que ejecuta el ataque cuerpo a cuerpo con el arma melee 
     //equipada en ese momento
-    meeleAttack() {
+    meeleAttack(pointer) {
         //Va el inventario donde se escoje el arma correspondiente y hacew la animacion de ataque con el arma, si impacta hace daño
-        
+        //Animacion de ataque
+        //dthis.play();
+
     }
 
     //Metodo que ejecuta el ataque a distancia con el arma
     //equipada por el jugador en ese momento desde el inventario
-    rangedAttack(){
+    rangedAttack(pointer){
         //Va al inventario y con el arma equipada en ese momento, el arma crea la hitbox del ataque correspondiente y lo lanza en la direccion del click
-        
+        if (this.active === false) { return; }
+
+        // Get bullet from bullets group
+        const bullet = this.playerBullets.get().setActive(true).setVisible(true);
+
+        if (bullet)
+        {
+            bullet.fire(this, this.reticle);
+            this.scene.physics.add.collider(this.enemy, bullet, (enemyHit, bulletHit) => this.enemyHitCallback(enemyHit, bulletHit));
+        }
     }
 
     /**Funcion que se llama cuando el jugador recibe daño */
     receiveDmg(damage) {
         this.life -= damage;
+        if(this.life <= 0) {
+            //Animacion de muerte
+            this.destroy(true);
+        }
     }
 }
