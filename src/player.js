@@ -1,4 +1,3 @@
-import Star from './star.ts';
 import Phaser from 'phaser'
 
 /**
@@ -15,6 +14,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
      */
     constructor(scene, x, y, lifeMod, manaMod, weaponMult, moveMod, moveMult, luckMod) {
         super(scene, x, y, 'player');
+        
+        this.scene.add.existing(this);
+        this.scene.physics.add.existing(this);
+        this.setScale(3);
 
         /****ESTADISTICAS****/
         //CAPADO inferiormente a 1 y superiormente a 10, cada numero son 2 golpes
@@ -35,38 +38,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         this.hiddenLuckModifier = luckMod;
         this.luck = 5;
-
-        this.anims.create({
-            key: 'idle',
-            frames: this.anims.generateFrameNumbers('player_spritesheet', { start: 0, end: 0 }),
-            frameRate: 10,
-            repeat: -1
-        });
-
-        this.anims.create({
-            key: 'walking_down',
-            frames: this.anims.generateFrameNumbers('player_spritesheet', { start: 0, end: 3 }),
-            frameRate: 10,
-            repeat: -1
-        });
-
-        this.anims.create({
-            key: 'walking_up',
-            frames: this.anims.generateFrameNumbers('player_spritesheet', { start: 4, end: 7 }),
-            frameRate: 10,
-            repeat: -1
-        });
-
-        this.anims.create({
-            key: 'walking_left',
-            frames: this.anims.generateFrameNumbers('player_spritesheet', { start: 8, end: 11 }),
-            frameRate: 10,
-            repeat: -1
-        });
-
-        this.scene.add.existing(this);
-        this.scene.physics.add.existing(this);
-        this.setScale(3);
         
         this.body.setCollideWorldBounds();
         this.cursors = this.scene.input.keyboard.createCursorKeys();
@@ -101,10 +72,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
             frameRate: 10,
             repeat: -1
         });
-
-        this.scene.add.existing(this);
-        this.scene.physics.add.existing(this);
-        this.body.setCollideWorldBounds(true);
     }
 
     /**
@@ -117,45 +84,32 @@ export default class Player extends Phaser.GameObjects.Sprite {
         super.preUpdate(t, dt);
 
         //MOVIMIENTO DEL JUGADOR
-        let quieto = true;
+        let stopped = true;
         if(this.cursors.left.isDown){
             this.setFlipX(true);
-            quieto=false;
+            stopped=false;
             this.play('walkRight', true);
             this.body.setVelocityX(-this.MovSpeed);
         }
         else if(this.cursors.right.isDown){
-            quieto=false;
+            stopped=false;
             this.setFlipX(false);
             this.play('walkRight', true);
             this.body.setVelocityX(this.MovSpeed);
         }
-        
-        if(this.cursors.up.isDown){
-            quieto=false;
+        else if(this.cursors.up.isDown){
+            stopped=false;
             this.play('walkUp', true);
             this.body.setVelocityY(-this.MovSpeed);
         }
         else if(this.cursors.down.isDown){
-            quieto=false;
+            stopped=false;
             this.play('walkDown', true);
             this.body.setVelocityY(this.MovSpeed);
         }
-        else if(this.cursors.left.isDown){
-            this.setFlipX(true);
-            this.play('walking_left', true);
-            this.body.setVelocityX(-this.MovSpeed);
-        }
-        else if(this.cursors.right.isDown){
-            this.setFlipX(false);
-            this.play('walking_left', true);
-            this.body.setVelocityX(this.MovSpeed);
-        }
-
         else {
             this.play('idle', true);
-            this.body.setVelocityX(0);
-            this.body.setVelocityY(0);
+            this.body.setVelocity(0);
         }
 
         /*

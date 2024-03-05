@@ -1,7 +1,5 @@
-import armeriaPrueba from './armeriaPrueba.js';
+import ArmeriaPrueba from './armeriaPrueba.js';
 import Boot from './boot.js';
-import End from './end.js';
-import Level from './level.js';
 import Phaser from 'phaser'
 
 /**
@@ -17,7 +15,7 @@ let config = {
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },
     pixelArt: true,
-    scene: [Boot, armeriaPrueba],
+    scene: [Boot, ArmeriaPrueba],
     physics: {
         default: 'arcade',
         arcade: {
