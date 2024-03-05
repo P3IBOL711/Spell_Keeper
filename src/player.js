@@ -137,9 +137,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         //MOVIMIENTO DEL JUGADOR
         let stopped = true;
+        
         if(this.a.isDown) {
-            stopped=false;
             this.setFlipX(true);
+            stopped=false;
             this.play('walkRight', true);
             this.body.setVelocityX(-this.MovSpeed);
         }
@@ -160,7 +161,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.play('walkDown', true);
             this.body.setVelocityY(this.MovSpeed);
         }
-        else {
+
+        if(stopped) {
             this.play('idle', true);
             this.body.setVelocity(0);
         }
