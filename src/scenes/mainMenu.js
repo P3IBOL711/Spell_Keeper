@@ -31,9 +31,12 @@ export default class MainMenu extends Phaser.Scene{
 
     create(){
         this.add.image(0,0,'title_bg').setOrigin(0).setDepth(0); //Background
-        this.add.image(390,70,'main_title').setOrigin(0).setDepth(1).setScale(0.35); 
-        let playButton = this.add.image(470,150,'play').setOrigin(0).setDepth(1).setScale(0.35); 
-        let playSelectedButton = this.add.image(470,150,'play_sel').setOrigin(0).setDepth(1).setScale(0.35).setVisible(false); 
+        this.add.text(170, 70, 'SPELL KEEPER',{ fontFamily: 'pixelFont', fontSize: 80, color: '#000000', fontStyle: 'bold'}); 
+        // let playButton = this.add.image(470,150,'play').setOrigin(0).setDepth(1).setScale(0.35); 
+        // let playSelectedButton = this.add.image(470,150,'play_sel').setOrigin(0).setDepth(1).setScale(0.35).setVisible(false); 
+
+        this.playButton = this.add.text(270, 185, '> PLAY', { fontFamily: 'pixelFont', fontSize: 60, color: '#000000' , fontStyle: 'bold'});
+
         /*let nuevoTexto = 
         this.add.text(390, 70, 
             'Spell Keeper', 
@@ -42,18 +45,16 @@ export default class MainMenu extends Phaser.Scene{
       //  let hola = this.add.bitmapText(200, 100, 'pixelfont','Bitmap Fonts!', 64);
        // text.setScale(3);
 
-       playButton.setInteractive();
-       playButton.on("pointerover", ()=>{
-            playButton.setVisible(false);
-            playSelectedButton.setVisible(true);
+       this.playButton.setInteractive();
+       this.playButton.on("pointerover", ()=>{
+            this.playButton.setStyle({fill: '#ffffff'})
        })
 
-       playButton.on("pointerout", ()=>{
-            playButton.setVisible(true);
-            playSelectedButton.setVisible(false);
+       this.playButton.on("pointerout", ()=>{
+        this.playButton.setStyle({fill: '#000000'})
        })
 
-       playButton.on("pointerup", ()=>{
+       this.playButton.on("pointerup", ()=>{
          this.scene.start('armeriaPrueba');
        })
     }

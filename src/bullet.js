@@ -47,15 +47,11 @@ export default class Bullet extends Phaser.GameObjects.Sprite {
         // {
         //     // this.xSpeed = this.speed * Math.sin(this.direction);
         //     // this.ySpeed = this.speed * Math.cos(this.direction);
-        //     this.body.setVelocityX(this.speed * Math.cos(this.rotation));
-        //     this.body.setVelocityY(this.speed * Math.sin(this.rotation));
         // }
         // else
         // {
         //     // this.xSpeed = -this.speed * Math.sin(this.direction);
         //     // this.ySpeed = -this.speed * Math.cos(this.direction);
-        //     this.body.setVelocityX(-this.speed * Math.sin(this.rotation));
-        //     this.body.setVelocityY(-this.speed * Math.cos(this.rotation));
         // }
 
         this.body.setVelocityX(this.speed * Math.cos(this.rotation));
