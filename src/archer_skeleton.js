@@ -1,6 +1,7 @@
 import Phaser from 'phaser'
 import HitBox from './hitbox';
 import Enemy from './enemy';
+import Arrow from './arrow';
 
 /**
  * Clase que representa un enemigo del juego.
@@ -90,6 +91,7 @@ export default class Skeleton extends Enemy {
     onTimerAttack () {
         this.play('idle', true);
         this.stop();
+        new Arrow(this.scene, this.x, this.y, this.target);
         this.chain(['attack', 'idle']);
         this.body.setVelocity(0);
     }
@@ -104,6 +106,7 @@ export default class Skeleton extends Enemy {
         // IMPORTANTE: Si no ponemos esta instrucción y el sprite está animado
         // no se podrá ejecutar la animación del sprite. 
         super.preUpdate(t, dt);
+        this.setFlipX(this.body.velocity.x < 0 || this.target.x < this.x);
         // Preguntar si podría ser mas eficiente
         if(this.flipX)
             this.body.setOffset(this.width * 0.38, this.height * 0.32);
@@ -112,14 +115,15 @@ export default class Skeleton extends Enemy {
 
         if (Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y) > 300){
             this.timerAttack.paused = true;
-            this.setFlipX(this.body.velocity.x <= 0);
+            
             this.play('walking', true);
             this.scene.physics.moveToObject(this, this.target, this.speed);
         }
         else {
             // creáis la zone de ataque
-            // cambiáis la animación (que ya está)            
+            // cambiáis la animación (que ya está)      
             this.timerAttack.paused = false;
+
         }
 
     }
