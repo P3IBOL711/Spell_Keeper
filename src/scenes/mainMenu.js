@@ -3,7 +3,7 @@ import bg from '../../assets/main_menu/title_bg.png'
 import mt from '../../assets/main_menu/main_title.png'
 import play from '../../assets/main_menu/play.png'
 import playSel from '../../assets/main_menu/play_selected.png'
-import font from '../../assets/fonts/VT323Regular.ttf'
+import font from 'url:../../assets/fonts/VT323Regular.ttf'
 
 
 export default class MainMenu extends Phaser.Scene{
