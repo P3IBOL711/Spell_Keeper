@@ -34,10 +34,10 @@ export default class MainMenu extends Phaser.Scene{
         this.add.image(390,70,'main_title').setOrigin(0).setDepth(1).setScale(0.35); 
         let playButton = this.add.image(470,150,'play').setOrigin(0).setDepth(1).setScale(0.35); 
         let playSelectedButton = this.add.image(470,150,'play_sel').setOrigin(0).setDepth(1).setScale(0.35).setVisible(false); 
-        let nuevoTexto = 
-        this.add.text(160, 0, 
-            'The face of the\nmoon was in\nshadow.', 
-            { fontFamily: 'pixelFont', fontSize: 80, color: '#ffffff' });
+        /*let nuevoTexto = 
+        this.add.text(390, 70, 
+            'Spell Keeper', 
+            { fontFamily: 'pixelFont', fontSize: 80, color: '#000000' });*/
         //this.add.text(450, 70, 'Spell Keeper',{ fontFamily: 'Arial', fontSize: '32px', fill: '#ffffff' })
       //  let hola = this.add.bitmapText(200, 100, 'pixelfont','Bitmap Fonts!', 64);
        // text.setScale(3);
