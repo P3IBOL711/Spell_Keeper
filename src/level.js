@@ -1,4 +1,6 @@
-import Platform from './platform.js';
+import Skeleton from './archer_skeleton.js';
+import Arrow from './arrow.js';
+import Knight from './knight.js';
 import Player from './player.js';
 import Phaser from 'phaser'
 
@@ -23,41 +25,25 @@ export default class Level extends Phaser.Scene {
      * Creación de los elementos de la escena principal de juego
      */
     create() {
-        this.stars = 10;
-        this.bases = this.add.group();
+        let img = this.add.image(0, 0, 'escena').setOrigin(0, 0);
+        img.displayWidth = this.sys.game.config.width;
+        img.displayHeight = this.sys.game.config.height;
         this.player = new Player(this, 200, 300, 0, 0, 1, 0, 1, 0);
-
-        new Platform(this, this.player, this.bases, 150, 350);
-        new Platform(this, this.player, this.bases, 850, 350);
-        new Platform(this, this.player, this.bases, 500, 200);
-        new Platform(this, this.player, this.bases, 150, 100);
-        new Platform(this, this.player, this.bases, 850, 100);
-        this.spawn();
+        this.knight = new Knight(this, 400, 300, this.player);
+        this.skeleton = new Skeleton(this, 600, 300, this.player);     
+        this.arrow = new Arrow(this, 800, 300, 1000, 1000);
     }
 
     /**
-     * Genera una estrella en una de las bases del escenario
-     * @param {Array<Base>} from Lista de bases sobre las que se puede crear una estrella
-     * Si es null, entonces se crea aleatoriamente sobre cualquiera de las bases existentes
+     * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
+     * Como se puede ver, no se tratan las colisiones con las estrellas, ya que estas colisiones 
+     * ya son gestionadas por la estrella (no gestionar las colisiones dos veces)
+     * @override
      */
-    spawn(from = null) {
-        Phaser.Math.RND.pick(from || this.bases.children.entries).spawn();
+    preUpdate(t, dt) {
+        // IMPORTANTE: Si no ponemos esta instrucción y el sprite está animado
+        // no se podrá ejecutar la animación del sprite. 
+        super.preUpdate(t, dt);
     }
 
-    /**
-     * Método que se ejecuta al coger una estrella. Se pasa la base
-     * sobre la que estaba la estrella cogida para evitar repeticiones
-     * @param {Base} base La base sobre la que estaba la estrella que se ha cogido
-     */
-    starPickt(base) {
-        this.player.point();
-        if (this.player.score == this.stars) {
-            this.scene.start('end');
-        }
-        else {
-            let s = this.bases.children.entries;
-            this.spawn(s.filter(o => o !== base));
-
-        }
-    }
 }

@@ -18,6 +18,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
      */
     constructor(scene, x, y, lifeMod, manaMod, weaponMult, moveMod, moveMult, luckMod) {
         super(scene, x, y, 'player');
+        
+        this.scene.add.existing(this);
+        this.scene.physics.add.existing(this);
+        this.setScale(3);
 
         /****ESTADISTICAS****/
         //CAPADO inferiormente a 1 y superiormente a 10, cada numero son 2 golpes
@@ -132,33 +136,31 @@ export default class Player extends Phaser.GameObjects.Sprite {
         super.preUpdate(t, dt);
 
         //MOVIMIENTO DEL JUGADOR
-        let quieto = true;
+        let stopped = true;
         if(this.a.isDown){
             this.setFlipX(true);
-            quieto=false;
+            stopped=false;
             this.play('walkRight', true);
             this.body.setVelocityX(-this.MovSpeed);
         }
         else if(this.d.isDown){
-            quieto=false;
+            stopped=false;
             this.setFlipX(false);
             this.play('walkRight', true);
             this.body.setVelocityX(this.MovSpeed);
         }
         
         if(this.w.isDown){
-            quieto=false;
+            stopped=false;
             this.play('walkUp', true);
             this.body.setVelocityY(-this.MovSpeed);
         }
         else if(this.s.isDown) {
-            quieto=false;
+            stopped=false;
             this.play('walkDown', true);
             this.body.setVelocityY(this.MovSpeed);
         }
-
-        //TA CUTRON, hay que cambiarlo por algo mas limipio
-        if(quieto) {
+        else {
             this.play('idle', true);
             this.body.setVelocity(0);
         }
