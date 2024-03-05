@@ -2,6 +2,7 @@ import bullet from './bullet.js'
 
 import Phaser from 'phaser'
 import Reticle from './reticle.js';
+import PlayerHitBox from './playerHitbox.js';
 
 /**
  * Clase que representa el jugador del juego. El jugador se mueve por el mundo usando los cursores.
@@ -175,8 +176,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
     meeleAttack() {
         //Va el inventario donde se escoje el arma correspondiente y hacew la animacion de ataque con el arma, si impacta hace daño
         //Animacion de ataque
-        //dthis.play();
-
+        //this.play();
+        let hibox = new PlayerHitBox(this.scene, this.x - 30,  this.y + 20, 60, 120, 1);
     }
 
     //Metodo que ejecuta el ataque a distancia con el arma
@@ -191,7 +192,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         if (bullet)
         {
             bullet.fire(this, this.reticle);
-            this.scene.physics.add.collider(this.enemy, bullet, (enemyHit, bulletHit) => this.enemyHitCallback(enemyHit, bulletHit));
+            //this.scene.physics.add.collider(this.enemy, bullet, (enemyHit, bulletHit) => this.enemyHitCallback(enemyHit, bulletHit));
         }
     }
 
