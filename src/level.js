@@ -25,9 +25,8 @@ export default class Level extends Phaser.Scene {
      * Creación de los elementos de la escena principal de juego
      */
     create() {
-        let img = this.add.image(0, 0, 'escena').setOrigin(0, 0);
-        img.displayWidth = this.sys.game.config.width;
-        img.displayHeight = this.sys.game.config.height;
+        this.stars = 10;
+        this.bases = this.add.group();
         this.player = new Player(this, 200, 300, 0, 0, 1, 0, 1, 0);
         this.knight = new Knight(this, 400, 300, this.player);
         this.skeleton = new Skeleton(this, 600, 300, this.player);     

@@ -1,3 +1,4 @@
+import armeriaPrueba from './armeriaPrueba.js';
 import Boot from './boot.js';
 import End from './end.js';
 import Level from './level.js';
@@ -12,12 +13,11 @@ let config = {
     width: 1000,
     height: 500,
     scale: {
-        mode: Phaser.Scale.FIT,  
-        //autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
-        autoCenter: Phaser.Scale.CENTER_BOTH
+        // mode: Phaser.Scale.FIT,  
+        autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },
     pixelArt: true,
-    scene: [Boot, Level, End],
+    scene: [Boot, armeriaPrueba],
     physics: {
         default: 'arcade',
         arcade: {

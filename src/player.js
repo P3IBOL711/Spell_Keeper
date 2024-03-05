@@ -14,8 +14,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
      * @param {number} y Coordenada Y
      */
     constructor(scene, x, y, lifeMod, manaMod, weaponMult, moveMod, moveMult, luckMod) {
-        super(scene,x,y, 'player');
+        super(scene, x, y, 'player');
 
+        /****ESTADISTICAS****/
         //CAPADO inferiormente a 1 y superiormente a 10, cada numero son 2 golpes
         this.lifeModifier = lifeMod;
         this.life = 3 + this.lifeModifier;
@@ -69,36 +70,41 @@ export default class Player extends Phaser.GameObjects.Sprite {
         
         this.body.setCollideWorldBounds();
         this.cursors = this.scene.input.keyboard.createCursorKeys();
-        /*
-        super(scene, x, y, 'player');
-        this.score = 0;
+        this.meleeMode = true;
+
+
+        /****ANIMACIONES****/
+        this.anims.create({
+            key:'idle',
+            frames: this.anims.generateFrameNumbers('player_spritesheet', { start: 0, end: 0 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key:'walkDown',
+            frames: this.anims.generateFrameNumbers('player_spritesheet',{ start: 0, end: 3 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key:'walkUp',
+            frames: this.anims.generateFrameNumbers('player_spritesheet',{ start: 4, end: 7 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key:'walkRight',
+            frames: this.anims.generateFrameNumbers('player_spritesheet',{ start: 8, end: 11 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        // Queremos que el jugador no se salga de los límites del mundo
-        this.body.setCollideWorldBounds();
-        this.speed = 300;
-        this.jumpSpeed = -400;
-        // Esta label es la UI en la que pondremos la puntuación del jugador
-        this.label = this.scene.add.text(10, 10, "");
-        this.cursors = this.scene.input.keyboard.createCursorKeys();
-        this.updateScore();
-        */
-    }
-
-    /**
-     * El jugador ha recogido una estrella por lo que este método añade un punto y
-     * actualiza la UI con la puntuación actual.
-     */
-    point() {
-        this.score++;
-        this.updateScore();
-    }
-
-    /**
-     * Actualiza la UI con la puntuación actual
-     */
-    updateScore() {
-        //this.label.text = 'Score: ' + this.score;
+        this.body.setCollideWorldBounds(true);
     }
 
     /**
@@ -109,29 +115,30 @@ export default class Player extends Phaser.GameObjects.Sprite {
      */
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-        /*
-        if (this.cursors.up.isDown && this.body.onFloor()) {
-            this.body.setVelocityY(this.jumpSpeed);
-        }
-        if (this.cursors.left.isDown) {
-            this.body.setVelocityX(-this.speed);
-        }
-        else if (this.cursors.right.isDown) {
-            this.body.setVelocityX(this.speed);
-        }
-        else {
-            this.body.setVelocityX(0);
-        }*/
 
-
-        //MOVIMIENTO DEL JUGADOR (de momento es estatico)
-        //preguntar si es else if y ademas pregutnar que pasa si solo pones if, (moverse en 8 direcciones)
+        //MOVIMIENTO DEL JUGADOR
+        let quieto = true;
+        if(this.cursors.left.isDown){
+            this.setFlipX(true);
+            quieto=false;
+            this.play('walkRight', true);
+            this.body.setVelocityX(-this.MovSpeed);
+        }
+        else if(this.cursors.right.isDown){
+            quieto=false;
+            this.setFlipX(false);
+            this.play('walkRight', true);
+            this.body.setVelocityX(this.MovSpeed);
+        }
+        
         if(this.cursors.up.isDown){
-            this.play('walking_up', true);
+            quieto=false;
+            this.play('walkUp', true);
             this.body.setVelocityY(-this.MovSpeed);
         }
         else if(this.cursors.down.isDown){
-            this.play('walking_down', true);
+            quieto=false;
+            this.play('walkDown', true);
             this.body.setVelocityY(this.MovSpeed);
         }
         else if(this.cursors.left.isDown){
@@ -150,12 +157,42 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.body.setVelocityX(0);
             this.body.setVelocityY(0);
         }
+
         /*
         //BOTON DEL ESCUDO, IMPLEMENTAR
         if(this.cursors.shift.isDown){
 
         }
         */
+
+        //Cursor de ataque
+        /*
+        this.input.on('pointerup', pointer =>  {
+            if(pointer.leftButtonReleased()) {
+                this.meleeMode = false;
+            }
+
+            if(pointer.rightButtonReleased()) {
+                if(this.meleeMode)
+                    meeleAttack();
+                else
+                    rangedAttack();
+            }
+        });
+        */
     }
 
+    /*
+    //Metodo que ejecuta el ataque cuerpo a cuerpo con el arma melee 
+    //equipada en ese momento
+    meeleAttack(){
+        //Va el inventario donde se escoje el arma correspondiente y hacew la animacion de ataque con el arma, si impacta hace daño
+    }
+
+    //Metodo que ejecuta el ataque a distancia con el arma
+    //equipada por el jugador en ese momento desde el inventario
+    rangedAttack(){
+        //Va al inventario y creas
+    }
+    */
 }

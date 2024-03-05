@@ -1,4 +1,4 @@
-import Platform from './platform.js';
+//import Platform from './platform.js';
 import Player from './player.js';
 import Phaser from 'phaser'
 
@@ -11,12 +11,12 @@ import Phaser from 'phaser'
  * El juego termina cuando el jugador ha recogido 10 estrellas.
  * @extends Phaser.Scene
  */
-export default class EscenaPrueba extends Phaser.Scene {
+export default class ArmeriaPrueba extends Phaser.Scene {
     /**
      * Constructor de la escena
      */
     constructor() {
-        super({ key: 'escenaPrueba' });
+        super({ key: 'armeriaPrueba' });
     }
     /*init: se ejecuta cuando se carga la escena. Aquí se pueden pasar datos entre escenas.
       preload: aquí hay que cargar los recursos antes de que sean usados.
@@ -28,31 +28,10 @@ export default class EscenaPrueba extends Phaser.Scene {
      * Creación de los elementos de la escena principal de juego
      */
     create() {
+        let img = this.add.image(0, 0, 'escenaPrueba').setOrigin(0, 0);
+        img.displayWidth = this.sys.game.config.width;
+        img.displayHeight = this.sys.game.config.height;
         this.player = new Player(this, 200, 300, 0, 0, 1, 0, 1, 0);
-    }
-
-    /**
-     * Genera una estrella en una de las bases del escenario
-     * @param {Array<Base>} from Lista de bases sobre las que se puede crear una estrella
-     * Si es null, entonces se crea aleatoriamente sobre cualquiera de las bases existentes
-     */
-    spawn(from = null) {
-        Phaser.Math.RND.pick(from || this.bases.children.entries).spawn();
-    }
-
-    /**
-     * Método que se ejecuta al coger una estrella. Se pasa la base
-     * sobre la que estaba la estrella cogida para evitar repeticiones
-     * @param {Base} base La base sobre la que estaba la estrella que se ha cogido
-     */
-    starPickt(base) {
-        this.player.point();
-        if (this.player.score == this.stars) {
-            this.scene.start('end');
-        }
-        else {
-            let s = this.bases.children.entries;
-            this.spawn(s.filter(o => o !== base));
-        }
+        this.player.setScale(3.0);
     }
 }
