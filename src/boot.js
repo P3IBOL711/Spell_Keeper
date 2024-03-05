@@ -4,6 +4,7 @@ import knight from '../assets/armory/sprites/knight/knight_spritesheet.png'
 import skeleton from '../assets/armory/sprites/skeleton/skeleton_spritesheet.png'
 import room from '../assets/armory/sprites/Hab_Prueba.png'
 import arrow from '../assets/armory/sprites/arrow/arrow.png'
+
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
  * Esta escena se puede mejorar añadiendo una imagen del juego y una 
@@ -38,6 +39,6 @@ export default class Boot extends Phaser.Scene {
    * nivel del juego
    */
   create() {
-    this.scene.start('armeriaPrueba');
+    this.scene.start('mainMenu');
   }
 }
