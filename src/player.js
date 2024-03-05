@@ -137,13 +137,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         //MOVIMIENTO DEL JUGADOR
         let stopped = true;
-        if(this.a.isDown){
-            this.setFlipX(true);
+        if(this.a.isDown) {
             stopped=false;
+            this.setFlipX(true);
             this.play('walkRight', true);
             this.body.setVelocityX(-this.MovSpeed);
         }
-        else if(this.d.isDown){
+        else if(this.d.isDown) {
             stopped=false;
             this.setFlipX(false);
             this.play('walkRight', true);
@@ -179,7 +179,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         //Va el inventario donde se escoje el arma correspondiente y hacew la animacion de ataque con el arma, si impacta hace daño
         //Animacion de ataque
         //this.play();
-        let hibox = new PlayerHitBox(this.scene, this.x - 30,  this.y + 20, 60, 120, 1);
+        //let hibox = new PlayerHitBox(this.scene, this.x - 30,  this.y + 20, 60, 120, 1);
     }
 
     //Metodo que ejecuta el ataque a distancia con el arma
