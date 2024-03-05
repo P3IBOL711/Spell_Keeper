@@ -1,6 +1,7 @@
 import bullet from './bullet.js'
 
 import Phaser from 'phaser'
+import Reticle from './reticle.js';
 
 /**
  * Clase que representa el jugador del juego. El jugador se mueve por el mundo usando los cursores.
@@ -36,7 +37,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         this.hiddenLuckModifier = luckMod;
         this.luck = 5;
-        this.reticle;
+        this.reticle = new Reticle(this.scene, x, y - 30);
 
         /****CONTROLES****/
         this.w = this.scene.input.keyboard.addKey('W');
@@ -87,11 +88,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
             }
         });
 
-        this.scene.input.on('pointerdown', pointer => {
+        this.scene.input.on('pointerdown', () => {
             if(this.meleeMode)
-                this.meeleAttack(pointer);
+                this.meeleAttack();
             else
-                this.rangedAttack(pointer);
+                this.rangedAttack();
         });
 
         this.playerBullets = this.scene.physics.add.group({ classType: bullet, runChildUpdate: true });
@@ -105,12 +106,12 @@ export default class Player extends Phaser.GameObjects.Sprite {
             if (this.scene.input.mouse.locked) { this.scene.input.mouse.releasePointerLock(); }
         }, 0);
 
-        this.scene.input.on('pointermove', pointer => {
-            if (this.scene.input.mouse.locked)
-            {
-                this.reticle.x += pointer.movementX;
-                this.reticle.y += pointer.movementY;
-            }
+        this.scene.input.on('pointermove', () => {
+            //if (this.scene.input.mouse.locked)
+            //{
+                this.reticle.x = this.scene.input.activePointer.worldX;
+                this.reticle.y = this.scene.input.activePointer.worldY;
+            //}
         });
 
 
@@ -171,7 +172,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     //Metodo que ejecuta el ataque cuerpo a cuerpo con el arma melee 
     //equipada en ese momento
-    meeleAttack(pointer) {
+    meeleAttack() {
         //Va el inventario donde se escoje el arma correspondiente y hacew la animacion de ataque con el arma, si impacta hace daño
         //Animacion de ataque
         //dthis.play();
@@ -180,7 +181,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     //Metodo que ejecuta el ataque a distancia con el arma
     //equipada por el jugador en ese momento desde el inventario
-    rangedAttack(pointer){
+    rangedAttack(){
         //Va al inventario y con el arma equipada en ese momento, el arma crea la hitbox del ataque correspondiente y lo lanza en la direccion del click
         if (this.active === false) { return; }
 

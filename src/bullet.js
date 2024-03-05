@@ -47,7 +47,7 @@ export default class Bullet extends Phaser.GameObjects.Sprite {
 
         this.x += this.xSpeed * dt;
         this.y += this.ySpeed * dt;
-        this.born += delta;
+        this.born += dt;
         if (this.born > 1800)
         {
             this.setActive(false);
