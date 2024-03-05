@@ -2,6 +2,7 @@ import Phaser from 'phaser'
 
 import player from '../assets/cSprites/characters/Mage_Walking.png'
 import escena from '../assets/armory/sprites/Hab_Prueba.png'
+
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
  * Esta escena se puede mejorar añadiendo una imagen del juego y una 
@@ -34,6 +35,6 @@ export default class Boot extends Phaser.Scene {
    * nivel del juego
    */
   create() {
-    this.scene.start('armeriaPrueba');
+    this.scene.start('mainMenu');
   }
 }
