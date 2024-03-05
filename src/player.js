@@ -23,6 +23,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.scene.physics.add.existing(this);
         this.setScale(3);
 
+        this.body.setSize(this.width * 0.4, this.height * 0.65, true);
+        this.body.setOffset(this.width * 0.3, this.height * 0.35);
         /****ESTADISTICAS****/
         //CAPADO inferiormente a 1 y superiormente a 10, cada numero son 2 golpes
         this.lifeModifier = lifeMod;
@@ -49,7 +51,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.a = this.scene.input.keyboard.addKey('A');
         this.s = this.scene.input.keyboard.addKey('S');
         this.d = this.scene.input.keyboard.addKey('D');
-        this.meleeMode = true;
+        this.meleeMode = false;
 
         /****ANIMACIONES****/
         this.anims.create({

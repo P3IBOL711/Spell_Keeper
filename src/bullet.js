@@ -12,7 +12,23 @@ export default class Bullet extends Phaser.GameObjects.Sprite {
     constructor (scene)
     {
         super(scene, 0, 0, 'bullet');
-        this.speed = 1;
+
+        this.anims.create({
+            key: 'normal',
+            frames: this.anims.generateFrameNumbers('fireball_spritesheet', { start: 0, end: 2 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'impact',
+            frames: this.anims.generateFrameNumbers('fireball_spritesheet', { start: 2, end: 4 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+
+        this.speed = 100;
         this.born = 0;
         this.direction = 0;
         this.xSpeed = 0;
@@ -24,20 +40,27 @@ export default class Bullet extends Phaser.GameObjects.Sprite {
     {
         this.setPosition(shooter.x, shooter.y); // Initial position
         this.direction = Math.atan((target.x - this.x) / (target.y - this.y));
-
+        //this.rotation = shooter.rotation; // angle bullet with shooters rotation
+        this.rotation = Phaser.Math.Angle.Between(shooter.x, shooter.y, target.x, target.y);
         // Calculate X and y velocity of bullet to moves it from shooter to target
-        if (target.y >= this.y)
-        {
-            this.xSpeed = this.speed * Math.sin(this.direction);
-            this.ySpeed = this.speed * Math.cos(this.direction);
-        }
-        else
-        {
-            this.xSpeed = -this.speed * Math.sin(this.direction);
-            this.ySpeed = -this.speed * Math.cos(this.direction);
-        }
+        // if (target.y >= this.y)
+        // {
+        //     // this.xSpeed = this.speed * Math.sin(this.direction);
+        //     // this.ySpeed = this.speed * Math.cos(this.direction);
+        //     this.body.setVelocityX(this.speed * Math.cos(this.rotation));
+        //     this.body.setVelocityY(this.speed * Math.sin(this.rotation));
+        // }
+        // else
+        // {
+        //     // this.xSpeed = -this.speed * Math.sin(this.direction);
+        //     // this.ySpeed = -this.speed * Math.cos(this.direction);
+        //     this.body.setVelocityX(-this.speed * Math.sin(this.rotation));
+        //     this.body.setVelocityY(-this.speed * Math.cos(this.rotation));
+        // }
 
-        this.rotation = shooter.rotation; // angle bullet with shooters rotation
+        this.body.setVelocityX(this.speed * Math.cos(this.rotation));
+        this.body.setVelocityY(this.speed * Math.sin(this.rotation));
+        
         this.born = 0; // Time since new bullet spawned
     }
 
@@ -45,13 +68,14 @@ export default class Bullet extends Phaser.GameObjects.Sprite {
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
 
-        this.x += this.xSpeed * dt;
-        this.y += this.ySpeed * dt;
+        this.play('normal', true);
+        // this.x += this.xSpeed * dt;
+        // this.y += this.ySpeed * dt;
         this.born += dt;
-        if (this.born > 1800)
-        {
-            this.setActive(false);
-            this.setVisible(false);
-        }
+        // if (this.born > 1800)
+        // {
+        //     this.setActive(false);
+        //     this.setVisible(false);
+        // }
     }
 }
