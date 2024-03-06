@@ -1,4 +1,4 @@
-import { dir, error } from 'console';
+
 import ar_e1 from './rooms/ar_e1.js'
 import ar_r2 from './rooms/ar_r2.js';
 import ar_r3 from './rooms/ar_r3.js';
@@ -14,7 +14,7 @@ import Phaser from 'phaser'
 
 const N = 10; //Numero de filas
 const M = 10; //Numero de columnas
-const maxRooms = 60; //Maximo de habitaciones
+const maxSteps = 60; //Maximo de habitaciones
 
 
 /*//El "tablero" del mapa, en el que se van generando las habitaciones
@@ -31,6 +31,7 @@ let entranceY;
 let thereIsExit;
 let thereIsShop;
 let roomArray;
+let specialRoomArray;
 
 class RoomInfo {
     constructor(roomJson, x, y) {
@@ -83,6 +84,7 @@ export default class Dungeongen{
 
 
         this.fillRoomArray(0);
+        this.fillSpecialRoomArray(0);
         
         //Generamos dos cordenadas aleatorias desde donde empezar
         entranceX = Math.floor(Math.random() * (N-2))+1;
@@ -117,8 +119,8 @@ export default class Dungeongen{
 
         const generator = this.generate(dungeon, entranceX, entranceY);
 
-        for(let i = 0; i < maxRooms; i++)
-            if(generator.next().done === false)
+        for(let i = 0; i < maxSteps; i++)
+            if(generator.next().done === false) //Por qué!!! Preguntar
                 dungeon = generator.next().value;
             else
                 break;
@@ -135,10 +137,20 @@ export default class Dungeongen{
     }
 
    // devuelve null si no es aplicable, y una dungeon """nueva""" si si
-    applyDirection(dungeon, direction,x,y) {
+    applyDirection(dungeon, direction,x,y,numberOfSteps) {
         // deep clone: JSON.parse(JSON.stringify(dungeon))
     
-        let validRoomArray = []; validRoomArray = this.getValidRooms(roomArray,direction,x,y)
+        let validRoomArray = []; 
+       
+        
+        if(Math.random()*numberOfSteps >= (maxSteps/(Math.max(1,Math.min(numberOfSteps,maxSteps)))) ){ //Si sale la probabilidad generamos habitación especial
+            validRoomArray = this.getValidRooms(specialRoomArray,direction,x,y)
+            console.log("Salió chance");
+            if(specialRoomArray.length === 0)
+                validRoomArray = this.getValidRooms(roomArray,direction,x,y)
+        }else
+            validRoomArray = this.getValidRooms(roomArray,direction,x,y) 
+
         this.shuffleArray(validRoomArray)
         
         if (direction === 'n') {
@@ -155,6 +167,21 @@ export default class Dungeongen{
                 let newDungeon =[];
                 newDungeon =  JSON.parse(JSON.stringify(dungeon));
                 for(let room of validRoomArray){
+                    if(!thereIsExit && room.exit === true){
+                        newDungeon[y][x] = room; //Deep clone si o no?
+                        if(this.checkIfRoomConnects(x,y,newDungeon)){
+                            console.log("Generando salida");
+                            thereIsExit = true;
+                            return newDungeon;
+                        }
+                    }else if(!thereIsShop && room.shop === true){
+                        newDungeon[y][x] = room; //Deep clone si o no?
+                        if(this.checkIfRoomConnects(x,y,newDungeon)){
+                            console.log("Generando tienda");
+                            thereIsShop = true;
+                            return newDungeon;
+                        }
+                    }
                     newDungeon[y][x] = room; //Deep clone si o no?
                     if(this.checkIfRoomConnects(x,y,newDungeon))
                         return newDungeon;
@@ -165,6 +192,7 @@ export default class Dungeongen{
     }
 
     *generate(dungeon,x,y) {
+        let numberOfSteps = 0;
         if(this.plausibleDungeon(dungeon)) {
             yield dungeon;
         }
@@ -173,7 +201,9 @@ export default class Dungeongen{
 
             for(let direction of  ['n', 's', 'e', 'w']) {
 
-                const newDungeon = this.applyDirection(dungeon, direction,roomInfo.x,roomInfo.y)
+                numberOfSteps++;
+
+                const newDungeon = this.applyDirection(dungeon, direction,roomInfo.x,roomInfo.y,numberOfSteps)
                 if(newDungeon !== null){
                     //Actualizamos coordenadas x y
                     if (direction === 'n') {
@@ -185,7 +215,6 @@ export default class Dungeongen{
                     } else if (direction === 'w') {
                         addedRooms.push(new RoomInfo (dungeon[y][x],x-1,y))
                     }
-                    
                     dungeon = newDungeon;
                     yield newDungeon
                 }else{
@@ -306,7 +335,7 @@ export default class Dungeongen{
 
     getCandidateRoom(roomArray,k,x,y){
 
-        if(Math.random() >= (maxRooms/(Math.max(1,Math.min(k,maxRooms)))) || !this.doesRoomNotLeadToNowhere(x,y)){ //Cuantas mas salas generadas se empiezan a cortar caminos
+        if(Math.random() >= (maxSteps/(Math.max(1,Math.min(k,maxSteps)))) || !this.doesRoomNotLeadToNowhere(x,y)){ //Cuantas mas salas generadas se empiezan a cortar caminos
             let room = this.getSpecialCandidateRoom(x,y);
             if(room !== null) //Si no se puede generar una habitacion especial que genere una normal
                 return room; 
@@ -335,7 +364,7 @@ export default class Dungeongen{
                 dungeon[x][y] = exitArray[index];
                 if(this.isRoomInsideMatrix(x,y) ){
                     if( this.checkIfRoomConnects(x,y))
-                        if((Math.abs(entranceX - x) >= maxRooms / 2) || (Math.abs(entranceY - y) >= maxRooms / 2)){ //Si la salida está lo suficientemente lejos de la entrada
+                        if((Math.abs(entranceX - x) >= maxSteps / 2) || (Math.abs(entranceY - y) >= maxSteps / 2)){ //Si la salida está lo suficientemente lejos de la entrada
                             thereIsExit = true;
                             return exitArray[index]; //Devolvemos la salida
                         }
@@ -403,14 +432,20 @@ export default class Dungeongen{
             roomArray.push(ar_r2);
             roomArray.push(ar_r4);
             roomArray.push(ar_e1);
-            roomArray.push(ar_x1);
-            roomArray.push(ar_sh1);
             roomArray.push(ar_r3);
             roomArray.push(ar_r5);
             roomArray.push(ar_r6);
             roomArray.push(ar_r7);
             //TODO push exits y shops
         }
+    }
+
+    fillSpecialRoomArray(floor){
+        specialRoomArray = [];
+        if(floor === 0){ //Armeria
+            specialRoomArray.push(ar_x1);
+            specialRoomArray.push(ar_sh1);
+        }   
     }
 
     showMatrix(dungeon) {
