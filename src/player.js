@@ -1,8 +1,9 @@
-import bullet from './bullet.js'
+import Bullet from './bullet.js'
 
 import Phaser from 'phaser'
 import Reticle from './reticle.js';
 import PlayerHitBox from './playerHitbox.js';
+
 
 /**
  * Clase que representa el jugador del juego. El jugador se mueve por el mundo usando los cursores.
@@ -102,7 +103,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
                 this.rangedAttack();
         });
 
-        this.playerBullets = this.scene.physics.add.group({ classType: bullet, runChildUpdate: true });
+        //this.playerBullets = this.scene.physics.add.group({ classType: bullet, runChildUpdate: true });
 
         /**Pointer Lock (o el intento de) */
         this.scene.input.on('mousedown', () => {
@@ -191,23 +192,23 @@ export default class Player extends Phaser.GameObjects.Sprite {
     rangedAttack(){
         //Va al inventario y con el arma equipada en ese momento, el arma crea la hitbox del ataque correspondiente y lo lanza en la direccion del click
         if (this.active === false) { return; }
-
+        new Bullet(this.scene, this.x, this.y, this.reticle, 1);
         // Get bullet from bullets group
-        const bullet = this.playerBullets.get().setActive(true).setVisible(true);
+        //const bullet = this.playerBullets.get().setActive(true).setVisible(true);
 
-        if (bullet)
-        {
-            bullet.fire(this, this.reticle);
-            //this.scene.physics.add.collider(this.enemy, bullet, (enemyHit, bulletHit) => this.enemyHitCallback(enemyHit, bulletHit));
-        }
+        // if (bullet)
+        // {
+        //     bullet.fire(this, this.reticle);
+        //     //this.scene.physics.add.collider(this.enemy, bullet, (enemyHit, bulletHit) => this.enemyHitCallback(enemyHit, bulletHit));
+        // }
     }
 
     /**Funcion que se llama cuando el jugador recibe daño */
-    receiveDmg(damage) {
+    receiveDamage(damage) {
         this.life -= damage;
         if(this.life <= 0) {
             //Animacion de muerte
-            this.destroy(true);
+            this.scene.scene.start('end');
         }
     }
 }

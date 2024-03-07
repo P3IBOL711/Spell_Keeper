@@ -47,6 +47,8 @@ export default class Knight extends Enemy {
 
         this.life = 10;
 
+        this.damage = 1;
+
         this.body.setSize(this.width * 0.4, this.height * 0.85, true);
 
         // SE PODRIA MEJORAR CON this.on(animationstart) PERO NO SABEMOS HACERLO

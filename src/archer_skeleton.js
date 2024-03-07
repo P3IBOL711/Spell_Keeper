@@ -91,7 +91,7 @@ export default class Skeleton extends Enemy {
     onTimerAttack () {
         this.play('idle', true);
         this.stop();
-        new Arrow(this.scene, this.x, this.y, this.target);
+        new Arrow(this.scene, this.x, this.y, this.target, this.damage);
         this.chain(['attack', 'idle']);
         this.body.setVelocity(0);
     }

@@ -1,7 +1,7 @@
-import Skeleton from './archer_skeleton.js';
-import Arrow from './arrow.js';
-import Knight from './knight.js';
-import Player from './player.js';
+import Skeleton from '../archer_skeleton.js';
+import Arrow from '../arrow.js';
+import Knight from '../knight.js';
+import Player from '../player.js';
 import Phaser from 'phaser'
 
 
@@ -40,7 +40,5 @@ export default class ArmeriaPrueba extends Phaser.Scene {
         this.skeleton = new Skeleton(this, 800, 300, this.player);     
         this.arrow = new Arrow(this, 800, 300, 1000, 1000);
         this.player.setScale(3.0);
-        
     }
-
 }
