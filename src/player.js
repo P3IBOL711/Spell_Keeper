@@ -51,6 +51,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.a = this.scene.input.keyboard.addKey('A');
         this.s = this.scene.input.keyboard.addKey('S');
         this.d = this.scene.input.keyboard.addKey('D');
+        this.direction = null;
         this.meleeMode = false;
 
         /****ANIMACIONES****/
@@ -141,12 +142,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
         let stopped = true;
         
         if(this.a.isDown) {
+            this.direction = 'left';
             this.setFlipX(true);
             stopped=false;
             this.play('walkRight', true);
             this.body.setVelocityX(-this.MovSpeed);
         }
         else if(this.d.isDown) {
+            this.direction = 'right';
             stopped=false;
             this.setFlipX(false);
             this.play('walkRight', true);
@@ -154,11 +157,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
         }
         
         if(this.w.isDown){
+            this.direction = 'up';
             stopped=false;
             this.play('walkUp', true);
             this.body.setVelocityY(-this.MovSpeed);
         }
         else if(this.s.isDown) {
+            this.direction = 'down';
             stopped=false;
             this.play('walkDown', true);
             this.body.setVelocityY(this.MovSpeed);
@@ -183,7 +188,18 @@ export default class Player extends Phaser.GameObjects.Sprite {
         //Va el inventario donde se escoje el arma correspondiente y hacew la animacion de ataque con el arma, si impacta hace daño
         //Animacion de ataque
         //this.play();
-        //let hibox = new PlayerHitBox(this.scene, this.x - 30,  this.y + 20, 60, 120, 1);
+        if(this.direction === 'left') {
+
+        }
+        else if(this.direction === 'right') {
+
+        }
+        else if(this.direction === 'up') {
+
+        }
+        else if(this.direction === 'down') {
+
+        }
     }
 
     //Metodo que ejecuta el ataque a distancia con el arma
@@ -198,7 +214,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         if (bullet)
         {
             bullet.fire(this, this.reticle);
-            //this.scene.physics.add.collider(this.enemy, bullet, (enemyHit, bulletHit) => this.enemyHitCallback(enemyHit, bulletHit));
+            this.scene.physics.add.collider(this.enemy, bullet, (enemyHit, bulletHit) => this.enemyHitCallback(enemyHit, bulletHit));
         }
     }
 
