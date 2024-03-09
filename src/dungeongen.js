@@ -15,9 +15,18 @@ import ar_r13 from './rooms/ar_r13.js';
 import ar_r14 from './rooms/ar_r14.js';
 import ar_r15 from './rooms/ar_r15.js';
 import ar_sh1 from './rooms/ar_sh1.js';
+import ar_sh2 from './rooms/ar_sh2.js';
+import ar_sh3 from './rooms/ar_sh3.js';
+import ar_sh4 from './rooms/ar_sh4.js';
+import ar_sh5 from './rooms/ar_sh5.js';
+import ar_sh6 from './rooms/ar_sh6.js';
+import ar_sh7 from './rooms/ar_sh7.js';
+import ar_sh8 from './rooms/ar_sh8.js';
 import ar_x1 from './rooms/ar_x1.js';
-import em_r from './rooms/em_r.js'
-import Phaser from 'phaser'
+import ar_x2 from './rooms/ar_x2.js';
+import ar_x3 from './rooms/ar_x3.js';
+import ar_x4 from './rooms/ar_x4.js';
+
 
 
 const N = 10; //Numero de filas
@@ -54,7 +63,6 @@ class RoomInfo {
 export default class Dungeongen {
 
     constructor() {
-
         this.init();
     }
 
@@ -64,6 +72,7 @@ export default class Dungeongen {
         //Inicializacion
         let dungeon = [];
 
+        //Llenamos la mazmorra de habitaciones vacías
         for (let i = 0; i < N; i++) {
             dungeon[i] = [];
             for (let j = 0; j < M; j++) {
@@ -98,7 +107,7 @@ export default class Dungeongen {
         entranceX = Math.floor(Math.random() * (N - 2)) + 1;
         entranceY = Math.floor(Math.random() * (M - 2)) + 1;
 
-
+        //Ponemos la entrada
         dungeon[entranceY][entranceX] = ar_e1 = {
 
             name: "ar_e1",
@@ -129,6 +138,7 @@ export default class Dungeongen {
 
         let found = null
         let maxTries = 60
+        //Empezamos a generar la mazmorra
         for (found of this.generate(dungeon, entranceX, entranceY)) {
             // found = dungeonTry
 
@@ -138,57 +148,71 @@ export default class Dungeongen {
             }
         }
 
+        //Si no es valida, reempezamos el proceso
         if (!found) {
             console.log("Resetiado")
             this.init();
         }
 
         this.showMatrix(found);
+        //Paso 2: Rellenar huecos
 
+        //Rellenamos las habitaciones que no lleven a ningun lado
         let candidateDungeon = this.fillDungeon(found);
-        if(candidateDungeon === null){
+
+        if (candidateDungeon === null) {
             console.log("Resetiado")
             this.init();
         }
 
-        // for(let i = 0; i < maxSteps; i++)
-        // //    if(generator.next().done === false) //Por qué!!! Preguntar
-        //         dungeon = generator.next().value;
-        //  else
-        //    break;
 
-
-
-        //Paso 2: Rellenar huecos
         console.log("--------------------------------");
         this.showMatrix(candidateDungeon);
+
+        //Paso 3: Mirar si es valida
+        if (!this.checkForValidity()) {
+            console.log("Mazmorra no válida, reintentando")
+            this.init();
+        }
 
 
     }
 
+    /*
     // dada una matrix, deuelve true si esto funcionaría y está terminada
     plausibleDungeon(dungeon) {
         //Preguntar pa q vale esto
         return false;
-    }
+    }*/
 
     // devuelve null si no es aplicable, y una dungeon """nueva""" si si
     applyDirection(dungeon, direction, x, y, numberOfSteps) {
         // deep clone: JSON.parse(JSON.stringify(dungeon))
 
+        //El array de habitaciones candidatas definitivo y los parciales
+        //Así conseguimos que si sale la probabilidad de habitacion especial y no conecta ninguna, todavía tenemos el "backup" de las habitaciones normales
+        //Antes de dar la casilla por perdida
         let validRoomArray = [];
-
+        let normalValidRoomArray = [];
+        let specialValidRoomArray = [];
 
         if (Math.random() * numberOfSteps >= (maxSteps / (Math.max(1, Math.min(numberOfSteps, maxSteps))))) { //Si sale la probabilidad generamos habitación especial
-            validRoomArray = this.getValidRooms(specialRoomArray, direction, x, y)
+            specialValidRoomArray = this.getValidRooms(specialRoomArray, direction, x, y)
             console.log("Salió chance");
-            if (specialRoomArray.length === 0)
-                validRoomArray = this.getValidRooms(roomArray, direction, x, y)
-        } else
-            validRoomArray = this.getValidRooms(roomArray, direction, x, y)
+        }
 
-        this.shuffleArray(validRoomArray)
+        normalValidRoomArray = this.getValidRooms(roomArray, direction, x, y)
+        //Mezclamos el array
+        this.shuffleArray(normalValidRoomArray)
 
+        if (specialValidRoomArray.length !== 0) { //Si no es 0
+            this.shuffleArray(specialValidRoomArray) //Lo mezclamos
+            validRoomArray = specialRoomArray.concat(normalValidRoomArray); //Los concatenamos
+        } else {
+            validRoomArray = normalValidRoomArray; //Sino simplemente el normal
+        }
+
+        //Ajustamos las coordenadas
         if (direction === 'n') {
             y -= 1;
         } else if (direction === 's') {
@@ -198,36 +222,46 @@ export default class Dungeongen {
         } else if (direction === 'w') {
             x -= 1;
         }
+
         if (this.isCoordinateInsideMatrix(x, y))
             if (!this.isCoordinateOccupied(dungeon, x, y)) {
                 let newDungeon = [];
                 newDungeon = JSON.parse(JSON.stringify(dungeon));
                 for (let room of validRoomArray) {
-                    if (!thereIsExit && room.exit === true) {
-                        newDungeon[y][x] = room; //Deep clone si o no?
-                        if (this.checkIfRoomConnects(x, y, newDungeon)) {
-                            console.log("Generando salida");
-                            thereIsExit = true;
-                            return newDungeon;
+                    if (room.exit === true)
+                        if (thereIsExit === false) {
+                            newDungeon[y][x] = room; 
+                            let distanceX = Math.abs(x - entranceX);
+                            let distanceY = Math.abs(y - entranceY);
+                            if (this.checkIfRoomConnects(x, y, newDungeon) && distanceX >= maxSteps * 0.05 && distanceY >= maxSteps * 0.05) {
+                                console.log("Generando salida");
+                                thereIsExit = true;
+                                return newDungeon;
+                            }
                         }
-                    } else if (!thereIsShop && room.shop === true) {
-                        newDungeon[y][x] = room; //Deep clone si o no?
-                        if (this.checkIfRoomConnects(x, y, newDungeon)) {
-                            console.log("Generando tienda");
-                            thereIsShop = true;
-                            return newDungeon;
+                    if (room.shop === true)
+                        if (thereIsShop === false) {
+                            newDungeon[y][x] = room; 
+                            if (this.checkIfRoomConnects(x, y, newDungeon)) {
+                                console.log("Generando tienda");
+                                thereIsShop = true;
+                                return newDungeon;
+                            }
                         }
+                    if (!room.shop && !room.exit) {
+                        newDungeon[y][x] = room; 
+                        if (this.checkIfRoomConnects(x, y, newDungeon))
+                            return newDungeon;
                     }
-                    newDungeon[y][x] = room; //Deep clone si o no?
-                    if (this.checkIfRoomConnects(x, y, newDungeon))
-                        return newDungeon;
                 }
+
+
             }
 
         return null;
     }
 
-    *generate(dungeon, x, y) {
+    * generate(dungeon, x, y) {
         let numberOfSteps = 0;
         /* if (this.plausibleDungeon(dungeon)) {
              yield dungeon;
@@ -269,11 +303,13 @@ export default class Dungeongen {
                 if (dungeon[y][x].empty === false) {
                     //Mirar si hay caminos vacios
                     let dir;
-                    for(dir of this.checkForEmptyPathways(x,y,dungeon[y][x],dungeon)){
-                        newDungeon = this.fixEmptyPathway(x,y,dungeon,dir)
-                        if(newDungeon === null) //Si no ha sido posible no tiene sentido seguir
-                            return null;
-                        dungeon = newDungeon;
+                    for (dir of this.checkForEmptyPathways(x, y, dungeon[y][x], dungeon)) {
+                        if (dir !== null) {
+                            newDungeon = this.fixEmptyPathway(x, y, dungeon, dir)
+                            if (newDungeon === null) //Si no ha sido posible no tiene sentido seguir
+                                return null;
+                            dungeon = newDungeon;
+                        }
                     }
                 }
             }
@@ -289,24 +325,36 @@ export default class Dungeongen {
             switch (direction) {
 
                 case 'n':
-                    if (room.door_north === true && dungeon[y - 1][x].empty === true) { //Si hay un camino que lleva a la nada norte
-                        yield direction;
+                    if (y - 1 >= 0) {
+                        if (room.door_north === true && dungeon[y - 1][x].empty === true) { //Si hay un camino que lleva a la nada norte
+                            yield direction;
+                        }
                     }
+                    yield null;
                     break;
                 case 's':
-                    if (room.door_south === true && dungeon[y + 1][x].empty === true) { //Si hay un camino que lleva a la nada sur
-                        yield direction;
+                    if (y + 1 < M) {
+                        if (room.door_south === true && dungeon[y + 1][x].empty === true) { //Si hay un camino que lleva a la nada sur
+                            yield direction;
+                        }
                     }
+                    yield null;
                     break;
                 case 'e':
-                    if (room.door_east === true && dungeon[y][x + 1].empty === true) { //Si hay un camino que lleva a la nada este
-                        yield direction;
+                    if (x + 1 < N) {
+                        if (room.door_east === true && dungeon[y][x + 1].empty === true) { //Si hay un camino que lleva a la nada este
+                            yield direction;
+                        }
                     }
+                    yield null;
                     break;
                 case 'w':
-                    if (room.door_west === true && dungeon[y][x - 1].empty === true) { //Si hay un camino que lleva a la nada oeste
-                        yield direction;
+                    if (x - 1 >= 0) {
+                        if (room.door_west === true && dungeon[y][x - 1].empty === true) { //Si hay un camino que lleva a la nada oeste
+                            yield direction;
+                        }
                     }
+                    yield null;
                     break;
 
             }
@@ -315,14 +363,28 @@ export default class Dungeongen {
 
     }
 
-    fixEmptyPathway(x, y, dungeon,direction) {
+    fixEmptyPathway(x, y, dungeon, direction) {
 
         let validRoomArray = [];
+        let normalValidRoomArray = [];
+        let specialValidRoomArray = [];
 
-        validRoomArray = this.getValidRooms(roomArray, direction, x, y)
 
-        this.shuffleArray(validRoomArray)
+        if (!thereIsExit || !thereIsShop) { //Si no hay ni tienda ni salida
+            specialValidRoomArray = this.getValidRooms(specialRoomArray, direction, x, y) //Las asignamos con prioridad al array de habs validas
+        }
 
+        normalValidRoomArray = this.getValidRooms(roomArray, direction, x, y) //Ahora generamos las normales
+        this.shuffleArray(normalValidRoomArray) //Lo mezclamos
+        if (specialValidRoomArray.length !== 0) { //Si no es 0
+            this.shuffleArray(specialValidRoomArray) //Lo mezclamos
+            validRoomArray = specialRoomArray.concat(normalValidRoomArray); //Los concatenamos
+        } else {
+            validRoomArray = normalValidRoomArray; //Sino simplemente el normal
+        }
+
+
+        //Ajustamos las coordenadas
         if (direction === 'n') {
             y -= 1;
         } else if (direction === 's') {
@@ -335,10 +397,30 @@ export default class Dungeongen {
 
         let newDungeon = JSON.parse(JSON.stringify(dungeon));
 
-        for (let room of validRoomArray) {
-            newDungeon[y][x] = room;
-            if (this.checkIfRoomConnectsForClosing(x, y, newDungeon)) {
-                return newDungeon; //Devolvemos nueva mazmorra si cierra
+        for (let room of validRoomArray) { //Recorremos los candidatos a nueva habitacion
+            newDungeon[y][x] = room; //Las ponemos en la mazmorra
+            if (!thereIsExit) { //Si no hay salida aun
+                if (room.exit === true) { //Y la habitacion es una salida
+                    console.log("Generando salida al cerrar");
+                    if (this.checkIfRoomConnectsForClosing(x, y, newDungeon)) { //Miramos si conecta
+                        thereIsExit = true; //Marcamos
+                        return newDungeon; //Devolvemos nueva mazmorra si cierra
+                    }
+                }
+            }
+            if (!thereIsShop) { //Aqui igual
+                if (room.shop === true && thereIsShop === false) {
+                    console.log("Generando tienda al cerrar");
+                    if (this.checkIfRoomConnectsForClosing(x, y, newDungeon)) {
+                        thereIsShop = true;
+                        return newDungeon; //Devolvemos nueva mazmorra si cierra
+                    }
+                }
+            }
+            if (!room.exit && !room.shop) { //Si es una habitacion normal
+                if (this.checkIfRoomConnectsForClosing(x, y, newDungeon)) {
+                    return newDungeon; //Devolvemos nueva mazmorra si cierra
+                }
             }
 
         }
@@ -395,18 +477,18 @@ export default class Dungeongen {
 
     checkIfRoomConnectsForClosing(x, y, dungeon) {
 
-        //No estoy muy orgulloso de esto xD
+        //Igual que el otro checkForClosing pero además comprueba que no vayas a dejar un camino que no lleva a la nada
         if (x + 1 < N)
-            if (((dungeon[y][x + 1].empty === false && ((dungeon[y][x].door_east === true && dungeon[y][x + 1].door_west === false) || (dungeon[y][x].door_east === false && dungeon[y][x + 1].door_west === true)))) || (dungeon[y][x+1].empty === true && dungeon[y][x].door_east === true))
+            if (((dungeon[y][x + 1].empty === false && ((dungeon[y][x].door_east === true && dungeon[y][x + 1].door_west === false) || (dungeon[y][x].door_east === false && dungeon[y][x + 1].door_west === true)))) || (dungeon[y][x + 1].empty === true && dungeon[y][x].door_east === true))
                 return false
         if (x - 1 >= 0)
-            if ((dungeon[y][x - 1].empty === false && ((dungeon[y][x].door_west === true && dungeon[y][x - 1].door_east === false) || (dungeon[y][x].door_west === false && dungeon[y][x - 1].door_east === true)))|| (dungeon[y][x-1].empty === true && dungeon[y][x].door_west === true))
+            if ((dungeon[y][x - 1].empty === false && ((dungeon[y][x].door_west === true && dungeon[y][x - 1].door_east === false) || (dungeon[y][x].door_west === false && dungeon[y][x - 1].door_east === true))) || (dungeon[y][x - 1].empty === true && dungeon[y][x].door_west === true))
                 return false
         if (y + 1 < M)
-            if ((dungeon[y + 1][x].empty === false && ((dungeon[y][x].door_south === true && dungeon[y + 1][x].door_north === false) || (dungeon[y][x].door_south === false && dungeon[y + 1][x].door_north === true)))|| (dungeon[y+1][x].empty === true && dungeon[y][x].door_south === true))
+            if ((dungeon[y + 1][x].empty === false && ((dungeon[y][x].door_south === true && dungeon[y + 1][x].door_north === false) || (dungeon[y][x].door_south === false && dungeon[y + 1][x].door_north === true))) || (dungeon[y + 1][x].empty === true && dungeon[y][x].door_south === true))
                 return false
         if (y - 1 >= 0)
-            if ((dungeon[y - 1][x].empty === false && ((dungeon[y][x].door_north === true && dungeon[y - 1][x].door_south === false) || (dungeon[y][x].door_north === false && dungeon[y - 1][x].door_south === true)))|| (dungeon[y-1][x].empty === true && dungeon[y][x].door_north === true))
+            if ((dungeon[y - 1][x].empty === false && ((dungeon[y][x].door_north === true && dungeon[y - 1][x].door_south === false) || (dungeon[y][x].door_north === false && dungeon[y - 1][x].door_south === true))) || (dungeon[y - 1][x].empty === true && dungeon[y][x].door_north === true))
                 return false
 
         return true;
@@ -466,7 +548,7 @@ export default class Dungeongen {
         return true;
     }
 
-    //Para mezclar el array de direcciones y que no siempre empiece por norte
+    //Para mezclar el array de habitaciones para que no siempre salga la misma
     shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -474,100 +556,12 @@ export default class Dungeongen {
         }
     }
 
-    /*
 
-    getCandidateRoom(roomArray,k,x,y){
 
-        if(Math.random() >= (maxSteps/(Math.max(1,Math.min(k,maxSteps)))) || !this.doesRoomNotLeadToNowhere(x,y)){ //Cuantas mas salas generadas se empiezan a cortar caminos
-            let room = this.getSpecialCandidateRoom(x,y);
-            if(room !== null) //Si no se puede generar una habitacion especial que genere una normal
-                return room; 
-        } 
-
-        for(let i = 0; i < roomArray.length;i++){
-            let index = Math.floor(Math.random() * roomArray.length);
-            dungeon[y][y] = roomArray[index]; //Añadimos la habitacion candidata
-            if(this.isRoomInsideMatrix(x,y)){ //Si es valida
-                if( this.checkIfRoomConnects(x,y))
-                    return roomArray[index]; //Devolvemos la habitacion
-            }
-
-            dungeon[x][y] = em_r; //Si no ponemos otra vez hueco vacio
-        }
-
-        return null;
-    }
-
-    getSpecialCandidateRoom(x,y){ //Las habitaciones especiales son: la tienda, la habitacion del jefe y las habitaciones sin salida
-
-        if(thereIsExit === false) { //Priorizamos la salida
-
-            for(let i = 0; i < exitArray.length;i++){
-                let index = Math.floor(Math.random() * exitArray.length);
-                dungeon[x][y] = exitArray[index];
-                if(this.isRoomInsideMatrix(x,y) ){
-                    if( this.checkIfRoomConnects(x,y))
-                        if((Math.abs(entranceX - x) >= maxSteps / 2) || (Math.abs(entranceY - y) >= maxSteps / 2)){ //Si la salida está lo suficientemente lejos de la entrada
-                            thereIsExit = true;
-                            return exitArray[index]; //Devolvemos la salida
-                        }
-                }   
-
-                dungeon[x][y] = em_r; //Si no ponemos otra vez hueco vacio                          
-            }
-
-        }
-        if(thereIsShop === false){
-
-            for(let i = 0; i < shopArray.length;i++){
-                let index = Math.floor(Math.random() * shopArray.length);
-                dungeon[x][y] = shopArray[index];
-                if(this.isRoomInsideMatrix(x,y) ){
-                    if( this.checkIfRoomConnects(x,y)){
-                        thereIsShop = true;
-                        return shopArray[index]; //Devolvemos la habitacion
-                    }
-                }
-
-                dungeon[x][y] = em_r; //Si no ponemos otra vez hueco vacio
-            }
-
-        } 
-        
-        // Si no empezamos a cortar caminos
-
-            for(let i = 0; i < deadendArray.length;i++){
-                let index = Math.floor(Math.random() * deadendArray.length);
-                dungeon[x][y] = deadendArray[index];
-                if(this.isRoomInsideMatrix(x,y) ){
-                    if( this.checkIfRoomConnects(x,y))
-                        return deadendArray[index]; //Devolvemos la habitacion
-                }
-            }
-
-            dungeon[x][y] = em_r; //Si no ponemos otra vez hueco vacio
-
-        
-
-        console.log(`No se pudo generar habitacion especial`);
-        return null;
-
-    }
-
-  
-
-    isRoomInsideMatrix(x,y){
-        return ((0 <= x < N) && (0 <= y < M));
-    }
-
-    doesRoomNotLeadToNowhere(x,y){
-        return ((1 <= x < N-1) && (1 <= y < M-1));
-    }
-
-    checkForValidity(){
+    checkForValidity() {
         return thereIsExit && thereIsShop;
     }
-    */
+
     fillRoomArray(floor) {
         roomArray = [];
         if (floor === 0) { //Armeria
@@ -587,6 +581,7 @@ export default class Dungeongen {
             roomArray.push(ar_r13);
             roomArray.push(ar_r14);
             roomArray.push(ar_r15);
+
             //TODO push exits y shops
         }
     }
@@ -595,7 +590,17 @@ export default class Dungeongen {
         specialRoomArray = [];
         if (floor === 0) { //Armeria
             specialRoomArray.push(ar_x1);
+            specialRoomArray.push(ar_x2);
+            specialRoomArray.push(ar_x3);
+            specialRoomArray.push(ar_x4);
             specialRoomArray.push(ar_sh1);
+            specialRoomArray.push(ar_sh2);
+            specialRoomArray.push(ar_sh3);
+            specialRoomArray.push(ar_sh4);
+            specialRoomArray.push(ar_sh5);
+            specialRoomArray.push(ar_sh6);
+            specialRoomArray.push(ar_sh7);
+            specialRoomArray.push(ar_sh8);
         }
     }
 
