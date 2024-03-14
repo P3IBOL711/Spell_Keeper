@@ -192,7 +192,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     rangedAttack(){
         //Va al inventario y con el arma equipada en ese momento, el arma crea la hitbox del ataque correspondiente y lo lanza en la direccion del click
         if (this.active === false) { return; }
-        new Bullet(this.scene, this.x, this.y, this.reticle, 1);
+        new Bullet(this.scene, this.x, this.y, this.reticle, true, 1);
         // Get bullet from bullets group
         //const bullet = this.playerBullets.get().setActive(true).setVisible(true);
 

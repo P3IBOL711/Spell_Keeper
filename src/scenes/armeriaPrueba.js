@@ -31,7 +31,8 @@ export default class ArmeriaPrueba extends Phaser.Scene {
      * Creación de los elementos de la escena principal de juego
      */
     create() {
-    
+        this.enemies = this.add.group()
+        // this.walls para cuando haya paredes
         let img = this.add.image(0, 0, 'escenaPrueba').setOrigin(0, 0);
         img.displayWidth = this.sys.game.config.width;
         img.displayHeight = this.sys.game.config.height;

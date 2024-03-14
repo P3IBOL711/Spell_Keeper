@@ -1,6 +1,7 @@
 import Phaser from "phaser";
+import Projectile from "./projectile";
 
-export default class Bullet extends Phaser.GameObjects.Sprite {
+export default class Bullet extends Projectile {
 
     /**
      * Constructor del jugador
@@ -9,9 +10,9 @@ export default class Bullet extends Phaser.GameObjects.Sprite {
      * @param {number} y Coordenada Y
      */
 
-    constructor (scene, x, y, target, damage)
+    constructor (scene, x, y, target, targetEnemy, damage)
     {
-        super(scene, x, y, 'bullet');
+        super(scene, x, y, 'bullet', targetEnemy, damage);
 
         this.anims.create({
             key: 'normal',
@@ -27,7 +28,6 @@ export default class Bullet extends Phaser.GameObjects.Sprite {
             repeat: -1
         });
 
-
         this.speed = 100;
         this.rotation = Phaser.Math.Angle.Between(x, y, target.x, target.y);
         if (this.angle >= 45 && this.angle <= 135 || this.angle >= -135 && this.angle <= -45) {
@@ -36,11 +36,6 @@ export default class Bullet extends Phaser.GameObjects.Sprite {
         else{
             this.body.setSize(this.width * 0.6, this.height * 0.1, true);
         }
-
-        this.scene.physics.add.overlap(this, target, () => {
-            // player.receiveDamage(damage);
-            // this.destroy();
-        });
 
         this.body.setVelocityX(this.speed * Math.cos(this.rotation));
         this.body.setVelocityY(this.speed * Math.sin(this.rotation));

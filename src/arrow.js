@@ -13,8 +13,8 @@ export default class Arrow extends Projectile {
      * @param {number} y Coordenada Y
     */
 
-    constructor(scene, x, y, target, damage, targetEnemy) {
-        super(scene, x, y, 'arrow', targetEnemy);
+    constructor(scene, x, y, target, targetEnemy, damage) {
+        super(scene, x, y, 'arrow', targetEnemy, damage);
 
         this.setScale(2.5);
 
@@ -28,11 +28,6 @@ export default class Arrow extends Projectile {
         else{
             this.body.setSize(this.width * 0.6, this.height * 0.1, true);
         }
-
-        this.scene.physics.add.overlap(this, target, () => {
-            target.receiveDamage(damage);
-            this.destroy();
-        });
 
         this.body.setVelocityX(this.speed * Math.cos(this.rotation));
         this.body.setVelocityY(this.speed * Math.sin(this.rotation));

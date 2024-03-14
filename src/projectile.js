@@ -13,18 +13,30 @@ export default class Projectile extends Phaser.GameObjects.Sprite {
      * @param {number} y Coordenada Y
     */
 
-    constructor(scene, x, y, image, targetEnemy) {
+    constructor(scene, x, y, image, targetEnemy, damage) {
         super(scene, x, y, image);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-
+        // this.scene.physics.add.overlap(this);
+        
         //this.body.setSize(this.width * 0.4, this.height * 0.85, true);
+        this.scene.physics.add.overlap(this, this.scene.enemies, (projectile, enemy) => {
             if (targetEnemy){
-                
+                enemy.receiveDamage(damage)
+                this.destroy();
             }
-            else{
+        });
 
+        this.scene.physics.add.overlap(this, this.scene.player, (projectile, player) => {
+            if (!targetEnemy){
+                player.receiveDamage(damage)
+                this.destroy();
             }
+        });
+
+        // this.scene.physics.add.overlap(this, this.scene.walls, (projectile, wall) => {
+        //     this.destroy();
+        // });
     }
 
     /**

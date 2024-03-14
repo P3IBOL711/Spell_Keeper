@@ -16,6 +16,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         super(scene, x, y, 'enemy');
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
+        this.scene.enemies.add(this)
         // Queremos que el enemigo no se salga de los límites del mundo
         this.body.setCollideWorldBounds();
         // Velocidad 0 por defecto
@@ -26,6 +27,10 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         this.life = 1;
         
         this.target = target;
+    }
+
+    receiveDamage(damage){
+        this.life -= damage;
     }
 
     /**
