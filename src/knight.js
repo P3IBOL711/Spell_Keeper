@@ -34,9 +34,9 @@ export default class Knight extends Enemy {
 
         this.anims.create({
             key: 'die',
-            frames: this.anims.generateFrameNumbers('knight_spritesheet', { start: 11, end: 15 }),
-            frameRate: 10,
-            repeat: -1
+            frames: this.anims.generateFrameNumbers('knight_spritesheet', { start: 16, end: 20 }),
+            frameRate: 5,
+            repeat: 0
         });
 
         this.setScale(3);
@@ -65,9 +65,11 @@ export default class Knight extends Enemy {
             if (this.anims.getName() === 'attack'){
                 this.attackZone.destroy(true);
             }
-            else if (this.anims.getName() === 'die'){
-                //this.destroy();
-                this.scene.enemies.des
+        })
+
+        this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
+            if (this.anims.getName() === 'die'){
+                this.scene.enemies.killAndHide(this);
             }
         })
 
@@ -75,7 +77,11 @@ export default class Knight extends Enemy {
 
     receiveDamage(damage){
         super.receiveDamage(damage);
-        
+        if (this.life <= 0){
+            this.body.setVelocity(0);
+            this.stop();
+            this.play('die', true);
+        }
     }
 
     /**
@@ -89,11 +95,7 @@ export default class Knight extends Enemy {
         // no se podrá ejecutar la animación del sprite. 
         super.preUpdate(t, dt);
         // Preguntar si podría ser mas eficiente
-        if (this.life <= 0){
-            this.body.setVelocity(0);
-            this.play('die', true);
-        }
-        else{
+        if (this.life > 0) {
             if(this.flipX)
                 this.body.setOffset(this.width * 0.38, this.height * 0.26);
             else

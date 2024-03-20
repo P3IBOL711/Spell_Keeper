@@ -20,7 +20,6 @@ export default class HitBox extends Phaser.GameObjects.Zone {
 
         this.scene.physics.add.overlap(this, player, () => {
             player.receiveDamage(damage);
-            console.log('overlapped');
         });
     }
 }

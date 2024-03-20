@@ -41,9 +41,9 @@ export default class Skeleton extends Enemy {
 
         this.anims.create({
             key: 'die',
-            frames: this.anims.generateFrameNumbers('skeleton_spritesheet', { start: 11, end: 15 }),
+            frames: this.anims.generateFrameNumbers('skeleton_spritesheet', { start: 16, end: 20 }),
             frameRate: 10,
-            repeat: -1
+            repeat: 0
         });
 
         this.timerAttack = this.scene.time.addEvent({
@@ -63,28 +63,24 @@ export default class Skeleton extends Enemy {
 
         this.body.setSize(this.width * 0.45, this.height * 0.85, true);
 
-        // SE PODRIA MEJORAR CON this.event.on(animationstart) PERO NO SABEMOS HACERLO
-        this.on(Phaser.Animations.Events.ANIMATION_START, () => {
-            if (this.anims.getName() === 'attack'){
-
-            }
-        })
-
         this.on(Phaser.Animations.Events.ANIMATION_STOP, () => {
-            if (this.anims.getName() === 'attack'){
-               
-            }
+            
         })
+
+        this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
+            if (this.anims.getName() === 'die'){
+               this.scene.enemies.killAndHide(this);
+            }
+        });
 
     }
 
     receiveDamage(damage){
         this.life -= damage;
         if (this.life <= 0){
+            this.body.setVelocity(0);
+            this.stop();
             this.play('die', true);
-            this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
-                this.destroy(true);
-            });
         }
     }
 
