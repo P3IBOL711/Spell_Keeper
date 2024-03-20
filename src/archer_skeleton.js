@@ -69,6 +69,8 @@ export default class Skeleton extends Enemy {
 
         this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
             if (this.anims.getName() === 'die'){
+               this.body.enable = false;
+               this.scene.time.removeEvent(this.timerAttack);
                this.scene.enemies.killAndHide(this);
             }
         });

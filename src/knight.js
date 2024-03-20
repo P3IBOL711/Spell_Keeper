@@ -69,6 +69,7 @@ export default class Knight extends Enemy {
 
         this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
             if (this.anims.getName() === 'die'){
+                this.body.enable = false;
                 this.scene.enemies.killAndHide(this);
             }
         })
