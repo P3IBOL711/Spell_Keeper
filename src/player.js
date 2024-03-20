@@ -1,4 +1,4 @@
-import bullet from './bullet.js'
+import Bullet from './bullet.js'
 
 import Phaser from 'phaser'
 import Reticle from './reticle.js';
@@ -16,7 +16,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      */
-    constructor(scene, x, y, lifeMod, manaMod, weaponMult, moveMod, moveMult, luckMod) {
+
+    constructor(scene, x, y, lifeMod, manaMod, weaponMult, moveMod, moveMult, luckMod, MeleeWeaponArray, RangedWeaponArray, ActMelIndex, ActRangIndex) {
         super(scene, x, y, 'player');
         
         this.scene.add.existing(this);
@@ -47,12 +48,17 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.reticle = new Reticle(this.scene, x, y - 30);
 
         /****CONTROLES****/
+        //Direcciones
         this.w = this.scene.input.keyboard.addKey('W');
         this.a = this.scene.input.keyboard.addKey('A');
         this.s = this.scene.input.keyboard.addKey('S');
         this.d = this.scene.input.keyboard.addKey('D');
         this.direction = null;
         this.meleeMode = false;
+        //Interacciones
+        this.q = this.scene.input.keyboard.addKey('Q');
+        this.e = this.scene.input.keyboard.addKey('E');
+        this.f = this.scene.input.keyboard.addKey('F');
 
         /****ANIMACIONES****/
         this.anims.create({
@@ -83,10 +89,30 @@ export default class Player extends Phaser.GameObjects.Sprite {
             repeat: -1
         });
 
-        //Cursor de ataque: NOTAS
-        //SI QUIERES QUE SEA FUERA DE LA HITBOX DEL JUGADOR TIENES QUE CREAR UN CURSOR Y HACERLE EL LOCK Y QUE ESTE TENGA INTERACTIVE
-        //PARA HACER QUE CUANDO PASE EL CURSOR POR ENICMA DE LOS ENEMIGOS CAMBIE DE TAMAÑO O INDICAR QUE SE PUEDE ATACAR, poner  a todo .setInteractive y hacer los callbacks
+        //Interacciones del teclado
+        this.q.on('down', () => {
+            if(this.meleeMode) {
+                this.meleeIndex = this.meleeIndex - 1;
+                if(this.meleeIndex <= 0)
+                    this.meleeIndex = this.meeleWeapons.length() - 1;
+            }
+            else {
+                this.rangedIndex = this.rangedIndex - 1;
+                if(this.rangedIndex <= 0)
+                    this.rangedIndex = this.rangedWeapons.length() - 1;
+            }
+        });
 
+        this.e.on('down', () => {
+            if(this.meleeMode) {
+                this.meleeIndex = (this.meleeIndex + 1) % this.meeleWeapons.length();
+            }
+            else {
+                this.rangedIndex = (this.rangedIndex + 1) % this.rangedWeapons.length();
+            }
+        });
+
+        //Cursor de ataque y eventos del cursor (faltan los hover para cambiar la textura del raton)
         this.scene.input.on('pointerup', pointer =>  {
             if(pointer.rightButtonReleased()) {
                 if(this.meleeMode)
@@ -103,24 +129,17 @@ export default class Player extends Phaser.GameObjects.Sprite {
                 this.rangedAttack();
         });
 
-        this.playerBullets = this.scene.physics.add.group({ classType: bullet, runChildUpdate: true });
-
-        /**Pointer Lock (o el intento de) */
-        this.scene.input.on('mousedown', () => {
-            this.scene.input.mouse.releasePointerLock();
-        });
-
-        this.scene.input.keyboard.on('keydown_Q', event => {
-            if (this.scene.input.mouse.locked) { this.scene.input.mouse.releasePointerLock(); }
-        }, 0);
-
         this.scene.input.on('pointermove', () => {
-            //if (this.scene.input.mouse.locked)
-            //{
                 this.reticle.x = this.scene.input.activePointer.worldX;
                 this.reticle.y = this.scene.input.activePointer.worldY;
-            //}
         });
+
+        /**ARRAYS DE OBJETOS Y ARMAS*/
+        //Nota: ver como se pasa entre las escenas
+        this.meeleWeapons = MeleeWeaponArray;
+        this.rangedWeapons = RangedWeaponArray;
+        this.meleeIndex = ActMelIndex;
+        this.rangedIndex = ActRangIndex;
 
 
         /**RELATIVO A LA ESCENA**/
@@ -182,48 +201,37 @@ export default class Player extends Phaser.GameObjects.Sprite {
         */
     }
 
-    //Metodo que ejecuta el ataque cuerpo a cuerpo con el arma melee 
-    //equipada en ese momento
+    /**NOTAS PARA EJECUTAR LOS ATAQUES:
+     * Tienes dos arrays que son los "inventarios de armas", segun el tipo de ataque se pilla un array u otro y haces array[index].attack(parametros)
+     */
     meeleAttack() {
-        //Va el inventario donde se escoje el arma correspondiente y hacew la animacion de ataque con el arma, si impacta hace daño
         //Animacion de ataque
         //this.play();
         if(this.direction === 'left') {
-
+            new PlayerHitBox(this.scene, this.x - 30, this.y, 64, 64, 1);
         }
         else if(this.direction === 'right') {
-
+            new PlayerHitBox(this.scene, this.x + 30, this.y, 64, 64, 1);
         }
         else if(this.direction === 'up') {
-
+            new PlayerHitBox(this.scene, this.x, this.y - 30, 64, 64, 1);
         }
         else if(this.direction === 'down') {
-
+            new PlayerHitBox(this.scene, this.x, this.y + 30, 64, 64, 1);
         }
     }
 
-    //Metodo que ejecuta el ataque a distancia con el arma
-    //equipada por el jugador en ese momento desde el inventario
-    rangedAttack(){
-        //Va al inventario y con el arma equipada en ese momento, el arma crea la hitbox del ataque correspondiente y lo lanza en la direccion del click
+    rangedAttack() {
         if (this.active === false) { return; }
-
-        // Get bullet from bullets group
-        const bullet = this.playerBullets.get().setActive(true).setVisible(true);
-
-        if (bullet)
-        {
-            bullet.fire(this, this.reticle);
-            this.scene.physics.add.collider(this.enemy, bullet, (enemyHit, bulletHit) => this.enemyHitCallback(enemyHit, bulletHit));
-        }
+        new Bullet(this.scene, this.x, this.y, this.reticle, true, 1);
     }
 
     /**Funcion que se llama cuando el jugador recibe daño */
-    receiveDmg(damage) {
+    receiveDamage(damage) {
         this.life -= damage;
         if(this.life <= 0) {
             //Animacion de muerte
-            this.destroy(true);
+            this.scene.scene.start('end');
         }
     }
 }

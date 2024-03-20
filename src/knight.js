@@ -47,6 +47,8 @@ export default class Knight extends Enemy {
 
         this.life = 10;
 
+        this.damage = 1;
+
         this.body.setSize(this.width * 0.4, this.height * 0.85, true);
 
         // SE PODRIA MEJORAR CON this.on(animationstart) PERO NO SABEMOS HACERLO
@@ -63,18 +65,17 @@ export default class Knight extends Enemy {
             if (this.anims.getName() === 'attack'){
                 this.attackZone.destroy(true);
             }
+            else if (this.anims.getName() === 'die'){
+                //this.destroy();
+                this.scene.enemies.des
+            }
         })
 
     }
 
     receiveDamage(damage){
-        this.life -= damage;
-        if (this.life <= 0){
-            this.play('die', true);
-            this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
-                this.destroy(true);
-            });
-        }
+        super.receiveDamage(damage);
+        
     }
 
     /**
@@ -88,24 +89,29 @@ export default class Knight extends Enemy {
         // no se podrá ejecutar la animación del sprite. 
         super.preUpdate(t, dt);
         // Preguntar si podría ser mas eficiente
-        if(this.flipX)
-            this.body.setOffset(this.width * 0.38, this.height * 0.26);
-        else
-            this.body.setOffset(this.width * 0.40, this.height * 0.26);
-
-        if (Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y) >= 50){
-            this.setFlipX(this.body.velocity.x < 0);
-            this.play('walking', true);
-            this.scene.physics.moveToObject(this, this.target, this.speed);
-        }
-        else {
-            // creáis la zone de ataque
-            // cambiáis la animación (que ya está)
-            this.play('attack', true);
+        if (this.life <= 0){
             this.body.setVelocity(0);
-            
+            this.play('die', true);
         }
+        else{
+            if(this.flipX)
+                this.body.setOffset(this.width * 0.38, this.height * 0.26);
+            else
+                this.body.setOffset(this.width * 0.40, this.height * 0.26);
 
+            if (Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y) >= 50){
+                this.setFlipX(this.body.velocity.x < 0);
+                this.play('walking', true);
+                this.scene.physics.moveToObject(this, this.target, this.speed);
+            }
+            else {
+                // creáis la zone de ataque
+                // cambiáis la animación (que ya está)
+                this.play('attack', true);
+                this.body.setVelocity(0);
+                
+            } 
+        }
     }
 
 }
