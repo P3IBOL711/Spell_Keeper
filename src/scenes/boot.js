@@ -2,8 +2,8 @@ import Phaser from 'phaser'
 import player from '../assets/cSprites/characters/Mage_Walking.png'
 import knight from '../assets/armory/sprites/knight/knight_spritesheet.png'
 import skeleton from '../assets/armory/sprites/skeleton/skeleton_spritesheet.png'
-import room from '../assets/armory/sprites/Hab_Prueba.png'
-import arrow from '../assets/armory/sprites/arrow/arrow.png'
+import room from '../../assets/armory/sprites/Hab_Prueba.png'
+import arrow from '../../assets/armory/sprites/arrow/arrow.png'
 import Fireball from '../assets/cSprites/fireball_spritesheet.png'
 
 /**

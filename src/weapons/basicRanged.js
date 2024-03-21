@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 
 import Arma from "./arma";
-import Bullet from "./weapons/bullet";
+import Bullet from "./bullet";
 
 export default class basicRanged extends Arma {
  /**
