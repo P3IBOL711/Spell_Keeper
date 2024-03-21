@@ -1,8 +1,10 @@
-import Skeleton from './archer_skeleton.js';
-import Arrow from './arrow.js';
-import Knight from './knight.js';
-import Player from './player.js';
 import Phaser from 'phaser'
+import Player from '../player.js'
+import Skeleton from '../enemies/archerSkeleton.js';
+import Arrow from '../projectiles/arrow.js';
+import Knight from '../enemies/knight.js';
+import Goblin from '../enemies/poisonousGoblin.js'
+import PoisonousGoblin from '../enemies/poisonousGoblin.js';
 
 
 
@@ -31,7 +33,8 @@ export default class ArmeriaPrueba extends Phaser.Scene {
      * Creación de los elementos de la escena principal de juego
      */
     create() {
-    
+        this.enemies = this.add.group()
+        // this.walls para cuando haya paredes
         let img = this.add.image(0, 0, 'escenaPrueba').setOrigin(0, 0);
         img.displayWidth = this.sys.game.config.width;
         img.displayHeight = this.sys.game.config.height;
@@ -39,8 +42,7 @@ export default class ArmeriaPrueba extends Phaser.Scene {
         this.knight = new Knight(this, 800, 200, this.player);
         this.skeleton = new Skeleton(this, 800, 300, this.player);     
         this.arrow = new Arrow(this, 800, 300, 1000, 1000);
+        this.poisonousGoblin = new PoisonousGoblin(this, 600, 300, this.player);
         this.player.setScale(3.0);
-        
     }
-
 }

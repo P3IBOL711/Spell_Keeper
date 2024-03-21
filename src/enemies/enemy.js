@@ -16,6 +16,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         super(scene, x, y, 'enemy');
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
+        this.scene.enemies.add(this)
         // Queremos que el enemigo no se salga de los límites del mundo
         this.body.setCollideWorldBounds();
         // Velocidad 0 por defecto
@@ -26,6 +27,46 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         this.life = 1;
         
         this.target = target;
+
+        this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
+            if (this.anims.getName() === 'die'){
+                this.doSomethingVerySpecificBecauseYoureMyBelovedChild()
+                this.scene.enemies.remove(this);
+                this.destroy();
+
+            }
+        });
+    }
+
+    doSomethingVerySpecificBecauseYoureMyBelovedChild() {
+    }
+
+
+    receiveDamage(damage){
+        this.life -= damage;
+
+        this.scene.tweens.add({
+            targets: this,
+            alpha: 0,
+            ease: Phaser.Math.Easing.Elastic.InOut,
+            duration: 40, 
+            repeat: 1,
+            yoyo: true,
+            onStart: () => {
+                this.setTint(0xff0000);
+            },
+            onComplete: () => {
+                this.clearTint();
+                this.setAlpha(1);
+            }
+        })
+
+        if (this.life <= 0){
+            this.body.setVelocity(0);
+            this.body.enable = false;
+            this.stop();
+            this.play('die', true);
+        }
     }
 
     /**
@@ -38,6 +79,9 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         // IMPORTANTE: Si no ponemos esta instrucción y el sprite está animado
         // no se podrá ejecutar la animación del sprite. 
         super.preUpdate(t, dt);
+        if (this.life > 0){
+            this.setFlipX(this.body.velocity.x < 0 || this.target.x < this.x);
+        }
     }
 
 }
