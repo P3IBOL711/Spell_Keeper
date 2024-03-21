@@ -36,10 +36,6 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('skeleton_spritesheet', skeleton, { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('fireball_spritesheet', Fireball, { frameWidth: 32, frameHeight: 32 });
 
-    for(let i = 0; i < 2000; i++) {
-      this.load.image('escenaPrueba' + i, room);
-    }
-
     // Background
     let background = this.add.graphics();
     background.fillStyle(0x322653, 1);
