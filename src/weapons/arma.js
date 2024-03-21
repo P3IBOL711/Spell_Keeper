@@ -26,4 +26,8 @@ export default class arma extends Phaser.GameObjects.Sprite {
     modifiedDmg(weaponMultiplier) {
         this.wDmg = this.wDmg * weaponMultiplier;
     }
+
+    delay(){
+        return 1000;
+    }
 }

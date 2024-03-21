@@ -23,4 +23,8 @@ export default class basicRanged extends Arma {
     attack(x, y, direction, target) {
         new Bullet(this.scene, x, y, target, true, 1);
     }
+
+    delay() {
+        return 1500;
+    }
 }

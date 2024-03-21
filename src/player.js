@@ -145,6 +145,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.meleeIndex = ActMelIndex;
         this.rangedIndex = ActRangIndex;
         this.weaponDelay = 0;
+        this.equipedWeapon = this.meeleWeapons[0];
 
 
         /**RELATIVO A LA ESCENA**/

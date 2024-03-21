@@ -34,4 +34,8 @@ export default class basicMelee extends Arma {
             new PlayerHitBox(this.scene, this.x, this.y + 30, 64, 64, 1);
         }
     }
+
+    delay() {
+        return 1000;
+    }
 }

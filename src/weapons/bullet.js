@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import Projectile from "./weapons/projectile";
+import Projectile from "./projectile";
 
 export default class Bullet extends Projectile {
 
