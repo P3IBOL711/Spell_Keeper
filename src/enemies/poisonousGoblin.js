@@ -63,28 +63,17 @@ export default class PoisonousGoblin extends Enemy {
         this.life = 2;
 
         this.body.setSize(this.width * 0.45, this.height * 0.85, true);
+    }
 
-        this.on(Phaser.Animations.Events.ANIMATION_STOP, () => {
-            
-        })
-
-        this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
-            if (this.anims.getName() === 'die'){
-                this.scene.time.removeEvent(this.timerAttack);
-                this.scene.enemies.killAndHide(this);
-            }
-        });
+    doSomethingVerySpecificBecauseYoureMyBelovedChild() {
+        this.scene.time.removeEvent(this.timerAttack);
 
     }
 
     receiveDamage(damage){
         super.receiveDamage(damage);
         if (this.life <= 0){
-            this.body.setVelocity(0);
-            this.body.enable = false;
             this.timerAttack.paused = true;
-            this.stop();
-            this.play('die', true);
         }
     }
 
@@ -107,16 +96,10 @@ export default class PoisonousGoblin extends Enemy {
         // no se podrá ejecutar la animación del sprite. 
         super.preUpdate(t, dt);
         if (this.life > 0){
-            this.setFlipX(this.body.velocity.x < 0 || this.target.x < this.x);
-            // Preguntar si podría ser mas eficiente
-            if(this.flipX)
-                this.body.setOffset(this.width * 0.38, this.height * 0.32);
-            else
-                this.body.setOffset(this.width * 0.40, this.height * 0.32);
+            this.body.setOffset(this.width * (this.flipX ? 0.38 : 0.4), this.height * 0.32);
     
             if (Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y) > 300){
                 this.timerAttack.paused = true;
-                
                 this.play('walking', true);
                 this.scene.physics.moveToObject(this, this.target, this.speed);
             }

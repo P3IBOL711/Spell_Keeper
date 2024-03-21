@@ -45,7 +45,7 @@ export default class Knight extends Enemy {
 
         this.target = target;
 
-        this.life = 10;
+        this.life = 5;
 
         this.damage = 1;
 
@@ -54,10 +54,7 @@ export default class Knight extends Enemy {
         // SE PODRIA MEJORAR CON this.on(animationstart) PERO NO SABEMOS HACERLO
         this.on(Phaser.Animations.Events.ANIMATION_START, () => {
             if (this.anims.getName() === 'attack'){
-                if (this.flipX)
-                    this.attackZone = new HitBox(this.scene, this.x - 65, this.y - 10, 60, 120, this.target, this.damage);
-                else
-                    this.attackZone = new HitBox(this.scene, this.x + 65, this.y - 10, 60, 120, this.target, this.damage);
+                this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -65 : 65), this.y - 10, 60, 120, this.target, this.damage);
             }
         })
 
@@ -67,22 +64,6 @@ export default class Knight extends Enemy {
             }
         })
 
-        this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
-            if (this.anims.getName() === 'die'){
-                this.scene.enemies.killAndHide(this);
-            }
-        })
-
-    }
-
-    receiveDamage(damage){
-        super.receiveDamage(damage);
-        if (this.life <= 0){
-            this.body.setVelocity(0);
-            this.body.enable = false;
-            this.stop();
-            this.play('die', true);
-        }
     }
 
     /**
@@ -97,13 +78,9 @@ export default class Knight extends Enemy {
         super.preUpdate(t, dt);
         // Preguntar si podría ser mas eficiente
         if (this.life > 0) {
-            if(this.flipX)
-                this.body.setOffset(this.width * 0.38, this.height * 0.26);
-            else
-                this.body.setOffset(this.width * 0.40, this.height * 0.26);
+            this.body.setOffset(this.width * (this.flipX ? 0.38 : 0.40), this.height * 0.26);
 
             if (Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y) >= 50){
-                this.setFlipX(this.body.velocity.x < 0);
                 this.play('walking', true);
                 this.scene.physics.moveToObject(this, this.target, this.speed);
             }

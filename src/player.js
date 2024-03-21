@@ -206,6 +206,23 @@ export default class Player extends Phaser.GameObjects.Sprite {
     /**Funcion que se llama cuando el jugador recibe daño */
     receiveDamage(damage) {
         this.life -= damage;
+        
+        this.scene.tweens.add({
+            targets: this,
+            alpha: 0,
+            ease: Phaser.Math.Easing.Elastic.InOut,
+            duration: 40, 
+            repeat: 1,
+            yoyo: true,
+            onStart: () => {
+                this.setTint(0xff0000);
+            },
+            onComplete: () => {
+                this.clearTint();
+                this.setAlpha(1);
+            }
+        })
+
         if(this.life <= 0) {
             //Animacion de muerte
             this.scene.scene.start('end');
