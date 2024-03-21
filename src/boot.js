@@ -5,6 +5,7 @@ import skeleton from '../assets/armory/sprites/skeleton/skeleton_spritesheet.png
 import room from '../assets/armory/sprites/Hab_Prueba.png'
 import arrow from '../assets/armory/sprites/arrow/arrow.png'
 import Fireball from '../assets/cSprites/fireball_spritesheet.png'
+import font from 'url:../assets/fonts/VT323Regular.ttf'
 
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
@@ -35,16 +36,27 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('skeleton_spritesheet', skeleton, { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('fireball_spritesheet', Fireball, { frameWidth: 32, frameHeight: 32 });
 
-    var progressBar = this.add.graphics();
-    var progressBox = this.add.graphics();
-    progressBox.fillStyle(0x222222, 0.8);
-    progressBox.fillRect(240, 270, 320, 50);
+    for(let i = 0; i < 2000; i++) {
+      this.load.image('escenaPrueba' + i, room);
+    }
+
+    // Background
+    let background = this.add.graphics();
+    background.fillStyle(0x322653, 1);
+    // 363062
+    background.fillRect(0, 0, 1000, 600);
+    
+    // Loading bar 
+    let progressBar = this.add.graphics();
+    let progressBox = this.add.graphics();
+    progressBox.fillStyle(0x9EC8B9, 0.8);
+    progressBox.fillRect(340, 270, 320, 50);
 
     this.load.on('progress', function (value) {
-      console.log(value);
       progressBar.clear();
-      progressBar.fillStyle(0xffffff, 1);
-      progressBar.fillRect(250, 280, 300 * value, 30);
+      progressBar.fillStyle(0x9EC8B9, 1);
+      progressBar.fillRect(350, 280, 300 * value, 30);
+      percentText.setText(parseInt(value * 100) + '%');
     });
                 
     this.load.on('fileprogress', function (file) {
@@ -54,9 +66,25 @@ export default class Boot extends Phaser.Scene {
       console.log('complete');
       progressBar.destroy();
       progressBox.destroy();
+      loadingText.destroy();
+      percentText.destroy();
     });
 
-    
+    // Loading bar text
+    this.loadFont('pixelFont', font);
+    let loadingText = this.add.text(420, 215, 'Loading...', { fontFamily: 'pixelFont', fontSize: 40, color: '#9EC8B9'});
+
+    // Percent bar text
+    let percentText = this.add.text(485, 320, '0%', { fontFamily: 'pixelFont', fontSize: 24, color: '#9EC8B9'});
+  }
+
+  loadFont(name, url) {
+    let newFont = new FontFace(name, `url(${url})`);
+    newFont.load().then(function (loaded) {
+        document.fonts.add(loaded);
+    }).catch(function (error) {
+        return error;
+    });
   }
 
   /**
