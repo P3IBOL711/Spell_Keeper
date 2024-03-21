@@ -3,7 +3,6 @@ import Player from '../player.js'
 import Skeleton from '../enemies/archerSkeleton.js';
 import Arrow from '../projectiles/arrow.js';
 import Knight from '../enemies/knight.js';
-import Goblin from '../enemies/poisonousGoblin.js'
 import PoisonousGoblin from '../enemies/poisonousGoblin.js';
 
 
