@@ -1,5 +1,5 @@
 import Phaser from 'phaser'
-import HitBox from './hitbox';
+import HitBox from '../hitbox';
 
 /**
  * Clase que representa un enemigo del juego.

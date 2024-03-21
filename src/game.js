@@ -1,5 +1,5 @@
-import ArmeriaPrueba from './armeriaPrueba.js';
-import Boot from './boot.js';
+import ArmeriaPrueba from './scenes/armeriaPrueba.js';
+import Boot from './scenes/boot.js';
 import Phaser from 'phaser'
 import  MainMenu  from './scenes/mainMenu.js';
 

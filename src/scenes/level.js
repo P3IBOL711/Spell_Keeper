@@ -1,7 +1,7 @@
-import Skeleton from './archer_skeleton.js';
-import Arrow from './arrow.js';
-import Knight from './knight.js';
-import Player from './player.js';
+import Skeleton from '../archer_skeleton.js';
+import Arrow from '../arrow.js';
+import Knight from '../knight.js';
+import Player from '../player.js';
 import Phaser from 'phaser'
 
 

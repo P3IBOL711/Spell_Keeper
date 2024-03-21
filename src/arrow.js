@@ -1,6 +1,6 @@
 import Phaser from 'phaser'
 import HitBox from './hitbox';
-import Projectile from './projectile';
+import Projectile from './weapons/projectile';
 
 /**
  * Clase que representa una flecha del juego.
