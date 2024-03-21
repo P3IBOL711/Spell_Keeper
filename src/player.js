@@ -1,4 +1,4 @@
-import Bullet from './bullet.js'
+import Bullet from './projectiles/bullet.js'
 
 import Phaser from 'phaser'
 import Reticle from './reticle.js';

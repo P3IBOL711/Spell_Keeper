@@ -1,5 +1,5 @@
 import Phaser from 'phaser'
-import HitBox from './hitbox';
+import HitBox from '../hitbox';
 import Enemy from './enemy';
 
 /**
@@ -69,7 +69,6 @@ export default class Knight extends Enemy {
 
         this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
             if (this.anims.getName() === 'die'){
-                this.body.enable = false;
                 this.scene.enemies.killAndHide(this);
             }
         })
@@ -80,6 +79,7 @@ export default class Knight extends Enemy {
         super.receiveDamage(damage);
         if (this.life <= 0){
             this.body.setVelocity(0);
+            this.body.enable = false;
             this.stop();
             this.play('die', true);
         }
