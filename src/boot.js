@@ -34,6 +34,29 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('knight_spritesheet', knight, { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('skeleton_spritesheet', skeleton, { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('fireball_spritesheet', Fireball, { frameWidth: 32, frameHeight: 32 });
+
+    var progressBar = this.add.graphics();
+    var progressBox = this.add.graphics();
+    progressBox.fillStyle(0x222222, 0.8);
+    progressBox.fillRect(240, 270, 320, 50);
+
+    this.load.on('progress', function (value) {
+      console.log(value);
+      progressBar.clear();
+      progressBar.fillStyle(0xffffff, 1);
+      progressBar.fillRect(250, 280, 300 * value, 30);
+    });
+                
+    this.load.on('fileprogress', function (file) {
+      console.log(file.src);
+    });
+    this.load.on('complete', function () {
+      console.log('complete');
+      progressBar.destroy();
+      progressBox.destroy();
+    });
+
+    
   }
 
   /**
