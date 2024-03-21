@@ -1,10 +1,11 @@
 import Phaser from 'phaser'
-import player from '../assets/cSprites/characters/Mage_Walking.png'
-import knight from '../assets/armory/sprites/knight/knight_spritesheet.png'
-import skeleton from '../assets/armory/sprites/skeleton/skeleton_spritesheet.png'
-import room from '../assets/armory/sprites/Hab_Prueba.png'
-import arrow from '../assets/armory/sprites/arrow/arrow.png'
-import Fireball from '../assets/cSprites/fireball_spritesheet.png'
+import player from '../../assets/cSprites/characters/Mage_Walking.png'
+import knight from '../../assets/armory/sprites/knight/knight_spritesheet.png'
+import skeleton from '../../assets/armory/sprites/skeleton/skeleton_spritesheet.png'
+import room from '../../assets/armory/sprites/Hab_Prueba.png'
+import arrow from '../../assets/armory/sprites/arrow/arrow.png'
+import Fireball from '../../assets/cSprites/fireball_spritesheet.png'
+import PoisonousGoblin from '../../assets/gardens/sprites/goblin/poisonous_goblin_spritesheet.png'
 
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
@@ -34,6 +35,7 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('knight_spritesheet', knight, { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('skeleton_spritesheet', skeleton, { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('fireball_spritesheet', Fireball, { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('poisonousGoblinSpritesheet', PoisonousGoblin, {frameWidth: 64, frameHeight: 64});
   }
 
   /**
