@@ -1,9 +1,9 @@
 import Phaser from "phaser";
 
-import Bullet from "../projectiles/bullet";
+import Fireball from "../projectiles/fireball";
 import arma from "./arma";
 
-export default class basicRanged extends arma {
+export default class FireStaff extends arma {
  /**
      * Constructor del jugador
      * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
@@ -11,8 +11,8 @@ export default class basicRanged extends arma {
      * @param {number} y Coordenada Y
      */
     constructor(scene, x, y, damage) {
-        super(scene, x, y, 'basicRanged', damage)
-        this.delay = 3000;
+        super(scene, x, y, 'fireStaff', damage)
+        this.delay = 1500;
 
         //Intorducir logica de los sprites
     }
@@ -22,6 +22,6 @@ export default class basicRanged extends arma {
     }
 
     attack(x, y, direction, target) {
-        new Bullet(this.scene, x, y, target, true, 1);
+        new Fireball(this.scene, x, y, target, true, 1);
     }
 }

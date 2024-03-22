@@ -12,6 +12,7 @@ export default class basicMelee extends arma {
      */
     constructor(scene, x, y, damage) {
         super(scene, x, y, 'basicMelee', damage);
+        this.delay = 1100;
         
         //Introducir la logica de los sprites
     }
@@ -33,9 +34,5 @@ export default class basicMelee extends arma {
         else if(direction === 'down') {
             new PlayerHitBox(this.scene, x, y + 30, 64, 64, 1);
         }
-    }
-
-    delay() {
-        return 1000;
     }
 }

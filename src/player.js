@@ -52,7 +52,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.s = this.scene.input.keyboard.addKey('S');
         this.d = this.scene.input.keyboard.addKey('D');
         this.direction = null;
-        this.meleeMode = false;
+        this.meleeMode = true;
         this.canAttack = true;
         //Interacciones
         this.q = this.scene.input.keyboard.addKey('Q');
@@ -92,30 +92,31 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.q.on('down', () => {
             if(this.meleeMode) {
                 this.meleeIndex = this.meleeIndex - 1;
-                if(this.meleeIndex <= 0)
-                    this.meleeIndex = this.meeleWeapons.length() - 1;
+                if(this.meleeIndex < 0)
+                    this.meleeIndex = this.meeleWeapons.length - 1;
                 this.updatedWeapon(this.meleeIndex);
             }
             else {
                 this.rangedIndex = this.rangedIndex - 1;
-                if(this.rangedIndex <= 0)
-                    this.rangedIndex = this.rangedWeapons.length() - 1;
+                if(this.rangedIndex < 0)
+                    this.rangedIndex = this.rangedWeapons.length - 1;
                 this.updatedWeapon(this.rangedIndex);
             }
         });
 
         this.e.on('down', () => {
             if(this.meleeMode) {
-                this.meleeIndex = (this.meleeIndex + 1) % this.meeleWeapons.length();
+                this.meleeIndex = (this.meleeIndex + 1) % this.meeleWeapons.length;
                 this.updatedWeapon(this.meleeIndex);
             }
             else {
-                this.rangedIndex = (this.rangedIndex + 1) % this.rangedWeapons.length();
+                this.rangedIndex = (this.rangedIndex + 1) % this.rangedWeapons.length;
                 this.updatedWeapon(this.rangedIndex);
             }
         });
 
         //Cursor de ataque y eventos del cursor (faltan los hover para cambiar la textura del raton)
+        this.scene.input.mouse.disableContextMenu();
         this.scene.input.on('pointerup', pointer =>  {
             if(pointer.rightButtonReleased()) {
                 if(this.meleeMode) {
@@ -164,7 +165,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         super.preUpdate(t, dt);
         //Cambiar el delay
         this.weaponDelay += dt;
-        if(this.weaponDelay >= this.equipedWeapon.delay()) {
+        if(this.weaponDelay >= this.equipedWeapon.delay) {
             this.canAttack = true;
         }
 
@@ -223,22 +224,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.equipedWeapon.attack(this.x, this.y, this.direction, this.reticle);
         this.canAttack = false;
     }
-
-    /*
-    meeleAttack() {
-        if (this.active === false) { return; }
-        //Animacion de ataque
-        //this.play();
-        //Mientras se hace haces el ataque y luego se destruye el area
-        this.meeleWeapons[this.meleeIndex].attack(this.x, this.y, this.direction, this.reticle);
-        this.canAttack = false;
-    }
-
-    rangedAttack() {
-        if (this.active === false) { return; }
-        this.rangedWeapons[this.rangedIndex].attack(this.x, this.y, this.direction, this.reticle);
-        this.canAttack = false;
-    }*/
 
     /**Funcion que se llama cuando el jugador recibe daño */
     receiveDamage(damage) {

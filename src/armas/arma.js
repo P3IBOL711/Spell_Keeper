@@ -12,6 +12,7 @@ export default class arma extends Phaser.GameObjects.Sprite {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.wDmg = WeaponDamage;
+        this.delay = 1000;
 
         this.scene.physics.add.overlap(this, this.scene.player, (weapon) => {
             if(weapon.isMelee()){
@@ -25,8 +26,5 @@ export default class arma extends Phaser.GameObjects.Sprite {
 
     modifiedDmg(weaponMultiplier) {
         this.wDmg = this.wDmg * weaponMultiplier;
-    }
-
-    delay(){
     }
 }
