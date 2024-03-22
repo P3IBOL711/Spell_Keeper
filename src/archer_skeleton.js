@@ -1,7 +1,7 @@
 import Phaser from 'phaser'
 import HitBox from './hitbox';
 import Enemy from './enemy';
-import Arrow from './arrow';
+import Arrow from './projectiles/arrow';
 
 /**
  * Clase que representa un enemigo del juego.

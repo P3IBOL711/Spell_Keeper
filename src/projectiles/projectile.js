@@ -1,8 +1,7 @@
 import Phaser from 'phaser'
-import HitBox from '../hitbox';
 
 /**
- * Clase que representa un enemigo del juego.
+ * Clase que representa el proyectil generico del juego del juego.
  */
 export default class Projectile extends Phaser.GameObjects.Sprite {
 

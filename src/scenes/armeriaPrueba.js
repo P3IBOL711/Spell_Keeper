@@ -1,12 +1,11 @@
-import basicMelee from '../Weapons/basicMelee.js';
-import basicRanged from '../Weapons/basicRanged.js';
-import Skeleton from '../archer_skeleton.js';
-import Arrow from '../arrow.js';
-import Knight from '../knight.js';
-import Player from '../player.js';
 import Phaser from 'phaser'
 
-
+import Skeleton from '../archer_skeleton.js';
+import Arrow from '../projectiles/arrow.js';
+import Knight from '../knight.js';
+import Player from '../player.js';
+import basicRanged from '../armas/basicRanged.js';
+import basicMelee from '../armas/basicMelee.js';
 
 /**
  * Escena principal del juego. La escena se compone de una serie de plataformas 
@@ -42,6 +41,7 @@ export default class ArmeriaPrueba extends Phaser.Scene {
         let playerX = 200;
         let playerY = 300;
         this.player = new Player(this, playerX, playerY, 0, 0, 1, 0, 1, 0, [new basicMelee(this, playerX, playerY, 1)], [new basicRanged(this, playerX, playerY, 1)], 0, 0);
+        //
         this.knight = new Knight(this, 800, 200, this.player);
         this.skeleton = new Skeleton(this, 800, 300, this.player);     
         this.arrow = new Arrow(this, 800, 300, 1000, 1000);

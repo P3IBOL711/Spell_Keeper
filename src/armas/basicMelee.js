@@ -1,9 +1,9 @@
 import Phaser from "phaser";
 
-import Arma from "./arma";
-import PlayerHitBox from "./playerHitbox";
+import arma from "./arma";
+import PlayerHitBox from "../playerHitbox";
 
-export default class basicMelee extends Arma {
+export default class basicMelee extends arma {
  /**
      * Constructor del jugador
      * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
@@ -22,16 +22,16 @@ export default class basicMelee extends Arma {
 
     attack(x, y, direction, target) {
         if(direction === 'left') {
-            new PlayerHitBox(this.scene, this.x - 30, this.y, 64, 64, 1);
+            new PlayerHitBox(this.scene, x - 30, y, 64, 64, 1);
         }
         else if(direction === 'right') {
-            new PlayerHitBox(this.scene, this.x + 30, this.y, 64, 64, 1);
+            new PlayerHitBox(this.scene, x + 30, y, 64, 64, 1);
         }
         else if(direction === 'up') {
-            new PlayerHitBox(this.scene, this.x, this.y - 30, 64, 64, 1);
+            new PlayerHitBox(this.scene, x, y - 30, 64, 64, 1);
         }
         else if(direction === 'down') {
-            new PlayerHitBox(this.scene, this.x, this.y + 30, 64, 64, 1);
+            new PlayerHitBox(this.scene, x, y + 30, 64, 64, 1);
         }
     }
 

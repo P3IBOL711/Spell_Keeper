@@ -28,6 +28,5 @@ export default class arma extends Phaser.GameObjects.Sprite {
     }
 
     delay(){
-        return 1000;
     }
 }

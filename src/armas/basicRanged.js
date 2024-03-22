@@ -1,9 +1,9 @@
 import Phaser from "phaser";
 
-import Arma from "./arma";
-import Bullet from "./bullet";
+import Bullet from "../projectiles/bullet";
+import arma from "./arma";
 
-export default class basicRanged extends Arma {
+export default class basicRanged extends arma {
  /**
      * Constructor del jugador
      * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
