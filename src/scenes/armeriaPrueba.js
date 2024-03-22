@@ -5,7 +5,13 @@ import Arrow from '../projectiles/arrow.js';
 import Knight from '../enemies/knight.js';
 import PoisonousGoblin from '../enemies/poisonousGoblin.js';
 
-
+import Skeleton from '../archer_skeleton.js';
+import Arrow from '../projectiles/arrow.js';
+import Knight from '../knight.js';
+import Player from '../player.js';
+import basicRanged from '../armas/basicRanged.js';
+import basicMelee from '../armas/basicMelee.js';
+import FireStaff from '../armas/fireStaff.js';
 
 /**
  * Escena principal del juego. La escena se compone de una serie de plataformas 
@@ -37,7 +43,12 @@ export default class ArmeriaPrueba extends Phaser.Scene {
         let img = this.add.image(0, 0, 'escenaPrueba').setOrigin(0, 0);
         img.displayWidth = this.sys.game.config.width;
         img.displayHeight = this.sys.game.config.height;
-        this.player = new Player(this, 200, 300, 0, 0, 1, 0, 1, 0);
+
+        //CHAPUZON
+        let playerX = 200;
+        let playerY = 300;
+        this.player = new Player(this, playerX, playerY, 0, 0, 1, 0, 1, 0, [new basicMelee(this, playerX, playerY, 1)], [new basicRanged(this, playerX, playerY, 1), new FireStaff(this, playerX, playerY, 10)], 0, 0);
+        //
         this.knight = new Knight(this, 800, 200, this.player);
         this.skeleton = new Skeleton(this, 800, 300, this.player);     
         this.arrow = new Arrow(this, 800, 300, 1000, 1000);
