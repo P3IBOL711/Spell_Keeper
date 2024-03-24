@@ -13,7 +13,13 @@
 			"script": "install",
 			"group": "clean",
 			"label": "npm: install",
-			"detail": "install dependencies from package"
+			"detail": "install dependencies from package",
+			"presentation": {
+				"reveal": "always",
+			},
+			"runOptions": {
+				"runOn": "folderOpen"
+			}
 		},
 		{
 			"type": "npm",

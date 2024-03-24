@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'pixelFont';
+  src: url('../assets/fonts/VT323Regular.ttf');
+}
+
 h1 {
   text-align: center;
+  color:black;
+  font-family: 'pixelFont';
+  font-size: 50px;
 }

@@ -1,7 +1,8 @@
-import Boot from './boot.js';
-import End from './end.js';
-import Level from './level.js';
+import ArmeriaPrueba from './scenes/armeriaPrueba.js';
+import Boot from './scenes/boot.js';
 import Phaser from 'phaser'
+import  MainMenu  from './scenes/mainMenu.js';
+import End from './scenes/end.js'
 
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos
@@ -17,12 +18,11 @@ let config = {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
     pixelArt: true,
-    scene: [Boot, Level, End],
+    scene: [Boot, MainMenu, ArmeriaPrueba, End],
     physics: {
         default: 'arcade',
         arcade: {
-            //gravity: { y: 400 },
-            debug: true
+            debug: false
         }
     }
 };
