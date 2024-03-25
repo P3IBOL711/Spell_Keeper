@@ -4,11 +4,6 @@ import Skeleton from '../enemies/archerSkeleton.js';
 import Arrow from '../projectiles/arrow.js';
 import Knight from '../enemies/knight.js';
 import PoisonousGoblin from '../enemies/poisonousGoblin.js';
-
-import Skeleton from '../archer_skeleton.js';
-import Arrow from '../projectiles/arrow.js';
-import Knight from '../knight.js';
-import Player from '../player.js';
 import basicRanged from '../armas/basicRanged.js';
 import basicMelee from '../armas/basicMelee.js';
 import FireStaff from '../armas/fireStaff.js';
