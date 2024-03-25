@@ -33,7 +33,6 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
                 this.doSomethingVerySpecificBecauseYoureMyBelovedChild()
                 this.scene.enemies.remove(this);
                 this.destroy();
-
             }
         });
     }
