@@ -8,6 +8,12 @@ import arrow from '../../assets/armory/sprites/arrow/arrow.png'
 import Fireball from '../../assets/cSprites/fireball_spritesheet.png'
 import Lighting from '../../assets/cSprites/LightingEffect.png'
 import font from 'url:../../assets/fonts/VT323Regular.ttf'
+// Controls Menu
+import ControlsBackground from '../../assets/controlsMenu/background.png'
+import wKey from '../../assets/controlsMenu/w.png'
+import aKey from '../../assets/controlsMenu/a.png'
+import sKey from '../../assets/controlsMenu/s.png'
+import dKey from '../../assets/controlsMenu/d.png'
 
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
@@ -33,6 +39,12 @@ export default class Boot extends Phaser.Scene {
     this.load.setPath('assets/sprites/');
     this.load.spritesheet('player_spritesheet', player, { frameWidth: 32, frameHeight: 32 });
     this.load.image('escenaPrueba', room);
+    // Controls Menu
+    this.load.image('controlsBackground', ControlsBackground);
+    this.load.image('wKey', wKey);
+    this.load.image('aKey', aKey);
+    this.load.image('sKey', sKey);
+    this.load.image('dKey', dKey);
     this.load.image('arrow', arrow);
     this.load.spritesheet('knight_spritesheet', knight, { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('skeleton_spritesheet', skeleton, { frameWidth: 64, frameHeight: 64 });
