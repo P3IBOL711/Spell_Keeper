@@ -33,6 +33,11 @@ export default class Arrow extends Projectile {
         this.body.setVelocityY(this.speed * Math.sin(this.rotation));
     }
 
+    impact(){
+        super.impact();
+        this.destroy();
+    }
+
     /**
      * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
      * Como se puede ver, no se tratan las colisiones con las estrellas, ya que estas colisiones 
