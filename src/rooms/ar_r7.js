@@ -1,6 +1,6 @@
 export default ar_r7 = {
 
-    name: "ar_r7",
+    name: 'arR7',
     
     level: "armory",
     
