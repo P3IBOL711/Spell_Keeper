@@ -23,9 +23,9 @@ export default class Bullet extends Projectile {
 
         this.anims.create({
             key: 'impact',
-            frames: this.anims.generateFrameNumbers('fireball_spritesheet', { start: 2, end: 4 }),
+            frames: this.anims.generateFrameNumbers('fireball_spritesheet', { start: 3, end: 5 }),
             frameRate: 10,
-            repeat: -1
+            repeat: 0
         });
 
         this.speed = 100;
@@ -41,10 +41,13 @@ export default class Bullet extends Projectile {
         this.body.setVelocityY(this.speed * Math.sin(this.rotation));
     }
 
+    impact(){
+        super.impact();
+        this.play('impact', true);
+    }
+
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-
-        this.play('normal', true);
 
     }
 }

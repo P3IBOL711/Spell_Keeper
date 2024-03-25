@@ -4,6 +4,9 @@ import Skeleton from '../enemies/archerSkeleton.js';
 import Arrow from '../projectiles/arrow.js';
 import Knight from '../enemies/knight.js';
 import PoisonousGoblin from '../enemies/poisonousGoblin.js';
+import CarnivorousPlant from '../enemies/carnivorousPlant.js';
+import StandardSkeleton from '../enemies/standardSkeleton.js';
+import MagicSkeleton from '../enemies/magicSkeleton.js';
 
 
 
@@ -38,10 +41,11 @@ export default class ArmeriaPrueba extends Phaser.Scene {
         img.displayWidth = this.sys.game.config.width;
         img.displayHeight = this.sys.game.config.height;
         this.player = new Player(this, 200, 300, 0, 0, 1, 0, 1, 0);
-        this.knight = new Knight(this, 800, 200, this.player);
-        this.skeleton = new Skeleton(this, 800, 300, this.player);     
-        this.arrow = new Arrow(this, 800, 300, 1000, 1000);
-        this.poisonousGoblin = new PoisonousGoblin(this, 600, 300, this.player);
-        this.player.setScale(3.0);
-    }
+        //this.knight = new Knight(this, 800, 200, this.player);
+        //this.skeleton = new Skeleton(this, 800, 300, this.player);     
+        //this.poisonousGoblin = new PoisonousGoblin(this, 600, 300, this.player);
+        //this.carnivorousPlant = new CarnivorousPlant(this, 500, 300, this.player);
+        this.magicSkeleton = new MagicSkeleton(this, 800, 300, this.player);
+        //this.standardSkeleton = new StandardSkeleton(this, 800, 300, this.player);
+       }
 }

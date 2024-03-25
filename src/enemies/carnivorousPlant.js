@@ -1,5 +1,5 @@
 import Phaser from 'phaser'
-import HitBox from './hitbox';
+import HitBox from '../hitbox';
 import Enemy from './enemy';
 
 /**
@@ -18,29 +18,29 @@ export default class CarnivorousPlant extends Enemy {
         super(scene, x, y, 'carnivorous_plant');
         
         this.anims.create({
-            key: 'stand',
-            frames: this.anims.generateFrameNumbers('carnivorous_plant_spritesheet', { start: 0, end: 3 }),
+            key: 'idle',
+            frames: this.anims.generateFrameNumbers('carnivorousPlantSpritesheet', { start: 0, end: 3 }),
             frameRate: 10,
             repeat: -1
         });
 
         this.anims.create({
             key: 'attack1',
-            frames: this.anims.generateFrameNumbers('carnivorous_plant_spritesheet', { start: 7, end: 12 }),
+            frames: this.anims.generateFrameNumbers('carnivorousPlantSpritesheet', { start: 7, end: 12 }),
             frameRate: 10,
             repeat: -1
         });
 
         this.anims.create({
             key: 'attack2',
-            frames: this.anims.generateFrameNumbers('carnivorous_plant_spritesheet', { start: 14, end: 20 }),
+            frames: this.anims.generateFrameNumbers('carnivorousPlantSpritesheet', { start: 14, end: 20 }),
             frameRate: 7,
             repeat: 0
         });
 
         this.anims.create({
             key: 'die',
-            frames: this.anims.generateFrameNumbers('carnivorous_plant_spritesheet', { start: 21, end: 26 }),
+            frames: this.anims.generateFrameNumbers('carnivorousPlantSpritesheet', { start: 21, end: 26 }),
             frameRate: 10,
             repeat: -1
         });
@@ -52,6 +52,19 @@ export default class CarnivorousPlant extends Enemy {
             loop: true
         });
 
+        // SE PODRIA MEJORAR CON this.on(animationstart) PERO NO SABEMOS HACERLO
+        this.on(Phaser.Animations.Events.ANIMATION_START, () => {
+            if (this.anims.getName() === 'attack1'){
+                this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -65 : 65), this.y - 10, 60, 120, this.target, this.damage);
+            }
+        })
+
+        this.on(Phaser.Animations.Events.ANIMATION_STOP, () => {
+            if (this.anims.getName() === 'attack1'){
+                this.attackZone.destroy(true);
+            }
+        })
+
         this.timerAttack.paused = true;
 
         this.setScale(3);
@@ -60,39 +73,26 @@ export default class CarnivorousPlant extends Enemy {
 
         this.target = target;
 
-        this.body.setSize(this.width * 0.45, this.height * 0.85, true);
+        this.body.setSize(this.width * 0.7, this.height * 1.1, true);
+    }
 
-        // SE PODRIA MEJORAR CON this.event.on(animationstart) PERO NO SABEMOS HACERLO
-        this.on(Phaser.Animations.Events.ANIMATION_START, () => {
-            if (this.anims.getName() === 'attack'){
-
-            }
-        })
-
-        this.on(Phaser.Animations.Events.ANIMATION_STOP, () => {
-            if (this.anims.getName() === 'attack'){
-               
-            }
-        })
-
+    doSomethingVerySpecificBecauseYoureMyBelovedChild() {
+        this.scene.time.removeEvent(this.timerAttack);
     }
 
     receiveDamage(damage){
-        this.life -= damage;
+        super.receiveDamage(damage);
         if (this.life <= 0){
-            this.play('die', true);
-            this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
-                this.destroy(true);
-            });
+            this.timerAttack.paused = true;
         }
     }
 
     onTimerAttack () {
-        this.play('idle', true);
-        this.stop();
-        new Arrow(this.scene, this.x, this.y, this.target);
-        this.chain(['attack', 'idle']);
-        this.body.setVelocity(0);
+        // this.play('idle', true);
+        // this.stop();
+        // new Arrow(this.scene, this.x, this.y, this.target);
+        // this.chain(['attack', 'idle']);
+        // this.body.setVelocity(0);
     }
 
     /**
@@ -108,21 +108,26 @@ export default class CarnivorousPlant extends Enemy {
         this.setFlipX(this.body.velocity.x < 0 || this.target.x < this.x);
         // Preguntar si podría ser mas eficiente
         if(this.flipX)
-            this.body.setOffset(this.width * 0.38, this.height * 0.32);
+            this.body.setOffset(this.width * 0.39, this.height * 0.225);
         else
-            this.body.setOffset(this.width * 0.40, this.height * 0.32);
+            this.body.setOffset(this.width * 0.44, this.height * 0.225);
 
-        if (Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y) > 300){
+        let dist = Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y);
+
+        if (dist > 300){
             this.timerAttack.paused = true;
             
-            this.play('walking', true);
-            this.scene.physics.moveToObject(this, this.target, this.speed);
+            this.play('idle', true);
         }
-        else {
+        else if (dist > 120 && dist <= 300){
             // creáis la zone de ataque
-            // cambiáis la animación (que ya está)      
-            this.timerAttack.paused = false;
+            // cambiáis la animación (que ya está)
 
+            //this.timerAttack.paused = false;
+            this.play('attack2', true);
+        }
+        else{
+            this.play('attack1', true);
         }
 
     }

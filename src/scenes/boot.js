@@ -3,9 +3,13 @@ import player from '../../assets/cSprites/characters/Mage_Walking.png'
 import knight from '../../assets/armory/sprites/knight/knight_spritesheet.png'
 import skeleton from '../../assets/armory/sprites/skeleton/skeleton_spritesheet.png'
 import PoisonousGoblin from '../../assets/gardens/sprites/goblin/poisonous_goblin_spritesheet.png'
+import CarnivorousPlant from '../../assets/gardens/sprites/carnivorous_plant/carnivorous_plant_spritesheet.png'
+import MagicSkeleton from '../../assets/library/sprites/skeleton/skeleton_3_spritesheet.png'
+import StandardSkeleton from '../../assets/library/sprites/skeleton/skeleton_1_spritesheet.png'
 import room from '../../assets/armory/sprites/Hab_Prueba.png'
 import arrow from '../../assets/armory/sprites/arrow/arrow.png'
 import Fireball from '../../assets/cSprites/fireball_spritesheet.png'
+import PurpleMagicBall from '../../assets/purple_magic_ball_spritesheet.png'
 import font from 'url:../../assets/fonts/VT323Regular.ttf'
 
 /**
@@ -36,7 +40,11 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('knight_spritesheet', knight, { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('skeleton_spritesheet', skeleton, { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('fireball_spritesheet', Fireball, { frameWidth: 32, frameHeight: 32 });
-    this.load.spritesheet('poisonousGoblinSpritesheet', PoisonousGoblin, { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('poisonousGoblinSpritesheet', PoisonousGoblin, { frameWidth: 64, frameHeight: 64 });
+    this.load.spritesheet('carnivorousPlantSpritesheet', CarnivorousPlant, { frameWidth: 128, frameHeight: 128 });
+    this.load.spritesheet('magicSkeletonSpritesheet', MagicSkeleton, { frameWidth: 64, frameHeight: 64 });
+    this.load.spritesheet('standardSkeletonSpritesheet', StandardSkeleton, { frameWidth: 72, frameHeight: 72 });
+    this.load.spritesheet('purpleMagicBallSpritesheet', PurpleMagicBall, { frameWidth: 32, frameHeight: 32 });
 
     // Background
     let background = this.add.graphics();
