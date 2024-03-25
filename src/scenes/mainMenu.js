@@ -4,6 +4,8 @@ import mt from '../../assets/main_menu/main_title.png'
 import play from '../../assets/main_menu/play.png'
 import playSel from '../../assets/main_menu/play_selected.png'
 import font from 'url:../../assets/fonts/VT323Regular.ttf'
+import Dungeongen from '../dungeongen'
+import SceneManager from '../sceneManager'
 
 
 export default class MainMenu extends Phaser.Scene{
@@ -37,6 +39,9 @@ export default class MainMenu extends Phaser.Scene{
 
         this.playButton = this.add.text(270, 185, '> PLAY', { fontFamily: 'pixelFont', fontSize: 60, color: '#000000' , fontStyle: 'bold'});
 
+        let dungeonGenerator = new Dungeongen();
+        let sceneManager = new SceneManager(dungeonGenerator.init());
+
         /*let nuevoTexto = 
         this.add.text(390, 70, 
             'Spell Keeper', 
@@ -55,7 +60,7 @@ export default class MainMenu extends Phaser.Scene{
        })
 
        this.playButton.on("pointerup", ()=>{
-         this.scene.start('armeriaPrueba');
+         this.scene.start('arR5',{X: dungeonGenerator.getEntranceX(), Y: dungeonGenerator.getEntranceY(), sc: this});
        })
     }
 

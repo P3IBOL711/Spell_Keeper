@@ -42,13 +42,8 @@ let entrance; //La entrada
 let shopArray;
 let deadendArray;
 */
-let entranceX;
-let entranceY;
 
-let thereIsExit;
-let thereIsShop;
-let roomArray;
-let specialRoomArray;
+
 
 class RoomInfo {
     constructor(roomJson, x, y) {
@@ -63,6 +58,12 @@ class RoomInfo {
 export default class Dungeongen {
 
     constructor() {
+        this.roomArray = []
+        this.specialRoomArray = []
+        this.entranceX = 0
+        this.entranceY = 0
+        this.thereIsExit = false;
+        this.thereIsShop  = false
         this.init();
     }
 
@@ -104,11 +105,11 @@ export default class Dungeongen {
         this.fillSpecialRoomArray(0);
 
         //Generamos dos cordenadas aleatorias desde donde empezar
-        entranceX = Math.floor(Math.random() * (N - 2)) + 1;
-        entranceY = Math.floor(Math.random() * (M - 2)) + 1;
+        this.entranceX = Math.floor(Math.random() * (N - 2)) + 1;
+        this.entranceY = Math.floor(Math.random() * (M - 2)) + 1;
 
         //Ponemos la entrada
-        dungeon[entranceY][entranceX] = ar_e1 = {
+        dungeon[this.entranceY][this.entranceX] = ar_e1 = {
 
             name: "ar_e1",
 
@@ -129,17 +130,17 @@ export default class Dungeongen {
 
         }; //Asignamos la entrada
 
-        console.log(`Entrada generada en la casilla: ${entranceY}, ${entranceX}`);
+        console.log(`Entrada generada en la casilla: ${this.entranceY}, ${this.entranceX}`);
 
-        thereIsExit = false;
-        thereIsShop = false;
+        this.thereIsExit = false;
+        this.thereIsShop = false;
 
-        // const generator = this.generate(dungeon, entranceX, entranceY);
+        // const generator = this.generate(dungeon, this.entranceX, this.entranceY);
 
         let found = null
         let maxTries = 60
         //Empezamos a generar la mazmorra
-        for (found of this.generate(dungeon, entranceX, entranceY)) {
+        for (found of this.generate(dungeon, this.entranceX, this.entranceY)) {
             // found = dungeonTry
 
             maxTries--
@@ -151,7 +152,7 @@ export default class Dungeongen {
         //Si no es valida, reempezamos el proceso
         if (!found) {
             console.log("Resetiado")
-            this.init();
+            return this.init();
         }
 
         this.showMatrix(found);
@@ -162,7 +163,7 @@ export default class Dungeongen {
 
         if (candidateDungeon === null) {
             console.log("Resetiado")
-            this.init();
+            return this.init();
         }
 
 
@@ -172,11 +173,21 @@ export default class Dungeongen {
         //Paso 3: Mirar si es valida
         if (!this.checkForValidity()) {
             console.log("Mazmorra no válida, reintentando")
-            this.init();
+            return this.init();
         }
 
-
+        return candidateDungeon;
     }
+
+    getEntranceX(){
+        return this.entranceX;
+    }
+
+    getEntranceY(){
+        return this.entranceY;
+    }
+
+    
 
     /*
     // dada una matrix, deuelve true si esto funcionaría y está terminada
@@ -197,17 +208,17 @@ export default class Dungeongen {
         let specialValidRoomArray = [];
 
         if (Math.random() * numberOfSteps >= (maxSteps / (Math.max(1, Math.min(numberOfSteps, maxSteps))))) { //Si sale la probabilidad generamos habitación especial
-            specialValidRoomArray = this.getValidRooms(specialRoomArray, direction, x, y)
+            specialValidRoomArray = this.getValidRooms(this.specialRoomArray, direction, x, y)
             console.log("Salió chance");
         }
 
-        normalValidRoomArray = this.getValidRooms(roomArray, direction, x, y)
+        normalValidRoomArray = this.getValidRooms(this.roomArray, direction, x, y)
         //Mezclamos el array
         this.shuffleArray(normalValidRoomArray)
 
         if (specialValidRoomArray.length !== 0) { //Si no es 0
             this.shuffleArray(specialValidRoomArray) //Lo mezclamos
-            validRoomArray = specialRoomArray.concat(normalValidRoomArray); //Los concatenamos
+            validRoomArray = this.specialRoomArray.concat(normalValidRoomArray); //Los concatenamos
         } else {
             validRoomArray = normalValidRoomArray; //Sino simplemente el normal
         }
@@ -229,22 +240,22 @@ export default class Dungeongen {
                 newDungeon = JSON.parse(JSON.stringify(dungeon));
                 for (let room of validRoomArray) {
                     if (room.exit === true)
-                        if (thereIsExit === false) {
+                        if (this.thereIsExit === false) {
                             newDungeon[y][x] = room; 
-                            let distanceX = Math.abs(x - entranceX);
-                            let distanceY = Math.abs(y - entranceY);
+                            let distanceX = Math.abs(x - this.entranceX);
+                            let distanceY = Math.abs(y - this.entranceY);
                             if (this.checkIfRoomConnects(x, y, newDungeon) && distanceX >= maxSteps * 0.05 && distanceY >= maxSteps * 0.05) {
                                 console.log("Generando salida");
-                                thereIsExit = true;
+                                this.thereIsExit = true;
                                 return newDungeon;
                             }
                         }
                     if (room.shop === true)
-                        if (thereIsShop === false) {
+                        if (this.thereIsShop === false) {
                             newDungeon[y][x] = room; 
                             if (this.checkIfRoomConnects(x, y, newDungeon)) {
                                 console.log("Generando tienda");
-                                thereIsShop = true;
+                                this.thereIsShop = true;
                                 return newDungeon;
                             }
                         }
@@ -370,15 +381,15 @@ export default class Dungeongen {
         let specialValidRoomArray = [];
 
 
-        if (!thereIsExit || !thereIsShop) { //Si no hay ni tienda ni salida
-            specialValidRoomArray = this.getValidRooms(specialRoomArray, direction, x, y) //Las asignamos con prioridad al array de habs validas
+        if (!this.thereIsExit || !this.thereIsShop) { //Si no hay ni tienda ni salida
+            specialValidRoomArray = this.getValidRooms(this.specialRoomArray, direction, x, y) //Las asignamos con prioridad al array de habs validas
         }
 
-        normalValidRoomArray = this.getValidRooms(roomArray, direction, x, y) //Ahora generamos las normales
+        normalValidRoomArray = this.getValidRooms(this.roomArray, direction, x, y) //Ahora generamos las normales
         this.shuffleArray(normalValidRoomArray) //Lo mezclamos
         if (specialValidRoomArray.length !== 0) { //Si no es 0
             this.shuffleArray(specialValidRoomArray) //Lo mezclamos
-            validRoomArray = specialRoomArray.concat(normalValidRoomArray); //Los concatenamos
+            validRoomArray = this.specialRoomArray.concat(normalValidRoomArray); //Los concatenamos
         } else {
             validRoomArray = normalValidRoomArray; //Sino simplemente el normal
         }
@@ -399,20 +410,20 @@ export default class Dungeongen {
 
         for (let room of validRoomArray) { //Recorremos los candidatos a nueva habitacion
             newDungeon[y][x] = room; //Las ponemos en la mazmorra
-            if (!thereIsExit) { //Si no hay salida aun
+            if (!this.thereIsExit) { //Si no hay salida aun
                 if (room.exit === true) { //Y la habitacion es una salida
                     console.log("Generando salida al cerrar");
                     if (this.checkIfRoomConnectsForClosing(x, y, newDungeon)) { //Miramos si conecta
-                        thereIsExit = true; //Marcamos
+                        this.thereIsExit = true; //Marcamos
                         return newDungeon; //Devolvemos nueva mazmorra si cierra
                     }
                 }
             }
-            if (!thereIsShop) { //Aqui igual
-                if (room.shop === true && thereIsShop === false) {
+            if (!this.thereIsShop) { //Aqui igual
+                if (room.shop === true && this.thereIsShop === false) {
                     console.log("Generando tienda al cerrar");
                     if (this.checkIfRoomConnectsForClosing(x, y, newDungeon)) {
-                        thereIsShop = true;
+                        this.thereIsShop = true;
                         return newDungeon; //Devolvemos nueva mazmorra si cierra
                     }
                 }
@@ -438,7 +449,7 @@ export default class Dungeongen {
             case 'n':
                 if (!this.isCoordinateInsideMatrix(x, y - 1)) //Si la coordenada no está dentro de la matriz 
                     return validRoomArray;
-                for (let room of roomArray) {
+                for (let room of this.roomArray) {
                     if (room.door_south && ((room.door_north && this.isRoomNotGoingToHaveUselessDoors(x, y - 1) || !room.door_north))) //Si se conecta a la anterior y no lleva a la nada
                         validRoomArray.push(room);
                 }
@@ -446,7 +457,7 @@ export default class Dungeongen {
             case 's':
                 if (!this.isCoordinateInsideMatrix(x, y + 1)) //Si la coordenada no está dentro de la matriz 
                     return validRoomArray;
-                for (let room of roomArray) {
+                for (let room of this.roomArray) {
                     if (room.door_north && ((room.door_south && this.isRoomNotGoingToHaveUselessDoors(x, y + 1) || !room.door_south)))
                         validRoomArray.push(room);
                 }
@@ -455,7 +466,7 @@ export default class Dungeongen {
             case 'e':
                 if (!this.isCoordinateInsideMatrix(x + 1, y)) //Si la coordenada no está dentro de la matriz 
                     return validRoomArray;
-                for (let room of roomArray) {
+                for (let room of this.roomArray) {
                     if (room.door_west && ((room.door_east && this.isRoomNotGoingToHaveUselessDoors(x + 1, y) || !room.door_east)))
                         validRoomArray.push(room);
                 }
@@ -464,7 +475,7 @@ export default class Dungeongen {
             case 'w':
                 if (!this.isCoordinateInsideMatrix(x - 1, y)) //Si la coordenada no está dentro de la matriz 
                     return validRoomArray;
-                for (let room of roomArray) {
+                for (let room of this.roomArray) {
                     if (room.door_east && (room.door_west && this.isRoomNotGoingToHaveUselessDoors(x - 1, y) || !room.door_west))
                         validRoomArray.push(room);
                 }
@@ -559,48 +570,47 @@ export default class Dungeongen {
 
 
     checkForValidity() {
-        return thereIsExit && thereIsShop;
+        return this.thereIsExit && this.thereIsShop;
     }
 
     fillRoomArray(floor) {
-        roomArray = [];
         if (floor === 0) { //Armeria
             //deadendArray.push(ar_e1);
-            roomArray.push(ar_r2);
-            roomArray.push(ar_r4);
-            roomArray.push(ar_e1);
-            roomArray.push(ar_r3);
-            roomArray.push(ar_r5);
-            roomArray.push(ar_r6);
-            roomArray.push(ar_r7);
-            roomArray.push(ar_r8);
-            roomArray.push(ar_r9);
-            roomArray.push(ar_r10);
-            roomArray.push(ar_r11);
-            roomArray.push(ar_r12);
-            roomArray.push(ar_r13);
-            roomArray.push(ar_r14);
-            roomArray.push(ar_r15);
+            this.roomArray.push(ar_r2);
+            this.roomArray.push(ar_r4);
+            this.roomArray.push(ar_e1);
+            this.roomArray.push(ar_r3);
+            this.roomArray.push(ar_r5);
+            this.roomArray.push(ar_r6);
+            this.roomArray.push(ar_r7);
+            this.roomArray.push(ar_r8);
+            this.roomArray.push(ar_r9);
+            this.roomArray.push(ar_r10);
+            this.roomArray.push(ar_r11);
+            this.roomArray.push(ar_r12);
+            this.roomArray.push(ar_r13);
+            this.roomArray.push(ar_r14);
+            this.roomArray.push(ar_r15);
 
             //TODO push exits y shops
         }
     }
 
     fillSpecialRoomArray(floor) {
-        specialRoomArray = [];
+        this.specialRoomArray = [];
         if (floor === 0) { //Armeria
-            specialRoomArray.push(ar_x1);
-            specialRoomArray.push(ar_x2);
-            specialRoomArray.push(ar_x3);
-            specialRoomArray.push(ar_x4);
-            specialRoomArray.push(ar_sh1);
-            specialRoomArray.push(ar_sh2);
-            specialRoomArray.push(ar_sh3);
-            specialRoomArray.push(ar_sh4);
-            specialRoomArray.push(ar_sh5);
-            specialRoomArray.push(ar_sh6);
-            specialRoomArray.push(ar_sh7);
-            specialRoomArray.push(ar_sh8);
+            this.specialRoomArray.push(ar_x1);
+            this.specialRoomArray.push(ar_x2);
+            this.specialRoomArray.push(ar_x3);
+            this.specialRoomArray.push(ar_x4);
+            this.specialRoomArray.push(ar_sh1);
+            this.specialRoomArray.push(ar_sh2);
+            this.specialRoomArray.push(ar_sh3);
+            this.specialRoomArray.push(ar_sh4);
+            this.specialRoomArray.push(ar_sh5);
+            this.specialRoomArray.push(ar_sh6);
+            this.specialRoomArray.push(ar_sh7);
+            this.specialRoomArray.push(ar_sh8);
         }
     }
 
