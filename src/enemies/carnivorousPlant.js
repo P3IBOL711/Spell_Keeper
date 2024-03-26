@@ -16,7 +16,7 @@ export default class CarnivorousPlant extends Enemy {
     */
 
     constructor(scene, x, y, target) {
-        super(scene, x, y, 'carnivorous_plant');
+        super(scene, x, y, target, 'carnivorous_plant');
         
         this.anims.create({
             key: 'idle',
@@ -111,9 +111,9 @@ export default class CarnivorousPlant extends Enemy {
 
         this.speed = 0;
 
-        this.target = target;
-
         this.body.setSize(this.width * 0.7, this.height * 1.1, true);
+
+        this.play('idle', true);
     }
 
     doSomethingVerySpecificBecauseYoureMyBelovedChild() {

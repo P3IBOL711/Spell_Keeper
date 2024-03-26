@@ -12,8 +12,8 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      */
-    constructor(scene, x, y, target) {
-        super(scene, x, y, 'enemy');
+    constructor(scene, x, y, target, image) {
+        super(scene, x, y, image);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.scene.enemies.add(this)
