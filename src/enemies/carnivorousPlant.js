@@ -29,14 +29,14 @@ export default class CarnivorousPlant extends Enemy {
             key: 'attack1',
             frames: this.anims.generateFrameNumbers('carnivorousPlantSpritesheet', { start: 7, end: 12 }),
             frameRate: 10,
-            repeat: -1
+            repeat: 0
         });
 
         this.anims.create({
             key: 'attack2',
             frames: this.anims.generateFrameNumbers('carnivorousPlantSpritesheet', { start: 14, end: 20 }),
             frameRate: 10,
-            repeat: -1
+            repeat: 0
         });
 
         this.anims.create({
@@ -47,25 +47,62 @@ export default class CarnivorousPlant extends Enemy {
         });
 
         this.timerAttack = this.scene.time.addEvent({
-            delay: 900,
+            delay: 1500,
             callback: this.onTimerAttack,
             callbackScope: this,
             loop: true
         });
 
+        this.meleeTimerAttack = this.scene.time.addEvent({
+            delay: 1500,
+            callback: this.onMeleeTimerAttack,
+            callbackScope: this,
+            loop: true
+        });
+
+        this.meleeTimerAttack.paused = true;
+
         // SE PODRIA MEJORAR CON this.on(animationstart) PERO NO SABEMOS HACERLO
         this.on(Phaser.Animations.Events.ANIMATION_START, () => {
             if (this.anims.getName() === 'attack1'){
-                this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -65 : 65), this.y - 10, 60, 120, this.target, this.damage);
+                this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -75 : 75), this.y - 60, 60, 60, this.target, this.damage);
             }
+            
+        })
+
+        this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
+            if (this.life > 0){
+                if (this.anims.getName() === 'attack1'){
+                    this.attackZone.destroy(true);
+                    this.play('idle', true);
+                }
+                if (this.anims.getName() === 'attack2'){
+                    this.play('idle', true);
+                }
+            }
+            
         })
 
         this.on(Phaser.Animations.Events.ANIMATION_STOP, () => {
-            if (this.anims.getName() === 'attack1'){
-                this.attackZone.destroy(true);
+            if (this.life > 0){
+                if (this.anims.getName() === 'attack1'){
+                    this.attackZone.destroy(true);
+                }
             }
+            
         })
 
+        this.on(Phaser.Animations.Events.ANIMATION_UPDATE, () => {
+            if (this.life > 0){
+                if (this.anims.getName() === 'attack2' && this.anims.currentFrame.index === 3 && !this.distAttack){
+                    new GreenPoisonBall(this.scene, this.x - 30, this.y - 80, this.target);
+                    this.distAttack = true;
+                }
+            }
+            
+        })
+
+        this.distAttack = false;
         this.timerAttack.paused = true;
 
         this.setScale(3);
@@ -79,21 +116,26 @@ export default class CarnivorousPlant extends Enemy {
 
     doSomethingVerySpecificBecauseYoureMyBelovedChild() {
         this.scene.time.removeEvent(this.timerAttack);
+        this.scene.time.removeEvent(this.meleeTimerAttack);
     }
 
     receiveDamage(damage){
         super.receiveDamage(damage);
         if (this.life <= 0){
             this.timerAttack.paused = true;
+            this.meleeTimerAttack.paused = true;
         }
     }
 
     onTimerAttack () {
-        this.play('idle', true);
+        this.distAttack = false;
         this.stop();
-        new GreenPoisonBall(this.scene, this.x - 30, this.y - 80, this.target);
-        this.chain(['attack', 'idle']);
-        this.body.setVelocity(0);
+        this.play('attack2');
+    }
+
+    onMeleeTimerAttack () {
+        this.stop();
+        this.play('attack1');
     }
 
     /**
@@ -118,18 +160,19 @@ export default class CarnivorousPlant extends Enemy {
 
             if (dist > 300){
                 this.timerAttack.paused = true;
-                
+                this.meleeTimerAttack.paused = true;
                 this.play('idle', true);
             }
             else if (dist > 120 && dist <= 300){
                 // creáis la zone de ataque
                 // cambiáis la animación (que ya está)
-
+                this.meleeTimerAttack.paused = true;
                 this.timerAttack.paused = false;
-                this.play('attack2', true);
             }
             else{
-                this.play('attack1', true);
+                this.timerAttack.paused = true;
+                this.meleeTimerAttack.paused = false;
+                
             }
         }
 
