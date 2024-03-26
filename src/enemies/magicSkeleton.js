@@ -65,6 +65,35 @@ export default class MagicSkeleton extends Enemy {
 
         this.body.setSize(this.width * 0.45, this.height * 0.85, true);
 
+        this.on(Phaser.Animations.Events.ANIMATION_START, () => {
+            if(this.life > 0){
+                if (this.anims.getName() === 'attack'){
+                    this.body.setVelocity(0);
+                    new PurpleMagicBall(this.scene, this.x + (this.flipX ? -35 : 35), this.y - 30, this.target, false, this.damage);
+                }
+            }
+            
+        })
+
+        this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
+            if(this.life > 0){
+                if (this.anims.getName() === 'attack'){
+                    this.play('walking', true)
+                    this.scene.physics.moveToObject(this, this.target, this.speed);
+                }
+            }
+        })
+
+        this.on(Phaser.Animations.Events.ANIMATION_STOP, () => {
+            if (this.life > 0){
+                if (this.anims.getName() === 'attack'){
+                    this.play('walking', true)
+                }
+                else if(this.anims.getName() === 'walking'){
+                    this.play('walking', true);
+                }
+            }
+        })
 
     }
 
@@ -81,11 +110,7 @@ export default class MagicSkeleton extends Enemy {
     }
 
     onTimerAttack () {
-        this.play('idle', true);
-        this.stop();
-        new PurpleMagicBall(this.scene, this.x + (this.flipX ? -35 : 35), this.y - 30, this.target, false, this.damage);
-        this.chain(['attack', 'idle']);
-        this.body.setVelocity(0);
+        this.play('attack')
     }
 
     /**
@@ -111,7 +136,7 @@ export default class MagicSkeleton extends Enemy {
                 // creáis la zone de ataque
                 // cambiáis la animación (que ya está)      
                 this.timerAttack.paused = false;
-    
+                this.playAfterRepeat('walking');
             }
         }
     }
