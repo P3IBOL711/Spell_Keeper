@@ -21,7 +21,7 @@ export default class CarnivorousPlant extends Enemy {
         this.anims.create({
             key: 'idle',
             frames: this.anims.generateFrameNumbers('carnivorousPlantSpritesheet', { start: 0, end: 3 }),
-            frameRate: 10,
+            frameRate: 7,
             repeat: -1
         });
 

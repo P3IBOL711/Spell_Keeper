@@ -36,11 +36,21 @@ export default class PurpleMagicBall extends Projectile {
 
         this.rotation = Phaser.Math.Angle.Between(x, y, target.x, target.y);
 
-        if (this.angle >= 45 && this.angle <= 135 || this.angle >= -135 && this.angle <= -45) {
-            this.body.setSize(this.width * 0.1, this.height * 0.6, true);
+        if (this.angle >= 45 && this.angle <= 135) {
+            this.body.setSize(this.width * 0.4, this.height * 0.45, true);
+            this.body.setOffset(this.width * 0.3, 0.4*this.height)
         }
-        else{
-            this.body.setSize(this.width * 0.6, this.height * 0.1, true);
+        else if(this.angle >= -135 && this.angle <= -45){
+            this.body.setSize(this.width * 0.4, this.height * 0.45, true);
+            this.body.setOffset(this.width * 0.3, 0.1 * this.height)
+        }
+        else if (this.angle > 135 || this.angle < -135) {
+            this.body.setSize(this.width * 0.4, this.height * 0.45, true);
+            this.body.setOffset(this.width * 0.2, 0.25 * this.height)
+        }
+        else if (this.angle < 45 && this.angle > -45) {
+            this.body.setSize(this.width * 0.4, this.height * 0.45, true);
+            this.body.setOffset(this.width * 0.4, 0.25 * this.height)
         }
 
         this.body.setVelocityX(this.speed * Math.cos(this.rotation));

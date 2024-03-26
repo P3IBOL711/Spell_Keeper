@@ -83,7 +83,7 @@ export default class MagicSkeleton extends Enemy {
     onTimerAttack () {
         this.play('idle', true);
         this.stop();
-        new PurpleMagicBall(this.scene, this.x, this.y, this.target, false, this.damage);
+        new PurpleMagicBall(this.scene, this.x + (this.flipX ? -35 : 35), this.y - 30, this.target, false, this.damage);
         this.chain(['attack', 'idle']);
         this.body.setVelocity(0);
     }
