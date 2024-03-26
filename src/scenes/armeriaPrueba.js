@@ -58,5 +58,10 @@ export default class ArmeriaPrueba extends Phaser.Scene {
         this.arrow = new Arrow(this, 800, 300, 1000, 1000);
         this.poisonousGoblin = new PoisonousGoblin(this, 600, 300, this.player);
         this.player.setScale(3.0);
+
+        let objectLayer = this.map.getObjectLayer('HUD');
+        objectLayer.objects.forEach(obj => {
+          this.player.createHUDElement(obj.name, obj);
+        });
     }
 }

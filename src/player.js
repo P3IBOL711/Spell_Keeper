@@ -177,38 +177,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.body.setCollideWorldBounds(true);  
-
-        /**RELATIVO AL HUD */
-        /*
-        this.playerLifeBar = this.scene.map.createFromObjects('HUD', {name:'LifeBar', class: HealthDisplay});
-        this.playerManaBar = this.scene.map.createFromObjects('HUD', {name:'ManaBar', class: ManaDisplay});
-        this.playerMoney = this.scene.map.createFromObjects('HUD', {name:'Money'});
-        this.playerNumberKeys = this.scene.map.createFromObjects('HUD', {name:'Keys'});
-        this.playerActiveItem = this.scene.map.createFromObjects('HUD', {name:'Active'});
-        this.displayEquipedWeapon = this.scene.map.createFromObjects('HUD', {name:'ArmaEquipada'});
-        */
-
-        const objectLayer = this.scene.map.getObjectLayer('HUD');
-
-        objectLayer.objects.forEach(obj => {
-            switch(obj.type) {
-                case 'LifeBar':
-                    this.playerLifeBar = new HealthDisplay(this, obj.x, obj.y, obj.width, obj.height, this.maxLife);
-                    break;
-                case 'ManaBar':
-                    this.playerManaBar = new ManaDisplay(this.scene, obj.x, obj.y, obj.width, obj.height, this.initialMana, this.maxMana);
-                    break;
-                case 'Dinero':
-                    break;
-                case 'LLaves':
-                    break;
-                case 'Activo':
-                    break;
-                case 'ArmaEquipada':
-                    this.displayEquipedWeapon = new weaponDisplay(this.scene, obj.x, obj.y, this.equipedWeapon);
-                    break;
-            }
-        });
     }
 
     /**
@@ -330,5 +298,27 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     shieldOffCD() {
         this.shieldCooldown = 0;
+    }
+
+    createHUDElement(objectName, obj) {
+        switch(objectName) {
+            case 'LifeBar':
+                this.playerLifeBar = new HealthDisplay(this, obj.x, obj.y, obj.width, obj.height, this.maxLife);
+                break;
+            case 'ManaBar':
+                this.playerManaBar = new ManaDisplay(this.scene, obj.x, obj.y, obj.width, obj.height, this.initialMana, this.maxMana);
+                break;
+            case 'Money':
+                break;
+            case 'Keys':
+                break;
+            case 'Active':
+                break;
+            case 'ArmaEquipada':
+                this.displayEquipedWeapon = new weaponDisplay(this.scene, obj.x, obj.y, this.equipedWeapon);
+                break;
+            default:
+                console.warn('Tipo de objeto no reconocido:', obj.name);
+        }
     }
 }

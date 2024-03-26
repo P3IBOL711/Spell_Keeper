@@ -8,8 +8,8 @@ export default class HealthDisplay extends Phaser.GameObjects.Graphics {
      * @param {number} y Coordenada Y
      */
     constructor(scene, x, y, width, height, maxHealth) {
-        super(scene, x, y, 'healthBar');
-        
+        super(scene);
+
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
 
