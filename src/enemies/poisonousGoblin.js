@@ -65,25 +65,31 @@ export default class PoisonousGoblin extends Enemy {
         this.body.setSize(this.width * 0.45, this.height * 0.85, true);
 
         this.on(Phaser.Animations.Events.ANIMATION_START, () => {
-            if (this.anims.getName() === 'attack'){
-                this.body.setVelocity(0);
-                new Arrow(this.scene, this.x, this.y, this.target, false, this.damage);
+            if(this.life > 0){
+                if (this.anims.getName() === 'attack'){
+                    this.body.setVelocity(0);
+                    new Arrow(this.scene, this.x, this.y, this.target, false, this.damage);
+                }
             }
         })
 
         this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
-            if (this.anims.getName() === 'attack'){
-                this.play('walking', true)
-                this.scene.physics.moveToObject(this, this.target, this.speed);
+            if(this.life > 0){
+                if (this.anims.getName() === 'attack'){
+                    this.play('walking', true)
+                    this.scene.physics.moveToObject(this, this.target, this.speed);
+                }
             }
         })
 
         this.on(Phaser.Animations.Events.ANIMATION_STOP, () => {
-            if (this.anims.getName() === 'attack'){
-                this.play('walking', true)
-            }
-            else if(this.anims.getName() === 'walking'){
-                this.play('walking', true);
+            if (this.lif > 0){
+                if (this.anims.getName() === 'attack'){
+                    this.play('walking', true)
+                }
+                else if(this.anims.getName() === 'walking'){
+                    this.play('walking', true);
+                }
             }
         })
     }

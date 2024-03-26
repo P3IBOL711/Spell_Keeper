@@ -62,27 +62,34 @@ export default class Knight extends Enemy {
 
         // SE PODRIA MEJORAR CON this.on(animationstart) PERO NO SABEMOS HACERLO
         this.on(Phaser.Animations.Events.ANIMATION_START, () => {
-            if (this.anims.getName() === 'attack'){
-                this.body.setVelocity(0);
-                this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -65 : 65), this.y - 10, 60, 120, this.target, this.damage);
+            if (this.life > 0){
+                if (this.anims.getName() === 'attack'){
+                    this.body.setVelocity(0);
+                    this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -65 : 65), this.y - 10, 60, 120, this.target, this.damage);
+                }
             }
+            
         })
 
         this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
-            if (this.anims.getName() === 'attack'){
-                this.attackZone.destroy(true);
-                this.play('walking', true)
-                this.scene.physics.moveToObject(this, this.target, this.speed);
+            if (this.life > 0){
+                if (this.anims.getName() === 'attack'){
+                    this.attackZone.destroy(true);
+                    this.play('walking', true)
+                    this.scene.physics.moveToObject(this, this.target, this.speed);
+                }
             }
         })
 
         this.on(Phaser.Animations.Events.ANIMATION_STOP, () => {
-            if (this.anims.getName() === 'attack'){
-                this.attackZone.destroy(true);
-                this.play('walking', true)
-            }
-            else if(this.anims.getName() === 'walking'){
-                this.play('walking', true);
+            if (this.life > 0){
+                if (this.anims.getName() === 'attack'){
+                    this.attackZone.destroy(true);
+                    this.play('walking', true)
+                }
+                else if(this.anims.getName() === 'walking'){
+                    this.play('walking', true);
+                }
             }
         })
 

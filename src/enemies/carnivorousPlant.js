@@ -64,8 +64,10 @@ export default class CarnivorousPlant extends Enemy {
 
         // SE PODRIA MEJORAR CON this.on(animationstart) PERO NO SABEMOS HACERLO
         this.on(Phaser.Animations.Events.ANIMATION_START, () => {
-            if (this.anims.getName() === 'attack1'){
-                this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -75 : 75), this.y - 60, 60, 60, this.target, this.damage);
+            if (this.life > 0){
+                if (this.anims.getName() === 'attack1'){
+                    this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -75 : 75), this.y - 60, 60, 60, this.target, this.damage);
+                }
             }
             
         })
