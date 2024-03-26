@@ -1,6 +1,9 @@
 import Phaser from 'phaser';
 
 import Reticle from './reticle.js';
+import HealthDisplay from './HUD/healthDisplay.js';
+import ManaDisplay from './HUD/manaDisplay.js';
+import weaponDisplay from './HUD/weapondisplay.js';
 
 /**
  * Clase que representa el jugador del juego. El jugador se mueve por el mundo usando los cursores.
@@ -15,7 +18,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
      * @param {number} y Coordenada Y
      */
 
-    constructor(scene, x, y, lifeMod, manaMod, weaponMult, moveMod, moveMult, luckMod, MeleeWeaponArray, RangedWeaponArray, ActMelIndex, ActRangIndex) {
+    constructor(scene, x, y, life, mana, lifeMod, manaMod, weaponMult, moveMod, moveMult, luckMod, MeleeWeaponArray, RangedWeaponArray, ActMelIndex, ActRangIndex, lastWeaponUsed) {
         super(scene, x, y, 'player');
         
         this.scene.add.existing(this);
@@ -24,15 +27,20 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         this.body.setSize(this.width * 0.4, this.height * 0.65, true);
         this.body.setOffset(this.width * 0.3, this.height * 0.35);
+
         /****ESTADISTICAS****/
-        //CAPADO inferiormente a 1 y superiormente a 10, cada numero son 2 golpes
+        //CAPADO inferiormente a 1 y superiormente a 20, cada numero son 2 golpes
+        this.initialLife = 10; 
         this.lifeModifier = lifeMod;
-        this.life = 3 + this.lifeModifier;
+        this.maxLife = this.initialLife + this.lifeModifier;
+        this.actualLife = (life === 0) ? this.initialLife : life;
 
         //CAPADO inferiormente a 10 y superiormente a 1000
         //Cuando no se tiene mana suficiente para hacer el ataque, se hace igual con una potencia proporcional al mana gastado de lo que cuesta el ataque
         this.manaModifier = manaMod;
-        this.mana = 250 + this.manaModifier;
+        this.initialMana = 250;
+        this.maxMana = this.initialMana + this.manaModifier;
+        this.actualMana = (mana === 0) ? this.initialMana : mana;
 
         this.weaponMultiplier = weaponMult;
 
@@ -52,12 +60,16 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.s = this.scene.input.keyboard.addKey('S');
         this.d = this.scene.input.keyboard.addKey('D');
         this.direction = null;
-        this.meleeMode = true;
-        this.canAttack = true;
         //Interacciones
         this.q = this.scene.input.keyboard.addKey('Q');
         this.e = this.scene.input.keyboard.addKey('E');
         this.f = this.scene.input.keyboard.addKey('F');
+        this.shift = this.scene.input.keyboard.addKey('SHIFT');
+        this.meleeMode = true;
+        this.canAttack = true;
+        this.canBeDamaged = true;
+        this.shieldCooldown = 0; 
+        this.shieldUptime = 0;
 
         /****ANIMACIONES****/
         this.anims.create({
@@ -115,6 +127,18 @@ export default class Player extends Phaser.GameObjects.Sprite {
             }
         });
 
+        //Esucdo del jugador, falta añadir la animacion del escudo
+        this.shift.on('down', () => {
+            if(this.shieldCooldown === 0) {
+                this.canBeDamaged = false;
+                this.scene.time.addEvent({
+                    delay: 3000,
+                    callback: shieldOnCD,
+                    callbackScope: this
+                });
+            }
+        });
+
         //Cursor de ataque y eventos del cursor (faltan los hover para cambiar la textura del raton)
         this.scene.input.mouse.disableContextMenu();
         this.scene.input.on('pointerup', pointer =>  {
@@ -146,13 +170,45 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.meleeIndex = ActMelIndex;
         this.rangedIndex = ActRangIndex;
         this.weaponDelay = 0;
-        this.equipedWeapon = this.meeleWeapons[0];
+        this.equipedWeapon = lastWeaponUsed;
 
 
         /**RELATIVO A LA ESCENA**/
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.body.setCollideWorldBounds(true);   
+        this.body.setCollideWorldBounds(true);  
+
+        /**RELATIVO AL HUD */
+        /*
+        this.playerLifeBar = this.scene.map.createFromObjects('HUD', {name:'LifeBar', class: HealthDisplay});
+        this.playerManaBar = this.scene.map.createFromObjects('HUD', {name:'ManaBar', class: ManaDisplay});
+        this.playerMoney = this.scene.map.createFromObjects('HUD', {name:'Money'});
+        this.playerNumberKeys = this.scene.map.createFromObjects('HUD', {name:'Keys'});
+        this.playerActiveItem = this.scene.map.createFromObjects('HUD', {name:'Active'});
+        this.displayEquipedWeapon = this.scene.map.createFromObjects('HUD', {name:'ArmaEquipada'});
+        */
+
+        const objectLayer = this.scene.map.getObjectLayer('HUD');
+
+        objectLayer.objects.forEach(obj => {
+            switch(obj.type) {
+                case 'LifeBar':
+                    this.playerLifeBar = new HealthDisplay(this, obj.x, obj.y, obj.width, obj.height, this.maxLife);
+                    break;
+                case 'ManaBar':
+                    this.playerManaBar = new ManaDisplay(this.scene, obj.x, obj.y, obj.width, obj.height, this.initialMana, this.maxMana);
+                    break;
+                case 'Dinero':
+                    break;
+                case 'LLaves':
+                    break;
+                case 'Activo':
+                    break;
+                case 'ArmaEquipada':
+                    this.displayEquipedWeapon = new weaponDisplay(this.scene, obj.x, obj.y, this.equipedWeapon);
+                    break;
+            }
+        });
     }
 
     /**
@@ -163,7 +219,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
      */
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-        //Cambiar el delay
+
+        
         this.weaponDelay += dt;
         if(this.weaponDelay >= this.equipedWeapon.delay) {
             this.canAttack = true;
@@ -204,13 +261,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.play('idle', true);
             this.body.setVelocity(0);
         }
-
-        /*
-        //BOTON DEL ESCUDO, IMPLEMENTAR
-        if(this.cursors.shift.isDown){
-
-        }
-        */
     }
 
     /**NOTAS PARA EJECUTAR LOS ATAQUES:
@@ -227,27 +277,29 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     /**Funcion que se llama cuando el jugador recibe daño */
     receiveDamage(damage) {
-        this.life -= damage;
+        if(this.canBeDamaged) {
+            this.actualLife -= damage;
         
-        this.scene.tweens.add({
-            targets: this,
-            alpha: 0,
-            ease: Phaser.Math.Easing.Elastic.InOut,
-            duration: 40, 
-            repeat: 1,
-            yoyo: true,
-            onStart: () => {
-                this.setTint(0xff0000);
-            },
-            onComplete: () => {
-                this.clearTint();
-                this.setAlpha(1);
+            this.scene.tweens.add({
+                targets: this,
+                alpha: 0,
+                ease: Phaser.Math.Easing.Elastic.InOut,
+                duration: 40, 
+                repeat: 1,
+                yoyo: true,
+                onStart: () => {
+                    this.setTint(0xff0000);
+                },
+                onComplete: () => {
+                    this.clearTint();
+                    this.setAlpha(1);
+                }
+            })
+    
+            if(this.life <= 0) {
+                //Animacion de muerte
+                this.scene.scene.start('end');
             }
-        })
-
-        if(this.life <= 0) {
-            //Animacion de muerte
-            this.scene.scene.start('end');
         }
     }
 
@@ -263,6 +315,20 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     takeRangedWeapon(weapon) {
-        this.rangedWeapons(weapon);
+        this.rangedWeapons.push(weapon);
+    }
+
+    shieldOnCD() {
+        this.shieldCooldown = 1;
+        this.canBeDamaged = true;
+        this.scene.time.addEvent({
+            delay: 10000,
+            callback: shieldOffCD,
+            callbackScope: this
+        });
+    }
+
+    shieldOffCD() {
+        this.shieldCooldown = 0;
     }
 }

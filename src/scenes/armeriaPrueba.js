@@ -1,14 +1,10 @@
 import Phaser from 'phaser'
+
 import Player from '../player.js'
 import Skeleton from '../enemies/archerSkeleton.js';
 import Arrow from '../projectiles/arrow.js';
 import Knight from '../enemies/knight.js';
 import PoisonousGoblin from '../enemies/poisonousGoblin.js';
-
-import Skeleton from '../archer_skeleton.js';
-import Arrow from '../projectiles/arrow.js';
-import Knight from '../knight.js';
-import Player from '../player.js';
 import basicRanged from '../armas/basicRanged.js';
 import basicMelee from '../armas/basicMelee.js';
 import FireStaff from '../armas/fireStaff.js';
@@ -38,7 +34,14 @@ export default class ArmeriaPrueba extends Phaser.Scene {
      * Creación de los elementos de la escena principal de juego
      */
     create() {
-        this.enemies = this.add.group()
+        this.enemies = this.add.group();
+
+        this.map = this.make.tilemap({ 
+            key: 'HUD', 
+            tileWidth: 32, 
+            tileHeight: 32 
+          });
+        
         // this.walls para cuando haya paredes
         let img = this.add.image(0, 0, 'escenaPrueba').setOrigin(0, 0);
         img.displayWidth = this.sys.game.config.width;
@@ -47,7 +50,8 @@ export default class ArmeriaPrueba extends Phaser.Scene {
         //CHAPUZON
         let playerX = 200;
         let playerY = 300;
-        this.player = new Player(this, playerX, playerY, 0, 0, 1, 0, 1, 0, [new basicMelee(this, playerX, playerY, 1)], [new basicRanged(this, playerX, playerY, 1), new FireStaff(this, playerX, playerY, 10)], 0, 0);
+        let defaultWeapon = new basicMelee(this, playerX, playerY, 1);
+        this.player = new Player(this, playerX, playerY, 0, 0, 0, 0, 1, 0, 1, 0, [defaultWeapon], [new basicRanged(this, playerX, playerY, 1), new FireStaff(this, playerX, playerY, 10)], 0, 0, defaultWeapon);
         //
         this.knight = new Knight(this, 800, 200, this.player);
         this.skeleton = new Skeleton(this, 800, 300, this.player);     

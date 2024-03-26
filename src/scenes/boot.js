@@ -8,6 +8,7 @@ import arrow from '../../assets/armory/sprites/arrow/arrow.png'
 import Fireball from '../../assets/cSprites/fireball_spritesheet.png'
 import Lighting from '../../assets/cSprites/LightingEffect.png'
 import font from 'url:../../assets/fonts/VT323Regular.ttf'
+import Hud from '../../assets/HUD/HUD.json'
 
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
@@ -39,6 +40,7 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('fireball_spritesheet', Fireball, { frameWidth: 32, frameHeight: 32 });
     this.load.spritesheet('lighting_spritesheet', Lighting, { frameWidth: 64, frameHeight:64 });
     this.load.spritesheet('poisonousGoblinSpritesheet', PoisonousGoblin, { frameWidth: 64, frameHeight: 64 })
+    this.load.tilemapTiledJSON('HUD', Hud);
 
     // Background
     let background = this.add.graphics();
