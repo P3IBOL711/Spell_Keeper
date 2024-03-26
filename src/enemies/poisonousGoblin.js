@@ -63,6 +63,29 @@ export default class PoisonousGoblin extends Enemy {
         this.life = 2;
 
         this.body.setSize(this.width * 0.45, this.height * 0.85, true);
+
+        this.on(Phaser.Animations.Events.ANIMATION_START, () => {
+            if (this.anims.getName() === 'attack'){
+                this.body.setVelocity(0);
+                new Arrow(this.scene, this.x, this.y, this.target, false, this.damage);
+            }
+        })
+
+        this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
+            if (this.anims.getName() === 'attack'){
+                this.play('walking', true)
+                this.scene.physics.moveToObject(this, this.target, this.speed);
+            }
+        })
+
+        this.on(Phaser.Animations.Events.ANIMATION_STOP, () => {
+            if (this.anims.getName() === 'attack'){
+                this.play('walking', true)
+            }
+            else if(this.anims.getName() === 'walking'){
+                this.play('walking', true);
+            }
+        })
     }
 
     doSomethingVerySpecificBecauseYoureMyBelovedChild() {
@@ -78,11 +101,7 @@ export default class PoisonousGoblin extends Enemy {
     }
 
     onTimerAttack () {
-        this.play('idle', true);
-        this.stop();
-        this.chain(['attack', 'idle']);
-        new Arrow(this.scene, this.x, this.y, this.target, false, this.damage);
-        this.body.setVelocity(0);
+        this.play('attack')
     }
 
     /**
@@ -107,7 +126,7 @@ export default class PoisonousGoblin extends Enemy {
                 // creáis la zone de ataque
                 // cambiáis la animación (que ya está)      
                 this.timerAttack.paused = false;
-    
+                this.playAfterRepeat('walking');
             }
         }
     }
