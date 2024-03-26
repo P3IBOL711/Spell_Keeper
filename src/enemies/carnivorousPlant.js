@@ -95,7 +95,7 @@ export default class CarnivorousPlant extends Enemy {
         this.on(Phaser.Animations.Events.ANIMATION_UPDATE, () => {
             if (this.life > 0){
                 if (this.anims.getName() === 'attack2' && this.anims.currentFrame.index === 3 && !this.distAttack){
-                    new GreenPoisonBall(this.scene, this.x - 30, this.y - 80, this.target);
+                    new GreenPoisonBall(this.scene, this.x + (this.flipX ? -30 : 30), this.y - 80, this.target);
                     this.distAttack = true;
                 }
             }
