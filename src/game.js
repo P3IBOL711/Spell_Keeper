@@ -2,8 +2,10 @@ import ArmeriaPrueba from './scenes/armeriaPrueba.js';
 import Boot from './scenes/boot.js';
 import Phaser from 'phaser'
 import  MainMenu  from './scenes/mainMenu.js';
-import ARR5 from './scenes/arR5.js';
+import ARR1 from './scenes/armory/arR1.js'
+import ARR2 from './scenes/armory/arR2.js'
 import End from './scenes/end.js'
+import SceneManager from './sceneManager.js';
 
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos
@@ -19,7 +21,7 @@ let config = {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
     pixelArt: true,
-    scene: [Boot, MainMenu, ArmeriaPrueba,ARR5, End],
+    scene: [Boot, MainMenu, ArmeriaPrueba,ARR1,ARR2,SceneManager, End],
     physics: {
         default: 'arcade',
         arcade: {

@@ -20,7 +20,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.setScale(3);
+        this.setScale(1);
 
         this.body.setSize(this.width * 0.4, this.height * 0.65, true);
         this.body.setOffset(this.width * 0.3, this.height * 0.35);
@@ -153,6 +153,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.body.setCollideWorldBounds(true);   
+        
     }
 
     /**

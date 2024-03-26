@@ -1,6 +1,6 @@
 export default em_r = {
 
-    name: "em_r",
+    name: "EM",
     
     level: "all",
     

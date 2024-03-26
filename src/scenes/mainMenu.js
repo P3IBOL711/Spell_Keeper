@@ -40,7 +40,7 @@ export default class MainMenu extends Phaser.Scene{
         this.playButton = this.add.text(270, 185, '> PLAY', { fontFamily: 'pixelFont', fontSize: 60, color: '#000000' , fontStyle: 'bold'});
 
         let dungeonGenerator = new Dungeongen();
-        let sceneManager = new SceneManager(dungeonGenerator.init());
+       
 
         /*let nuevoTexto = 
         this.add.text(390, 70, 
@@ -60,7 +60,7 @@ export default class MainMenu extends Phaser.Scene{
        })
 
        this.playButton.on("pointerup", ()=>{
-         this.scene.start('arR5',{X: dungeonGenerator.getEntranceX(), Y: dungeonGenerator.getEntranceY(), sc: this});
+         this.scene.start('arR1',{X: 0, Y: 3, dg:dungeonGenerator.tutorial()});
        })
     }
 

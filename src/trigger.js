@@ -12,14 +12,15 @@ export default class Trigger extends Phaser.GameObjects.Zone {
      * @param {number} y Coordenada Y
     */
 
-    constructor(scene, x, y, width, height, player,callback) {
+    constructor(scene, x, y, width, height, player,level,dX,dY,callback,dir,dg) {
         super(scene, x, y, width, height);
         
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
 
         this.scene.physics.add.overlap(this, player, (player) => {
-            callback();
+            callback(dX,dY,dir,level,dg)
+            
         });
     }
 

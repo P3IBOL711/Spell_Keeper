@@ -1,10 +1,10 @@
-export default ar_sh4 = {
+export default sh7 = {
 
-    name: "ar_sh4",
+    name: "SH7",
     
     level: "armory",
     
-    path: "../../assets/armory/ar_sh4.tmx",                          
+    path: "../../assets/armory/sh7.tmx",                          
     
     entrance: false,
     exit: false,
@@ -12,9 +12,8 @@ export default ar_sh4 = {
     deadend: true,//para saber que solo tiene una salida
     shop:true,
     
-    door_north: false,
-    door_south: true,
+    door_north: true,
+    door_south: false,
     door_east: false,
-    door_west: false
-    
+    door_west: true
 };

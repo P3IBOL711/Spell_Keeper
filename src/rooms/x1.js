@@ -1,10 +1,10 @@
-export default ar_x1 = {
+export default x1 = {
 
-    name: "ar_x1",
+    name: "X1",
     
     level: "armory",
     
-    path: "../../assets/armory/ar_x1.tmx",                          
+    path: "../../assets/armory/x1.tmx",                          
     
     entrance: false,
     exit: true,

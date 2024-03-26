@@ -1,20 +1,20 @@
-export default ar_r7 = {
+export default sh5 = {
 
-    name: 'arR7',
+    name: "SH5",
     
     level: "armory",
     
-    path: "../../assets/armory/ar_r7.tmx",
+    path: "../../assets/armory/sh5.tmx",                          
     
     entrance: false,
     exit: false,
     empty: false, //Habitacion vacia
     deadend: true,//para saber que solo tiene una salida
-    shop:false,
+    shop:true,
     
     door_north: false,
-    door_south: false,
-    door_east: false,
-    door_west: true
+    door_south: true,
+    door_east: true,
+    door_west: false
     
     };

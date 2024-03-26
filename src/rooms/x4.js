@@ -1,10 +1,10 @@
-export default ar_x2 = {
+export default x4 = {
 
-    name: "ar_x2",
+    name: "X4",
     
     level: "armory",
     
-    path: "../../assets/armory/ar_x2.tmx",                          
+    path: "../../assets/armory/x4.tmx",                          
     
     entrance: false,
     exit: true,
@@ -12,9 +12,9 @@ export default ar_x2 = {
     deadend: true,//para saber que solo tiene una salida
     shop:false,
     
-    door_north: true,
+    door_north: false,
     door_south: false,
     door_east: false,
-    door_west: false
+    door_west: true
     
     };

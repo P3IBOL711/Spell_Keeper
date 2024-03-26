@@ -1,10 +1,10 @@
-export default ar_sh1 = {
+export default sh6 = {
 
-    name: "ar_sh1",
+    name: "SH6",
     
     level: "armory",
     
-    path: "../../assets/armory/ar_sh1.tmx",                          
+    path: "../../assets/armory/sh6.tmx",                          
     
     entrance: false,
     exit: false,
@@ -13,8 +13,7 @@ export default ar_sh1 = {
     shop:true,
     
     door_north: false,
-    door_south: false,
-    door_east: true,
-    door_west: false
-    
-    };
+    door_south: true,
+    door_east: false,
+    door_west: true
+};

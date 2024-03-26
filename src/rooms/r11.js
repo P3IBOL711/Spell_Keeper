@@ -1,20 +1,20 @@
-export default ar_r5 = {
+export default r11 = {
 
-    name: "ar_r5",
+    name: "R11",
     
     level: "armory",
     
-    path: "../../assets/armory/ar_r5.tmx",
+    path: "../../assets/armory/r11.tmx",
     
     entrance: false,
     exit: false,
     empty: false, //Habitacion vacia
-    deadend: true,//para saber que solo tiene una salida
+    deadend: false,//para saber que solo tiene una salida
     shop:false,
     
     door_north: true,
     door_south: false,
-    door_east: false,
+    door_east: true,
     door_west: false
     
-    };
+};

@@ -1,10 +1,10 @@
-export default ar_sh3 = {
+export default sh3 = {
 
-    name: "ar_sh3",
+    name: "SH3",
     
     level: "armory",
     
-    path: "../../assets/armory/ar_sh3.tmx",                          
+    path: "../../assets/armory/sh3.tmx",                          
     
     entrance: false,
     exit: false,

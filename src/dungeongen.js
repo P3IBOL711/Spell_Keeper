@@ -1,31 +1,31 @@
 
-import ar_e1 from './rooms/ar_e1.js'
-import ar_r2 from './rooms/ar_r2.js';
-import ar_r3 from './rooms/ar_r3.js';
-import ar_r4 from './rooms/ar_r4.js';
-import ar_r5 from './rooms/ar_r5.js';
-import ar_r6 from './rooms/ar_r6.js';
-import ar_r7 from './rooms/ar_r7.js';
-import ar_r8 from './rooms/ar_r8.js';
-import ar_r9 from './rooms/ar_r9.js';
-import ar_r10 from './rooms/ar_r10.js';
-import ar_r11 from './rooms/ar_r11.js';
-import ar_r12 from './rooms/ar_r12.js';
-import ar_r13 from './rooms/ar_r13.js';
-import ar_r14 from './rooms/ar_r14.js';
-import ar_r15 from './rooms/ar_r15.js';
-import ar_sh1 from './rooms/ar_sh1.js';
-import ar_sh2 from './rooms/ar_sh2.js';
-import ar_sh3 from './rooms/ar_sh3.js';
-import ar_sh4 from './rooms/ar_sh4.js';
-import ar_sh5 from './rooms/ar_sh5.js';
-import ar_sh6 from './rooms/ar_sh6.js';
-import ar_sh7 from './rooms/ar_sh7.js';
-import ar_sh8 from './rooms/ar_sh8.js';
-import ar_x1 from './rooms/ar_x1.js';
-import ar_x2 from './rooms/ar_x2.js';
-import ar_x3 from './rooms/ar_x3.js';
-import ar_x4 from './rooms/ar_x4.js';
+import r1 from './rooms/r1.js'
+import r2 from './rooms/r2.js';
+import r3 from './rooms/r3.js';
+import r4 from './rooms/r4.js';
+import r5 from './rooms/r5.js';
+import r6 from './rooms/r6.js';
+import r7 from './rooms/r7.js';
+import r8 from './rooms/r8.js';
+import r9 from './rooms/r9.js';
+import r10 from './rooms/r10.js';
+import r11 from './rooms/r11.js';
+import r12 from './rooms/r12.js';
+import r13 from './rooms/r13.js';
+import r14 from './rooms/r14.js';
+import r15 from './rooms/r15.js';
+import sh1 from './rooms/sh1.js';
+import sh2 from './rooms/sh2.js';
+import sh3 from './rooms/sh3.js';
+import sh4 from './rooms/sh4.js';
+import sh5 from './rooms/sh5.js';
+import sh6 from './rooms/sh6.js';
+import sh7 from './rooms/sh7.js';
+import sh8 from './rooms/sh8.js';
+import x1 from './rooms/x1.js';
+import x2 from './rooms/x2.js';
+import x3 from './rooms/x3.js';
+import x4 from './rooms/x4.js';
 
 
 
@@ -65,6 +65,46 @@ export default class Dungeongen {
         this.thereIsExit = false;
         this.thereIsShop  = false
         this.init();
+    }
+
+    //Genera la mazmorra del tutorial (siempre la misma)
+    tutorial(){
+        //Inicializacion
+        let dungeon = [];
+
+        //Llenamos la mazmorra de habitaciones vacías
+        for (let i = 0; i < 4; i++) {
+            dungeon[i] = [];
+            for (let j = 0; j < 1; j++) {
+                dungeon[i][j] = {
+
+                    name: "em_r",
+
+                    level: "all",
+
+                    path: "../../assets/armory/em_r.tmx",
+
+                    entrance: false,
+                    exit: false,
+                    empty: true, //Habitacion vacia
+                    deadend: false,//para saber que solo tiene una salida
+                    shop: false,
+
+                    door_north: false,
+                    door_south: false,
+                    door_east: false,
+                    door_west: false
+
+                };
+            }
+        }
+
+        dungeon[3][0] = r1;
+        dungeon[2][0] = r2;
+        dungeon[1][0] = r3;
+        dungeon[0][0] = x1;
+
+        return dungeon;
     }
 
 
@@ -109,13 +149,13 @@ export default class Dungeongen {
         this.entranceY = Math.floor(Math.random() * (M - 2)) + 1;
 
         //Ponemos la entrada
-        dungeon[this.entranceY][this.entranceX] = ar_e1 = {
+        dungeon[this.entranceY][this.entranceX] = r1 = {
 
-            name: "ar_e1",
+            name: "r1",
 
             level: "armory",
 
-            path: "../../assets/armory/ar_e1.tmx",
+            path: "../../assets/armory/r1.tmx",
 
             entrance: true,
             exit: false,
@@ -575,22 +615,22 @@ export default class Dungeongen {
 
     fillRoomArray(floor) {
         if (floor === 0) { //Armeria
-            //deadendArray.push(ar_e1);
-            this.roomArray.push(ar_r2);
-            this.roomArray.push(ar_r4);
-            this.roomArray.push(ar_e1);
-            this.roomArray.push(ar_r3);
-            this.roomArray.push(ar_r5);
-            this.roomArray.push(ar_r6);
-            this.roomArray.push(ar_r7);
-            this.roomArray.push(ar_r8);
-            this.roomArray.push(ar_r9);
-            this.roomArray.push(ar_r10);
-            this.roomArray.push(ar_r11);
-            this.roomArray.push(ar_r12);
-            this.roomArray.push(ar_r13);
-            this.roomArray.push(ar_r14);
-            this.roomArray.push(ar_r15);
+            //deadendArray.push(r1);
+            this.roomArray.push(r2);
+            this.roomArray.push(r4);
+            this.roomArray.push(r1);
+            this.roomArray.push(r3);
+            this.roomArray.push(r5);
+            this.roomArray.push(r6);
+            this.roomArray.push(r7);
+            this.roomArray.push(r8);
+            this.roomArray.push(r9);
+            this.roomArray.push(r10);
+            this.roomArray.push(r11);
+            this.roomArray.push(r12);
+            this.roomArray.push(r13);
+            this.roomArray.push(r14);
+            this.roomArray.push(r15);
 
             //TODO push exits y shops
         }
@@ -599,18 +639,18 @@ export default class Dungeongen {
     fillSpecialRoomArray(floor) {
         this.specialRoomArray = [];
         if (floor === 0) { //Armeria
-            this.specialRoomArray.push(ar_x1);
-            this.specialRoomArray.push(ar_x2);
-            this.specialRoomArray.push(ar_x3);
-            this.specialRoomArray.push(ar_x4);
-            this.specialRoomArray.push(ar_sh1);
-            this.specialRoomArray.push(ar_sh2);
-            this.specialRoomArray.push(ar_sh3);
-            this.specialRoomArray.push(ar_sh4);
-            this.specialRoomArray.push(ar_sh5);
-            this.specialRoomArray.push(ar_sh6);
-            this.specialRoomArray.push(ar_sh7);
-            this.specialRoomArray.push(ar_sh8);
+            this.specialRoomArray.push(x1);
+            this.specialRoomArray.push(x2);
+            this.specialRoomArray.push(x3);
+            this.specialRoomArray.push(x4);
+            this.specialRoomArray.push(sh1);
+            this.specialRoomArray.push(sh2);
+            this.specialRoomArray.push(sh3);
+            this.specialRoomArray.push(sh4);
+            this.specialRoomArray.push(sh5);
+            this.specialRoomArray.push(sh6);
+            this.specialRoomArray.push(sh7);
+            this.specialRoomArray.push(sh8);
         }
     }
 
