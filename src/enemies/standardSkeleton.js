@@ -107,7 +107,7 @@ export default class StandardSkeleton extends Enemy {
 
             if (Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y) >= 100){
                 this.timerAttack.paused = true;
-                this.play('walking', true);
+                this.playAfterRepeat('walking', true);
                 this.scene.physics.moveToObject(this, this.target, this.speed);
             }
             else {

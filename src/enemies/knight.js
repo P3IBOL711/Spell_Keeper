@@ -29,7 +29,7 @@ export default class Knight extends Enemy {
             key: 'attack',
             frames: this.anims.generateFrameNumbers('knight_spritesheet', { start: 8, end: 10 }),
             frameRate: 10,
-            repeat: -1
+            repeat: 0
         });
 
         this.anims.create({
@@ -38,6 +38,15 @@ export default class Knight extends Enemy {
             frameRate: 5,
             repeat: 0
         });
+
+        this.timerAttack = this.scene.time.addEvent({
+            delay: 1500,
+            callback: this.onTimerAttack,
+            callbackScope: this,
+            loop: true
+        });
+
+        this.timerAttack.paused = true;
 
         this.setScale(3);
 
@@ -54,18 +63,34 @@ export default class Knight extends Enemy {
         // SE PODRIA MEJORAR CON this.on(animationstart) PERO NO SABEMOS HACERLO
         this.on(Phaser.Animations.Events.ANIMATION_START, () => {
             if (this.anims.getName() === 'attack'){
+                this.body.setVelocity(0);
                 this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -65 : 65), this.y - 10, 60, 120, this.target, this.damage);
+            }
+        })
+
+        this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
+            if (this.anims.getName() === 'attack'){
+                this.attackZone.destroy(true);
+                this.play('walking', true)
+                this.scene.physics.moveToObject(this, this.target, this.speed);
             }
         })
 
         this.on(Phaser.Animations.Events.ANIMATION_STOP, () => {
             if (this.anims.getName() === 'attack'){
                 this.attackZone.destroy(true);
+                this.play('walking', true)
+            }
+            else if(this.anims.getName() === 'walking'){
+                this.play('walking', true);
             }
         })
 
     }
 
+    onTimerAttack(){
+        this.play('attack');
+    }
     /**
      * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
      * Como se puede ver, no se tratan las colisiones con las estrellas, ya que estas colisiones 
@@ -80,15 +105,15 @@ export default class Knight extends Enemy {
         if (this.life > 0) {
             this.body.setOffset(this.width * (this.flipX ? 0.38 : 0.40), this.height * 0.26);
 
-            if (Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y) >= 50){
-                this.play('walking', true);
+            if (Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y) >= 100){
+                this.playAfterRepeat('walking');
                 this.scene.physics.moveToObject(this, this.target, this.speed);
             }
             else {
                 // creáis la zone de ataque
                 // cambiáis la animación (que ya está)
-                this.play('attack', true);
-                this.body.setVelocity(0);
+                this.timerAttack.paused = false;
+                this.playAfterRepeat('walking');
                 
             } 
         }
