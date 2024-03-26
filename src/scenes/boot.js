@@ -14,6 +14,10 @@ import wKey from '../../assets/controlsMenu/w.png'
 import aKey from '../../assets/controlsMenu/a.png'
 import sKey from '../../assets/controlsMenu/s.png'
 import dKey from '../../assets/controlsMenu/d.png'
+import homeButton from '../../assets/controlsMenu/home.png'
+import leftClick from '../../assets/controlsMenu/leftClick.png'
+import rightClick from '../../assets/controlsMenu/rightClick.png'
+import TitleDecoration from  '../../assets/mainTitle.png'
 
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
@@ -45,6 +49,11 @@ export default class Boot extends Phaser.Scene {
     this.load.image('aKey', aKey);
     this.load.image('sKey', sKey);
     this.load.image('dKey', dKey);
+    this.load.image('homeButton', homeButton);
+    this.load.image('leftClick', leftClick);
+    this.load.image('rightClick', rightClick);
+    this.load.image('titleDecoration', TitleDecoration)
+
     this.load.image('arrow', arrow);
     this.load.spritesheet('knight_spritesheet', knight, { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('skeleton_spritesheet', skeleton, { frameWidth: 64, frameHeight: 64 });
@@ -54,19 +63,19 @@ export default class Boot extends Phaser.Scene {
 
     // Background
     let background = this.add.graphics();
-    background.fillStyle(0x322653, 1);
+    background.fillStyle(0xad88c6, 1);
     // 363062
     background.fillRect(0, 0, 1000, 600);
     
     // Loading bar 
     let progressBar = this.add.graphics();
     let progressBox = this.add.graphics();
-    progressBox.fillStyle(0x9EC8B9, 0.8);
+    progressBox.fillStyle(0x8f3ea9, 0.8);
     progressBox.fillRect(340, 270, 320, 50);
 
     this.load.on('progress', function (value) {
       progressBar.clear();
-      progressBar.fillStyle(0x9EC8B9, 1);
+      progressBar.fillStyle(0x8f3ea9, 1);
       progressBar.fillRect(350, 280, 300 * value, 30);
       percentText.setText(parseInt(value * 100) + '%');
     });
@@ -84,10 +93,10 @@ export default class Boot extends Phaser.Scene {
 
     // Loading bar text
     this.loadFont('pixelFont', font);
-    let loadingText = this.add.text(420, 215, 'Loading...', { fontFamily: 'pixelFont', fontSize: 40, color: '#9EC8B9'});
+    let loadingText = this.add.text(420, 215, 'Loading...', { fontFamily: 'pixelFont', fontSize: 40, color: '#5e1675ff'});
 
     // Percent bar text
-    let percentText = this.add.text(485, 320, '0%', { fontFamily: 'pixelFont', fontSize: 24, color: '#9EC8B9'});
+    let percentText = this.add.text(485, 320, '0%', { fontFamily: 'pixelFont', fontSize: 24, color: '#5e1675ff'});
   }
 
   loadFont(name, url) {

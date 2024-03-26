@@ -1,9 +1,5 @@
+import Phaser from 'phaser'
 
-import bg from '../../assets/main_menu/title_bg.png'
-import mt from '../../assets/main_menu/main_title.png'
-import play from '../../assets/main_menu/play.png'
-import playSel from '../../assets/main_menu/play_selected.png'
-import font from 'url:../../assets/fonts/VT323Regular.ttf'
 
 
 export default class MainMenu extends Phaser.Scene{
@@ -11,8 +7,6 @@ export default class MainMenu extends Phaser.Scene{
     constructor() {
         super({ key: 'controlsMenu' });
     }
-    
- 
 
     preload(){
         
@@ -21,56 +15,34 @@ export default class MainMenu extends Phaser.Scene{
     create(){
         this.add.image(0,0,'controlsBackground').setOrigin(0).setDepth(0)//Background
 
-        this.add.image(200, 50, 'wKey').setOrigin(0).setDepth(1).setScale(4)
-        this.add.image(200, 150, 'aKey').setOrigin(0).setDepth(1).setScale(4)
-        this.add.image(200, 250, 'sKey').setOrigin(0).setDepth(1).setScale(4)
-        this.add.image(200, 350, 'dKey').setOrigin(0).setDepth(1).setScale(4)
-        // let playButton = this.add.image(470,150,'play').setOrigin(0).setDepth(1).setScale(0.35); 
-        // let playSelectedButton = this.add.image(470,150,'play_sel').setOrigin(0).setDepth(1).setScale(0.35).setVisible(false); 
+        this.add.image(190,5,'titleDecoration').setOrigin(0).setDepth(1).setScale(1.5)//Title decoration
 
-        this.backButton = this.add.text(270, 185, '> BACK', { fontFamily: 'pixelFont', fontSize: 60, color: '#000000' , fontStyle: 'bold'});
-        /*let nuevoTexto = 
-        this.add.text(390, 70, 
-            'Spell Keeper', 
-            { fontFamily: 'pixelFont', fontSize: 80, color: '#000000' });*/
-        //this.add.text(450, 70, 'Spell Keeper',{ fontFamily: 'Arial', fontSize: '32px', fill: '#ffffff' })
-      //  let hola = this.add.bitmapText(200, 100, 'pixelfont','Bitmap Fonts!', 64);
-       // text.setScale(3);
+        this.add.image(200, 235, 'wKey').setOrigin(0).setDepth(1).setScale(5)
+        this.add.image(130, 300, 'aKey').setOrigin(0).setDepth(1).setScale(5)
+        this.add.image(200, 300, 'sKey').setOrigin(0).setDepth(1).setScale(5)
+        this.add.image(270, 300, 'dKey').setOrigin(0).setDepth(1).setScale(5)
+
+        this.add.image(450, 260, 'leftClick').setOrigin(0).setDepth(1).setScale(6)
+        this.add.image(710, 260, 'rightClick').setOrigin(0).setDepth(1).setScale(6)
+
+        this.add.text(400, 28, 'CONTROLS', { fontFamily: 'pixelFont', fontSize: 60, color: '#5e1675ff' , fontStyle: 'bold'}).setDepth(1);
+        this.add.text(75, 33, 'BACK', { fontFamily: 'pixelFont', fontSize: 40, color: '#5e1675ff' , fontStyle: 'bold'});
+        this.add.text(155, 190, 'MOVEMENT', { fontFamily: 'pixelFont', fontSize: 50, color: '#5e1675ff' , fontStyle: 'bold'});
+        this.add.text(445, 190, 'SHOOT', { fontFamily: 'pixelFont', fontSize: 50, color: '#5e1675ff' , fontStyle: 'bold'});
+        this.add.text(650, 190, 'ATTACK MODE', { fontFamily: 'pixelFont', fontSize: 50, color: '#5e1675ff' , fontStyle: 'bold'});
+        this.backButton = this.add.image(18, 30, 'homeButton').setOrigin(0).setDepth(1).setScale(1.5);
 
        this.backButton.setInteractive();
        this.backButton.on("pointerover", ()=>{
-            this.backButton.setStyle({fill: '#ffffff'})
+            this.backButton.setScale(1.6)
        })
 
        this.backButton.on("pointerout", ()=>{
-        this.backButton.setStyle({fill: '#000000'})
+            this.backButton.setScale(1.5)
        })
 
        this.backButton.on("pointerup", ()=>{
-         this.scene.start('mainMenu');
+            this.scene.start('mainMenu');
        })
-
-    //    this.controlsButton.setInteractive();
-    //    this.controlsButton.on("pointerover", ()=>{
-    //         this.controlsButton.setStyle({fill: '#ffffff'})
-    //    })
-
-    //    this.controlsButton.on("pointerout", ()=>{
-    //     this.controlsButton.setStyle({fill: '#000000'})
-    //    })
-
-    //    this.controlsButton.on("pointerup", ()=>{
-    //      this.scene.start('armeriaPrueba');
-    //    })
     }
-
-
-    // loadFont(name, url) {
-    //     let newFont = new FontFace(name, `url(${url})`);
-    //     newFont.load().then(function (loaded) {
-    //         document.fonts.add(loaded);
-    //     }).catch(function (error) {
-    //         return error;
-    //     });
-    // }
 }
