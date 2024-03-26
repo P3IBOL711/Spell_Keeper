@@ -88,6 +88,18 @@ export default class Knight extends Enemy {
 
     }
 
+    doSomethingVerySpecificBecauseYoureMyBelovedChild() {
+        this.scene.time.removeEvent(this.timerAttack);
+
+    }
+
+    receiveDamage(damage){
+        super.receiveDamage(damage);
+        if (this.life <= 0){
+            this.timerAttack.paused = true;
+        }
+    }
+
     onTimerAttack(){
         this.play('attack');
     }
