@@ -27,21 +27,21 @@ export default class CarnivorousPlant extends Enemy {
 
         this.anims.create({
             key: 'attack1',
-            frames: this.anims.generateFrameNumbers('carnivorousPlantSpritesheet', { start: 7, end: 12 }),
+            frames: this.anims.generateFrameNumbers('carnivorousPlantSpritesheet', { start: 6, end: 11 }),
             frameRate: 10,
             repeat: 0
         });
 
         this.anims.create({
             key: 'attack2',
-            frames: this.anims.generateFrameNumbers('carnivorousPlantSpritesheet', { start: 14, end: 20 }),
+            frames: this.anims.generateFrameNumbers('carnivorousPlantSpritesheet', { start: 12, end: 17 }),
             frameRate: 10,
             repeat: 0
         });
 
         this.anims.create({
             key: 'die',
-            frames: this.anims.generateFrameNumbers('carnivorousPlantSpritesheet', { start: 21, end: 26 }),
+            frames: this.anims.generateFrameNumbers('carnivorousPlantSpritesheet', { start: 18, end: 23 }),
             frameRate: 5,
             repeat: 0
         });
