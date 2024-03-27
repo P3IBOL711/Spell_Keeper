@@ -18,14 +18,14 @@ export default class Projectile extends Phaser.GameObjects.Sprite {
         this.scene.physics.add.existing(this);
         
         this.scene.physics.add.overlap(this, this.scene.enemies, (projectile, enemy) => {
-            if (targetEnemy){
+            if (targetEnemy) {
                 enemy.receiveDamage(damage)
                 this.destroy();
             }
         });
 
         this.scene.physics.add.overlap(this, this.scene.player, (projectile, player) => {
-            if (!targetEnemy){
+            if (!targetEnemy) {
                 player.receiveDamage(damage)
                 this.destroy();
             }

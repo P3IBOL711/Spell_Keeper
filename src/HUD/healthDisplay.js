@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 
-export default class HealthDisplay extends Phaser.GameObjects.Graphics {
+export default class HealthDisplay extends Phaser.GameObjects.Graphics { //CAMBIAR TODO PARA QUE SEA UN GRUPO.
  /**
      * Constructor del jugador
      * @param {Phaser.Scene} scene Escena a la que pertenece el jugador

@@ -24,7 +24,16 @@ export default class arma extends Phaser.GameObjects.Sprite {
         });
     }
 
+    preUpdate(t, dt) {
+        super.preUpdate(t, dt);
+    }
+
     modifiedDmg(weaponMultiplier) {
         this.wDmg = this.wDmg * weaponMultiplier;
     }
+
+    playIdle(){}
+    isMelee(){}
+    manaRegen(){}
+    manaCost(){}
 }

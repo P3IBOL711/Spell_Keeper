@@ -3,6 +3,7 @@ import Phaser from "phaser";
 import arma from "./arma";
 import PlayerHitBox from "../playerHitbox";
 
+
 export default class basicMelee extends arma {
  /**
      * Constructor del jugador
@@ -11,15 +12,18 @@ export default class basicMelee extends arma {
      * @param {number} y Coordenada Y
      */
     constructor(scene, x, y, damage) {
-        super(scene, x, y, 'basicMelee', damage);
+        super(scene, x, y, 'dagger', damage);
         this.delay = 1100;
-        
-        //Introducir la logica de los sprites
     }
 
-    isMelee(){
+    preUpdate(t, dt) {
+        super.preUpdate(t, dt)
+    }
+
+    isMelee() {
         return true;
     }
+
 
     attack(x, y, direction, target) {
         if(direction === 'left') {
@@ -34,5 +38,9 @@ export default class basicMelee extends arma {
         else if(direction === 'down') {
             new PlayerHitBox(this.scene, x, y + 30, 64, 64, 1);
         }
+    }
+
+    manaRegen() {
+        return 20;
     }
 }

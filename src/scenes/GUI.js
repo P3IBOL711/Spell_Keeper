@@ -1,0 +1,93 @@
+import Phaser from "phaser";
+
+import Hud from '../../assets/HUD/HUD.json';
+import healthDisplay from "../HUD/healthDisplay";
+import manaDisplay from "../HUD/manaDisplay";
+import moneyDisplay from "../HUD/moneyDisplay";
+import keysDisplay from "../HUD/keysDisplay";
+import activeDisplay from "../HUD/activeDisplay";
+import weaponDisplay from "../HUD/weapondisplay";
+import basicMelee from "../armas/basicMelee";
+
+import { eventManager as hudEvents } from "../eventCenter";
+
+export default class GUI extends Phaser.Scene {
+
+    constructor() {
+        super({ key: 'gui' });
+    }
+
+    preload() {
+        this.load.tilemapTiledJSON('hud', Hud);
+    }
+
+    create() {
+        this.map = this.make.tilemap({ 
+            key: 'hud', 
+            tileWidth: 32, 
+            tileHeight: 32 
+        });
+        
+        let objectLayer = this.map.getObjectLayer('HUD');
+        objectLayer.objects.forEach(obj => {
+            switch(obj.name) {
+                case 'LifeBar':
+                    //Valor inicial de la vida maxima: 10
+                    this.playerLifeBar = new healthDisplay(this, obj.x, obj.y, obj.width, obj.height, 10);
+                    break;
+                case 'Manabar':
+                    //Valores inciales del manaInicial y el manaMaximo: 250 y 500
+                    this.playerManaBar = new manaDisplay(this, obj.x, obj.y, obj.width, obj.height, 250, 500);
+                    break;
+                case 'Money':
+                    //Valor inicial del dinero (puede cambiar): 0
+                    this.playerMoneyInfo = new moneyDisplay(this, obj.x, obj.y, {fontFamily: 'Arial', fontSize: 24, color: '#ffffff'}, 0);
+                    break;
+                case 'Keys':
+                    //Valor inicial de las llaves: 0
+                    this.playerKeysInfo = new keysDisplay(this, obj.x, obj.y, {fontFamily: 'Arial', fontSize: 24, color: '#ffffff'});
+                    break;
+                case 'Active':
+                    //No tienes activo al principio
+                    //this.playerActiveInfo = new activeDisplay();
+                    break;
+                case 'ArmaEquipada':
+                    //Arma inicial: basicMelee
+                    this.displayEquipedWeapon = new weaponDisplay(this, obj.x, obj.y, new basicMelee(this, obj.x, obj.y, 10));
+                    break;
+                default:
+                    console.warn('Tipo de objeto no reconocido:', obj.name);
+            }
+        });
+
+        hudEvents.on('updateHealth', (playerActualHealth, playerMaxHealth) => {
+            this.playerLifeBar.updateLife(playerActualHealth, playerMaxHealth);
+        });
+
+        hudEvents.on('updateMana', (playerActualMana, playerMaxMana) => {
+            this.playerManaBar.setMana(playerActualMana, playerMaxMana);
+        });
+
+        hudEvents.on('updateDisplayedWeapon', (newWeapon) => {
+            this.displayEquipedWeapon.updateDisplay(newWeapon);
+        });
+
+        hudEvents.on('updateMoney', (money) => {
+            this.playerMoneyInfo.setMoney(money);
+        });
+
+        hudEvents.on('updateKeys', (keys) => {
+            this.playerKeysInfo.setKeys(keys);
+        });
+
+        /**
+         * hudEvents.on('changedActive', () => {
+         * 
+         * });
+         * 
+         * hudEvents.on('useActive', () => {
+         * 
+         * });
+         */
+    }
+}

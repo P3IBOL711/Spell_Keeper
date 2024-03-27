@@ -1,9 +1,7 @@
 import Phaser from 'phaser';
 
 import Reticle from './reticle.js';
-import HealthDisplay from './HUD/healthDisplay.js';
-import ManaDisplay from './HUD/manaDisplay.js';
-import weaponDisplay from './HUD/weapondisplay.js';
+import { eventManager as hudEvents } from './eventCenter.js';
 
 /**
  * Clase que representa el jugador del juego. El jugador se mueve por el mundo usando los cursores.
@@ -20,16 +18,19 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     constructor(scene, x, y, life, mana, lifeMod, manaMod, weaponMult, moveMod, moveMult, luckMod, MeleeWeaponArray, RangedWeaponArray, ActMelIndex, ActRangIndex, lastWeaponUsed) {
         super(scene, x, y, 'player');
-        
+
+        /**RELATIVO A LA ESCENA**/
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.setScale(3);
 
+        /**RELATIVO A BODY**/
+        this.setScale(3);
+        this.body.setCollideWorldBounds(true); 
         this.body.setSize(this.width * 0.4, this.height * 0.65, true);
         this.body.setOffset(this.width * 0.3, this.height * 0.35);
 
-        /****ESTADISTICAS****/
-        //CAPADO inferiormente a 1 y superiormente a 20, cada numero son 2 golpes
+        /**ESTADISTICAS**/
+        //CAPADO inferiormente a 1 y superiormente a 20
         this.initialLife = 10; 
         this.lifeModifier = lifeMod;
         this.maxLife = this.initialLife + this.lifeModifier;
@@ -42,6 +43,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.maxMana = this.initialMana + this.manaModifier;
         this.actualMana = (mana === 0) ? this.initialMana : mana;
 
+        //Modificador de daño de las armas
         this.weaponMultiplier = weaponMult;
 
         //CAPADO, definir caps
@@ -53,7 +55,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.luck = 5;
         this.reticle = new Reticle(this.scene, x, y - 30);
 
-        /****CONTROLES****/
+        /**CONTROLES**/
         //Direcciones
         this.w = this.scene.input.keyboard.addKey('W');
         this.a = this.scene.input.keyboard.addKey('A');
@@ -71,7 +73,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.shieldCooldown = 0; 
         this.shieldUptime = 0;
 
-        /****ANIMACIONES****/
+        /**ANIMACIONES**/
         this.anims.create({
             key:'idle',
             frames: this.anims.generateFrameNumbers('player_spritesheet', { start: 0, end: 0 }),
@@ -155,15 +157,17 @@ export default class Player extends Phaser.GameObjects.Sprite {
         });
 
         this.scene.input.on('pointerdown', () => {
-            this.playerAttacks();
+            if(this.canAttack) {
+                this.playerAttacks();
+            }
         });
 
         this.scene.input.on('pointermove', () => {
-                this.reticle.x = this.scene.input.activePointer.worldX;
-                this.reticle.y = this.scene.input.activePointer.worldY;
+            this.reticle.x = this.scene.input.activePointer.worldX;
+            this.reticle.y = this.scene.input.activePointer.worldY;
         });
 
-        /**ARRAYS DE OBJETOS Y ARMAS*/
+        /**ARRAYS DE OBJETOS Y ARMAS**/
         //Nota: ver como se pasa entre las escenas
         this.meeleWeapons = MeleeWeaponArray;
         this.rangedWeapons = RangedWeaponArray;
@@ -172,11 +176,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.weaponDelay = 0;
         this.equipedWeapon = lastWeaponUsed;
 
-
-        /**RELATIVO A LA ESCENA**/
-        this.scene.add.existing(this);
-        this.scene.physics.add.existing(this);
-        this.body.setCollideWorldBounds(true);  
     }
 
     /**
@@ -187,7 +186,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
      */
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-
         
         this.weaponDelay += dt;
         if(this.weaponDelay >= this.equipedWeapon.delay) {
@@ -231,15 +229,21 @@ export default class Player extends Phaser.GameObjects.Sprite {
         }
     }
 
-    /**NOTAS PARA EJECUTAR LOS ATAQUES:
-     * Tienes dos arrays que son los "inventarios de armas", segun el tipo de ataque se pilla un array u otro y haces array[index].attack(parametros)
-     */
     playerAttacks() {
         //Animacion de ataque
         //this.play();
         //Mientras se hace haces el ataque y luego se destruye el area
         if (this.active === false) { return; }
         this.equipedWeapon.attack(this.x, this.y, this.direction, this.reticle);
+
+        if(this.meleeMode) {
+            this.actualMana += this.equipedWeapon.manaRegen();
+        }
+        else {
+            this.actualMana -= this.equipedWeapon.manaCost();
+        }
+
+        hudEvents.emit('updateMana', [this.actualMana, this.maxMana]);
         this.canAttack = false;
     }
 
@@ -263,7 +267,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
                     this.setAlpha(1);
                 }
             })
-    
+            hudEvents.emit('updateHealth', [this.actualLife, this.maxLife]);
+
             if(this.life <= 0) {
                 //Animacion de muerte
                 this.scene.scene.start('end');
@@ -272,10 +277,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     updatedWeapon(index) {
-        if(this.meleeMode)
+        if(this.meleeMode) {
             this.equipedWeapon = this.meeleWeapons[index];
-        else
+        }
+        else {
             this.equipedWeapon = this.rangedWeapons[index];
+        }
+
+        hudEvents.emit('updateDisplayedWeapon', this.equipedWeapon);
     }
 
     takeMeleeWeapon(weapon) {
@@ -289,6 +298,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     shieldOnCD() {
         this.shieldCooldown = 1;
         this.canBeDamaged = true;
+
         this.scene.time.addEvent({
             delay: 10000,
             callback: shieldOffCD,
@@ -298,27 +308,5 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     shieldOffCD() {
         this.shieldCooldown = 0;
-    }
-
-    createHUDElement(objectName, obj) {
-        switch(objectName) {
-            case 'LifeBar':
-                this.playerLifeBar = new HealthDisplay(this, obj.x, obj.y, obj.width, obj.height, this.maxLife);
-                break;
-            case 'ManaBar':
-                this.playerManaBar = new ManaDisplay(this.scene, obj.x, obj.y, obj.width, obj.height, this.initialMana, this.maxMana);
-                break;
-            case 'Money':
-                break;
-            case 'Keys':
-                break;
-            case 'Active':
-                break;
-            case 'ArmaEquipada':
-                this.displayEquipedWeapon = new weaponDisplay(this.scene, obj.x, obj.y, this.equipedWeapon);
-                break;
-            default:
-                console.warn('Tipo de objeto no reconocido:', obj.name);
-        }
     }
 }

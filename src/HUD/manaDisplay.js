@@ -7,7 +7,7 @@ export default class ManaDisplay extends Phaser.GameObjects.Graphics {
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      */
-    constructor(scene, x, y, initialMana, maxMana) {
+    constructor(scene, x, y, width, height, initialMana, maxMana) {
         super(scene);
 
         this.scene.add.existing(this);

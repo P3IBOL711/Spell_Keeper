@@ -5,10 +5,10 @@ import skeleton from '../../assets/armory/sprites/skeleton/skeleton_spritesheet.
 import PoisonousGoblin from '../../assets/gardens/sprites/goblin/poisonous_goblin_spritesheet.png'
 import room from '../../assets/armory/sprites/Hab_Prueba.png'
 import arrow from '../../assets/armory/sprites/arrow/arrow.png'
+import dagger from '../../assets/cSprites/11.png'
 import Fireball from '../../assets/cSprites/fireball_spritesheet.png'
 import Lighting from '../../assets/cSprites/LightingEffect.png'
 import font from 'url:../../assets/fonts/VT323Regular.ttf'
-import Hud from '../../assets/HUD/HUD.json'
 
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
@@ -35,12 +35,12 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('player_spritesheet', player, { frameWidth: 32, frameHeight: 32 });
     this.load.image('escenaPrueba', room);
     this.load.image('arrow', arrow);
+    this.load.image('dagger', dagger);
     this.load.spritesheet('knight_spritesheet', knight, { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('skeleton_spritesheet', skeleton, { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('fireball_spritesheet', Fireball, { frameWidth: 32, frameHeight: 32 });
     this.load.spritesheet('lighting_spritesheet', Lighting, { frameWidth: 64, frameHeight:64 });
     this.load.spritesheet('poisonousGoblinSpritesheet', PoisonousGoblin, { frameWidth: 64, frameHeight: 64 })
-    this.load.tilemapTiledJSON('HUD', Hud);
 
     // Background
     let background = this.add.graphics();

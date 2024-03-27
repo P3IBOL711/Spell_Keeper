@@ -17,11 +17,19 @@ export default class FireStaff extends arma {
         //Intorducir logica de los sprites
     }
 
+    preUpdate(t, dt) {
+        super.preUpdate(t, dt)
+    }
+
     isMelee() {
         return false;
     }
 
     attack(x, y, direction, target) {
         new Fireball(this.scene, x, y, target, true, 1);
+    }
+
+    manaCost() {
+        return 5;
     }
 }

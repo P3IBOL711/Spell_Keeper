@@ -34,14 +34,9 @@ export default class ArmeriaPrueba extends Phaser.Scene {
      * Creación de los elementos de la escena principal de juego
      */
     create() {
+        this.scene.launch('gui');
         this.enemies = this.add.group();
 
-        this.map = this.make.tilemap({ 
-            key: 'HUD', 
-            tileWidth: 32, 
-            tileHeight: 32 
-          });
-        
         // this.walls para cuando haya paredes
         let img = this.add.image(0, 0, 'escenaPrueba').setOrigin(0, 0);
         img.displayWidth = this.sys.game.config.width;
@@ -55,13 +50,8 @@ export default class ArmeriaPrueba extends Phaser.Scene {
         //
         this.knight = new Knight(this, 800, 200, this.player);
         this.skeleton = new Skeleton(this, 800, 300, this.player);     
-        this.arrow = new Arrow(this, 800, 300, 1000, 1000);
         this.poisonousGoblin = new PoisonousGoblin(this, 600, 300, this.player);
         this.player.setScale(3.0);
 
-        let objectLayer = this.map.getObjectLayer('HUD');
-        objectLayer.objects.forEach(obj => {
-          this.player.createHUDElement(obj.name, obj);
-        });
     }
 }
