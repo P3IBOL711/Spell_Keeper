@@ -7,6 +7,7 @@ import PoisonousGoblin from '../enemies/poisonousGoblin.js';
 import CarnivorousPlant from '../enemies/carnivorousPlant.js';
 import StandardSkeleton from '../enemies/standardSkeleton.js';
 import MagicSkeleton from '../enemies/magicSkeleton.js';
+import LavaGolem from '../enemies/lavaGolem.js';
 
 
 
@@ -47,5 +48,6 @@ export default class ArmeriaPrueba extends Phaser.Scene {
         //this.carnivorousPlant = new CarnivorousPlant(this, 500, 300, this.player);
         //this.magicSkeleton = new MagicSkeleton(this, 800, 300, this.player);
         //this.standardSkeleton = new StandardSkeleton(this, 800, 300, this.player);
+        this.lavaGolem = new LavaGolem(this, 800, 300, this.player);
        }
 }

@@ -5,7 +5,7 @@ import MeleeEnemy from './meleeEnemy';
 /**
  * Clase que representa un enemigo del juego.
  */
-export default class Knight extends MeleeEnemy {
+export default class LavaGolem extends MeleeEnemy {
 
     /**
      * Constructor del jugador
@@ -15,26 +15,32 @@ export default class Knight extends MeleeEnemy {
     */
 
     constructor(scene, x, y, target) {
-        super(scene, x, y, target, 'knight', 1500);
+        super(scene, x, y, target, 'lavaGolem', 1500);
 
+        this.anims.create({
+            key: 'idle',
+            frames: this.anims.generateFrameNumbers('lavaGolemSpritesheet', { start: 8, end: 11 }),
+            frameRate: 10,
+            repeat: -1
+        })
 
         this.anims.create({
             key: 'walking',
-            frames: this.anims.generateFrameNumbers('knight_spritesheet', { start: 0, end: 7 }),
+            frames: this.anims.generateFrameNumbers('lavaGolemSpritesheet', { start: 0, end: 7 }),
             frameRate: 10,
             repeat: -1
         });
 
         this.anims.create({
             key: 'attack',
-            frames: this.anims.generateFrameNumbers('knight_spritesheet', { start: 8, end: 10 }),
+            frames: this.anims.generateFrameNumbers('lavaGolemSpritesheet', { start: 16, end: 23 }),
             frameRate: 10,
             repeat: 0
         });
 
         this.anims.create({
             key: 'die',
-            frames: this.anims.generateFrameNumbers('knight_spritesheet', { start: 16, end: 20 }),
+            frames: this.anims.generateFrameNumbers('lavaGolemSpritesheet', { start: 24, end: 29 }),
             frameRate: 5,
             repeat: 0
         });
@@ -47,13 +53,12 @@ export default class Knight extends MeleeEnemy {
 
         this.damage = 1;
 
-        this.body.setSize(this.width * 0.4, this.height * 0.85, true);
+        this.body.setSize(this.width * 0.5, this.height * 0.93, true);
     }
 
     spawnHitbox(){
-        this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -65 : 65), this.y - 10, 60, 120, this.target, this.damage);
+        this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? 65 : -65), this.y - 10, 60, 120, this.target, this.damage);
     }
-
     /**
      * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
      * Como se puede ver, no se tratan las colisiones con las estrellas, ya que estas colisiones 
@@ -66,8 +71,13 @@ export default class Knight extends MeleeEnemy {
         super.preUpdate(t, dt);
         // Preguntar si podría ser mas eficiente
         if (this.life > 0) {
-            this.body.setOffset(this.width * (this.flipX ? 0.38 : 0.40), this.height * 0.26);
+            this.body.setOffset(this.width * (this.flipX ? 0.3 : 0.25), this.height * 0.08);
         }
     }
+
+    flipEnemy(){
+        this.setFlipX(this.body.velocity.x > 0 || this.target.x > this.x);
+    }
+
 
 }

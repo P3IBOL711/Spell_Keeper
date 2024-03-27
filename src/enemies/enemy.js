@@ -67,7 +67,6 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
             this.play('die', true);
         }
     }
-
     /**
      * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
      * Como se puede ver, no se tratan las colisiones con las estrellas, ya que estas colisiones 
@@ -79,8 +78,14 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         // no se podrá ejecutar la animación del sprite. 
         super.preUpdate(t, dt);
         if (this.life > 0){
-            this.setFlipX(this.body.velocity.x < 0 || this.target.x < this.x);
+            this.flipEnemy()
         }
     }
+
+
+    flipEnemy(){
+        this.setFlipX(this.body.velocity.x < 0 || this.target.x < this.x);
+    }
+
 
 }
