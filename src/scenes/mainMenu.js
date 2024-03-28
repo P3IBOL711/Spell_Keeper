@@ -29,12 +29,12 @@ export default class MainMenu extends Phaser.Scene{
 
     create(){
         this.add.image(0,0,'title_bg').setOrigin(0).setDepth(0); //Background
-        this.add.text(170, 70, 'SPELL KEEPER',{ fontFamily: 'pixelFont', fontSize: 80, color: '#000000', fontStyle: 'bold'});
+        this.add.text(100, 50, 'SPELL KEEPER',{ fontFamily: 'pixelFont', fontSize: 80, color: '#000000', fontStyle: 'bold'});
         // let playButton = this.add.image(470,150,'play').setOrigin(0).setDepth(1).setScale(0.35); 
         // let playSelectedButton = this.add.image(470,150,'play_sel').setOrigin(0).setDepth(1).setScale(0.35).setVisible(false); 
 
-        this.playButton = this.add.text(270, 185, '> PLAY', { fontFamily: 'pixelFont', fontSize: 60, color: '#000000' , fontStyle: 'bold'});
-        this.controlsButton = this.add.text(270, 285, '> CONTROLS', { fontFamily: 'pixelFont', fontSize: 60, color: '#000000' , fontStyle: 'bold'});
+        this.playButton = this.add.text(180, 160, '> PLAY', { fontFamily: 'pixelFont', fontSize: 60, color: '#000000' , fontStyle: 'bold'});
+        this.controlsButton = this.add.text(180, 230, '> CONTROLS', { fontFamily: 'pixelFont', fontSize: 60, color: '#000000' , fontStyle: 'bold'});
         /*let nuevoTexto = 
         this.add.text(390, 70, 
             'Spell Keeper', 
