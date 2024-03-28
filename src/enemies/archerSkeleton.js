@@ -52,8 +52,6 @@ export default class Skeleton extends DistanceEnemy {
         this.life = 5;
 
         this.body.setSize(this.width * 0.45, this.height * 0.85, true);
-
-        
     }
 
     spawnProjectile(){

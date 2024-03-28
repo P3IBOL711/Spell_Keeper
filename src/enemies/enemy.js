@@ -28,6 +28,9 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         
         this.target = target;
 
+        // is enemy attacking?
+        this.attacking = false;
+
         this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
             if (this.anims.getName() === 'die'){
                 this.doSomethingVerySpecificBecauseYoureMyBelovedChild()
@@ -82,10 +85,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         }
     }
 
-
     flipEnemy(){
         this.setFlipX(this.body.velocity.x < 0 || this.target.x < this.x);
     }
-
-
 }

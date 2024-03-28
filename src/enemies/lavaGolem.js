@@ -45,9 +45,9 @@ export default class LavaGolem extends MeleeEnemy {
             repeat: 0
         });
 
-        this.setScale(3);
+        this.setScale(4.5);
 
-        this.speed = 40;
+        this.speed = 50;
 
         this.life = 5;
 
@@ -57,7 +57,7 @@ export default class LavaGolem extends MeleeEnemy {
     }
 
     spawnHitbox(){
-        this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? 65 : -65), this.y - 10, 60, 120, this.target, this.damage);
+        this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? 55 : -55), this.y - 10, 55, 120, this.target, this.damage);
     }
     /**
      * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
@@ -78,6 +78,4 @@ export default class LavaGolem extends MeleeEnemy {
     flipEnemy(){
         this.setFlipX(this.body.velocity.x > 0 || this.target.x > this.x);
     }
-
-
 }

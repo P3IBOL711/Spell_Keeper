@@ -43,11 +43,11 @@ export default class ArmeriaPrueba extends Phaser.Scene {
         img.displayHeight = this.sys.game.config.height;
         this.player = new Player(this, 200, 300, 0, 0, 1, 0, 1, 0);
         //this.knight = new Knight(this, 800, 200, this.player);
-        //this.archerSkeleton = new Skeleton(this, 800, 300, this.player);     
+        this.archerSkeleton = new Skeleton(this, 800, 300, this.player);     
         //this.poisonousGoblin = new PoisonousGoblin(this, 600, 300, this.player);
         //this.carnivorousPlant = new CarnivorousPlant(this, 500, 300, this.player);
         //this.magicSkeleton = new MagicSkeleton(this, 800, 300, this.player);
         //this.standardSkeleton = new StandardSkeleton(this, 800, 300, this.player);
-        this.lavaGolem = new LavaGolem(this, 800, 300, this.player);
+        //this.lavaGolem = new LavaGolem(this, 800, 300, this.player);
        }
 }

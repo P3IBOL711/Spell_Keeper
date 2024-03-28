@@ -29,19 +29,17 @@ export default class MeleeEnemy extends Enemy {
         this.on(Phaser.Animations.Events.ANIMATION_START, () => {
             if (this.life > 0){
                 if (this.anims.getName() === 'attack'){
-                    this.body.setVelocity(0);
+                    this.attacking = true;
                     this.spawnHitbox();
                 }
             }
-            
         })
 
         this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
             if (this.life > 0){
                 if (this.anims.getName() === 'attack'){
+                    this.attacking = false;
                     this.attackZone.destroy(true);
-                    this.play('walking', true)
-                    this.scene.physics.moveToObject(this, this.target, this.speed);
                 }
             }
         })
@@ -49,11 +47,8 @@ export default class MeleeEnemy extends Enemy {
         this.on(Phaser.Animations.Events.ANIMATION_STOP, () => {
             if (this.life > 0){
                 if (this.anims.getName() === 'attack'){
+                    this.attacking = false;
                     this.attackZone.destroy(true);
-                    this.play('walking', true)
-                }
-                else if(this.anims.getName() === 'walking'){
-                    this.play('walking', true);
                 }
             }
         })
@@ -65,12 +60,10 @@ export default class MeleeEnemy extends Enemy {
         this.scene.time.removeEvent(this.timerAttack);
     }
 
-
     receiveDamage(damage){
         super.receiveDamage(damage);
-        if (this.life <= 0){
+        if (this.life <= 0)
             this.timerAttack.paused = true;
-        }
     }
 
     onTimerAttack(){
@@ -88,19 +81,12 @@ export default class MeleeEnemy extends Enemy {
         // no se podrá ejecutar la animación del sprite. 
         super.preUpdate(t, dt);
         if (this.life > 0){
-           
-            if (Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y) >= 100){
-                this.playAfterRepeat('walking');
-                this.scene.physics.moveToObject(this, this.target, this.speed);
-            }
-            else {
-                // creáis la zone de ataque
-                // cambiáis la animación (que ya está)
+            this.scene.physics.moveToObject(this, this.target, this.attacking ? 0 : this.speed);
+            this.playAfterRepeat('walking');
+            if (Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y) >= 150)
+                this.timerAttack.paused = true;
+            else
                 this.timerAttack.paused = false;
-                this.playAfterRepeat('walking');
-                
-            } 
-        
         }
     }
 

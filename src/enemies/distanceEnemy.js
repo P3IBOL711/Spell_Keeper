@@ -28,7 +28,7 @@ export default class DistanceEnemy extends Enemy {
         this.on(Phaser.Animations.Events.ANIMATION_START, () => {
             if(this.life > 0){
                 if (this.anims.getName() === 'attack'){
-                    this.body.setVelocity(0);
+                    this.attacking = true;
                     this.spawnProjectile();
                 }
             }
@@ -38,8 +38,7 @@ export default class DistanceEnemy extends Enemy {
         this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
             if(this.life > 0){
                 if (this.anims.getName() === 'attack'){
-                    this.play('walking', true)
-                    this.scene.physics.moveToObject(this, this.target, this.speed);
+                    this.attacking = false;
                 }
             }
         })
@@ -47,10 +46,7 @@ export default class DistanceEnemy extends Enemy {
         this.on(Phaser.Animations.Events.ANIMATION_STOP, () => {
             if (this.life > 0){
                 if (this.anims.getName() === 'attack'){
-                    this.play('walking', true)
-                }
-                else if(this.anims.getName() === 'walking'){
-                    this.play('walking', true);
+                    this.attacking = false;
                 }
             }
         })
@@ -85,17 +81,13 @@ export default class DistanceEnemy extends Enemy {
         // no se podrá ejecutar la animación del sprite. 
         super.preUpdate(t, dt);
         if (this.life > 0){
+            this.scene.physics.moveToObject(this, this.target, this.attacking ? 0 : this.speed);
+            this.playAfterRepeat('walking');
             if (Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y) > 300){
                 this.timerAttack.paused = true;
-                
-                this.play('walking', true);
-                this.scene.physics.moveToObject(this, this.target, this.speed);
             }
-            else {
-                // creáis la zone de ataque
-                // cambiáis la animación (que ya está)      
+            else {  
                 this.timerAttack.paused = false;
-                this.playAfterRepeat('walking');
             }       
         }
     }
