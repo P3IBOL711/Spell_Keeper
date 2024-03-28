@@ -17,9 +17,7 @@ export default class Projectile extends Phaser.GameObjects.Sprite {
         super(scene, x, y, image);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        // this.scene.physics.add.overlap(this);
         
-        //this.body.setSize(this.width * 0.4, this.height * 0.85, true);
         this.scene.physics.add.overlap(this, this.scene.enemies, (projectile, enemy) => {
             if (targetEnemy){
                 this.impact(); // impact animation
@@ -32,7 +30,6 @@ export default class Projectile extends Phaser.GameObjects.Sprite {
             if (!targetEnemy){
                 this.impact(); // impact animation
                 player.receiveDamage(damage)
-                //this.destroy();
             }
         });
 
@@ -44,9 +41,7 @@ export default class Projectile extends Phaser.GameObjects.Sprite {
 
         this.impacted = false;
 
-        // this.scene.physics.add.overlap(this, this.scene.walls, (projectile, wall) => {
-        //     this.destroy();
-        // });
+        this.play('normal', true);
     }
 
     impact(){

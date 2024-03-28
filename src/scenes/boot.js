@@ -7,6 +7,7 @@ import CarnivorousPlant from '../../assets/gardens/sprites/carnivorous_plant/car
 import MagicSkeleton from '../../assets/library/sprites/skeleton/skeleton_3_spritesheet.png'
 import StandardSkeleton from '../../assets/library/sprites/skeleton/skeleton_1_spritesheet.png'
 import LavaGolem from '../../assets/throne_room/sprites/lava_golem/golem_spritesheet.png'
+import Book from '../../assets/library/sprites/book/book-spritesheet.png'
 import room from '../../assets/armory/sprites/Hab_Prueba.png'
 import arrow from '../../assets/armory/sprites/arrow/arrow.png'
 import Fireball from '../../assets/cSprites/fireball_spritesheet.png'
@@ -46,6 +47,7 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('carnivorousPlantSpritesheet', CarnivorousPlant, { frameWidth: 128, frameHeight: 128 });
     this.load.spritesheet('magicSkeletonSpritesheet', MagicSkeleton, { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('lavaGolemSpritesheet', LavaGolem, { frameWidth: 32, frameHeight: 32 })
+    this.load.spritesheet('bookSpritesheet', Book, {frameWidth: 64, frameHeight: 64})
     this.load.spritesheet('standardSkeletonSpritesheet', StandardSkeleton, { frameWidth: 72, frameHeight: 72 });
     this.load.spritesheet('purpleMagicBallSpritesheet', PurpleMagicBall, { frameWidth: 32, frameHeight: 32 });
     this.load.spritesheet('greenPoisonBallSpritesheet', GreenPoisonBall, { frameWidth: 32, frameHeight: 32 });

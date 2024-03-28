@@ -2,6 +2,8 @@ import Phaser from 'phaser'
 import HitBox from '../hitbox';
 import Enemy from './enemy';
 import GreenPoisonBall from '../projectiles/greenPoisonBall';
+import DistanceEnemy from './distanceEnemy';
+import MeleeEnemy from './meleeEnemy';
 
 /**
  * Clase que representa un enemigo del juego.
@@ -46,7 +48,7 @@ export default class CarnivorousPlant extends Enemy {
             repeat: 0
         });
 
-        this.timerAttack = this.scene.time.addEvent({
+        this.distanceTimerAttack = this.scene.time.addEvent({
             delay: 1500,
             callback: this.onTimerAttack,
             callbackScope: this,
@@ -105,7 +107,7 @@ export default class CarnivorousPlant extends Enemy {
         })
 
         this.distAttack = false;
-        this.timerAttack.paused = true;
+        this.distanceTimerAttack.paused = true;
 
         this.setScale(3);
 
@@ -117,26 +119,24 @@ export default class CarnivorousPlant extends Enemy {
     }
 
     doSomethingVerySpecificBecauseYoureMyBelovedChild() {
-        this.scene.time.removeEvent(this.timerAttack);
+        this.scene.time.removeEvent(this.distanceTimerAttack);
         this.scene.time.removeEvent(this.meleeTimerAttack);
     }
 
     receiveDamage(damage){
         super.receiveDamage(damage);
         if (this.life <= 0){
-            this.timerAttack.paused = true;
+            this.distanceTimerAttack.paused = true;
             this.meleeTimerAttack.paused = true;
         }
     }
 
     onTimerAttack () {
         this.distAttack = false;
-        this.stop();
         this.play('attack2');
     }
 
     onMeleeTimerAttack () {
-        this.stop();
         this.play('attack1');
     }
 
@@ -153,31 +153,24 @@ export default class CarnivorousPlant extends Enemy {
         if (this.life > 0){
             this.setFlipX(this.body.velocity.x < 0 || this.target.x < this.x);
             // Preguntar si podría ser mas eficiente
-            if(this.flipX)
-                this.body.setOffset(this.width * 0.39, this.height * 0.225);
-            else
-                this.body.setOffset(this.width * 0.44, this.height * 0.225);
+            this.body.setOffset(this.width * (this.flipX ? 0.39 : 0.44), this.height * 0.255)
 
             let dist = Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y);
 
-            if (dist > 300){
-                this.timerAttack.paused = true;
+            if (dist > 500){
+                this.distanceTimerAttack.paused = true;
                 this.meleeTimerAttack.paused = true;
-                this.play('idle', true);
+                this.playAfterRepeat('idle');
             }
-            else if (dist > 120 && dist <= 300){
-                // creáis la zone de ataque
-                // cambiáis la animación (que ya está)
+            else if (dist > 120 && dist <= 500){
                 this.meleeTimerAttack.paused = true;
-                this.timerAttack.paused = false;
+                this.distanceTimerAttack.paused = false;
             }
-            else{
-                this.timerAttack.paused = true;
+            else {
+                this.distanceTimerAttack.paused = true;
                 this.meleeTimerAttack.paused = false;
                 
             }
         }
-
     }
-
 }
