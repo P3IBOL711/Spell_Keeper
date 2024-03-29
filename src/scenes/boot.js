@@ -8,7 +8,7 @@ import MagicSkeleton from '../../assets/library/sprites/skeleton/skeleton_3_spri
 import StandardSkeleton from '../../assets/library/sprites/skeleton/skeleton_1_spritesheet.png'
 import LavaGolem from '../../assets/throne_room/sprites/lava_golem/golem_spritesheet.png'
 import Slime from '../../assets/gardens/sprites/slime/slime_spritesheet.png'
-import Book from '../../assets/library/sprites/book/book_spritesheet.png'
+import Book from '../../assets/library/sprites/book/book_spritesheet_1.png'
 import room from '../../assets/armory/sprites/Hab_Prueba.png'
 import arrow from '../../assets/armory/sprites/arrow/arrow.png'
 import Fireball from '../../assets/cSprites/fireball_spritesheet.png'

@@ -20,26 +20,26 @@ export default class Book extends MeleeEnemy {
 
         this.anims.create({
             key: 'walking',
-            frames: this.anims.generateFrameNumbers('bookSpritesheet', { start: 0, end: 3 }),
+            frames: this.anims.generateFrameNumbers('bookSpritesheet', { start: 0, end: 6 }),
             frameRate: 10,
             repeat: -1
         });
 
         this.anims.create({
             key: 'attack',
-            frames: this.anims.generateFrameNumbers('bookSpritesheet', { start: 4, end: 6 }),
+            frames: this.anims.generateFrameNumbers('bookSpritesheet', { start: 7, end: 11 }),
             frameRate: 10,
             repeat: 0
         });
 
         this.anims.create({
             key: 'die',
-            frames: this.anims.generateFrameNumbers('bookSpritesheet', { start: 8, end: 11 }),
+            frames: this.anims.generateFrameNumbers('bookSpritesheet', { start: 0, end: 2 }),
             frameRate: 5,
             repeat: 0
         });
 
-        this.setScale(1.5);
+        this.setScale(3);
 
         this.speed = 40;
 
