@@ -45,11 +45,9 @@ export default class MeleeEnemy extends Enemy {
         })
 
         this.on(Phaser.Animations.Events.ANIMATION_STOP, () => {
-            if (this.life > 0){
-                if (this.anims.getName() === 'attack'){
-                    this.attacking = false;
-                    this.attackZone.destroy(true);
-                }
+            if (this.anims.getName() === 'attack'){
+                this.attacking = false;
+                this.attackZone.destroy(true);
             }
         })
     }
