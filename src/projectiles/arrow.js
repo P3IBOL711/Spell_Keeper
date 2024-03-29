@@ -16,8 +16,8 @@ export default class Arrow extends Projectile {
     constructor(scene, x, y, target, targetEnemy, damage) {
         super(scene, x, y, 'arrow', targetEnemy, damage);
 
-        this.setScale(2.5);
-
+        //this.setScale(2.5);
+        
         this.speed = 100;
 
         this.rotation = Phaser.Math.Angle.Between(x, y, target.x, target.y);

@@ -28,7 +28,6 @@ import x3 from './rooms/x3.js';
 import x4 from './rooms/x4.js';
 
 
-
 const N = 10; //Numero de filas
 const M = 10; //Numero de columnas
 const maxSteps = 60; //Maximo de habitaciones
@@ -67,6 +66,19 @@ export default class Dungeongen {
         this.init();
     }
 
+    generateSaveStateMatrix(n,m){
+        let SSM = [];
+        let state = null;
+        for (let i = 0; i < n; i++) {
+            SSM[i] = [];
+            for (let j = 0; j < m; j++) {
+                SSM[i][j] = state
+            }
+        }
+
+        return SSM
+    }
+
     //Genera la mazmorra del tutorial (siempre la misma)
     tutorial(){
         //Inicializacion
@@ -94,7 +106,6 @@ export default class Dungeongen {
                     door_south: false,
                     door_east: false,
                     door_west: false
-
                 };
             }
         }
@@ -151,7 +162,7 @@ export default class Dungeongen {
         //Ponemos la entrada
         dungeon[this.entranceY][this.entranceX] = r1 = {
 
-            name: "r1",
+            name: "E1",
 
             level: "armory",
 

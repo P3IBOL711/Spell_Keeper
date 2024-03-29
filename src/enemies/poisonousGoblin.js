@@ -54,7 +54,7 @@ export default class PoisonousGoblin extends Enemy {
 
         this.timerAttack.paused = true;
 
-        this.setScale(3);
+       // this.setScale(3);
 
         this.speed = 30;
 

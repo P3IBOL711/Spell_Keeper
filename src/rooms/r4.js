@@ -11,6 +11,7 @@ export default r4 = {
     empty: false, //Habitacion vacia
     deadend: false,//para saber que solo tiene una salida
     shop:false,
+    visited: false,
     
     door_north: false,
     door_south: false,

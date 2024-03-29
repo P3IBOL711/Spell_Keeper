@@ -1,9 +1,6 @@
 import Phaser from 'phaser'
 
-/**
- * Clase que representa un enemigo del juego.
- */
-export default class Hitbox extends Phaser.GameObjects.Zone {
+export default class CollisionHitbox extends Phaser.GameObjects.Zone {
 
     /**
      * Constructor del jugador
@@ -12,15 +9,24 @@ export default class Hitbox extends Phaser.GameObjects.Zone {
      * @param {number} y Coordenada Y
     */
 
-    constructor(scene, x, y, width, height, player, damage) {
+    constructor(scene, x, y, width, height) {
         super(scene, x, y, width, height);
         
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
 
-        this.scene.physics.add.overlap(this, player, () => {
-            player.receiveDamage(damage);
+        this.body.setImmovable(true)
+
+        this.collider =  this.scene.physics.add.collider( this.scene.enviromental,this,(obj) => {
+            if(obj.isProjectile())
+                obj.destroy();
         });
+
+        
+    }
+
+    isProjectile(){
+        return false;
     }
     
 }

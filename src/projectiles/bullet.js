@@ -36,7 +36,7 @@ export default class Bullet extends Projectile {
         else{
             this.body.setSize(this.width * 0.6, this.height * 0.1, true);
         }
-
+        this.setDepth(7);
         this.body.setVelocityX(this.speed * Math.cos(this.rotation));
         this.body.setVelocityY(this.speed * Math.sin(this.rotation));
     }

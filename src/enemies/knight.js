@@ -39,7 +39,7 @@ export default class Knight extends Enemy {
             repeat: 0
         });
 
-        this.setScale(3);
+       // this.setScale(3);
 
         this.speed = 40;
 

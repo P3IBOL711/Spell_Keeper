@@ -8,6 +8,7 @@ import arrow from '../../assets/armory/sprites/arrow/arrow.png'
 import Fireball from '../../assets/cSprites/fireball_spritesheet.png'
 import Lighting from '../../assets/cSprites/LightingEffect.png'
 import font from 'url:../../assets/fonts/VT323Regular.ttf'
+import chest from '../../assets/armory/sprites/chests.png'
 
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
@@ -37,6 +38,7 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('knight_spritesheet', knight, { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('skeleton_spritesheet', skeleton, { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('fireball_spritesheet', Fireball, { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('chest',chest,{frameWidth: 32, frameHeight:32})
     this.load.spritesheet('lighting_spritesheet', Lighting, { frameWidth: 64, frameHeight:64 });
     this.load.spritesheet('poisonousGoblinSpritesheet', PoisonousGoblin, { frameWidth: 64, frameHeight: 64 })
 

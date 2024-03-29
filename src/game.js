@@ -4,6 +4,8 @@ import Phaser from 'phaser'
 import  MainMenu  from './scenes/mainMenu.js';
 import ARR1 from './scenes/armory/arR1.js'
 import ARR2 from './scenes/armory/arR2.js'
+import ARR3 from './scenes/armory/arR3.js'
+import ARX1 from './scenes/armory/arX1.js'
 import End from './scenes/end.js'
 import SceneManager from './sceneManager.js';
 
@@ -21,7 +23,7 @@ let config = {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
     pixelArt: true,
-    scene: [Boot, MainMenu, ArmeriaPrueba,ARR1,ARR2,SceneManager, End],
+    scene: [Boot, MainMenu, ArmeriaPrueba,ARR1,ARR2,ARR3,ARX1,SceneManager, End],
     physics: {
         default: 'arcade',
         arcade: {

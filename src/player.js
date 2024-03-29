@@ -20,7 +20,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
         
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
+        this.scene.enviromental.add(this)
         this.setScale(1);
+
+        //Booleano para interactuar
+        this.isFPressed = false
 
         this.body.setSize(this.width * 0.4, this.height * 0.65, true);
         this.body.setOffset(this.width * 0.3, this.height * 0.35);
@@ -115,6 +119,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
             }
         });
 
+        this.f.on('down',() => {
+            this.isFPressed = true;
+        })
+
+        this.f.on('up',() => {
+            this.isFPressed = false;
+        })
+
         //Cursor de ataque y eventos del cursor (faltan los hover para cambiar la textura del raton)
         this.scene.input.mouse.disableContextMenu();
         this.scene.input.on('pointerup', pointer =>  {
@@ -130,8 +142,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
             }
         });
 
-        this.scene.input.on('pointerdown', () => {
-            this.playerAttacks();
+        this.scene.input.on('pointerup', pointer => {
+            if(pointer.leftButtonReleased())
+                this.playerAttacks();
         });
 
         this.scene.input.on('pointermove', () => {
@@ -265,5 +278,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     takeRangedWeapon(weapon) {
         this.rangedWeapons(weapon);
+    }
+
+    getIsFPressed(){
+        return this.isFPressed;
+    }
+
+    isProjectile(){
+        return false;
     }
 }

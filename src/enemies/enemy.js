@@ -17,6 +17,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.scene.enemies.add(this)
+        this.scene.enviromental.add(this)
         // Queremos que el enemigo no se salga de los límites del mundo
         this.body.setCollideWorldBounds();
         // Velocidad 0 por defecto
@@ -27,6 +28,8 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         this.life = 1;
         
         this.target = target;
+
+        this.setDepth(6)
 
         this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
             if (this.anims.getName() === 'die'){
@@ -64,6 +67,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         if (this.life <= 0){
             this.body.setVelocity(0);
             this.body.enable = false;
+            this.scene.enemyHasDied();
             this.stop();
             this.play('die', true);
         }
@@ -82,6 +86,10 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         if (this.life > 0){
             this.setFlipX(this.body.velocity.x < 0 || this.target.x < this.x);
         }
+    }
+
+    isProjectile(){
+        return false;
     }
 
 }

@@ -11,10 +11,11 @@ export default r2 = {
     empty: false, //Habitacion vacia
     deadend: false,//para saber que solo tiene una salida
     shop:false,
-    
+    visited: false,
+
     door_north: true,
     door_south: true,
     door_east: false,
     door_west: false
     
-    };
+};
