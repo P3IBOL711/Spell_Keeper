@@ -5,7 +5,7 @@ import play from '../../assets/main_menu/play.png'
 import playSel from '../../assets/main_menu/play_selected.png'
 import font from 'url:../../assets/fonts/VT323Regular.ttf'
 import Dungeongen from '../dungeongen'
-import SceneManager from '../sceneManager'
+
 
 
 export default class MainMenu extends Phaser.Scene{
