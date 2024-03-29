@@ -51,7 +51,7 @@ export default class ArmeriaPrueba extends Phaser.Scene {
         //this.magicSkeleton = new MagicSkeleton(this, 800, 300, this.player);
         //this.standardSkeleton = new StandardSkeleton(this, 800, 300, this.player);
         //this.lavaGolem = new LavaGolem(this, 800, 300, this.player);
-        //this.book = new Book(this, 800, 300, this.player);
-        this.slime = new Slime(this, 800, 300, this.player);
+        this.book = new Book(this, 800, 300, this.player);
+        //this.slime = new Slime(this, 800, 300, this.player);
        }
 }
