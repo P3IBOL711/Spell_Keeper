@@ -1,66 +1,77 @@
 import Phaser from 'phaser';
 
-export default class HealthDisplay extends Phaser.GameObjects.Graphics { //CAMBIAR TODO PARA QUE SEA UN GRUPO.
- /**
-     * Constructor del jugador
-     * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
-     * @param {number} x Coordenada X
-     * @param {number} y Coordenada Y
-     */
-    constructor(scene, x, y, width, height, maxHealth) {
+export default class HealthDisplay extends Phaser.GameObjects.Group { 
+    /**
+        * Constructor del jugador
+        * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
+        * @param {number} x Coordenada X
+        * @param {number} y Coordenada Y
+        */
+    constructor(scene, x, y, initialHealth) {
         super(scene);
 
-        this.scene.add.existing(this);
-        this.scene.physics.add.existing(this);
+        this.maxHealth = 20; // 20 de vida como maximo
+        this.currentHealth = initialHealth;
+        //Crea todo los corazones y los pone inactivos y no visibles
+        this.hearts = this.createMultiple ({
+            key: 'ui-heart-full',
+            setXY: {
+                x: x,
+                y: y,
+                stepX: 64
+            },
+            frameQuantity: this.maxHealth / 2, // Cantidad de corazones
+            active: false,
+            visible: false,
+        });
 
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.maxHealth = maxHealth;
-        this.actualWidth = this.width/this.maxHealth;
+        //la cantidad de corazones iniciales, se ponen activos y visibles
+        for(let i = 0; i < this.currentHealth / 2; i ++) {
+            this.hearts[i].setScale(3);
+            this.hearts[i].setActive(true).setVisible(true);
+        }
 
-        this.draw();
+        this.updateHearts();
     }
 
-    draw() {
-        this.clear();
+    receiveDamage(damage) {
+        this.currentHealth -= damage;
 
-        // Configuramos el color y grosor del fondo de la barra de vida
-        this.fillStyle(0x000000); // Negro
-        this.fillRect(this.x, this.y, this.actualWidth, this.height);
+        if (this.currentHealth < 0) {
+            this.currentHealth = 0;
+        }
 
-        // Configuramos el color y grosor de la barra de vida
-        this.fillStyle(0xff0000); // Rojo
-        this.fillRect(this.x, this.y, this.width, this.height);
-
-        // Añadimos un borde a la barra de vida
-        this.lineStyle(2, 0x000000); // Borde negro
-        this.strokeRect(this.x, this.y, this.actualWidth, this.height);
+        this.updateHearts();
     }
 
-    // Método para actualizar la barra de vida
-    updateLife(vidaActual, vidaMaxima) {
-        // Comprobamos que la vida maxima, sigue siendo la misma, si no, se actualiza el valor y el valor de la anchura actual, mienrtras la vida maxima sea inferior al cap
-        if(this.maxHealth < 20) {
-            if(this.maxHealth < vidaMaxima) {
-                this.maxHealth = vidaMaxima;
-                this.actualWidth = this.maxHealth/this.width;
+    heal(healing) {
+        this.currentHealth += healing;
+
+        if (this.currentHealth >= this.maxHealth) {
+            this.currentHealth = this.maxHealth;
+        }
+
+        this.updateHearts();
+    }
+
+    updateHearts() {
+        for(let i = 0; i < this.getLength(); i++) {
+            let heart = this.hearts[i];
+            if(i < this.currentHealth / 2) {
+                if(this.currentHealth >= (i + 1) * 2)
+                   heart.setTexture('ui-heart-full');
+                else if(this.currentHealth === (i + 1) * 2 - 1)
+                   heart.setTexture('half-ui-heart');
+                else
+                   heart.setTexture('ui-heart-empty');
+                if(!heart.active) {
+                    heart.setScale(3);
+                    heart.setActive(true).setVisible(true);
+                }
+            }
+            else {
+                heart.setActive(false).setVisible(false);
             }
         }
-        else {
-            this.actualWidth = this.width;
-        }
-        // Calculamos la longitud de la barra de vida basada en la vida actual y máxima del jugador
-        const longitudBarra = (vidaActual / this.maxHealth) * this.actualWidth;
-
-        // Borramos y volvemos a dibujar la barra de vida con la nueva longitud
-        this.clear();
-        this.fillStyle(0x000000); // Negro
-        this.fillRect(this.x, this.y, this.actualWidth, this.height);
-        this.fillStyle(0xff0000); // Rojo
-        this.fillRect(this.x, this.y, longitudBarra, this.height);
-        this.lineStyle(2, 0x000000); // Borde negro
-        this.strokeRect(this.x, this.y, this.width, this.height);
-    }    
+    }
 }

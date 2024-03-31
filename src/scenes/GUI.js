@@ -33,7 +33,7 @@ export default class GUI extends Phaser.Scene {
             switch(obj.name) {
                 case 'LifeBar':
                     //Valor inicial de la vida maxima: 10
-                    this.playerLifeBar = new healthDisplay(this, obj.x, obj.y, obj.width, obj.height, 10);
+                    this.playerLifeBar = new healthDisplay(this, obj.x, obj.y, 10);
                     break;
                 case 'Manabar':
                     //Valores inciales del manaInicial y el manaMaximo: 250 y 500
@@ -60,8 +60,8 @@ export default class GUI extends Phaser.Scene {
             }
         });
 
-        hudEvents.on('updateHealth', (playerActualHealth, playerMaxHealth) => {
-            this.playerLifeBar.updateLife(playerActualHealth, playerMaxHealth);
+        hudEvents.on('updateHealth', (damage) => {
+            this.playerLifeBar.receiveDamage(damage);
         });
 
         hudEvents.on('updateMana', (playerActualMana, playerMaxMana) => {

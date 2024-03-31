@@ -16,7 +16,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
      * @param {number} y Coordenada Y
      */
 
-    constructor(scene, x, y, life, mana, lifeMod, manaMod, weaponMult, moveMod, moveMult, luckMod, MeleeWeaponArray, RangedWeaponArray, ActMelIndex, ActRangIndex, lastWeaponUsed) {
+    constructor(scene, x, y, life, lifeMod, mana, manaMod, weaponMult, moveSpeed, moveMod, moveMult, lck, luckMod, MeleeWeaponArray, RangedWeaponArray, ActMelIndex, ActRangIndex, lastWeaponUsed) {
         super(scene, x, y, 'player');
 
         /**RELATIVO A LA ESCENA**/
@@ -31,28 +31,28 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         /**ESTADISTICAS**/
         //CAPADO inferiormente a 1 y superiormente a 20
-        this.initialLife = 10; 
+        //Vida inicial = 10
         this.lifeModifier = lifeMod;
-        this.maxLife = this.initialLife + this.lifeModifier;
-        this.actualLife = (life === 0) ? this.initialLife : life;
+        this.maxLife = 10 + this.lifeModifier;
+        this.actualLife = (life === 0) ? 10 : life;
 
         //CAPADO inferiormente a 10 y superiormente a 1000
         //Cuando no se tiene mana suficiente para hacer el ataque, se hace igual con una potencia proporcional al mana gastado de lo que cuesta el ataque
+        //Mana inicial = 250
         this.manaModifier = manaMod;
-        this.initialMana = 250;
-        this.maxMana = this.initialMana + this.manaModifier;
-        this.actualMana = (mana === 0) ? this.initialMana : mana;
+        this.maxMana = 250 + this.manaModifier;
+        this.actualMana = (mana === 0) ? 250 : mana;
 
         //Modificador de daño de las armas
         this.weaponMultiplier = weaponMult;
 
         //CAPADO, definir caps
-        this.MovSpeedModifier = moveMod;
-        this.MovSpeedMultiplier = moveMult;
-        this.MovSpeed = (100 + this.MovSpeedModifier)*this.MovSpeedMultiplier;
+        this.movSpeedModifier = moveMod;
+        this.movSpeedMultiplier = moveMult;
+        this.movSpeed = (moveSpeed === 0) ? 100 : (moveSpeed + this.movSpeedModifier) * this.movSpeedMultiplier;
 
         this.hiddenLuckModifier = luckMod;
-        this.luck = 5;
+        this.luck = (lck === 0) ? 5 : lck + this.hiddenLuckModifier;
         this.reticle = new Reticle(this.scene, x, y - 30);
 
         /**CONTROLES**/
@@ -133,9 +133,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.shift.on('down', () => {
             if(this.shieldCooldown === 0) {
                 this.canBeDamaged = false;
-                this.scene.time.addEvent({
+                let timer = this.scene.time.addEvent({
                     delay: 3000,
-                    callback: shieldOnCD,
+                    callback: this.scene.player.shieldOnCD,
                     callbackScope: this
                 });
             }
@@ -145,20 +145,18 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.scene.input.mouse.disableContextMenu();
         this.scene.input.on('pointerup', pointer =>  {
             if(pointer.rightButtonReleased()) {
-                if(this.meleeMode) {
-                    this.meleeMode = false;
-                    this.updatedWeapon(this.rangedIndex);
-                }
-                else {
-                    this.meleeMode = true;
-                    this.updatedWeapon(this.meleeIndex);
+                this.meleeMode = false;
+                this.updatedWeapon(this.rangedIndex);
+                if(this.canAttack) {
+                    this.playerAttacks();
                 }
             }
-        });
-
-        this.scene.input.on('pointerdown', () => {
-            if(this.canAttack) {
-                this.playerAttacks();
+            else if(pointer.leftButtonReleased()) {
+                this.meleeMode = true;
+                this.updatedWeapon(this.meleeIndex);
+                if(this.canAttack) {
+                    this.playerAttacks();
+                }
             }
         });
 
@@ -175,7 +173,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.rangedIndex = ActRangIndex;
         this.weaponDelay = 0;
         this.equipedWeapon = lastWeaponUsed;
-
     }
 
     /**
@@ -193,40 +190,63 @@ export default class Player extends Phaser.GameObjects.Sprite {
         }
 
         //MOVIMIENTO DEL JUGADOR
+        //Notas: imprimir la fuerza y que animacion se usa va por separado porque si no produce bugs
         let stopped = true;
         
+        //Parte de imprimir la fuerza
         if(this.a.isDown) {
             this.direction = 'left';
-            this.setFlipX(true);
             stopped=false;
-            this.play('walkRight', true);
-            this.body.setVelocityX(-this.MovSpeed);
+            this.body.setVelocityX(-this.movSpeed);
         }
         else if(this.d.isDown) {
             this.direction = 'right';
             stopped=false;
-            this.setFlipX(false);
-            this.play('walkRight', true);
-            this.body.setVelocityX(this.MovSpeed);
+            this.body.setVelocityX(this.movSpeed);
         }
         
-        if(this.w.isDown){
+        if(this.w.isDown) {
             this.direction = 'up';
             stopped=false;
-            this.play('walkUp', true);
-            this.body.setVelocityY(-this.MovSpeed);
+            this.body.setVelocityY(-this.movSpeed);
         }
         else if(this.s.isDown) {
             this.direction = 'down';
             stopped=false;
+            this.body.setVelocityY(this.movSpeed);
+        }
+
+        //Parte de la animacion
+        if(this.a.isDown || (this.a.isDown && this.w.isDown) || (this.a.isDown && this.s.isDown)) {
+            this.setFlipX(true);
+            this.play('walkRight', true);
+        }
+        else if(this.d.isDown || (this.d.isDown && this.w.isDown) || (this.d.isDown && this.s.isDown)) {
+            this.setFlipX(false);
+            this.play('walkRight', true);
+        }
+        
+        if(this.w.isDown && !(this.a.isDown || this.d.isDown)) {
+            this.play('walkUp', true);
+        }
+        else if(this.s.isDown && !(this.a.isDown || this.d.isDown)) {
             this.play('walkDown', true);
-            this.body.setVelocityY(this.MovSpeed);
         }
 
         if(stopped) {
             this.play('idle', true);
             this.body.setVelocity(0);
         }
+
+        let angleToReticle = Phaser.Math.Angle.Between(this.x, this.y, this.reticle.x, this.reticle.y);
+        let maxRange = 30;
+        let offsetX = Math.cos(angleToReticle) * maxRange;
+        let offsetY = Math.sin(angleToReticle) * maxRange; 
+        let newWepX = this.x + offsetX;
+        let newWepY = this.y + offsetY;
+
+        this.equipedWeapon.setPosition(newWepX, newWepY);
+
     }
 
     playerAttacks() {
@@ -234,13 +254,16 @@ export default class Player extends Phaser.GameObjects.Sprite {
         //this.play();
         //Mientras se hace haces el ataque y luego se destruye el area
         if (this.active === false) { return; }
-        this.equipedWeapon.attack(this.x, this.y, this.direction, this.reticle);
-
         if(this.meleeMode) {
             this.actualMana += this.equipedWeapon.manaRegen();
+            this.equipedWeapon.attack(this.x, this.y, this.direction, this.reticle);
         }
         else {
-            this.actualMana -= this.equipedWeapon.manaCost();
+            if(this.actualMana - this.equipedWeapon.manaCost() >= 0) {
+                this.actualMana -= this.equipedWeapon.manaCost();
+                this.equipedWeapon.attack(this.x, this.y, this.direction, this.reticle);
+            }
+            //falta el else para calcular el daño
         }
 
         hudEvents.emit('updateMana', [this.actualMana, this.maxMana]);
@@ -267,7 +290,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
                     this.setAlpha(1);
                 }
             })
-            hudEvents.emit('updateHealth', [this.actualLife, this.maxLife]);
+            hudEvents.emit('updateHealth', damage);
 
             if(this.life <= 0) {
                 //Animacion de muerte
@@ -299,9 +322,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.shieldCooldown = 1;
         this.canBeDamaged = true;
 
-        this.scene.time.addEvent({
+        let cdShield = this.scene.time.addEvent ({
             delay: 10000,
-            callback: shieldOffCD,
+            callback: this.scene.player.shieldOffCD,
             callbackScope: this
         });
     }

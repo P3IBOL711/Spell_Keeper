@@ -45,13 +45,12 @@ export default class ManaDisplay extends Phaser.GameObjects.Graphics {
 
 
     setMana(mana, manaMax) {
-        if(this.maxMana < 1000) {
-            if(this.maxMana < manaMax) {
-                this.maxMana = manaMax;
+        this.currentMana = mana;
+        if(this.maxMana < 1000 || this.maxMana > 10) {
+            if(this.currentMana > manaMax) {
+                this.maxMana = this.currentMana;
             }
         }
-        // Ajusta el valor de maná
-        this.currentMana = Phaser.Math.Clamp(mana, 10, this.maxMana);
 
         // Vuelve a dibujar la barra de maná con el nuevo valor de maná
         this.draw();

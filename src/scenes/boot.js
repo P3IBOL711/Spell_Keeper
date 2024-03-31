@@ -9,6 +9,9 @@ import dagger from '../../assets/cSprites/11.png'
 import Fireball from '../../assets/cSprites/fireball_spritesheet.png'
 import Lighting from '../../assets/cSprites/LightingEffect.png'
 import font from 'url:../../assets/fonts/VT323Regular.ttf'
+import fullHeart from '../../assets/HUD/ui-heart-full.png'
+import halfHeart from '../../assets/HUD/half-ui-heart.png'
+import emptyHeart from '../../assets/HUD/ui-heart-empty.png'
 
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
@@ -36,6 +39,9 @@ export default class Boot extends Phaser.Scene {
     this.load.image('escenaPrueba', room);
     this.load.image('arrow', arrow);
     this.load.image('dagger', dagger);
+    this.load.image('ui-heart-full', fullHeart);
+    this.load.image('half-ui-heart', halfHeart);
+    this.load.image('ui-heart-empty', emptyHeart);
     this.load.spritesheet('knight_spritesheet', knight, { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('skeleton_spritesheet', skeleton, { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('fireball_spritesheet', Fireball, { frameWidth: 32, frameHeight: 32 });
