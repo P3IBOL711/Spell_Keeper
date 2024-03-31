@@ -16,7 +16,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
      * @param {number} y Coordenada Y
      */
 
-    constructor(scene, x, y, life, lifeMod, mana, manaMod, weaponMult, moveSpeed, moveMod, moveMult, lck, luckMod, MeleeWeaponArray, RangedWeaponArray, ActMelIndex, ActRangIndex, lastWeaponUsed) {
+    constructor(scene, x, y, life, maxinumLife, mana, maxinumMana, weaponMult, moveSpeed, lck, MeleeWeaponArray, RangedWeaponArray, ActMelIndex, ActRangIndex, lastWeaponUsed) {
         super(scene, x, y, 'player');
 
         /**RELATIVO A LA ESCENA**/
@@ -32,27 +32,28 @@ export default class Player extends Phaser.GameObjects.Sprite {
         /**ESTADISTICAS**/
         //CAPADO inferiormente a 1 y superiormente a 20
         //Vida inicial = 10
-        this.lifeModifier = lifeMod;
-        this.maxLife = 10 + this.lifeModifier;
+        this.lifeInferiorCap = 1;
+        this.lifeSuperiorCap = 20;
+        this.maxLife = (maxinumLife === 0) ? 10 : maxinumLife;
         this.actualLife = (life === 0) ? 10 : life;
 
         //CAPADO inferiormente a 10 y superiormente a 1000
         //Cuando no se tiene mana suficiente para hacer el ataque, se hace igual con una potencia proporcional al mana gastado de lo que cuesta el ataque
         //Mana inicial = 250
-        this.manaModifier = manaMod;
-        this.maxMana = 250 + this.manaModifier;
+        this.manaInferiorCap = 10;
+        this.manaSuperiorCap = 1000;
+        this.maxMana = (maxinumMana === 0) ? 250 : maxinumMana;
         this.actualMana = (mana === 0) ? 250 : mana;
 
         //Modificador de daño de las armas
         this.weaponMultiplier = weaponMult;
 
-        //CAPADO, definir caps
-        this.movSpeedModifier = moveMod;
-        this.movSpeedMultiplier = moveMult;
-        this.movSpeed = (moveSpeed === 0) ? 100 : (moveSpeed + this.movSpeedModifier) * this.movSpeedMultiplier;
+        //CAPADO, inferiormente a 30 y superiormente a 200
+        this.movSpeedInferiorCap = 30;
+        this.movSpeedSuperiorCap = 200;
+        this.movSpeed = (moveSpeed === 0) ? 100 : moveSpeed;
 
-        this.hiddenLuckModifier = luckMod;
-        this.luck = (lck === 0) ? 5 : lck + this.hiddenLuckModifier;
+        this.luck = (lck === 0) ? 5 : lck;
         this.reticle = new Reticle(this.scene, x, y - 30);
 
         /**CONTROLES**/
@@ -240,7 +241,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         }
 
         let angleToReticle = Phaser.Math.Angle.Between(this.x, this.y, this.reticle.x, this.reticle.y);
-        let maxRange = 30;
+        let maxRange = 50;
         let offsetX = Math.cos(angleToReticle) * maxRange;
         let offsetY = Math.sin(angleToReticle) * maxRange; 
         let newWepX = this.x + offsetX;
@@ -250,6 +251,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     }
 
+    /**FUNCION PARA QUE EL JUGADOR ATAQUE */
     playerAttacks() {
         //Animacion de ataque
         //this.play();
@@ -294,7 +296,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
                     this.setAlpha(1);
                 }
             })
-            hudEvents.emit('updateHealth', damage);
+            hudEvents.emit('updateHealth', this.actualLife);
 
             if(this.life <= 0) {
                 //Animacion de muerte
@@ -303,6 +305,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         }
     }
 
+    //Relativo a las armas
     updatedWeapon(index) {
         if(this.meleeMode) {
             this.equipedWeapon = this.meeleWeapons[index];
@@ -311,7 +314,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.equipedWeapon = this.rangedWeapons[index];
         }
 
-        hudEvents.emit('updateDisplayedWeapon', this.equipedWeapon);
+        hudEvents.emit('updateDisplayedWeapon', this.equipedWeapon.wName);
     }
 
     takeMeleeWeapon(weapon) {
@@ -322,6 +325,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.rangedWeapons.push(weapon);
     }
 
+    //Relativo al escudo
     shieldOnCD() {
         this.shieldCooldown = 1;
         this.canBeDamaged = true;
@@ -335,5 +339,100 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     shieldOffCD() {
         this.shieldCooldown = 0;
+    }
+
+    //Relativo al cambio de estadisticas
+    /*A la vida*/
+    heal(healthPack) {
+        if(this.actualLife + healthPack < this.maxLife)
+            this.actualLife += healthPack;
+        else
+            this.actualLife = this.maxLife;
+        hudEvents.emit('updateHealth', this.actualLife);
+    }
+
+    increaseHealth(lifePoints) {
+        if(this.maxLife + lifePoints < this.lifeSuperiorCap) {
+            this.maxLife += lifePoints;
+        }
+        else {
+            this.maxLife = this.lifeSuperiorCap;
+        }
+
+        this.actualLife = this.maxLife;
+        hudEvents.emit('updateHealth', this.actualLife);
+    }
+
+    decreaseHealth(lifePoints) {
+        if(this.maxLife - lifePoints > this.lifeInferiorCap) {
+            this.maxLife -= lifePoints;
+        }
+        else {
+            this.maxLife = this.lifeInferiorCap;
+        }
+
+        if(this.actualLife > this.maxLife)
+            this.actualLife = this.maxLife;
+        hudEvents.emit('updateHealth', this.actualLife);
+    }
+
+    /*Al mana*/
+    increaseMana(manaPoints) {
+        if(this.maxMana + manaPoints < this.manaSuperiorCap) {
+            this.maxMana += manaPoints;
+        }
+        else {
+            this.maxMana = this.manaSuperiorCap;
+        }
+        hudEvents.emit('updateMana', [this.actualMana, this.maxMana]);
+    }
+
+    decreaseMana(manaPoints) {
+        if(this.maxMana - manaPoints > this.manaInferiorCap) {
+            this.maxMana -= manaPoints;
+        }
+        else {
+            this.maxMana = this.manaInferiorCap;
+        }
+
+        if(this.actualMana > this.maxMana)
+            this.actualMana = this.maxMana;
+        hudEvents.emit('updateMana', [this.actualMana, this.maxMana]);
+    }
+
+    /*A la velocidad de movimiento*/
+    //Falta que te puedan ralentizar, con un tween deberia bastar
+    increaseMovSpeed(moveModifier) {
+        if(this.movSpeed + moveModifier < this.movSpeedSuperiorCap)
+            this.movSpeed += moveModifier;
+        else
+            this.movSpeed = this.movSpeedSuperiorCap;
+    }
+
+    decreaseMovSpeed(moveModifier) {
+        if(this.movSpeed - moveModifier > this.movSpeedInferiorCap)
+        this.movSpeed -= moveModifier;
+    else
+        this.movSpeed = this.movSpeedInferiorCap;
+    }
+
+    slowed(slowing, totalTime) {
+
+    }
+
+    fastened(speed, totalTime) {
+        
+    }
+
+    changeMoveSpeed(moveMultiplier) {
+        if(this.movSpeed * moveMultiplier < this.movSpeedSuperiorCap)
+            this.movSpeed *= moveMultiplier;
+        else
+            this.movSpeed = this.movSpeedSuperiorCap;
+    }
+
+    /*A la suerte*/
+    increaseLuck(hiddenLuckModifier) {
+        this.luck += hiddenLuckModifier;
     }
 }

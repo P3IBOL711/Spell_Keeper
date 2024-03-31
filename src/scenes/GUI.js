@@ -3,11 +3,11 @@ import Phaser from "phaser";
 import Hud from '../../assets/HUD/HUD.json';
 import healthDisplay from "../HUD/healthDisplay";
 import manaDisplay from "../HUD/manaDisplay";
-import moneyDisplay from "../HUD/moneyDisplay";
 import keysDisplay from "../HUD/keysDisplay";
 import activeDisplay from "../HUD/activeDisplay";
 import weaponDisplay from "../HUD/weapondisplay";
 import basicMelee from "../armas/basicMelee";
+import Uikey from "../../assets/HUD/key_32x32_24f.png"
 
 import { eventManager as hudEvents } from "../eventCenter";
 
@@ -19,6 +19,7 @@ export default class GUI extends Phaser.Scene {
 
     preload() {
         this.load.tilemapTiledJSON('hud', Hud);
+        this.load.spritesheet('key', Uikey, { frameWidth: 32, frameHeight: 32 });
     }
 
     create() {
@@ -39,13 +40,9 @@ export default class GUI extends Phaser.Scene {
                     //Valores inciales del manaInicial y el manaMaximo: 250 y 500
                     this.playerManaBar = new manaDisplay(this, obj.x, obj.y, obj.width, obj.height, 250, 500);
                     break;
-                case 'Money':
-                    //Valor inicial del dinero (puede cambiar): 0
-                    this.playerMoneyInfo = new moneyDisplay(this, obj.x, obj.y, {fontFamily: 'Arial', fontSize: 24, color: '#ffffff'}, 0);
-                    break;
                 case 'Keys':
                     //Valor inicial de las llaves: 0
-                    this.playerKeysInfo = new keysDisplay(this, obj.x, obj.y, {fontFamily: 'Arial', fontSize: 24, color: '#ffffff'});
+                    this.playerKeysInfo = new keysDisplay(this, obj.x, obj.y, 'key', 0);
                     break;
                 case 'Active':
                     //No tienes activo al principio
@@ -53,15 +50,15 @@ export default class GUI extends Phaser.Scene {
                     break;
                 case 'ArmaEquipada':
                     //Arma inicial: basicMelee
-                    this.displayEquipedWeapon = new weaponDisplay(this, obj.x, obj.y, new basicMelee(this, obj.x, obj.y, 10));
+                    this.displayEquipedWeapon = new weaponDisplay(this, obj.x, obj.y, 'dagger');
                     break;
                 default:
                     console.warn('Tipo de objeto no reconocido:', obj.name);
             }
         });
 
-        hudEvents.on('updateHealth', (damage) => {
-            this.playerLifeBar.receiveDamage(damage);
+        hudEvents.on('updateHealth', (playerHealth) => {
+            this.playerLifeBar.updateHealth(playerHealth);
         });
 
         hudEvents.on('updateMana', (playerManaStats) => {

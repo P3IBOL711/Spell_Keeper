@@ -1,25 +1,40 @@
-import Phaser from "phaser";
+import Phaser from 'phaser';
 
-export default class MoneyDisplay extends Phaser.GameObjects.Text {
+export default class KeyDisplay extends Phaser.GameObjects.Group { 
+    constructor(scene, x, y, spriteKey, initialKeys) {
+        super(scene);
 
-    constructor(scene, x, y, font) {
-        super(scene, x, y, '', font)
+        // Crear el sprite de la llave
+        this.keySprite = this.create(x, y, spriteKey);
+        this.keySprite.anims.create({
+            key:'idle',
+            frames: this.keySprite.anims.generateFrameNumbers('key', { start: 0, end: 0 }),
+            frameRate: 10,
+            repeat: -1
+        });
 
-        this.actualKeys = 0;
+        this.keySprite.anims.create({
+            key:'obtainedKey',
+            frames: this.keySprite.anims.generateFrameNumbers('key', { start: 0, end: 23 }),
+            frameRate: 10
+        });
 
-        this.setStyle(font);
+        // Crear el texto de la cantidad de llaves
+        this.keyText = this.scene.add.text(x + 20, y, initialKeys.toString(), { color: '#ffffff' });
+        this.add(this.keyText);
 
-        this.updateText();
-
+        // Agregar el grupo a la escena
         this.scene.add.existing(this);
+
+        this.keySprite.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
+            if(this.keySprite.anims.getName() === 'obtainedKey')
+                this.keySprite.play('idle');
+        });
     }
 
-    updateText() {
-        this.setText('Money: ' + this.actuaKeys);
-    }
-
-    setKeys(amount) {
-        this.actualkeys = amount;
-        this.updateText();
+    // Método para actualizar la cantidad de llaves mostrada en el texto
+    updateKeys(keys) {
+        this.keyText.setText(keys.toString());
+        this.keySprite.play('obtainedKey');
     }
 }

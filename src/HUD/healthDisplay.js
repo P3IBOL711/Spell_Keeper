@@ -36,22 +36,8 @@ export default class HealthDisplay extends Phaser.GameObjects.Group {
         this.updateHearts();
     }
 
-    receiveDamage(damage) {
-        this.currentHealth -= damage;
-
-        if (this.currentHealth < 0) {
-            this.currentHealth = 0;
-        }
-
-        this.updateHearts();
-    }
-
-    heal(healing) {
-        this.currentHealth += healing;
-
-        if (this.currentHealth >= this.maxHealth) {
-            this.currentHealth = this.maxHealth;
-        }
+    updateHealth(newPlayerHealth) {
+        this.currentHealth = newPlayerHealth;
 
         this.updateHearts();
     }

@@ -33,7 +33,7 @@ export default class Bullet extends Projectile {
         if (this.angle >= 45 && this.angle <= 135 || this.angle >= -135 && this.angle <= -45) {
             this.body.setSize(this.width * 0.1, this.height * 0.6, true);
         }
-        else{
+        else {
             this.body.setSize(this.width * 0.6, this.height * 0.1, true);
         }
 
