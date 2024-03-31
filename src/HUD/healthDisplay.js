@@ -12,12 +12,14 @@ export default class HealthDisplay extends Phaser.GameObjects.Group {
 
         this.maxHealth = 20; // 20 de vida como maximo
         this.currentHealth = initialHealth;
+        this.x = x;
+        this.y = y; 
         //Crea todo los corazones y los pone inactivos y no visibles
         this.hearts = this.createMultiple ({
             key: 'ui-heart-full',
             setXY: {
-                x: x,
-                y: y,
+                x: this.x,
+                y: this.y,
                 stepX: 64
             },
             frameQuantity: this.maxHealth / 2, // Cantidad de corazones
@@ -57,20 +59,25 @@ export default class HealthDisplay extends Phaser.GameObjects.Group {
     updateHearts() {
         for(let i = 0; i < this.getLength(); i++) {
             let heart = this.hearts[i];
-            if(i < this.currentHealth / 2) {
+            if(i < this.countActive(true)) { //los que estan activos
                 if(this.currentHealth >= (i + 1) * 2)
-                   heart.setTexture('ui-heart-full');
-                else if(this.currentHealth === (i + 1) * 2 - 1)
-                   heart.setTexture('half-ui-heart');
+                    heart.setTexture('ui-heart-full');
+                else if(this.currentHealth % 2 === 1 && Math.floor(this.currentHealth / 2) === i)
+                    heart.setTexture('half-ui-heart');
                 else
-                   heart.setTexture('ui-heart-empty');
-                if(!heart.active) {
-                    heart.setScale(3);
+                    heart.setTexture('ui-heart-empty');
+            }
+            else { //No estan activos
+                if(this.currentHealth >= (i + 1) * 2) {
                     heart.setActive(true).setVisible(true);
                 }
-            }
-            else {
-                heart.setActive(false).setVisible(false);
+                else if(this.currentHealth === ((i + 1) * 2) - 1) {
+                    heart.setActive(true).setVisible(true);
+                    heart.setTexture('half-ui-heart');
+                }
+                else {
+                    heart.setActive(false).setVisible(false);
+                }
             }
         }
     }

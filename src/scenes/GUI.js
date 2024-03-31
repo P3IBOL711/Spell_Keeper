@@ -64,8 +64,8 @@ export default class GUI extends Phaser.Scene {
             this.playerLifeBar.receiveDamage(damage);
         });
 
-        hudEvents.on('updateMana', (playerActualMana, playerMaxMana) => {
-            this.playerManaBar.setMana(playerActualMana, playerMaxMana);
+        hudEvents.on('updateMana', (playerManaStats) => {
+            this.playerManaBar.setMana(playerManaStats[0], playerManaStats[1]);
         });
 
         hudEvents.on('updateDisplayedWeapon', (newWeapon) => {

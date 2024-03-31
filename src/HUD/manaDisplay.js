@@ -33,10 +33,10 @@ export default class ManaDisplay extends Phaser.GameObjects.Graphics {
 
         // Añadimos un borde a la barra de vida
         this.lineStyle(2, 0x000000); // Borde negro
-        this.strokeRect(this.x, this.y, this.width, this.height);
+        this.strokeRect(0, 0, this.width, this.height);
 
         // Calcula el ancho de la barra de maná según el maná actual
-        const manaWidth = (this.currentMana / this.maxMana) * this.width;
+        let manaWidth = (this.currentMana === this.maxMana) ? this.width : (this.currentMana / this.maxMana) * this.width;
 
         // Dibuja la barra de maná
         this.fillStyle(0x6495ED); //Azul
@@ -47,7 +47,7 @@ export default class ManaDisplay extends Phaser.GameObjects.Graphics {
     setMana(mana, manaMax) {
         this.currentMana = mana;
         if(this.maxMana < 1000 || this.maxMana > 10) {
-            if(this.currentMana > manaMax) {
+            if(this.currentMana >= manaMax) {
                 this.maxMana = this.currentMana;
             }
         }

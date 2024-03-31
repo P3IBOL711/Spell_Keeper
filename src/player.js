@@ -186,6 +186,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         
         this.weaponDelay += dt;
         if(this.weaponDelay >= this.equipedWeapon.delay) {
+            this.weaponDelay = 0;
             this.canAttack = true;
         }
 
@@ -255,7 +256,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
         //Mientras se hace haces el ataque y luego se destruye el area
         if (this.active === false) { return; }
         if(this.meleeMode) {
-            this.actualMana += this.equipedWeapon.manaRegen();
+            if(this.actualMana + this.equipedWeapon.manaRegen() >= this.maxMana)
+                this.actualMana = this.maxMana;
+            else 
+                this.actualMana += this.equipedWeapon.manaRegen();
             this.equipedWeapon.attack(this.x, this.y, this.direction, this.reticle);
         }
         else {
