@@ -325,6 +325,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.equipedWeapon = this.rangedWeapons[index];
         }
 
+        this.weaponDelay = 0;
         hudEvents.emit('updateDisplayedWeapon', this.equipedWeapon.wName);
     }
 

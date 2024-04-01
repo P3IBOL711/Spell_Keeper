@@ -17,6 +17,8 @@ export default class basicMelee extends arma {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.delay = 1100;
+        this.hasAttacked = false;
+        this.timeOnField = 0;
 
         this.setActive(true);
         this.setVisible(true);
@@ -24,6 +26,14 @@ export default class basicMelee extends arma {
 
     preUpdate(t, dt) {
         super.preUpdate(t, dt)
+        if(this.hasAttacked) {
+            this.timeOnField += dt;
+            if(this.timeOnField >= 250) {
+                this.hasAttacked = false;
+                this.timeOnField = 0;
+                this.attackFinished();
+            }
+        }
     }
 
     isMelee() {
@@ -32,21 +42,24 @@ export default class basicMelee extends arma {
 
 
     attack(x, y, direction, target) {
-        let attackHitbox;
+        this.hasAttacked = true;
         if(direction === 'left') {
-            attackHitbox = new PlayerHitBox(this.scene, x - 30, y, 64, 64, 1);
+            this.attackHitbox = new PlayerHitBox(this.scene, x - 30, y, 64, 64, 1);
         }
         else if(direction === 'right') {
-            attackHitbox = new PlayerHitBox(this.scene, x + 30, y, 64, 64, 1);
+            this.attackHitbox = new PlayerHitBox(this.scene, x + 30, y, 64, 64, 1);
         }
         else if(direction === 'up') {
-            attackHitbox = new PlayerHitBox(this.scene, x, y - 30, 64, 64, 1);
+            this.attackHitbox = new PlayerHitBox(this.scene, x, y - 30, 64, 64, 1);
         }
         else if(direction === 'down') {
-            attackHitbox = new PlayerHitBox(this.scene, x, y + 30, 64, 64, 1);
+            this.attackHitbox = new PlayerHitBox(this.scene, x, y + 30, 64, 64, 1);
         }
+    }
 
-        //attackHitbox.destroy();
+    attackFinished() {
+        if(this.attackHitbox)
+            this.attackHitbox.destroy();
     }
 
     manaRegen() {
