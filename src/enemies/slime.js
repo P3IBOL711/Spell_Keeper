@@ -1,11 +1,12 @@
 import Phaser from 'phaser'
 import HitBox from '../hitbox';
 import MeleeEnemy from './meleeEnemy';
+import childSlime from './childSlime';
 
 /**
  * Clase que representa un enemigo del juego.
  */
-export default class Knight extends MeleeEnemy {
+export default class Slime extends MeleeEnemy {
 
     /**
      * Constructor del jugador
@@ -15,43 +16,52 @@ export default class Knight extends MeleeEnemy {
     */
 
     constructor(scene, x, y, target) {
-        super(scene, x, y, target, 'knight', 1500);
+        super(scene, x, y, target, 'slime', 1500);
 
 
         this.anims.create({
             key: 'walking',
-            frames: this.anims.generateFrameNumbers('knight_spritesheet', { start: 0, end: 7 }),
-            frameRate: 10,
+            frames: this.anims.generateFrameNumbers('slimeSpritesheet', { start: 0, end: 3 }),
+            frameRate: 8,
             repeat: -1
         });
 
         this.anims.create({
             key: 'attack',
-            frames: this.anims.generateFrameNumbers('knight_spritesheet', { start: 8, end: 10 }),
-            frameRate: 10,
+            frames: this.anims.generateFrameNumbers('slimeSpritesheet', { start: 4, end: 8 }),
+            frameRate: 8,
             repeat: 0
         });
 
         this.anims.create({
             key: 'die',
-            frames: this.anims.generateFrameNumbers('knight_spritesheet', { start: 16, end: 20 }),
-            frameRate: 5,
+            frames: this.anims.generateFrameNumbers('slimeSpritesheet', { start: 9, end: 12 }),
+            frameRate: 6,
             repeat: 0
         });
 
-       // this.setScale(3);
+        this.setScale(3);
 
-        this.speed = 40;
+        this.speed = 30;
 
         this.life = 5;
 
         this.damage = 1;
 
-        this.body.setSize(this.width * 0.4, this.height * 0.85, true);
+        this.body.setSize(this.width * 0.48, this.height * 0.38, true);
     }
 
     spawnHitbox(){
-        this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -65 : 65), this.y - 10, 60, 120, this.target, this.damage);
+        this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -45 : 45), this.y - 10, 40, 60, this.target, this.damage);
+    }
+
+    receiveDamage(damage){
+        super.receiveDamage(damage);
+        if (this.life <= 0){
+            new childSlime(this.scene, this.x + 60, this.y, this.target);
+            new childSlime(this.scene, this.x + 30, this.y + 20, this.target);
+            new childSlime(this.scene, this.x - 60, this.y, this.target);
+        }
     }
 
     /**
@@ -66,7 +76,7 @@ export default class Knight extends MeleeEnemy {
         super.preUpdate(t, dt);
         // Preguntar si podría ser mas eficiente
         if (this.life > 0) {
-            this.body.setOffset(this.width * (this.flipX ? 0.38 : 0.40), this.height * 0.26);
+            this.body.setOffset(this.width * (this.flipX ? 0.28 : 0.28), this.height * 0.28);
         }
     }
 

@@ -31,7 +31,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         /****ESTADISTICAS****/
         //CAPADO inferiormente a 1 y superiormente a 10, cada numero son 2 golpes
         this.lifeModifier = lifeMod;
-        this.life = 3 + this.lifeModifier;
+        this.life = 9999 + this.lifeModifier;
 
         //CAPADO inferiormente a 10 y superiormente a 1000
         //Cuando no se tiene mana suficiente para hacer el ataque, se hace igual con una potencia proporcional al mana gastado de lo que cuesta el ataque

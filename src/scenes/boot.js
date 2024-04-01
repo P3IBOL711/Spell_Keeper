@@ -3,10 +3,18 @@ import player from '../../assets/cSprites/characters/Mage_Walking.png'
 import knight from '../../assets/armory/sprites/knight/knight_spritesheet.png'
 import skeleton from '../../assets/armory/sprites/skeleton/skeleton_spritesheet.png'
 import PoisonousGoblin from '../../assets/gardens/sprites/goblin/poisonous_goblin_spritesheet.png'
+import CarnivorousPlant from '../../assets/gardens/sprites/carnivorous_plant/carnivorous_plant_spritesheet.png'
+import MagicSkeleton from '../../assets/library/sprites/skeleton/skeleton_3_spritesheet.png'
+import StandardSkeleton from '../../assets/library/sprites/skeleton/skeleton_1_spritesheet.png'
+import LavaGolem from '../../assets/throne_room/sprites/lava_golem/golem_spritesheet.png'
+import Slime from '../../assets/gardens/sprites/slime/slime_spritesheet.png'
+import Book from '../../assets/library/sprites/book/book_spritesheet_1.png'
 import room from '../../assets/armory/sprites/Hab_Prueba.png'
 import arrow from '../../assets/armory/sprites/arrow/arrow.png'
 import Fireball from '../../assets/cSprites/fireball_spritesheet.png'
 import Lighting from '../../assets/cSprites/LightingEffect.png'
+import PurpleMagicBall from '../../assets/cSprites/purple_magic_ball_spritesheet.png'
+import GreenPoisonBall from '../../assets/cSprites/green_poison_spritesheet.png'
 import font from 'url:../../assets/fonts/VT323Regular.ttf'
 import chest from '../../assets/armory/sprites/chests.png'
 
@@ -40,7 +48,15 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('fireball_spritesheet', Fireball, { frameWidth: 32, frameHeight: 32 });
     this.load.spritesheet('chest',chest,{frameWidth: 32, frameHeight:32})
     this.load.spritesheet('lighting_spritesheet', Lighting, { frameWidth: 64, frameHeight:64 });
-    this.load.spritesheet('poisonousGoblinSpritesheet', PoisonousGoblin, { frameWidth: 64, frameHeight: 64 })
+    this.load.spritesheet('poisonousGoblinSpritesheet', PoisonousGoblin, { frameWidth: 64, frameHeight: 64 });
+    this.load.spritesheet('carnivorousPlantSpritesheet', CarnivorousPlant, { frameWidth: 128, frameHeight: 128 });
+    this.load.spritesheet('magicSkeletonSpritesheet', MagicSkeleton, { frameWidth: 64, frameHeight: 64 });
+    this.load.spritesheet('lavaGolemSpritesheet', LavaGolem, { frameWidth: 32, frameHeight: 32 })
+    this.load.spritesheet('slimeSpritesheet', Slime, { frameWidth: 32, frameHeight: 32 })
+    this.load.spritesheet('bookSpritesheet', Book, {frameWidth: 64, frameHeight: 64})
+    this.load.spritesheet('standardSkeletonSpritesheet', StandardSkeleton, { frameWidth: 72, frameHeight: 72 });
+    this.load.spritesheet('purpleMagicBallSpritesheet', PurpleMagicBall, { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('greenPoisonBallSpritesheet', GreenPoisonBall, { frameWidth: 32, frameHeight: 32 });
 
     // Background
     let background = this.add.graphics();

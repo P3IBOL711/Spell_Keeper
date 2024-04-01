@@ -12,8 +12,8 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      */
-    constructor(scene, x, y, target) {
-        super(scene, x, y, 'enemy');
+    constructor(scene, x, y, target, image) {
+        super(scene, x, y, image);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.scene.enemies.add(this)
@@ -29,14 +29,14 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         
         this.target = target;
 
-        this.setDepth(6)
+        // is enemy attacking?
+        this.attacking = false;
 
         this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
             if (this.anims.getName() === 'die'){
                 this.doSomethingVerySpecificBecauseYoureMyBelovedChild()
                 this.scene.enemies.remove(this);
                 this.destroy();
-
             }
         });
     }
@@ -72,7 +72,6 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
             this.play('die', true);
         }
     }
-
     /**
      * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
      * Como se puede ver, no se tratan las colisiones con las estrellas, ya que estas colisiones 
@@ -84,12 +83,11 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         // no se podrá ejecutar la animación del sprite. 
         super.preUpdate(t, dt);
         if (this.life > 0){
-            this.setFlipX(this.body.velocity.x < 0 || this.target.x < this.x);
+            this.flipEnemy()
         }
     }
 
-    isProjectile(){
-        return false;
+    flipEnemy(){
+        this.setFlipX(this.body.velocity.x < 0 || this.target.x < this.x);
     }
-
 }

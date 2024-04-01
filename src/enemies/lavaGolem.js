@@ -1,11 +1,11 @@
 import Phaser from 'phaser'
-import DistanceEnemy from './distanceEnemy';
-import Arrow from '../projectiles/arrow';
+import HitBox from '../hitbox';
+import MeleeEnemy from './meleeEnemy';
 
 /**
  * Clase que representa un enemigo del juego.
  */
-export default class Skeleton extends DistanceEnemy {
+export default class LavaGolem extends MeleeEnemy {
 
     /**
      * Constructor del jugador
@@ -15,49 +15,50 @@ export default class Skeleton extends DistanceEnemy {
     */
 
     constructor(scene, x, y, target) {
-        super(scene, x, y, target, 'skeleton', 1000);
-        
+        super(scene, x, y, target, 'lavaGolem', 1500);
+
         this.anims.create({
             key: 'idle',
-            frames: this.anims.generateFrameNumbers('skeleton_spritesheet', { start: 8, end: 8 }),
+            frames: this.anims.generateFrameNumbers('lavaGolemSpritesheet', { start: 8, end: 11 }),
             frameRate: 10,
             repeat: -1
-        });
+        })
 
         this.anims.create({
             key: 'walking',
-            frames: this.anims.generateFrameNumbers('skeleton_spritesheet', { start: 0, end: 7 }),
+            frames: this.anims.generateFrameNumbers('lavaGolemSpritesheet', { start: 0, end: 7 }),
             frameRate: 10,
             repeat: -1
         });
 
         this.anims.create({
             key: 'attack',
-            frames: this.anims.generateFrameNumbers('skeleton_spritesheet', { start: 8, end: 10 }),
-            frameRate: 7,
+            frames: this.anims.generateFrameNumbers('lavaGolemSpritesheet', { start: 16, end: 23 }),
+            frameRate: 10,
             repeat: 0
         });
 
         this.anims.create({
             key: 'die',
-            frames: this.anims.generateFrameNumbers('skeleton_spritesheet', { start: 16, end: 20 }),
+            frames: this.anims.generateFrameNumbers('lavaGolemSpritesheet', { start: 24, end: 29 }),
             frameRate: 5,
             repeat: 0
         });
 
-        this.setScale(3);
+        this.setScale(4.5);
 
-        this.speed = 20;
+        this.speed = 50;
 
         this.life = 5;
 
-        this.body.setSize(this.width * 0.45, this.height * 0.85, true);
+        this.damage = 1;
+
+        this.body.setSize(this.width * 0.5, this.height * 0.93, true);
     }
 
-    spawnProjectile(){
-        new Arrow(this.scene, this.x, this.y, this.target, false, this.damage);
+    spawnHitbox(){
+        this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? 55 : -55), this.y - 10, 55, 120, this.target, this.damage);
     }
-
     /**
      * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
      * Como se puede ver, no se tratan las colisiones con las estrellas, ya que estas colisiones 
@@ -68,9 +69,13 @@ export default class Skeleton extends DistanceEnemy {
         // IMPORTANTE: Si no ponemos esta instrucción y el sprite está animado
         // no se podrá ejecutar la animación del sprite. 
         super.preUpdate(t, dt);
-        if (this.life > 0){
-            this.body.setOffset(this.width * (this.flipX ? 0.38 : 0.4), this.height * 0.32); 
+        // Preguntar si podría ser mas eficiente
+        if (this.life > 0) {
+            this.body.setOffset(this.width * (this.flipX ? 0.3 : 0.25), this.height * 0.08);
         }
     }
 
+    flipEnemy(){
+        this.setFlipX(this.body.velocity.x > 0 || this.target.x > this.x);
+    }
 }

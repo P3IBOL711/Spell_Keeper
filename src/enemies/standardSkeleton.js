@@ -1,11 +1,11 @@
 import Phaser from 'phaser'
-import DistanceEnemy from './distanceEnemy';
-import Arrow from '../projectiles/arrow';
+import HitBox from '../hitbox';
+import MeleeEnemy from './meleeEnemy';
 
 /**
  * Clase que representa un enemigo del juego.
  */
-export default class Skeleton extends DistanceEnemy {
+export default class StandardSkeleton extends MeleeEnemy {
 
     /**
      * Constructor del jugador
@@ -15,47 +15,42 @@ export default class Skeleton extends DistanceEnemy {
     */
 
     constructor(scene, x, y, target) {
-        super(scene, x, y, target, 'skeleton', 1000);
-        
-        this.anims.create({
-            key: 'idle',
-            frames: this.anims.generateFrameNumbers('skeleton_spritesheet', { start: 8, end: 8 }),
-            frameRate: 10,
-            repeat: -1
-        });
+        super(scene, x, y, target, 'standardSkeleton', 1500);
 
         this.anims.create({
             key: 'walking',
-            frames: this.anims.generateFrameNumbers('skeleton_spritesheet', { start: 0, end: 7 }),
+            frames: this.anims.generateFrameNumbers('standardSkeletonSpritesheet', { start: 0, end: 7 }),
             frameRate: 10,
             repeat: -1
         });
 
         this.anims.create({
             key: 'attack',
-            frames: this.anims.generateFrameNumbers('skeleton_spritesheet', { start: 8, end: 10 }),
+            frames: this.anims.generateFrameNumbers('standardSkeletonSpritesheet', { start: 8, end: 10 }),
             frameRate: 7,
             repeat: 0
         });
 
         this.anims.create({
             key: 'die',
-            frames: this.anims.generateFrameNumbers('skeleton_spritesheet', { start: 16, end: 20 }),
+            frames: this.anims.generateFrameNumbers('standardSkeletonSpritesheet', { start: 16, end: 20 }),
             frameRate: 5,
             repeat: 0
         });
 
         this.setScale(3);
 
-        this.speed = 20;
+        this.speed = 40;
 
         this.life = 5;
 
-        this.body.setSize(this.width * 0.45, this.height * 0.85, true);
+        this.damage = 1;
+
+        this.body.setSize(this.width * 0.4, this.height * 0.85, true);
     }
 
-    spawnProjectile(){
-        new Arrow(this.scene, this.x, this.y, this.target, false, this.damage);
+    spawnHitbox(){
+        this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -65 : 65), this.y - 10, 60, 120, this.target, this.damage);
     }
 
     /**
@@ -68,8 +63,9 @@ export default class Skeleton extends DistanceEnemy {
         // IMPORTANTE: Si no ponemos esta instrucción y el sprite está animado
         // no se podrá ejecutar la animación del sprite. 
         super.preUpdate(t, dt);
-        if (this.life > 0){
-            this.body.setOffset(this.width * (this.flipX ? 0.38 : 0.4), this.height * 0.32); 
+        // Preguntar si podría ser mas eficiente
+        if (this.life > 0) {
+            this.body.setOffset(this.width * (this.flipX ? 0.4 : 0.42), this.height * 0.34);
         }
     }
 
