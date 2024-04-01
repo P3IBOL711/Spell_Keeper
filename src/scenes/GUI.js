@@ -5,7 +5,7 @@ import healthDisplay from "../HUD/healthDisplay";
 import manaDisplay from "../HUD/manaDisplay";
 import keysDisplay from "../HUD/keysDisplay";
 import activeDisplay from "../HUD/activeDisplay";
-import weaponDisplay from "../HUD/weapondisplay";
+import weaponDisplay from "../HUD/weaponDisplay";
 import basicMelee from "../armas/basicMelee";
 import Uikey from "../../assets/HUD/key_32x32_24f.png"
 
