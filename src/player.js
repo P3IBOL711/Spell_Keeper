@@ -1,5 +1,4 @@
 import Phaser from 'phaser';
-
 import Reticle from './reticle.js';
 import { eventManager as hudEvents } from './eventCenter.js';
 

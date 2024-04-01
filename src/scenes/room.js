@@ -86,7 +86,7 @@ export default class Room extends Phaser.Scene {
 
 
     create() {
-
+        this.scene.launch('gui');
         if (this.dungeon[this.y][this.x].visited === false)
             this.dungeon[this.y][this.x].visited = true
         else{
@@ -136,8 +136,8 @@ export default class Room extends Phaser.Scene {
 
         this.enviromental = this.add.group()
 
-
-        this.player = new Player(this, playerX, playerY, 0, 0, 1, 0, 1, 0, [new basicMelee(this, playerX, playerY, 1)], [new basicRanged(this, playerX, playerY, 1), new FireStaff(this, playerX, playerY, 10)], 0, 0);
+        let defaultWeapon = new basicMelee(this, playerX, playerY, 1);
+        this.player = new Player(this, playerX, playerY, 0, 0, 0, 0, 1, 0, 0, [defaultWeapon], [new basicRanged(this, playerX, playerY, 1), new FireStaff(this, playerX, playerY, 10)], 0, 0, defaultWeapon);
         this.physics.add.collider(this.player, walls)
         this.physics.add.collider(this.player, cObjects)
         this.player.setDepth(6);
@@ -151,13 +151,6 @@ export default class Room extends Phaser.Scene {
         this.cameras.main.setZoom(3);
         this.cameras.main.setBounds(0, 0, 1024, 512)
         this.cameras.main.startFollow(this.player)
-
-
-
-
-
-
-
     }
 
     loadObjects() {

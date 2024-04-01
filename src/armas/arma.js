@@ -40,25 +40,23 @@ export default class arma extends Phaser.GameObjects.Sprite {
 //                }
 //            });
 //        }
-        let playerX = this.scene.player.x;
-        let playerY = this.scene.player.y;
-
-        // Rotar el arma alrededor del jugador con una distancia fija y un ángulo de 60 grados
-        Phaser.Actions.RotateAroundDistance([this], { x: playerX, y: playerY }, Phaser.Math.DegToRad(60), 50);
-
-        // Si el ángulo de rotación es mayor o igual a 60 grados, restaurar la posición inicial
-        if (this.angle >= 60) {
-            Phaser.Actions.RotateAroundDistance([this], { x: playerX, y: playerY }, Phaser.Math.DegToRad(-60), 50);
-        }
+/********************************** */
+//        let playerX = this.scene.player.x;
+//        let playerY = this.scene.player.y;
+//
+//        // Rotar el arma alrededor del jugador con una distancia fija y un ángulo de 60 grados
+//        Phaser.Actions.RotateAroundDistance([this], { x: playerX, y: playerY }, Phaser.Math.DegToRad(60), 50);
+//
+//        // Si el ángulo de rotación es mayor o igual a 60 grados, restaurar la posición inicial
+//        if (this.angle >= 60) {
+//            Phaser.Actions.RotateAroundDistance([this], { x: playerX, y: playerY }, Phaser.Math.DegToRad(-60), 50);
+//        }
     }
 
     modifiedDmg(weaponMultiplier) {
         this.wDmg = this.wDmg * weaponMultiplier;
     }
 
-    rotateWeapon() {
-
-    }
 
     playIdle(){}
     isMelee(){}
