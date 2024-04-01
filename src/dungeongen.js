@@ -621,7 +621,7 @@ export default class Dungeongen {
 
 
     checkForValidity() {
-        return this.thereIsExit && this.thereIsShop;
+        return this.thereIsExit //&& this.thereIsShop;
     }
 
     fillRoomArray(floor) {
@@ -654,14 +654,14 @@ export default class Dungeongen {
             this.specialRoomArray.push(x2);
             this.specialRoomArray.push(x3);
             this.specialRoomArray.push(x4);
-            this.specialRoomArray.push(sh1);
+           /* this.specialRoomArray.push(sh1);
             this.specialRoomArray.push(sh2);
             this.specialRoomArray.push(sh3);
             this.specialRoomArray.push(sh4);
             this.specialRoomArray.push(sh5);
             this.specialRoomArray.push(sh6);
             this.specialRoomArray.push(sh7);
-            this.specialRoomArray.push(sh8);
+            this.specialRoomArray.push(sh8);*/
         }
     }
 

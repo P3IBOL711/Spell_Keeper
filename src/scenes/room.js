@@ -1,6 +1,8 @@
 
-import b from '../../assets/armory/tiles/Base.png'
-import w from '../../assets/armory/tiles/Weapons.png'
+import arb from '../../assets/armory/tiles/Base.png'
+import arw from '../../assets/armory/tiles/Weapons.png'
+import lbb from '../../assets/library/tiles/Base.png'
+import lbw from '../../assets/library/tiles/Weapons.png'
 import f from '../../assets/misc/fire.png'
 
 import Player from '../player.js'
@@ -21,7 +23,7 @@ export default class Room extends Phaser.Scene {
 
     constructor(obj) {
         super({ key: obj.key });
-       
+
         this.x = 0;
         this.y = 0;
         this.loadScene = this.loadScene.bind(this);
@@ -31,12 +33,12 @@ export default class Room extends Phaser.Scene {
         this.wSpawn = { x: 0, y: 0 };
         this.cSpawn = { x: 0, y: 0 };
         this.level = obj.level
-        
-      
+
+
     }
 
     init(obj) {
-      
+
         this.key = obj.key
         this.x = obj.X;
         this.y = obj.Y;
@@ -52,10 +54,15 @@ export default class Room extends Phaser.Scene {
 
 
     preload() {
-        this.load.image('Base', b)
-        this.load.image('Weapons', w)
-        this.load.image('fire',f)
-     
+        if (this.level === 'ar') {
+            this.load.image('Base', arb)
+            this.load.image('Weapons', arw)
+        } else {
+            this.load.image('Base', lbb)
+            this.load.image('Weapons', lbw)
+        }
+        this.load.image('fire', f)
+
     }
 
 
@@ -78,9 +85,9 @@ export default class Room extends Phaser.Scene {
         // console.log(level + dungeon[y][x].name)
         this.map.removeAllLayers()
         this.map.destroy()
-        
+
         this.unloadScene(this.key)
-        this.scene.start(level + dungeon[y][x].name, { X: x, Y: y, dg: dungeon, dir: direction,SSM:this.saveStateMatrix });
+        this.scene.start(level + dungeon[y][x].name, { X: x, Y: y, dg: dungeon, dir: direction, SSM: this.saveStateMatrix });
     }
 
 
@@ -89,7 +96,7 @@ export default class Room extends Phaser.Scene {
 
         if (this.dungeon[this.y][this.x].visited === false)
             this.dungeon[this.y][this.x].visited = true
-        else{
+        else {
             this.loadSceneState()
         }
 
@@ -188,28 +195,28 @@ export default class Room extends Phaser.Scene {
                     new EnemySpawner(this, objeto.x, objeto.y, this.player)
                     this.numberOfEnemies++
                 }
-            }else if(objeto.type === 'Fire'){
-                if(this.numberOfEnemies !== -1)
-                this.fireArray.push(new Fire(this,objeto.x + objeto.width / 2, (objeto.y + objeto.height / 2)-32 , objeto.width, objeto.height))
-            }else  if(objeto.type === 'Chest'){
-                new Chest(this,objeto.x+ objeto.width / 2,objeto.y- objeto.height / 2,objeto.width,objeto.height,this.player,this.chestOpened)
+            } else if (objeto.type === 'Fire') {
+                if (this.numberOfEnemies !== -1)
+                    this.fireArray.push(new Fire(this, objeto.x + objeto.width / 2, (objeto.y + objeto.height / 2) - 32, objeto.width, objeto.height))
+            } else if (objeto.type === 'Chest') {
+                new Chest(this, objeto.x + objeto.width / 2, objeto.y - objeto.height / 2, objeto.width, objeto.height, this.player, this.chestOpened)
             }
         }
     }
 
     enemyHasDied() {
         this.numberOfEnemies--;
-        if (this.numberOfEnemies <= 0){
+        if (this.numberOfEnemies <= 0) {
             this.numberOfEnemies = -1; //Habitacion limpia
 
-            for(let fire of this.fireArray){
+            for (let fire of this.fireArray) {
                 fire.destroySprite();
                 fire.destroy();
             }
         }
     }
 
-    chestWasOpened(){
+    chestWasOpened() {
         this.chestOpened = true;
     }
 
