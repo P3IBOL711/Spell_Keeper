@@ -9,7 +9,7 @@ import basicMelee from '../armas/basicMelee.js';
 import FireStaff from '../armas/fireStaff.js';
 import Trigger from '../trigger.js';
 import CollisionHitbox from '../collisionHitbox.js';
-import EnemySpawner from '../EnemySpawner.js';
+import EnemySpawner from '../enemySpawner.js';
 import Fire from '../fire.js'
 import Chest from '../chest.js';
 
