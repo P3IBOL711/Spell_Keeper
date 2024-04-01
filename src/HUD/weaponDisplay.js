@@ -2,7 +2,7 @@ import Phaser from "phaser";
 
 export default class weaponDisplay extends Phaser.GameObjects.Sprite {
     /**
-        * Constructor del jugador
+        * Constructor
         * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
         * @param {number} x Coordenada X
         * @param {number} y Coordenada Y
@@ -12,17 +12,15 @@ export default class weaponDisplay extends Phaser.GameObjects.Sprite {
         this.setScale(7);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.showedWeapon = initialWeaponName; // Inicialmente mostramos este arma
+        this.showedWeapon = initialWeaponName;
     }
 
     updateDisplay(newWeaponName) {
-        // Cambiar la textura del sprite del arma
-        this.setTexture(newWeaponName);
         this.showedWeapon = newWeaponName;
+        this.setTexture(this.showedWeapon);
     }
 
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-        // Reproducir animación de inactividad
     }
 }

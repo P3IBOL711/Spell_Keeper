@@ -248,7 +248,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
         let newWepY = this.y + offsetY;
 
         this.equipedWeapon.setPosition(newWepX, newWepY);
-
     }
 
     /**FUNCION PARA QUE EL JUGADOR ATAQUE */
@@ -296,6 +295,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
                     this.setAlpha(1);
                 }
             })
+            
             hudEvents.emit('updateHealth', this.actualLife);
 
             if(this.life <= 0) {
@@ -417,11 +417,27 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     slowed(slowing, totalTime) {
-
+        let initialMovSpeed = this.movSpeed;
+        this.scene.tweens.add({
+            targets: this,
+            movSpeed: initialMovSpeed - slowing, 
+            duration: totalTime, 
+            onComplete: () => {
+                this.movSpeed = initialMovSpeed;
+            }
+        });
     }
 
     fastened(speed, totalTime) {
-        
+        let initialMovSpeed = this.movSpeed;
+        this.scene.tweens.add({
+            targets: this,
+            movSpeed: initialMovSpeed + speed, 
+            duration: totalTime, 
+            onComplete: () => {
+                this.movSpeed = initialMovSpeed;
+            }
+        });
     }
 
     changeMoveSpeed(moveMultiplier) {

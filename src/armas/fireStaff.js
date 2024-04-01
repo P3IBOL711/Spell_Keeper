@@ -12,6 +12,8 @@ export default class FireStaff extends arma {
      */
     constructor(scene, x, y, damage) {
         super(scene, x, y, 'fireStaff', damage)
+        this.scene.add.existing(this);
+        this.scene.physics.add.existing(this);
         this.delay = 1500;
 
         //Intorducir logica de los sprites
