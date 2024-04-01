@@ -67,7 +67,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('rightClick', rightClick);
     this.load.image('titleDecoration', TitleDecoration)
 
-    this.load.image('arrow', arrow);
+    this.load.spritesheet('arrow', arrow,{frameWidth: 32, frameHeight: 32});
     this.load.image('dagger', dagger);
     this.load.image('ui-heart-full', fullHeart);
     this.load.image('half-ui-heart', halfHeart);

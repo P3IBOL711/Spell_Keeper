@@ -25,6 +25,8 @@ export default class Chest extends Phaser.GameObjects.Sprite {
         this.body.setImmovable(true)
         this.body.setSize(this.width * 2, this.height * 2, true);
 
+        this.jug = player
+
         this.hb = new CollisionHitbox(scene, x, y, width, height)
         // Variable para rastrear la superposición
         this.isOverlapping = false;
@@ -32,7 +34,7 @@ export default class Chest extends Phaser.GameObjects.Sprite {
         this.open = opened;
 
         this.setDepth(7)
-
+        this.scene = scene
 
         this.anims.create({
             key: 'idle_chest',
@@ -68,26 +70,28 @@ export default class Chest extends Phaser.GameObjects.Sprite {
         });
 
 
-        scene.events.on('update', () => {
-            if (!this.checkOverlap(this.getBounds(), player.getBounds())) {
-                // exitCallback();
-                // console.log("Salgo")
-                this.isOverlapping = false; // Establecer como falso cuando no hay superposición
-                if (!this.open)
-                    this.anims.play('idle_chest');
+
+    }
+
+    preUpdate(t,dt){
+        super.preUpdate(t,dt)
+
+        if (!this.checkOverlap(this.getBounds(), this.jug.getBounds())) {
+            // exitCallback();
+            // console.log("Salgo")
+            this.isOverlapping = false; // Establecer como falso cuando no hay superposición
+            if (!this.open)
+                this.anims.play('idle_chest');
+
+        }
+
+        if (this.isOverlapping && !this.open) {
+            if (this.jug.getIsFPressed()) {
+                this.open = true;
+                this.scene.chestWasOpened();
+                this.anims.play('open_chest');
             }
-
-            if (this.isOverlapping && !this.open) {
-                if (player.getIsFPressed()) {
-                    this.open = true;
-                    this.scene.chestWasOpened();
-                    this.anims.play('open_chest');
-                }
-            }
-        });
-
-
-
+        }
     }
 
 

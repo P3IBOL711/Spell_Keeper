@@ -1,12 +1,12 @@
 import Phaser from "phaser";
 
 export default class arma extends Phaser.GameObjects.Sprite {
- /**
-     * Constructor del jugador
-     * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
-     * @param {number} x Coordenada X
-     * @param {number} y Coordenada Y
-     */
+    /**
+        * Constructor del jugador
+        * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
+        * @param {number} x Coordenada X
+        * @param {number} y Coordenada Y
+        */
     constructor(scene, x, y, WeaponName, WeaponDamage) {
         super(scene, x, y, WeaponName)
         this.wDmg = WeaponDamage;
@@ -15,14 +15,17 @@ export default class arma extends Phaser.GameObjects.Sprite {
         this.delay = 1000;
         this.isRotating = false;
 
+        this.setDepth(7)
+
         this.scene.physics.add.overlap(this, this.scene.player, (weapon) => {
-            if(weapon.isMelee()){
+            if (weapon.isMelee()) {
                 this.scene.player.takeMeleeWeapon(weapon);
             }
             else {
                 this.scene.player.takeRangedWeapon(weapon);
             }
         });
+       
 
         this.setActive(false);
         this.setVisible(false);
@@ -62,8 +65,8 @@ export default class arma extends Phaser.GameObjects.Sprite {
     }
 
 
-    playIdle(){}
-    isMelee(){}
-    manaRegen(){}
-    manaCost(){}
+    playIdle() { }
+    isMelee() { }
+    manaRegen() { }
+    manaCost() { }
 }
