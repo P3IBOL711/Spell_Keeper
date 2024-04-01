@@ -11,11 +11,15 @@ import Slime from '../../assets/gardens/sprites/slime/slime_spritesheet.png'
 import Book from '../../assets/library/sprites/book/book_spritesheet_1.png'
 import room from '../../assets/armory/sprites/Hab_Prueba.png'
 import arrow from '../../assets/armory/sprites/arrow/arrow.png'
+import dagger from '../../assets/cSprites/11.png'
 import Fireball from '../../assets/cSprites/fireball_spritesheet.png'
 import Lighting from '../../assets/cSprites/LightingEffect.png'
 import PurpleMagicBall from '../../assets/cSprites/purple_magic_ball_spritesheet.png'
 import GreenPoisonBall from '../../assets/cSprites/green_poison_spritesheet.png'
 import font from 'url:../../assets/fonts/VT323Regular.ttf'
+import fullHeart from '../../assets/HUD/ui-heart-full.png'
+import halfHeart from '../../assets/HUD/half-ui-heart.png'
+import emptyHeart from '../../assets/HUD/ui-heart-empty.png'
 import chest from '../../assets/armory/sprites/chests.png'
 // Controls Menu
 import ControlsBackground from '../../assets/controlsMenu/background.png'
@@ -64,6 +68,10 @@ export default class Boot extends Phaser.Scene {
     this.load.image('titleDecoration', TitleDecoration)
 
     this.load.image('arrow', arrow);
+    this.load.image('dagger', dagger);
+    this.load.image('ui-heart-full', fullHeart);
+    this.load.image('half-ui-heart', halfHeart);
+    this.load.image('ui-heart-empty', emptyHeart);
     this.load.spritesheet('knight_spritesheet', knight, { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('skeleton_spritesheet', skeleton, { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('fireball_spritesheet', Fireball, { frameWidth: 32, frameHeight: 32 });

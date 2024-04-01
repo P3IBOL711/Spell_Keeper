@@ -12,9 +12,15 @@ export default class basicRanged extends arma {
      */
     constructor(scene, x, y, damage) {
         super(scene, x, y, 'basicRanged', damage)
+        this.scene.add.existing(this);
+        this.scene.physics.add.existing(this);
         this.delay = 3000;
 
         //Intorducir logica de los sprites
+    }
+
+    preUpdate(t, dt) {
+        super.preUpdate(t, dt)
     }
 
     isMelee() {
@@ -23,5 +29,9 @@ export default class basicRanged extends arma {
 
     attack(x, y, direction, target) {
         new Bullet(this.scene, x, y, target, true, 1);
+    }
+
+    manaCost() {
+        return 10;
     }
 }
