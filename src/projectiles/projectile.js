@@ -40,7 +40,7 @@ export default class Projectile extends Phaser.GameObjects.Sprite {
         this.setDepth(7);
         this.impacted = false;
 
-        this.play('normal', true);
+        //this.play('normal', true);
     }
 
     impact(){
