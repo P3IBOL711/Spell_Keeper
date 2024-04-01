@@ -16,7 +16,7 @@ export default class ManaDisplay extends Phaser.GameObjects.Graphics {
         this.x = x;
         this.y = y;
         this.width = width;
-        this.height = height;
+        this.height = height / 2;
 
         this.currentMana = initialMana;
         this.maxMana = maxMana;

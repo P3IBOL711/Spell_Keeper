@@ -13,9 +13,13 @@ export default class basicMelee extends arma {
      */
     constructor(scene, x, y, damage) {
         super(scene, x, y, 'dagger', damage);
+        this.setOrigin(0, 0.5);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.delay = 1100;
+
+        this.setActive(true);
+        this.setVisible(true);
     }
 
     preUpdate(t, dt) {
@@ -42,7 +46,7 @@ export default class basicMelee extends arma {
             attackHitbox = new PlayerHitBox(this.scene, x, y + 30, 64, 64, 1);
         }
 
-        attackHitbox.destroy();
+        //attackHitbox.destroy();
     }
 
     manaRegen() {

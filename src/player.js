@@ -251,7 +251,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         }
 
         let angleToReticle = Phaser.Math.Angle.Between(this.x, this.y, this.reticle.x, this.reticle.y);
-        let maxRange = 50;
+        let maxRange = 25;
         let offsetX = Math.cos(angleToReticle) * maxRange;
         let offsetY = Math.sin(angleToReticle) * maxRange; 
         let newWepX = this.x + offsetX;
@@ -272,6 +272,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             else 
                 this.actualMana += this.equipedWeapon.manaRegen();
             this.equipedWeapon.attack(this.x, this.y, this.direction, this.reticle);
+            
         }
         else {
             if(this.actualMana - this.equipedWeapon.manaCost() >= 0) {
@@ -462,6 +463,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.luck += hiddenLuckModifier;
     }
 
+    //Otras cosas
     getIsFPressed(){
         return this.isFPressed;
     }

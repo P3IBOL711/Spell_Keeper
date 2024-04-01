@@ -41,9 +41,15 @@ export default class Bullet extends Projectile {
         this.body.setVelocityY(this.speed * Math.sin(this.rotation));
     }
 
+    impact() {
+        super.impact();
+        this.play('impact', true);
+        this.destroy();
+    }
+
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-
-        this.play('normal', true);
+        if (!this.impacted)
+            this.play('normal', true);
     }
 }

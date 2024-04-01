@@ -44,10 +44,12 @@ export default class Bullet extends Projectile {
     impact(){
         super.impact();
         this.play('impact', true);
+        this.destroy();
     }
 
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-
+        if (!this.impacted)
+            this.play('normal', true);
     }
 }

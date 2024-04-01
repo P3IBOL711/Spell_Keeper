@@ -11,6 +11,7 @@ export default class arma extends Phaser.GameObjects.Sprite {
         super(scene, x, y, WeaponName)
         this.wDmg = WeaponDamage;
         this.wName = WeaponName;
+        this.setDepth(7);
         this.delay = 1000;
         this.isRotating = false;
 
@@ -23,7 +24,8 @@ export default class arma extends Phaser.GameObjects.Sprite {
             }
         });
 
-        
+        this.setActive(false);
+        this.setVisible(false);
     }
 
     preUpdate(t, dt) {
@@ -40,7 +42,9 @@ export default class arma extends Phaser.GameObjects.Sprite {
 //                }
 //            });
 //        }
+
 /********************************** */
+
 //        let playerX = this.scene.player.x;
 //        let playerY = this.scene.player.y;
 //
