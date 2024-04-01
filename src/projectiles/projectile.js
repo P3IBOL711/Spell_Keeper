@@ -48,6 +48,10 @@ export default class Projectile extends Phaser.GameObjects.Sprite {
         this.body.setVelocity(0);
     }
 
+    isProjectile(){
+        return true;
+    }
+
     /**
      * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
      * Como se puede ver, no se tratan las colisiones con las estrellas, ya que estas colisiones 
