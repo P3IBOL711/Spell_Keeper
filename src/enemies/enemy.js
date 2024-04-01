@@ -32,6 +32,8 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         // is enemy attacking?
         this.attacking = false;
 
+        this.setDepth(7);
+
         this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
             if (this.anims.getName() === 'die'){
                 this.doSomethingVerySpecificBecauseYoureMyBelovedChild()

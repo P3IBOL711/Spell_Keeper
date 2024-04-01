@@ -45,7 +45,7 @@ export default class LavaGolem extends MeleeEnemy {
             repeat: 0
         });
 
-        this.setScale(4.5);
+        this.setScale(1.5);
 
         this.speed = 50;
 

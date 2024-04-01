@@ -109,7 +109,7 @@ export default class CarnivorousPlant extends Enemy {
         this.distAttack = false;
         this.distanceTimerAttack.paused = true;
 
-        this.setScale(3);
+        this.setScale(1);
 
         this.speed = 0;
 

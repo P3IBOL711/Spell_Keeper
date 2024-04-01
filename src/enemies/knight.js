@@ -39,7 +39,7 @@ export default class Knight extends MeleeEnemy {
             repeat: 0
         });
 
-       // this.setScale(3);
+       this.setScale(1);
 
         this.speed = 40;
 
