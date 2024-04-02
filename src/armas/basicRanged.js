@@ -15,6 +15,7 @@ export default class basicRanged extends arma {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.delay = 500;
+        this.setOrigin(0, 0.5);
 
         this.setActive(true);
         this.setVisible(true);

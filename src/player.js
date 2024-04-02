@@ -271,6 +271,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         let newWepY = this.y + offsetY;
 
         this.equipedWeapon.setPosition(newWepX, newWepY);
+        this.equipedWeapon.angle = Phaser.Math.RadToDeg(angleToReticle);
     }
 
     /**FUNCION PARA QUE EL JUGADOR ATAQUE */
