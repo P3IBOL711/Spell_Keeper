@@ -283,12 +283,12 @@ export default class Player extends Phaser.GameObjects.Sprite {
         if(this.canAttack) {
             if(this.meleeMode) {
                 //La regeneracion de mana va en otro metodo
-                this.equipedWeapon.attack(this.x, this.y, this.direction, this.reticle);
+                this.equipedWeapon.attack(this.direction, this.reticle);
             }
             else {
                 if(this.actualMana - this.equipedWeapon.manaCost() >= 0) {
                     this.actualMana -= this.equipedWeapon.manaCost();
-                    this.equipedWeapon.attack(this.x, this.y, this.direction, this.reticle);
+                    this.equipedWeapon.attack(this.direction, this.reticle);
                 }
                 //falta el else para calcular el daño
             }
