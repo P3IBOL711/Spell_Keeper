@@ -29,18 +29,18 @@ export default class ManaDisplay extends Phaser.GameObjects.Graphics {
 
         // Dibuja el fondo de la barra de maná
         this.fillStyle(0x4169E1); //Azul más oscuro
-        this.fillRect(0, 0, this.width, this.height);
-
-        // Añadimos un borde a la barra de vida
-        this.lineStyle(2, 0x000000); // Borde negro
-        this.strokeRect(0, 0, this.width, this.height);
+        this.fillRect(-this.x / 2, -this.y / 4, this.width, this.height);
 
         // Calcula el ancho de la barra de maná según el maná actual
         let manaWidth = (this.currentMana === this.maxMana) ? this.width : (this.currentMana / this.maxMana) * this.width;
 
         // Dibuja la barra de maná
         this.fillStyle(0x6495ED); //Azul
-        this.fillRect(0, 0, manaWidth, this.height);
+        this.fillRect(-this.x / 2, -this.y / 4, manaWidth, this.height);
+
+        // Añadimos un borde a la barra de vida
+        this.lineStyle(3, 0x000000); //Borde negro
+        this.strokeRect(-this.x / 2, -this.y / 4, this.width, this.height);
     }
 
 
