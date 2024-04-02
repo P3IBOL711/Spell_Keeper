@@ -108,7 +108,7 @@ export default class Room extends Phaser.Scene {
 
 
     create() {
-        this.scene.launch('gui');
+        this.scene.launch('gui', {life: this.globalPlayerStats.life,maxLife: this.globalPlayerStats.maxLife, mana: this.globalPlayerStats.mana, maxMana: this.globalPlayerStats.maxMana});
         if (this.dungeon[this.y][this.x].visited === false)
             this.dungeon[this.y][this.x].visited = true
         else {
@@ -158,17 +158,22 @@ export default class Room extends Phaser.Scene {
 
         this.enviromental = this.add.group()
 
+        let newMeleeArray = []
         for (let weapon of this.globalPlayerStats.MeleeWeaponArray) {
-            weapon.scene = this;
-            weapon.updatePosition(playerX,playerY)
+            let newWeapon = weapon.constructor
+            newMeleeArray.push(new newWeapon(this,0,0,1,true))
         }
-        for (let weapon of this.globalPlayerStats.RangedWeaponArray) {
-            weapon.scene = this;
-            weapon.updatePosition(playerX,playerY)
-        }
+        this.globalPlayerStats.MeleeWeaponArray = newMeleeArray;
 
-        this.globalPlayerStats.MeleeWeaponArray[this.globalPlayerStats.ActMelIndex].setVisible(true)
-        this.globalPlayerStats.MeleeWeaponArray[this.globalPlayerStats.ActMelIndex].setActive(true)
+
+        let newRangedArray = []
+        for (let weapon of this.globalPlayerStats.RangedWeaponArray) {
+            let newWeapon = weapon.constructor
+            newRangedArray.push(new newWeapon(this,0,0,1,true))
+        }
+        this.globalPlayerStats.RangedWeaponArray = newRangedArray;
+
+
         this.player = new Player(this, playerX, playerY, this.globalPlayerStats.life, this.globalPlayerStats.maximumLife, this.globalPlayerStats.mana, this.globalPlayerStats.maximumMana, this.globalPlayerStats.weaponMult, this.globalPlayerStats.moveSpeed, this.globalPlayerStats.lck, this.globalPlayerStats.MeleeWeaponArray, this.globalPlayerStats.RangedWeaponArray, this.globalPlayerStats.ActMelIndex, this.globalPlayerStats.ActRangIndex, this.globalPlayerStats.lastWeaponUsed);
         this.physics.add.collider(this.player, walls)
         this.physics.add.collider(this.player, cObjects)

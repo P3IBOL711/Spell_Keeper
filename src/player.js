@@ -34,7 +34,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         this.body.setSize(this.width * 0.4, this.height * 0.65, true);
         this.body.setOffset(this.width * 0.3, this.height * 0.35);
-
+        this.setOrigin(0.25,0.65)
         /**ESTADISTICAS**/
         //CAPADO inferiormente a 1 y superiormente a 20
         //Vida inicial = 10
