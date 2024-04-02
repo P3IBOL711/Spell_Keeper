@@ -20,7 +20,7 @@ export default class KeyDisplay extends Phaser.GameObjects.Group {
         });
 
         // Crear el texto de la cantidad de llaves
-        this.keyText = this.scene.add.text(x + 20, y - 20, initialKeys.toString(), { color: '#ffffff' });
+        this.keyText = this.scene.add.text(x + 20, y - 30, initialKeys.toString(), { fontFamily: 'pixelFont', fontSize: 30, color: '#ffffffff' });
         this.add(this.keyText);
 
         // Agregar el grupo a la escena
