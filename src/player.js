@@ -27,7 +27,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.scene.physics.add.existing(this);
 
         /**RELATIVO A BODY**/
-        this.scene.enviromental.add(this)
+        //this.scene.enviromental.add(this)
         this.setScale(1);
         //Booleano para interactuar
         this.isFPressed = false

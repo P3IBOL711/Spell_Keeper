@@ -53,11 +53,10 @@ export default class ArmeriaPrueba extends Phaser.Scene {
         let playerY = 300;
         let defaultWeapon = new basicMelee(this, playerX, playerY, 1);
         this.player = new Player(this, playerX, playerY, 0, 0, 0, 0, 1, 0, 0, [defaultWeapon], [new basicRanged(this, playerX, playerY, 1), new FireStaff(this, playerX, playerY, 10)], 0, 0, defaultWeapon);
-        //
         this.knight = new Knight(this, 800, 200, this.player);
-        this.skeleton = new Skeleton(this, 800, 300, this.player);     
-        this.poisonousGoblin = new PoisonousGoblin(this, 600, 300, this.player);
-        this.player.setScale(3.0);
+        // this.skeleton = new Skeleton(this, 800, 300, this.player);     
+        // this.poisonousGoblin = new PoisonousGoblin(this, 600, 300, this.player);
+        // this.player.setScale(3.0);
 
     }
 }
