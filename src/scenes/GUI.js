@@ -48,7 +48,7 @@ export default class GUI extends Phaser.Scene {
                     break;
                 case 'Keys':
                     //Valor inicial de las llaves: 0
-                    this.playerKeysInfo = new keysDisplay(this, obj.x, obj.y, 'key', 0);
+                    this.playerKeysInfo = new keysDisplay(this, obj.x + 70, obj.y, 'key', 0);
                     break;
                 case 'Active':
                     //No tienes activo al principio
@@ -68,7 +68,8 @@ export default class GUI extends Phaser.Scene {
         });
 
         hudEvents.on('updateMana', (playerManaStats) => {
-            this.playerManaBar.setMana(playerManaStats[0], playerManaStats[1]);
+            //this.playerManaBar.setMana(playerManaStats[0], playerManaStats[1]);
+            this.playerManaBar.setMeterPercentageAnimated(playerManaStats[0] / playerManaStats[1]);
         });
 
         hudEvents.on('updateDisplayedWeapon', (newWeapon) => {
