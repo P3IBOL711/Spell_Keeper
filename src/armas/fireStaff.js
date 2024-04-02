@@ -20,6 +20,8 @@ export default class FireStaff extends arma {
        
         this.setActive(true);
         this.setVisible(true);
+
+        this.damage = damage;
         //Intorducir logica de los sprites
     }
 
