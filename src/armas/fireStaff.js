@@ -16,6 +16,7 @@ export default class FireStaff extends arma {
         this.scene.physics.add.existing(this);
         this.delay = 5;
         this.id = 'FireStaff'
+        this.delay = 250;
        
         this.setActive(true);
         this.setVisible(true);

@@ -13,7 +13,7 @@ export default class Bullet extends Projectile {
     constructor (scene, x, y, target, targetEnemy, damage)
     {
         super(scene, x, y, 'bullet', targetEnemy, damage);
-
+        this.setScale(0.5);
         this.anims.create({
             key: 'normal',
             frames: this.anims.generateFrameNumbers('lighting_spritesheet', { start: 11, end: 13 }),

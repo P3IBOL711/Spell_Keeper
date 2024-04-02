@@ -39,7 +39,7 @@ export default class MeleeEnemy extends Enemy {
             if (this.life > 0){
                 if (this.anims.getName() === 'attack'){
                     this.attacking = false;
-                    this.attackZone.destroy(true);
+                    this.destroyAttackZones();
                 }
             }
         })
@@ -47,12 +47,16 @@ export default class MeleeEnemy extends Enemy {
         this.on(Phaser.Animations.Events.ANIMATION_STOP, () => {
             if (this.anims.getName() === 'attack'){
                 this.attacking = false;
-                this.attackZone.destroy(true);
+                this.destroyAttackZones();
             }
         })
     }
 
     spawnHitbox(){}
+
+    destroyAttackZones(){
+        this.attackZone.destroy(true);
+    }
 
     doSomethingVerySpecificBecauseYoureMyBelovedChild() {
         this.scene.time.removeEvent(this.timerAttack);

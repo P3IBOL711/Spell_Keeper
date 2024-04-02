@@ -16,7 +16,7 @@ export default class basicMelee extends arma {
         this.setOrigin(0, 0.5);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.delay = 1100;
+        this.delay = 500;
         this.hasAttacked = false;
         this.damage = 2;
         this.timeOnField = 0;
@@ -55,6 +55,9 @@ export default class basicMelee extends arma {
         }
         else if(direction === 'down') {
             this.attackHitbox = new PlayerHitBox(this.scene, x, y + 30, 64, 64, this.damage);
+        }
+        else { //Por si acaso
+            this.attackHitbox = new PlayerHitBox(this.scene, x - 30, y, 64, 64, this.damage);
         }
     }
 
