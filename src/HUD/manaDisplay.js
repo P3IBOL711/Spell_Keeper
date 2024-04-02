@@ -10,21 +10,16 @@ export default class ManaDisplay extends Phaser.GameObjects.Graphics {
     constructor(scene, x, y, width, height, initialMana, maxMana) {
         super(scene);
 
-        this.fullWidth = 300;
+        this.fullWidth = 251.5;
 
         this.y = 100;
-        this.x = 50;
+        this.x = 10;
 
-        this.leftMana = this.scene.add.image(this.x, this.y, 'manaLeft')
-		.setOrigin(0, 0.5)
+        this.background = this.scene.add.image(this.x, this.y, 'manaBar').setOrigin(0, 0.5).setDisplaySize(300, 80);
 
-	    this.middleMana = this.scene.add.image(this.leftMana.x + this.leftMana.width, this.y, 'manaMid')
-		.setOrigin(0, 0.5)
+        this.mainMana = this.scene.add.image(this.x + 15, this.y, 'mainMana').setOrigin(0, 0.5).setScale(5);
 
-	    this.rightMana = this.scene.add.image(this.middleMana.x + this.middleMana.displayWidth, this.y, 'manaRight')
-		.setOrigin(0, 0.5)
-
-        this.background = this.scene.add.image(this.x, this.y, 'manaBar').setOrigin(0.25, 0.5).setDisplaySize(400, 80);
+	    this.finalMana = this.scene.add.image(this.mainMana.x + this.mainMana.displayWidth, this.y, 'finalMana').setOrigin(0, 0.5).setScale(5);
 
 	    this.setMeterPercentage(1)
 
@@ -46,24 +41,23 @@ export default class ManaDisplay extends Phaser.GameObjects.Graphics {
     setMeterPercentage(percent = 1) {
         let width = this.fullWidth * percent;
 
-        this.middleMana.displayWidth = width;
-        this.rightMana.x = this.middleMana.x + this.middleMana.displayWidth;
+        this.mainMana.displayWidth = width;
+        this.finalMana.x = this.mainMana.x + this.mainMana.displayWidth;
     }
 
     setMeterPercentageAnimated(percent = 1, duration = 1000) {
         let width = this.fullWidth * percent;
 
         this.scene.tweens.add({
-            targets: this.middleMana,
+            targets: this.mainMana,
             displayWidth: width,
             duration: duration,
             ease: Phaser.Math.Easing.Sine.Out,
             onUpdate: () => {
-                this.rightMana.x = this.middleMana.x + this.middleMana.displayWidth
-    
-                this.leftMana.visible = this.middleMana.displayWidth > 0
-                this.middleMana.visible = this.middleMana.displayWidth > 0
-                this.rightMana.visible = this.middleMana.displayWidth > 0
+                this.finalMana.x = this.mainMana.x + this.mainMana.displayWidth;
+
+                this.mainMana.visible = this.mainMana.displayWidth > 0
+                this.finalMana.visible = this.mainMana.displayWidth > 0
             }
         })
     }
