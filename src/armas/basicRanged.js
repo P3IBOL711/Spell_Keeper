@@ -16,6 +16,8 @@ export default class basicRanged extends arma {
         this.scene.physics.add.existing(this);
         this.delay = 500;
         this.setOrigin(0, 0.5);
+        this.x = x;
+        this.y = y;
 
         this.setActive(true);
         this.setVisible(true);
@@ -33,8 +35,8 @@ export default class basicRanged extends arma {
         return false;
     }
 
-    attack(x, y, direction, target) {
-        new Bullet(this.scene, x, y, target, true, this.damage);
+    attack(direction, target) {
+        new Bullet(this.scene, this.x, this.y, target, true, this.damage);
     }
 
     manaCost() {

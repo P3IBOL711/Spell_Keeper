@@ -16,7 +16,7 @@ export default class Bullet extends Projectile {
         this.setScale(0.5);
         this.anims.create({
             key: 'normal',
-            frames: this.anims.generateFrameNumbers('lighting_spritesheet', { start: 11, end: 13 }),
+            frames: this.anims.generateFrameNumbers('lighting_spritesheet', { start: 10, end: 12 }),
             frameRate: 10,
             repeat: -1
         });
