@@ -10,12 +10,15 @@ export default class FireStaff extends arma {
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      */
-    constructor(scene, x, y) {
-        super(scene, x, y, 'fireStaff')
+    constructor(scene, x, y, damage,equiped) {
+        super(scene, x, y, 'fireStaff', damage,equiped)
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.delay = 1500;
-        this.damage = 10;
+        this.delay = 5;
+        this.id = 'FireStaff'
+       
+        this.setActive(true);
+        this.setVisible(true);
         //Intorducir logica de los sprites
     }
 

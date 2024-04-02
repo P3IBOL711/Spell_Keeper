@@ -14,11 +14,18 @@ export default class GUI extends Phaser.Scene {
 
     constructor() {
         super({ key: 'gui' });
+        
     }
 
     preload() {
         this.load.tilemapTiledJSON('hud', Hud);
         this.load.spritesheet('key', Uikey, { frameWidth: 32, frameHeight: 32 });
+    }
+    init(obj){
+        this.life = obj.life;
+        this.maxLife = obj.maxLife
+        this.mana = obj.mana
+        this.maxMana = obj.maxMana
     }
 
     create() {
@@ -33,11 +40,11 @@ export default class GUI extends Phaser.Scene {
             switch(obj.name) {
                 case 'LifeBar':
                     //Valor inicial de la vida maxima: 10
-                    this.playerLifeBar = new healthDisplay(this, obj.x, obj.y, 10);
+                    this.playerLifeBar = new healthDisplay(this, obj.x, obj.y, this.life,this.maxLife);
                     break;
                 case 'Manabar':
                     //Valores inciales del manaInicial y el manaMaximo: 250 y 500
-                    this.playerManaBar = new manaDisplay(this, obj.x, obj.y, obj.width, obj.height, 250, 500);
+                    this.playerManaBar = new manaDisplay(this, obj.x, obj.y, obj.width, obj.height, this.mana, this.maxMana);
                     break;
                 case 'Keys':
                     //Valor inicial de las llaves: 0

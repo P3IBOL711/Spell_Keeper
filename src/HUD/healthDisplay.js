@@ -7,11 +7,12 @@ export default class HealthDisplay extends Phaser.GameObjects.Group {
         * @param {number} x Coordenada X
         * @param {number} y Coordenada Y
         */
-    constructor(scene, x, y, initialHealth) {
+    constructor(scene, x, y, initialHealth,maxHealth) {
         super(scene);
 
         this.maxHealth = 20; // 20 de vida como maximo
         this.currentHealth = initialHealth;
+        this.currentMaxHealth = maxHealth
         this.x = x;
         this.y = y;
         //Crea todo los corazones y los pone inactivos y no visibles
@@ -28,7 +29,7 @@ export default class HealthDisplay extends Phaser.GameObjects.Group {
         });
 
         //la cantidad de corazones iniciales, se ponen activos y visibles
-        for(let i = 0; i < this.currentHealth / 2; i ++) {
+        for(let i = 0; i < this.currentMaxHealth / 2; i ++) {
             this.hearts[i].setScale(2);
             this.hearts[i].setActive(true).setVisible(true);
         }
