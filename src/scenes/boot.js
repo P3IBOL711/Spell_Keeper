@@ -21,6 +21,8 @@ import fullHeart from '../../assets/HUD/ui-heart-full.png'
 import halfHeart from '../../assets/HUD/half-ui-heart.png'
 import emptyHeart from '../../assets/HUD/ui-heart-empty.png'
 import chest from '../../assets/armory/sprites/chests.png'
+import fireStaff from '../../assets/cSprites/fireStaff.png'
+import poisonStaff from '../../assets/cSprites/poisonStaff.png'
 // Controls Menu
 import ControlsBackground from '../../assets/controlsMenu/background.png'
 import wKey from '../../assets/controlsMenu/w.png'
@@ -69,6 +71,8 @@ export default class Boot extends Phaser.Scene {
 
     this.load.spritesheet('arrow', arrow,{frameWidth: 32, frameHeight: 32});
     this.load.image('dagger', dagger);
+    this.load.image('fireStaff',fireStaff)
+    this.load.image('poisonStaff',poisonStaff)
     this.load.image('ui-heart-full', fullHeart);
     this.load.image('half-ui-heart', halfHeart);
     this.load.image('ui-heart-empty', emptyHeart);

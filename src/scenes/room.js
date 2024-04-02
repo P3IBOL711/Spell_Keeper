@@ -15,13 +15,14 @@ import Chest from '../chest.js';
 
 
 
+
 export default class Room extends Phaser.Scene {
 
 
 
     constructor(obj) {
         super({ key: obj.key });
-       
+
         this.x = 0;
         this.y = 0;
         this.loadScene = this.loadScene.bind(this);
@@ -31,12 +32,12 @@ export default class Room extends Phaser.Scene {
         this.wSpawn = { x: 0, y: 0 };
         this.cSpawn = { x: 0, y: 0 };
         this.level = obj.level
-        
-      
+
+
     }
 
     init(obj) {
-      
+
         this.key = obj.key
         this.x = obj.X;
         this.y = obj.Y;
@@ -48,14 +49,35 @@ export default class Room extends Phaser.Scene {
         this.cache.tilemap.remove('tilemap');
         this.saveStateMatrix = obj.SSM
         this.fireArray = [] //El array que guarda los fuegos en el nivel para destruirlos una vez matados a todos los bichos
+
+        if (obj.playerStat === null) {
+
+            this.globalPlayerStats = {
+                life: 10,           // Current life points
+                maximumLife: 100,    // Maximum life points
+                mana: 50,            // Current mana points
+                maximumMana: 500,     // Maximum mana points
+                weaponMult: 1,       // Multiplier for weapon damage
+                moveSpeed: 100,        // Player movement speed
+                lck: 0,              // Player luck stat
+                MeleeWeaponArray: [new basicMelee(this, 0, 0, 1, true)], // Array to store melee weapons
+                RangedWeaponArray: [new basicRanged(this, 0, 0, 1, true)],// Array to store ranged weapons
+                ActMelIndex: 0,      // Index of the currently active melee weapon
+                ActRangIndex: 0,     // Index of the currently active ranged weapon
+                lastWeaponUsed: null // Last weapon used (can be set to the name or ID of the weapon)
+            };
+        } else{
+            this.globalPlayerStats = obj.playerStat;
+           
+        }
     }
 
 
     preload() {
         this.load.image('Base', b)
         this.load.image('Weapons', w)
-        this.load.image('fire',f)
-     
+        this.load.image('fire', f)
+
     }
 
 
@@ -78,9 +100,9 @@ export default class Room extends Phaser.Scene {
         // console.log(level + dungeon[y][x].name)
         this.map.removeAllLayers()
         this.map.destroy()
-        
+
         this.unloadScene(this.key)
-        this.scene.start(level + dungeon[y][x].name, { X: x, Y: y, dg: dungeon, dir: direction,SSM:this.saveStateMatrix });
+        this.scene.start(level + dungeon[y][x].name, { X: x, Y: y, dg: dungeon, dir: direction, SSM: this.saveStateMatrix, playerStat: this.globalPlayerStats });
     }
 
 
@@ -89,7 +111,7 @@ export default class Room extends Phaser.Scene {
         this.scene.launch('gui');
         if (this.dungeon[this.y][this.x].visited === false)
             this.dungeon[this.y][this.x].visited = true
-        else{
+        else {
             this.loadSceneState()
         }
 
@@ -136,8 +158,18 @@ export default class Room extends Phaser.Scene {
 
         this.enviromental = this.add.group()
 
-        let defaultWeapon = new basicMelee(this, playerX, playerY, 1);
-        this.player = new Player(this, playerX, playerY, 0, 0, 0, 0, 1, 0, 0, [defaultWeapon], [new basicRanged(this, playerX, playerY, 1), new FireStaff(this, playerX, playerY, 10)], 0, 0, defaultWeapon);
+        for (let weapon of this.globalPlayerStats.MeleeWeaponArray) {
+            weapon.scene = this;
+            weapon.updatePosition(playerX,playerY)
+        }
+        for (let weapon of this.globalPlayerStats.RangedWeaponArray) {
+            weapon.scene = this;
+            weapon.updatePosition(playerX,playerY)
+        }
+
+        this.globalPlayerStats.MeleeWeaponArray[this.globalPlayerStats.ActMelIndex].setVisible(true)
+        this.globalPlayerStats.MeleeWeaponArray[this.globalPlayerStats.ActMelIndex].setActive(true)
+        this.player = new Player(this, playerX, playerY, this.globalPlayerStats.life, this.globalPlayerStats.maximumLife, this.globalPlayerStats.mana, this.globalPlayerStats.maximumMana, this.globalPlayerStats.weaponMult, this.globalPlayerStats.moveSpeed, this.globalPlayerStats.lck, this.globalPlayerStats.MeleeWeaponArray, this.globalPlayerStats.RangedWeaponArray, this.globalPlayerStats.ActMelIndex, this.globalPlayerStats.ActRangIndex, this.globalPlayerStats.lastWeaponUsed);
         this.physics.add.collider(this.player, walls)
         this.physics.add.collider(this.player, cObjects)
         this.player.setDepth(6);
@@ -181,28 +213,28 @@ export default class Room extends Phaser.Scene {
                     new EnemySpawner(this, objeto.x, objeto.y, this.player)
                     this.numberOfEnemies++
                 }
-            }else if(objeto.type === 'Fire'){
-                if(this.numberOfEnemies !== -1)
-                this.fireArray.push(new Fire(this,objeto.x + objeto.width / 2, (objeto.y + objeto.height / 2)-32 , objeto.width, objeto.height))
-            }else  if(objeto.type === 'Chest'){
-                new Chest(this,objeto.x+ objeto.width / 2,objeto.y- objeto.height / 2,objeto.width,objeto.height,this.player,this.chestOpened)
+            } else if (objeto.type === 'Fire') {
+                if (this.numberOfEnemies !== -1)
+                    this.fireArray.push(new Fire(this, objeto.x + objeto.width / 2, (objeto.y + objeto.height / 2) - 32, objeto.width, objeto.height))
+            } else if (objeto.type === 'Chest') {
+                new Chest(this, objeto.x + objeto.width / 2, objeto.y - objeto.height / 2, objeto.width, objeto.height, this.player, this.chestOpened)
             }
         }
     }
 
     enemyHasDied() {
         this.numberOfEnemies--;
-        if (this.numberOfEnemies <= 0){
+        if (this.numberOfEnemies <= 0) {
             this.numberOfEnemies = -1; //Habitacion limpia
 
-            for(let fire of this.fireArray){
+            for (let fire of this.fireArray) {
                 fire.destroySprite();
                 fire.destroy();
             }
         }
     }
 
-    chestWasOpened(){
+    chestWasOpened() {
         this.chestOpened = true;
     }
 
@@ -253,11 +285,26 @@ export default class Room extends Phaser.Scene {
 
     // Unload scene
     unloadScene(sceneKey) {
+        this.getPlayerStats();
         this.saveSceneState();
         this.scene.stop(sceneKey);
     }
 
 
+    getPlayerStats() {
+        this.globalPlayerStats.life = this.player.actualLife
+        this.globalPlayerStats.maximumLife = this.player.maxLife
+        this.globalPlayerStats.mana = this.player.actualMana
+        this.globalPlayerStats.maximumMana = this.player.maxMana
+        this.globalPlayerStats.weaponMult = this.player.weaponMultiplier
+        this.globalPlayerStats.moveSpeed = this.player.movSpeed
+        this.globalPlayerStats.lck = this.player.luck
+        this.globalPlayerStats.MeleeWeaponArray = this.player.meeleWeapons
+        this.globalPlayerStats.RangedWeaponArray = this.player.rangedWeapons
+        this.globalPlayerStats.ActMelIndex = this.player.meleeIndex
+        this.globalPlayerStats.ActRangIndex = this.player.rangedIndex
+        this.globalPlayerStats.lastWeaponUsed = this.player.equipedWeapon
+    }
 
 
 

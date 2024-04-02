@@ -1,5 +1,7 @@
 import Phaser from 'phaser';
 import CollisionHitbox from './collisionHitbox';
+import FireStaff  from './armas/fireStaff';
+
 
 /**
  * Clase que representa un cofre en el juego.
@@ -90,8 +92,15 @@ export default class Chest extends Phaser.GameObjects.Sprite {
                 this.open = true;
                 this.scene.chestWasOpened();
                 this.anims.play('open_chest');
+                this.generateLoot()
             }
         }
+    }
+
+    generateLoot(){
+
+        new FireStaff(this.scene,this.x,this.y+50,10,false)
+
     }
 
 

@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import Reticle from './reticle.js';
 import { eventManager as hudEvents } from './eventCenter.js';
+import FireStaff from './armas/fireStaff.js';
 
 /**
  * Clase que representa el jugador del juego. El jugador se mueve por el mundo usando los cursores.
@@ -15,8 +16,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
      * @param {number} y Coordenada Y
      */
 
-    constructor(scene, x, y, life, maxinumLife, mana, maxinumMana, weaponMult, moveSpeed, lck, MeleeWeaponArray, RangedWeaponArray, ActMelIndex, ActRangIndex, lastWeaponUsed) {
+    constructor(scene, x, y, life, maximumLife, mana, maximumMana, weaponMult, moveSpeed, lck, MeleeWeaponArray, RangedWeaponArray, ActMelIndex, ActRangIndex, lastWeaponUsed) {
         super(scene, x, y, 'player');
+
+        if(lastWeaponUsed === null)//Primera vez
+        lastWeaponUsed =  MeleeWeaponArray[ActMelIndex]
 
         /**RELATIVO A LA ESCENA**/
         this.scene.add.existing(this);
@@ -36,7 +40,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         //Vida inicial = 10
         this.lifeInferiorCap = 1;
         this.lifeSuperiorCap = 20;
-        this.maxLife = (maxinumLife === 0) ? 10 : maxinumLife;
+        this.maxLife = (maximumLife === 0) ? 10 : maximumLife;
         this.actualLife = (life === 0) ? 10 : life;
 
         //CAPADO inferiormente a 10 y superiormente a 1000
@@ -44,7 +48,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         //Mana inicial = 250
         this.manaInferiorCap = 10;
         this.manaSuperiorCap = 1000;
-        this.maxMana = (maxinumMana === 0) ? 250 : maxinumMana;
+        this.maxMana = (maximumMana === 0) ? 250 : maximumMana;
         this.actualMana = (mana === 0) ? 250 : mana;
 
         //Modificador de daño de las armas
@@ -75,6 +79,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.canBeDamaged = true;
         this.shieldCooldown = 0; 
         this.shieldUptime = 0;
+
+       
 
         /**ANIMACIONES**/
         this.anims.create({
@@ -183,7 +189,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.meleeIndex = ActMelIndex;
         this.rangedIndex = ActRangIndex;
         this.weaponDelay = 0;
+
         this.equipedWeapon = lastWeaponUsed;
+
+        if(this.meleeMode){
+            this.rangedWeapons[this.rangedIndex].setVisible(false)
+        }else{
+            this.meeleWeapons[this.meleeIndex].setVisible(false)
+        }
     }
 
     /**
@@ -318,11 +331,15 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     //Relativo a las armas
     updatedWeapon(index) {
+        this.equipedWeapon.setVisible(false)
         if(this.meleeMode) {
+         
             this.equipedWeapon = this.meeleWeapons[index];
+            this.equipedWeapon.setVisible(true)
         }
         else {
             this.equipedWeapon = this.rangedWeapons[index];
+            this.equipedWeapon.setVisible(true)
         }
 
         hudEvents.emit('updateDisplayedWeapon', this.equipedWeapon.wName);
@@ -333,7 +350,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     takeRangedWeapon(weapon) {
-        this.rangedWeapons.push(weapon);
+        if(weapon.id = 'FireStaff')
+        this.rangedWeapons.push(new FireStaff(this.scene,-100,-100,10,true));
     }
 
     //Relativo al escudo
