@@ -53,12 +53,12 @@ export default class Room extends Phaser.Scene {
         if (obj.playerStat === null) {
 
             this.globalPlayerStats = {
-                life: 10,           // Current life points
-                maximumLife: 100,    // Maximum life points
-                mana: 50,            // Current mana points
-                maximumMana: 500,     // Maximum mana points
+                life: 0,           // Current life points
+                maximumLife: 0,    // Maximum life points
+                mana: 0,            // Current mana points
+                maximumMana: 0,     // Maximum mana points
                 weaponMult: 1,       // Multiplier for weapon damage
-                moveSpeed: 100,        // Player movement speed
+                moveSpeed: 0,        // Player movement speed
                 lck: 0,              // Player luck stat
                 MeleeWeaponArray: [new basicMelee(this, 0, 0, 1, true)], // Array to store melee weapons
                 RangedWeaponArray: [new basicRanged(this, 0, 0, 1, true)],// Array to store ranged weapons
@@ -108,7 +108,7 @@ export default class Room extends Phaser.Scene {
 
 
     create() {
-        this.scene.launch('gui', {life: this.globalPlayerStats.life,maxLife: this.globalPlayerStats.maxLife, mana: this.globalPlayerStats.mana, maxMana: this.globalPlayerStats.maxMana});
+       
         if (this.dungeon[this.y][this.x].visited === false)
             this.dungeon[this.y][this.x].visited = true
         else {
@@ -178,6 +178,10 @@ export default class Room extends Phaser.Scene {
         this.physics.add.collider(this.player, walls)
         this.physics.add.collider(this.player, cObjects)
         this.player.setDepth(6);
+
+
+
+        this.scene.launch('gui', {life: this.player.actualLife,maxLife: this.player.maxLife, mana: this.player.actualMana, maxMana:  this.player.maxMana});
 
         this.enemies = this.add.group()
 
