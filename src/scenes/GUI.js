@@ -62,7 +62,8 @@ export default class GUI extends Phaser.Scene {
         });
 
         hudEvents.on('updateMana', (playerManaStats) => {
-            this.playerManaBar.setMana(playerManaStats[0], playerManaStats[1]);
+            //this.playerManaBar.setMana(playerManaStats[0], playerManaStats[1]);
+            this.playerManaBar.setMeterPercentageAnimated(playerManaStats[0] / playerManaStats[1]);
         });
 
         hudEvents.on('updateDisplayedWeapon', (newWeapon) => {

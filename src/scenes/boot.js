@@ -12,6 +12,11 @@ import font from 'url:../../assets/fonts/VT323Regular.ttf'
 import fullHeart from '../../assets/HUD/ui-heart-full.png'
 import halfHeart from '../../assets/HUD/half-ui-heart.png'
 import emptyHeart from '../../assets/HUD/ui-heart-empty.png'
+// prueba
+import manaBar from '../../assets/HUD/SliderBar_ProgressBar.png'
+import manaLeft from '../../assets/HUD/barHorizontal_blue_left.png'
+import manaMid from '../../assets/HUD/barHorizontal_blue_mid.png'
+import manaRight from '../../assets/HUD/barHorizontal_blue_right.png'
 
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
@@ -47,6 +52,11 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('fireball_spritesheet', Fireball, { frameWidth: 32, frameHeight: 32 });
     this.load.spritesheet('lighting_spritesheet', Lighting, { frameWidth: 64, frameHeight:64 });
     this.load.spritesheet('poisonousGoblinSpritesheet', PoisonousGoblin, { frameWidth: 64, frameHeight: 64 })
+    this.load.image('manaBar', manaBar);
+    this.load.image('manaLeft', manaLeft);
+    this.load.image('manaMid', manaMid);
+    this.load.image('manaRight', manaRight);
+  
 
     // Background
     let background = this.add.graphics();
