@@ -20,7 +20,7 @@ export default class HealthDisplay extends Phaser.GameObjects.Group {
             setXY: {
                 x: this.x,
                 y: this.y,
-                stepX: 64
+                stepX: 40
             },
             frameQuantity: this.maxHealth / 2, // Cantidad de corazones
             active: false,
