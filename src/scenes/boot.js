@@ -13,7 +13,7 @@ import fullHeart from '../../assets/HUD/ui-heart-full.png'
 import halfHeart from '../../assets/HUD/half-ui-heart.png'
 import emptyHeart from '../../assets/HUD/ui-heart-empty.png'
 // prueba
-import manaBar from '../../assets/HUD/SliderBar_ProgressBar.png'
+import manaBar from '../../assets/HUD/manabar.png'
 import manaLeft from '../../assets/HUD/barHorizontal_blue_left.png'
 import manaMid from '../../assets/HUD/barHorizontal_blue_mid.png'
 import manaRight from '../../assets/HUD/barHorizontal_blue_right.png'

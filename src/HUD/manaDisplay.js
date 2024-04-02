@@ -13,9 +13,7 @@ export default class ManaDisplay extends Phaser.GameObjects.Graphics {
         this.fullWidth = 300;
 
         this.y = 100;
-        this.x = 20;
-
-        this.background = this.scene.add.image(this.x, this.y, 'manaBar').setOrigin(0, 0.5);
+        this.x = 50;
 
         this.leftMana = this.scene.add.image(this.x, this.y, 'manaLeft')
 		.setOrigin(0, 0.5)
@@ -25,6 +23,8 @@ export default class ManaDisplay extends Phaser.GameObjects.Graphics {
 
 	    this.rightMana = this.scene.add.image(this.middleMana.x + this.middleMana.displayWidth, this.y, 'manaRight')
 		.setOrigin(0, 0.5)
+
+        this.background = this.scene.add.image(this.x, this.y, 'manaBar').setOrigin(0.25, 0.5).setDisplaySize(400, 80);
 
 	    this.setMeterPercentage(1)
 
