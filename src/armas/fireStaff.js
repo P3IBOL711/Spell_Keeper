@@ -10,12 +10,12 @@ export default class FireStaff extends arma {
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      */
-    constructor(scene, x, y, damage) {
-        super(scene, x, y, 'fireStaff', damage)
+    constructor(scene, x, y) {
+        super(scene, x, y, 'fireStaff')
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.delay = 1500;
-
+        this.damage = 10;
         //Intorducir logica de los sprites
     }
 
@@ -28,7 +28,7 @@ export default class FireStaff extends arma {
     }
 
     attack(x, y, direction, target) {
-        new Fireball(this.scene, x, y, target, true, 1);
+        new Fireball(this.scene, x, y, target, true, this.damage);
     }
 
     manaCost() {

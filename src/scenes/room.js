@@ -136,8 +136,8 @@ export default class Room extends Phaser.Scene {
 
         this.enviromental = this.add.group()
 
-        let defaultWeapon = new basicMelee(this, playerX, playerY, 1);
-        this.player = new Player(this, playerX, playerY, 0, 0, 0, 0, 1, 0, 0, [defaultWeapon], [new basicRanged(this, playerX, playerY, 1), new FireStaff(this, playerX, playerY, 10)], 0, 0, defaultWeapon);
+        let defaultWeapon = new basicMelee(this, playerX, playerY);
+        this.player = new Player(this, playerX, playerY, 0, 0, 0, 0, 1, 0, 0, [defaultWeapon], [new basicRanged(this, playerX, playerY), new FireStaff(this, playerX, playerY)], 0, 0, defaultWeapon);
         this.physics.add.collider(this.player, walls)
         this.physics.add.collider(this.player, cObjects)
         this.player.setDepth(6);

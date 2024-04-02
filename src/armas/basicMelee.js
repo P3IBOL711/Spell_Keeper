@@ -11,13 +11,14 @@ export default class basicMelee extends arma {
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      */
-    constructor(scene, x, y, damage) {
-        super(scene, x, y, 'dagger', damage);
+    constructor(scene, x, y) {
+        super(scene, x, y, 'dagger');
         this.setOrigin(0, 0.5);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.delay = 1100;
         this.hasAttacked = false;
+        this.damage = 2;
         this.timeOnField = 0;
 
         this.setActive(true);
@@ -44,16 +45,16 @@ export default class basicMelee extends arma {
     attack(x, y, direction, target) {
         this.hasAttacked = true;
         if(direction === 'left') {
-            this.attackHitbox = new PlayerHitBox(this.scene, x - 30, y, 64, 64, 1);
+            this.attackHitbox = new PlayerHitBox(this.scene, x - 30, y, 64, 64, this.damage);
         }
         else if(direction === 'right') {
-            this.attackHitbox = new PlayerHitBox(this.scene, x + 30, y, 64, 64, 1);
+            this.attackHitbox = new PlayerHitBox(this.scene, x + 30, y, 64, 64, this.damage);
         }
         else if(direction === 'up') {
-            this.attackHitbox = new PlayerHitBox(this.scene, x, y - 30, 64, 64, 1);
+            this.attackHitbox = new PlayerHitBox(this.scene, x, y - 30, 64, 64, this.damage);
         }
         else if(direction === 'down') {
-            this.attackHitbox = new PlayerHitBox(this.scene, x, y + 30, 64, 64, 1);
+            this.attackHitbox = new PlayerHitBox(this.scene, x, y + 30, 64, 64, this.damage);
         }
     }
 

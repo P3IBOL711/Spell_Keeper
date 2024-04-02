@@ -10,12 +10,12 @@ export default class basicRanged extends arma {
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      */
-    constructor(scene, x, y, damage) {
-        super(scene, x, y, 'basicRanged', damage)
+    constructor(scene, x, y) {
+        super(scene, x, y, 'basicRanged')
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.delay = 3000;
-
+        this.damage = 2;
         //Intorducir logica de los sprites
     }
 
@@ -28,7 +28,7 @@ export default class basicRanged extends arma {
     }
 
     attack(x, y, direction, target) {
-        new Bullet(this.scene, x, y, target, true, 1);
+        new Bullet(this.scene, x, y, target, true, this.damage);
     }
 
     manaCost() {

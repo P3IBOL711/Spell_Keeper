@@ -7,9 +7,8 @@ export default class arma extends Phaser.GameObjects.Sprite {
         * @param {number} x Coordenada X
         * @param {number} y Coordenada Y
         */
-    constructor(scene, x, y, WeaponName, WeaponDamage) {
+    constructor(scene, x, y, WeaponName) {
         super(scene, x, y, WeaponName)
-        this.wDmg = WeaponDamage;
         this.wName = WeaponName;
         this.setDepth(7);
         this.delay = 1000;
