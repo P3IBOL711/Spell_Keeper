@@ -162,7 +162,7 @@ export default class Dungeongen {
         //Ponemos la entrada
         
 
-        dungeon[this.entranceY][this.entranceX] = r1 = {
+        dungeon[this.entranceY][this.entranceX] = {
 
             name: "E1",
 
