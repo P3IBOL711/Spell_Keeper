@@ -11,9 +11,10 @@ import basicMelee from '../armas/basicMelee.js';
 import FireStaff from '../armas/fireStaff.js';
 import Trigger from '../trigger.js';
 import CollisionHitbox from '../collisionHitbox.js';
-import EnemySpawner from '../EnemySpawner.js';
+import EnemySpawner from '../enemySpawner.js';
 import Fire from '../fire.js'
 import Chest from '../chest.js';
+
 
 
 
@@ -50,6 +51,27 @@ export default class Room extends Phaser.Scene {
         this.cache.tilemap.remove('tilemap');
         this.saveStateMatrix = obj.SSM
         this.fireArray = [] //El array que guarda los fuegos en el nivel para destruirlos una vez matados a todos los bichos
+
+        if (obj.playerStat === null) {
+
+            this.globalPlayerStats = {
+                life: 0,           // Current life points
+                maximumLife: 0,    // Maximum life points
+                mana: 0,            // Current mana points
+                maximumMana: 0,     // Maximum mana points
+                weaponMult: 1,       // Multiplier for weapon damage
+                moveSpeed: 0,        // Player movement speed
+                lck: 0,              // Player luck stat
+                MeleeWeaponArray: [new basicMelee(this, 0, 0, 1, true)], // Array to store melee weapons
+                RangedWeaponArray: [new basicRanged(this, 0, 0, 1, true)],// Array to store ranged weapons
+                ActMelIndex: 0,      // Index of the currently active melee weapon
+                ActRangIndex: 0,     // Index of the currently active ranged weapon
+                lastWeaponUsed: null // Last weapon used (can be set to the name or ID of the weapon)
+            };
+        } else{
+            this.globalPlayerStats = obj.playerStat;
+           
+        }
     }
 
 
@@ -87,13 +109,13 @@ export default class Room extends Phaser.Scene {
         this.map.destroy()
 
         this.unloadScene(this.key)
-        this.scene.start(level + dungeon[y][x].name, { X: x, Y: y, dg: dungeon, dir: direction, SSM: this.saveStateMatrix });
+        this.scene.start(level + dungeon[y][x].name, { X: x, Y: y, dg: dungeon, dir: direction, SSM: this.saveStateMatrix, playerStat: this.globalPlayerStats });
     }
 
 
 
     create() {
-
+       
         if (this.dungeon[this.y][this.x].visited === false)
             this.dungeon[this.y][this.x].visited = true
         else {
@@ -143,11 +165,30 @@ export default class Room extends Phaser.Scene {
 
         this.enviromental = this.add.group()
 
+        let newMeleeArray = []
+        for (let weapon of this.globalPlayerStats.MeleeWeaponArray) {
+            let newWeapon = weapon.constructor
+            newMeleeArray.push(new newWeapon(this,0,0,1,true))
+        }
+        this.globalPlayerStats.MeleeWeaponArray = newMeleeArray;
 
-        this.player = new Player(this, playerX, playerY, 0, 0, 1, 0, 1, 0, [new basicMelee(this, playerX, playerY, 1)], [new basicRanged(this, playerX, playerY, 1), new FireStaff(this, playerX, playerY, 10)], 0, 0);
+
+        let newRangedArray = []
+        for (let weapon of this.globalPlayerStats.RangedWeaponArray) {
+            let newWeapon = weapon.constructor
+            newRangedArray.push(new newWeapon(this,0,0,1,true))
+        }
+        this.globalPlayerStats.RangedWeaponArray = newRangedArray;
+
+
+        this.player = new Player(this, playerX, playerY, this.globalPlayerStats.life, this.globalPlayerStats.maximumLife, this.globalPlayerStats.mana, this.globalPlayerStats.maximumMana, this.globalPlayerStats.weaponMult, this.globalPlayerStats.moveSpeed, this.globalPlayerStats.lck, this.globalPlayerStats.MeleeWeaponArray, this.globalPlayerStats.RangedWeaponArray, this.globalPlayerStats.ActMelIndex, this.globalPlayerStats.ActRangIndex, this.globalPlayerStats.lastWeaponUsed);
         this.physics.add.collider(this.player, walls)
         this.physics.add.collider(this.player, cObjects)
         this.player.setDepth(6);
+
+
+
+        this.scene.launch('gui', {life: this.player.actualLife, maxLife: this.player.maxLife, mana: this.player.actualMana, maxMana:  this.player.maxMana});
 
         this.enemies = this.add.group()
 
@@ -158,13 +199,6 @@ export default class Room extends Phaser.Scene {
         this.cameras.main.setZoom(3);
         this.cameras.main.setBounds(0, 0, 1024, 512)
         this.cameras.main.startFollow(this.player)
-
-
-
-
-
-
-
     }
 
     loadObjects() {
@@ -267,11 +301,26 @@ export default class Room extends Phaser.Scene {
 
     // Unload scene
     unloadScene(sceneKey) {
+        this.getPlayerStats();
         this.saveSceneState();
         this.scene.stop(sceneKey);
     }
 
 
+    getPlayerStats() {
+        this.globalPlayerStats.life = this.player.actualLife
+        this.globalPlayerStats.maximumLife = this.player.maxLife
+        this.globalPlayerStats.mana = this.player.actualMana
+        this.globalPlayerStats.maximumMana = this.player.maxMana
+        this.globalPlayerStats.weaponMult = this.player.weaponMultiplier
+        this.globalPlayerStats.moveSpeed = this.player.movSpeed
+        this.globalPlayerStats.lck = this.player.luck
+        this.globalPlayerStats.MeleeWeaponArray = this.player.meeleWeapons
+        this.globalPlayerStats.RangedWeaponArray = this.player.rangedWeapons
+        this.globalPlayerStats.ActMelIndex = this.player.meleeIndex
+        this.globalPlayerStats.ActRangIndex = this.player.rangedIndex
+        this.globalPlayerStats.lastWeaponUsed = this.player.equipedWeapon
+    }
 
 
 

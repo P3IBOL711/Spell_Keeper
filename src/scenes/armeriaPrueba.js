@@ -1,9 +1,16 @@
 import Phaser from 'phaser'
+
 import Player from '../player.js'
 import Skeleton from '../enemies/archerSkeleton.js';
 import Arrow from '../projectiles/arrow.js';
 import Knight from '../enemies/knight.js';
 import PoisonousGoblin from '../enemies/poisonousGoblin.js';
+import CarnivorousPlant from '../enemies/carnivorousPlant.js';
+import StandardSkeleton from '../enemies/standardSkeleton.js';
+import MagicSkeleton from '../enemies/magicSkeleton.js';
+import LavaGolem from '../enemies/lavaGolem.js';
+import Book from '../enemies/book.js';
+import Slime from '../enemies/slime.js';
 import basicRanged from '../armas/basicRanged.js';
 import basicMelee from '../armas/basicMelee.js';
 import FireStaff from '../armas/fireStaff.js';
@@ -33,7 +40,9 @@ export default class ArmeriaPrueba extends Phaser.Scene {
      * Creación de los elementos de la escena principal de juego
      */
     create() {
-        this.enemies = this.add.group()
+        this.scene.launch('gui');
+        this.enemies = this.add.group();
+
         // this.walls para cuando haya paredes
         let img = this.add.image(0, 0, 'escenaPrueba').setOrigin(0, 0);
         img.displayWidth = this.sys.game.config.width;
@@ -42,12 +51,12 @@ export default class ArmeriaPrueba extends Phaser.Scene {
         //CHAPUZON
         let playerX = 200;
         let playerY = 300;
-        this.player = new Player(this, playerX, playerY, 0, 0, 1, 0, 1, 0, [new basicMelee(this, playerX, playerY, 1)], [new basicRanged(this, playerX, playerY, 1), new FireStaff(this, playerX, playerY, 10)], 0, 0);
-        //
+        let defaultWeapon = new basicMelee(this, playerX, playerY, 1);
+        this.player = new Player(this, playerX, playerY, 0, 0, 0, 0, 1, 0, 0, [defaultWeapon], [new basicRanged(this, playerX, playerY, 1), new FireStaff(this, playerX, playerY, 10)], 0, 0, defaultWeapon);
         this.knight = new Knight(this, 800, 200, this.player);
-        this.skeleton = new Skeleton(this, 800, 300, this.player);     
-        this.arrow = new Arrow(this, 800, 300, 1000, 1000);
-        this.poisonousGoblin = new PoisonousGoblin(this, 600, 300, this.player);
-        this.player.setScale(3.0);
+        // this.skeleton = new Skeleton(this, 800, 300, this.player);     
+        // this.poisonousGoblin = new PoisonousGoblin(this, 600, 300, this.player);
+        // this.player.setScale(3.0);
+
     }
 }

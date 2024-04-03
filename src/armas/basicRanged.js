@@ -10,18 +10,37 @@ export default class basicRanged extends arma {
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      */
-    constructor(scene, x, y, damage) {
-        super(scene, x, y, 'basicRanged', damage)
-        this.delay = 3000;
+    constructor(scene, x, y, damage,equiped) {
+        super(scene, x, y, 'poisonStaff', damage,equiped)
+        this.scene.add.existing(this);
+        this.scene.physics.add.existing(this);
+        this.delay = 500;
+        this.setOrigin(0, 0.5);
+        this.x = x;
+        this.y = y;
+
+        this.setActive(true);
+        this.setVisible(true);
+
+        this.damage = damage;
 
         //Intorducir logica de los sprites
+    }
+
+    preUpdate(t, dt) {
+        super.preUpdate(t, dt)
     }
 
     isMelee() {
         return false;
     }
 
-    attack(x, y, direction, target) {
-        new Bullet(this.scene, x, y, target, true, 1);
+    attack(direction, target) {
+        if(this.x != 0 && this.y != 0)
+            new Bullet(this.scene, this.x, this.y, target, true, this.damage);
+    }
+
+    manaCost() {
+        return 10;
     }
 }

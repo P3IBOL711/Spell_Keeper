@@ -1,11 +1,11 @@
 import Phaser from 'phaser'
 import HitBox from '../hitbox';
-import Enemy from './enemy';
+import MeleeEnemy from './meleeEnemy';
 
 /**
  * Clase que representa un enemigo del juego.
  */
-export default class Knight extends Enemy {
+export default class Knight extends MeleeEnemy {
 
     /**
      * Constructor del jugador
@@ -15,7 +15,7 @@ export default class Knight extends Enemy {
     */
 
     constructor(scene, x, y, target) {
-        super(scene, x, y, 'knight');
+        super(scene, x, y, target, 'knight', 1500);
 
 
         this.anims.create({
@@ -29,7 +29,7 @@ export default class Knight extends Enemy {
             key: 'attack',
             frames: this.anims.generateFrameNumbers('knight_spritesheet', { start: 8, end: 10 }),
             frameRate: 10,
-            repeat: -1
+            repeat: 0
         });
 
         this.anims.create({
@@ -39,31 +39,25 @@ export default class Knight extends Enemy {
             repeat: 0
         });
 
-       // this.setScale(3);
+       this.setScale(1);
 
         this.speed = 40;
-
-        this.target = target;
 
         this.life = 5;
 
         this.damage = 1;
 
         this.body.setSize(this.width * 0.4, this.height * 0.85, true);
+    }
 
-        // SE PODRIA MEJORAR CON this.on(animationstart) PERO NO SABEMOS HACERLO
-        this.on(Phaser.Animations.Events.ANIMATION_START, () => {
-            if (this.anims.getName() === 'attack'){
-                this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -65 : 65), this.y - 10, 60, 120, this.target, this.damage);
-            }
-        })
+    spawnHitbox(){
+        this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -20 : 20), this.y - 10, 30, 50, this.target, this.damage);
+        this.attackZoneDown = new HitBox(this.scene, this.x, this.y + 20, 30, 20, this.target, this.damage);
+    }
 
-        this.on(Phaser.Animations.Events.ANIMATION_STOP, () => {
-            if (this.anims.getName() === 'attack'){
-                this.attackZone.destroy(true);
-            }
-        })
-
+    destroyAttackZones(){
+        this.attackZone.destroy(true);
+        this.attackZoneDown.destroy(true);
     }
 
     /**
@@ -79,18 +73,6 @@ export default class Knight extends Enemy {
         // Preguntar si podría ser mas eficiente
         if (this.life > 0) {
             this.body.setOffset(this.width * (this.flipX ? 0.38 : 0.40), this.height * 0.26);
-
-            if (Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y) >= 50){
-                this.play('walking', true);
-                this.scene.physics.moveToObject(this, this.target, this.speed);
-            }
-            else {
-                // creáis la zone de ataque
-                // cambiáis la animación (que ya está)
-                this.play('attack', true);
-                this.body.setVelocity(0);
-                
-            } 
         }
     }
 

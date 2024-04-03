@@ -10,18 +10,36 @@ export default class FireStaff extends arma {
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      */
-    constructor(scene, x, y, damage) {
-        super(scene, x, y, 'fireStaff', damage)
-        this.delay = 1500;
+    constructor(scene, x, y, damage,equiped) {
+        super(scene, x, y, 'fireStaff', damage,equiped)
+        this.scene.add.existing(this);
+        this.scene.physics.add.existing(this);
+        this.delay = 5;
+        this.id = 'FireStaff'
+        this.delay = 250;
+        this.x = x;
+        this.y = y;
+       
+        this.setActive(true);
+        this.setVisible(true);
 
+        this.damage = damage;
         //Intorducir logica de los sprites
+    }
+
+    preUpdate(t, dt) {
+        super.preUpdate(t, dt)
     }
 
     isMelee() {
         return false;
     }
 
-    attack(x, y, direction, target) {
-        new Fireball(this.scene, x, y, target, true, 1);
+    attack(direction, target) {
+        new Fireball(this.scene, this.x, this.y, target, true, this.damage);
+    }
+
+    manaCost() {
+        return 5;
     }
 }

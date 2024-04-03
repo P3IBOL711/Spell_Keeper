@@ -19,20 +19,32 @@ export default class Projectile extends Phaser.GameObjects.Sprite {
         this.scene.enviromental.add(this)
         this.scene.physics.add.overlap(this, this.scene.enemies, (projectile, enemy) => {
             if (targetEnemy){
+                this.impact(); // impact animation
                 enemy.receiveDamage(damage)
-                this.destroy();
             }
         });
 
         this.scene.physics.add.overlap(this, this.scene.player, (projectile, player) => {
             if (!targetEnemy){
+                this.impact(); // impact animation
                 player.receiveDamage(damage)
-                this.destroy();
             }
         });
 
-        this.setDepth(7)
+        this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
+            if (this.anims.getName() === 'impact'){
+                this.destroy();
+            }
+        });
+        this.setDepth(7);
+        this.impacted = false;
 
+        //this.play('normal', true);
+    }
+
+    impact(){
+        this.impacted = true;
+        this.body.setVelocity(0);
     }
 
     isProjectile(){
@@ -49,6 +61,8 @@ export default class Projectile extends Phaser.GameObjects.Sprite {
         // IMPORTANTE: Si no ponemos esta instrucción y el sprite está animado
         // no se podrá ejecutar la animación del sprite. 
         super.preUpdate(t, dt);
+        if (!this.impacted)
+            this.play('normal', true);
 
         // on overlap(fn(con quien) { ... })
         

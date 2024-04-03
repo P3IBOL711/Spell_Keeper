@@ -17,7 +17,13 @@ export default class Arrow extends Projectile {
         super(scene, x, y, 'arrow', targetEnemy, damage);
 
         //this.setScale(2.5);
-        
+        this.anims.create({
+            key: 'normal',
+            frames: this.anims.generateFrameNumbers('arrow', { start: 0, end: 0 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
         this.speed = 100;
 
         this.rotation = Phaser.Math.Angle.Between(x, y, target.x, target.y);
@@ -31,6 +37,11 @@ export default class Arrow extends Projectile {
 
         this.body.setVelocityX(this.speed * Math.cos(this.rotation));
         this.body.setVelocityY(this.speed * Math.sin(this.rotation));
+    }
+
+    impact(){
+        super.impact();
+        this.destroy();
     }
 
     /**
