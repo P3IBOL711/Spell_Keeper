@@ -160,27 +160,28 @@ export default class Dungeongen {
         this.entranceY = Math.floor(Math.random() * (M - 2)) + 1;
 
         //Ponemos la entrada
-        dungeon[this.entranceY][this.entranceX] = r1 = {
+        // r1 = {
 
-            name: "E1",
+        //     name: "E1",
 
-            level: "armory",
+        //     level: "armory",
 
-            path: "../../assets/armory/r1.tmx",
+        //     path: "../../assets/armory/r1.tmx",
 
-            entrance: true,
-            exit: false,
-            empty: false, //Habitacion vacia
-            deadend: false,//para saber que solo tiene una salida
-            shop: false,
+        //     entrance: true,
+        //     exit: false,
+        //     empty: false, //Habitacion vacia
+        //     deadend: false,//para saber que solo tiene una salida
+        //     shop: false,
 
-            door_north: true,
-            door_south: true,
-            door_east: true,
-            door_west: true
+        //     door_north: true,
+        //     door_south: true,
+        //     door_east: true,
+        //     door_west: true
 
-        }; //Asignamos la entrada
+        // }; //Asignamos la entrada
 
+        dungeon[this.entranceY][this.entranceX] = r1
         console.log(`Entrada generada en la casilla: ${this.entranceY}, ${this.entranceX}`);
 
         this.thereIsExit = false;
