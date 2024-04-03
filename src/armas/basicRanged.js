@@ -14,7 +14,7 @@ export default class basicRanged extends arma {
         super(scene, x, y, 'poisonStaff', damage,equiped)
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.delay = 500;
+        this.delay = 300;
         this.setOrigin(0, 0.5);
         this.x = x;
         this.y = y;
