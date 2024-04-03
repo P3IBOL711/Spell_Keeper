@@ -2,10 +2,10 @@ import Phaser from 'phaser'
 
 
 
-export default class MainMenu extends Phaser.Scene{
+export default class ControlsMenu00 extends Phaser.Scene{
 
     constructor() {
-        super({ key: 'controlsMenu' });
+        super({ key: 'controlsMenu00' });
     }
 
     preload(){
@@ -27,9 +27,11 @@ export default class MainMenu extends Phaser.Scene{
 
         this.add.text(400, 28, 'CONTROLS', { fontFamily: 'pixelFont', fontSize: 60, color: '#5e1675ff' , fontStyle: 'bold'}).setDepth(1);
         this.add.text(75, 33, 'BACK', { fontFamily: 'pixelFont', fontSize: 40, color: '#5e1675ff' , fontStyle: 'bold'});
+        this.add.text(855, 405, 'NEXT', { fontFamily: 'pixelFont', fontSize: 40, color: '#5e1675ff' , fontStyle: 'bold'});
         this.add.text(155, 190, 'MOVEMENT', { fontFamily: 'pixelFont', fontSize: 50, color: '#5e1675ff' , fontStyle: 'bold'});
         this.add.text(445, 190, 'SHOOT', { fontFamily: 'pixelFont', fontSize: 50, color: '#5e1675ff' , fontStyle: 'bold'});
         this.add.text(650, 190, 'ATTACK MODE', { fontFamily: 'pixelFont', fontSize: 50, color: '#5e1675ff' , fontStyle: 'bold'});
+        // Buttons
         this.backButton = this.add.image(18, 30, 'homeButton').setOrigin(0).setDepth(1).setScale(1.5);
 
        this.backButton.setInteractive();
@@ -43,6 +45,20 @@ export default class MainMenu extends Phaser.Scene{
 
        this.backButton.on("pointerup", ()=>{
             this.scene.start('mainMenu');
+       })
+
+       this.nextButton = this.add.image(925, 400, 'nextButton').setOrigin(0).setDepth(1).setScale(1.5);
+       this.nextButton.setInteractive();
+       this.nextButton.on("pointerover", ()=>{
+            this.nextButton.setScale(1.6)
+       })
+
+       this.nextButton.on("pointerout", ()=>{
+            this.nextButton.setScale(1.5)
+       })
+
+       this.nextButton.on("pointerup", ()=>{
+            this.scene.start('controlsMenu01');
        })
     }
 }

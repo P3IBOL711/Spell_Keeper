@@ -14,6 +14,9 @@ import wKey from '../../assets/controlsMenu/w.png'
 import aKey from '../../assets/controlsMenu/a.png'
 import sKey from '../../assets/controlsMenu/s.png'
 import dKey from '../../assets/controlsMenu/d.png'
+import qKey from '../../assets/controlsMenu/q.png'
+import fKey from '../../assets/controlsMenu/f.png'
+import next from '../../assets/controlsMenu/next.png'
 import homeButton from '../../assets/controlsMenu/home.png'
 import leftClick from '../../assets/controlsMenu/leftClick.png'
 import rightClick from '../../assets/controlsMenu/rightClick.png'
@@ -49,6 +52,9 @@ export default class Boot extends Phaser.Scene {
     this.load.image('aKey', aKey);
     this.load.image('sKey', sKey);
     this.load.image('dKey', dKey);
+    this.load.image('qKey', qKey);
+    this.load.image('fKey', fKey);
+    this.load.image('nextButton', next);
     this.load.image('homeButton', homeButton);
     this.load.image('leftClick', leftClick);
     this.load.image('rightClick', rightClick);

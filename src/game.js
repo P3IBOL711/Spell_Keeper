@@ -2,7 +2,8 @@ import ArmeriaPrueba from './scenes/armeriaPrueba.js';
 import Boot from './scenes/boot.js';
 import Phaser from 'phaser'
 import  MainMenu  from './scenes/mainMenu.js';
-import Controls from './scenes/controlsMenu.js';
+import Controls00 from './scenes/00controlsMenu.js';
+import Controls01 from './scenes/01controlsMenu.js';
 import End from './scenes/end.js'
 
 /**
@@ -19,7 +20,7 @@ let config = {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
     pixelArt: true,
-    scene: [Boot, MainMenu, Controls, ArmeriaPrueba, End],
+    scene: [Boot, MainMenu, Controls00, Controls01, ArmeriaPrueba, End],
     physics: {
         default: 'arcade',
         arcade: {

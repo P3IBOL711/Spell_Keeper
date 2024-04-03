@@ -66,7 +66,7 @@ export default class MainMenu extends Phaser.Scene{
        })
 
        this.controlsButton.on("pointerup", ()=>{
-         this.scene.start('controlsMenu');
+         this.scene.start('controlsMenu00');
        })
     }
 
