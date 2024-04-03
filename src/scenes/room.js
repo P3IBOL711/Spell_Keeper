@@ -2,7 +2,7 @@
 import arb from '../../assets/armory/tiles/Base.png'
 import arw from '../../assets/armory/tiles/Weapons.png'
 import lbb from '../../assets/library/tiles/Base.png'
-import lbw from '../../assets/library/tiles/Weapons.png'
+import lbw from '../../assets/library/tiles/Objects.png'
 import f from '../../assets/misc/fire.png'
 
 import Player from '../player.js'
@@ -40,7 +40,7 @@ export default class Room extends Phaser.Scene {
 
     init(obj) {
 
-        this.key = obj.key
+        
         this.x = obj.X;
         this.y = obj.Y;
         this.dungeon = obj.dg;
@@ -78,10 +78,10 @@ export default class Room extends Phaser.Scene {
     preload() {
         if (this.level === 'ar') {
             this.load.image('Base', arb)
-            this.load.image('Weapons', arw)
+            this.load.image('Objects', arw)
         } else {
             this.load.image('Base', lbb)
-            this.load.image('Weapons', lbw)
+            this.load.image('Objects', lbw)
         }
         this.load.image('fire', f)
 
@@ -131,13 +131,13 @@ export default class Room extends Phaser.Scene {
         });
 
         let base = this.map.addTilesetImage('Base');
-        let weapons = this.map.addTilesetImage('Weapons');
+        let objects = this.map.addTilesetImage('Objects');
         let fondo = this.map.createLayer('Fondo', [base]).setDepth(0)
         let floor = this.map.createLayer('Floor', [base]).setDepth(1)
         let walls = this.map.createLayer('Walls', [base]).setDepth(2).setCollisionByExclusion(-1)
-        let cObjects = this.map.createLayer('CObjects', [weapons]).setDepth(3).setCollisionByExclusion(-1)
-        let nCObjects = this.map.createLayer('NCObjects', [weapons]).setDepth(4)
-        let extra = this.map.createLayer('Extra', [weapons]).setDepth(5)
+        let cObjects = this.map.createLayer('CObjects', [objects]).setDepth(3).setCollisionByExclusion(-1)
+        let nCObjects = this.map.createLayer('NCObjects', [objects]).setDepth(4)
+        let extra = this.map.createLayer('Extra', [objects]).setDepth(5)
 
         //DETERMINE PLAYER SPAWN
         let playerX = 300;
