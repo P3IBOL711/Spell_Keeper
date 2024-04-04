@@ -20,6 +20,7 @@ import font from 'url:../../assets/fonts/VT323Regular.ttf'
 import fullHeart from '../../assets/HUD/ui-heart-full.png'
 import halfHeart from '../../assets/HUD/half-ui-heart.png'
 import emptyHeart from '../../assets/HUD/ui-heart-empty.png'
+import Fire from '../../assets/misc/fire.png'
 // prueba
 import manaBar from '../../assets/HUD/manabar.png'
 import mainMana from '../../assets/HUD/main_mana.png'
@@ -72,6 +73,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('leftClick', leftClick);
     this.load.image('rightClick', rightClick);
     this.load.image('titleDecoration', TitleDecoration)
+    this.load.image('fire',Fire)
 
     this.load.spritesheet('arrow', arrow,{frameWidth: 32, frameHeight: 32});
     this.load.image('dagger', dagger);

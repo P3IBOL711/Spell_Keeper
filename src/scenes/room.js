@@ -33,14 +33,14 @@ export default class Room extends Phaser.Scene {
         this.eSpawn = { x: 0, y: 0 };
         this.wSpawn = { x: 0, y: 0 };
         this.cSpawn = { x: 0, y: 0 };
-       // this.level = obj.level
+        // this.level = obj.level
 
 
     }
 
     init(obj) {
 
-        
+
         this.x = obj.X;
         this.y = obj.Y;
         this.dungeon = obj.dg;
@@ -68,9 +68,9 @@ export default class Room extends Phaser.Scene {
                 ActRangIndex: 0,     // Index of the currently active ranged weapon
                 lastWeaponUsed: null // Last weapon used (can be set to the name or ID of the weapon)
             };
-        } else{
+        } else {
             this.globalPlayerStats = obj.playerStat;
-           
+
         }
     }
 
@@ -115,7 +115,7 @@ export default class Room extends Phaser.Scene {
 
 
     create() {
-       
+
         if (this.dungeon[this.y][this.x].visited === false)
             this.dungeon[this.y][this.x].visited = true
         else {
@@ -168,7 +168,7 @@ export default class Room extends Phaser.Scene {
         let newMeleeArray = []
         for (let weapon of this.globalPlayerStats.MeleeWeaponArray) {
             let newWeapon = weapon.constructor
-            newMeleeArray.push(new newWeapon(this,0,0,1,true))
+            newMeleeArray.push(new newWeapon(this, 0, 0, 1, true))
         }
         this.globalPlayerStats.MeleeWeaponArray = newMeleeArray;
 
@@ -176,19 +176,25 @@ export default class Room extends Phaser.Scene {
         let newRangedArray = []
         for (let weapon of this.globalPlayerStats.RangedWeaponArray) {
             let newWeapon = weapon.constructor
-            newRangedArray.push(new newWeapon(this,0,0,1,true))
+            newRangedArray.push(new newWeapon(this, 0, 0, 1, true))
         }
         this.globalPlayerStats.RangedWeaponArray = newRangedArray;
 
 
         this.player = new Player(this, playerX, playerY, this.globalPlayerStats.life, this.globalPlayerStats.maximumLife, this.globalPlayerStats.mana, this.globalPlayerStats.maximumMana, this.globalPlayerStats.weaponMult, this.globalPlayerStats.moveSpeed, this.globalPlayerStats.lck, this.globalPlayerStats.MeleeWeaponArray, this.globalPlayerStats.RangedWeaponArray, this.globalPlayerStats.ActMelIndex, this.globalPlayerStats.ActRangIndex, this.globalPlayerStats.lastWeaponUsed);
-        this.physics.add.collider(this.player, walls)
-        this.physics.add.collider(this.player, cObjects)
+        this.physics.add.collider(this.enviromental, walls, (obj) => {
+            if (obj.isProjectile())
+                obj.destroy();
+        });
+        this.physics.add.collider(this.enviromental, cObjects, (obj) => {
+            if (obj.isProjectile())
+                obj.destroy();
+        });
         this.player.setDepth(6);
 
 
 
-        this.scene.launch('gui', {life: this.player.actualLife, maxLife: this.player.maxLife, mana: this.player.actualMana, maxMana:  this.player.maxMana});
+        this.scene.launch('gui', { life: this.player.actualLife, maxLife: this.player.maxLife, mana: this.player.actualMana, maxMana: this.player.maxMana });
 
         this.enemies = this.add.group()
 
@@ -215,10 +221,10 @@ export default class Room extends Phaser.Scene {
                         new Trigger(this, objeto.x + objeto.width / 2, objeto.y + 16, objeto.width, objeto.height, this.player, this.level, this.x, this.y, this.loadScene, 's', this.dungeon);
                         break;
                     case 'e':
-                        new Trigger(this, objeto.x + objeto.width / 2, objeto.y + 16, objeto.width, objeto.height, this.player, this.level, this.x, this.y, this.loadScene, 'e', this.dungeon);
+                        new Trigger(this, objeto.x + objeto.width / 2, objeto.y + objeto.height / 2, objeto.width, objeto.height, this.player, this.level, this.x, this.y, this.loadScene, 'e', this.dungeon);
                         break;
                     case 'w':
-                        new Trigger(this, objeto.x + objeto.width / 2, objeto.y + 16, objeto.width, objeto.height, this.player, this.level, this.x, this.y, this.loadScene, 'w', this.dungeon);
+                        new Trigger(this, objeto.x + objeto.width / 2, objeto.y + objeto.height / 2, objeto.width, objeto.height, this.player, this.level, this.x, this.y, this.loadScene, 'w', this.dungeon);
                         break;
                 }
 
@@ -230,13 +236,18 @@ export default class Room extends Phaser.Scene {
                     this.numberOfEnemies++
                 }
             } else if (objeto.type === 'Fire') {
-                if (this.numberOfEnemies !== -1)
-                    if(objeto.rotation !== 90 || objeto.rotation !== 270){
-                        this.fireArray.push(new Fire(this,(objeto.y + objeto.height / 2) - 32 , objeto.x - objeto.width / 2, objeto.width, objeto.height,objeto.rotation))
-                    }else
-                    this.fireArray.push(new Fire(this, objeto.x + objeto.width / 2, (objeto.y + objeto.height / 2) - 32, objeto.width, objeto.height,objeto.rotation))
+                if (this.numberOfEnemies !== -1) {
+                    if (objeto.rotation === 270)
+                        this.fireArray.push(new Fire(this, objeto.x - objeto.width / 2, (objeto.y + objeto.height / 2) - 40, objeto.width, objeto.height, objeto.rotation))
+                    else if (objeto.rotation === 90)
+                        this.fireArray.push(new Fire(this, objeto.x + objeto.width / 2, (objeto.y + objeto.height / 2) - 8, objeto.width, objeto.height, objeto.rotation))
+                    else
+                        this.fireArray.push(new Fire(this, (objeto.x - objeto.width / 2)+32,(objeto.y + objeto.height / 2) - 40, objeto.width, objeto.height, objeto.rotation))
+                }
             } else if (objeto.type === 'Chest') {
                 new Chest(this, objeto.x + objeto.width / 2, objeto.y - objeto.height / 2, objeto.width, objeto.height, this.player, this.chestOpened)
+            }else if (objeto.type === 'SpecialTrigger'){
+                
             }
         }
     }

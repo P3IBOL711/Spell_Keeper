@@ -193,13 +193,13 @@
                  "name":"",
                  "properties":[
                         {
-                         "name":"Dir",
-                         "propertytype":"Direction",
+                         "name":"Level",
+                         "propertytype":"Level",
                          "type":"string",
-                         "value":"n"
+                         "value":"lb"
                         }],
                  "rotation":0,
-                 "type":"Trigger",
+                 "type":"SpecialTrigger",
                  "visible":true,
                  "width":64,
                  "x":320,
@@ -357,7 +357,7 @@
         {
          "columns":5,
          "firstgid":1,
-         "image":"..\/..\/..\/Pixel Art PNGs\/Armory_Tileset.png",
+         "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/Armory_Tileset.png",
          "imageheight":128,
          "imagewidth":160,
          "margin":0,
@@ -370,7 +370,7 @@
         {
          "columns":16,
          "firstgid":21,
-         "image":"..\/..\/..\/Pixel Art PNGs\/Weapons.png",
+         "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/Weapons.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -397,14 +397,14 @@
          "tiles":[
                 {
                  "id":0,
-                 "image":"..\/..\/..\/Pixel Art PNGs\/LlamaArriba.png",
+                 "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/LlamaArriba.png",
                  "imageheight":32,
                  "imagewidth":32,
                  "type":"Fire"
                 }, 
                 {
                  "id":1,
-                 "image":"..\/..\/..\/Pixel Art PNGs\/Chest.png",
+                 "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/Chest.png",
                  "imageheight":32,
                  "imagewidth":32,
                  "type":"Chest"
