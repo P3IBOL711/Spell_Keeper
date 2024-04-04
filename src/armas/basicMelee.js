@@ -16,7 +16,7 @@ export default class basicMelee extends arma {
         this.setOrigin(0, 0.5);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.delay = 500;
+        this.delay = 300;
         this.hasAttacked = false;
         this.damage = damage;
         this.timeOnField = 0;

@@ -33,7 +33,7 @@ export default class Room extends Phaser.Scene {
         this.eSpawn = { x: 0, y: 0 };
         this.wSpawn = { x: 0, y: 0 };
         this.cSpawn = { x: 0, y: 0 };
-        this.level = obj.level
+       // this.level = obj.level
 
 
     }
@@ -231,7 +231,10 @@ export default class Room extends Phaser.Scene {
                 }
             } else if (objeto.type === 'Fire') {
                 if (this.numberOfEnemies !== -1)
-                    this.fireArray.push(new Fire(this, objeto.x + objeto.width / 2, (objeto.y + objeto.height / 2) - 32, objeto.width, objeto.height))
+                    if(objeto.rotation !== 90 || objeto.rotation !== 270){
+                        this.fireArray.push(new Fire(this,(objeto.y + objeto.height / 2) - 32 , objeto.x - objeto.width / 2, objeto.width, objeto.height,objeto.rotation))
+                    }else
+                    this.fireArray.push(new Fire(this, objeto.x + objeto.width / 2, (objeto.y + objeto.height / 2) - 32, objeto.width, objeto.height,objeto.rotation))
             } else if (objeto.type === 'Chest') {
                 new Chest(this, objeto.x + objeto.width / 2, objeto.y - objeto.height / 2, objeto.width, objeto.height, this.player, this.chestOpened)
             }
