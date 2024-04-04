@@ -36,7 +36,9 @@ export default class FireStaff extends arma {
     }
 
     attack(direction, target) {
-        new Fireball(this.scene, this.x, this.y, target, true, this.damage);
+        super.rotateAttack(this.isMelee());
+        if(this.x != 0 && this.y != 0)
+            new Fireball(this.scene, this.x, this.y, target, true, this.damage);
     }
 
     manaCost() {

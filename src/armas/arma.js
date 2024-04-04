@@ -18,16 +18,16 @@ export default class arma extends Phaser.GameObjects.Sprite {
 
 
         this.scene.physics.add.overlap(this, this.scene.player, (weapon) => {
-            if (!equiped) {
+            
                 if (weapon.isMelee()) {
                     this.scene.player.takeMeleeWeapon(weapon);
                 }
                 else {
                     this.scene.player.takeRangedWeapon(weapon);
                 }
-                weapon.destroy()
-            }
-          
+                weapon.setActive(false);
+                weapon.setVisible(false);
+                console.log("arma equipada");
         });
 
 
@@ -42,37 +42,25 @@ export default class arma extends Phaser.GameObjects.Sprite {
 
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-
-        //        if(this.isMelee()) {
-        //            let initialRotation = this.angle;
-        //            this.scene.tweens.add({
-        //                target: this,
-        //                angle:  initialRotation + 60,
-        //                duration: 100,
-        //                onComplete: () => {
-        //                    this.angle = initialRotation;
-        //                }
-        //            });
-        //        }
-
-        /********************************** */
-
-        //        let playerX = this.scene.player.x;
-        //        let playerY = this.scene.player.y;
-        //
-        //        // Rotar el arma alrededor del jugador con una distancia fija y un ángulo de 60 grados
-        //        Phaser.Actions.RotateAroundDistance([this], { x: playerX, y: playerY }, Phaser.Math.DegToRad(60), 50);
-        //
-        //        // Si el ángulo de rotación es mayor o igual a 60 grados, restaurar la posición inicial
-        //        if (this.angle >= 60) {
-        //            Phaser.Actions.RotateAroundDistance([this], { x: playerX, y: playerY }, Phaser.Math.DegToRad(-60), 50);
-        //        }
     }
 
     modifiedDmg(weaponMultiplier) {
         this.wDmg = this.wDmg * weaponMultiplier;
     }
 
+    rotateAttack() {
+        if(this.isMelee()) {
+            let initialRotation = this.angle;
+            this.scene.tweens.add({
+                targets: this,
+                angle:  initialRotation + 60,
+                duration: 250,
+                onComplete: () => {
+                    this.angle = initialRotation;
+                }
+            });
+        }
+    }
 
     playIdle() { }
     isMelee() { }

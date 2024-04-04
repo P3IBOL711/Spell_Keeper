@@ -281,18 +281,15 @@ export default class Player extends Phaser.GameObjects.Sprite {
         //Mientras se hace haces el ataque y luego se destruye el area
         if (this.active === false) { return; }
         if(this.canAttack) {
-            if(this.meleeMode) {
-                //La regeneracion de mana va en otro metodo
-                this.equipedWeapon.attack(this.direction, this.reticle);
-            }
-            else {
+            if(!this.meleeMode) {
                 if(this.actualMana - this.equipedWeapon.manaCost() >= 0) {
                     this.actualMana -= this.equipedWeapon.manaCost();
-                    this.equipedWeapon.attack(this.direction, this.reticle);
                 }
-                //falta el else para calcular el daño
+                else {
+                    this.equipedWeapon.recalculateDamage(this.actualMana);
+                }
             }
-    
+            this.equipedWeapon.attack(this.direction, this.reticle);
             hudEvents.emit('updateMana', [this.actualMana, this.maxMana]);
             this.canAttack = false;
         }
@@ -330,7 +327,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             
             hudEvents.emit('updateHealth', this.actualLife);
 
-            if(this.life <= 0) {
+            if(this.actualLife <= 0) {
                 //Animacion de muerte
                 this.scene.scene.start('end');
             }
@@ -359,8 +356,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     takeRangedWeapon(weapon) {
-        if(weapon.id = 'FireStaff')
-        this.rangedWeapons.push(new FireStaff(this.scene,-100,-100,10,true));
+        this.rangedWeapons.push(weapon);
     }
 
     //Relativo al escudo

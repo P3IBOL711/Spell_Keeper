@@ -36,6 +36,7 @@ export default class basicRanged extends arma {
     }
 
     attack(direction, target) {
+        super.rotateAttack(this.isMelee());
         if(this.x != 0 && this.y != 0)
             new Bullet(this.scene, this.x, this.y, target, true, this.damage);
     }
