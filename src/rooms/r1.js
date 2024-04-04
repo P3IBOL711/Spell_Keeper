@@ -6,7 +6,7 @@ level: "armory",
 
 path: "../../assets/armory/r1.tmx",
 
-entrance: true,
+entrance: false,
 exit: false,
 empty: false, //Habitacion vacia
 deadend: false,//para saber que solo tiene una salida

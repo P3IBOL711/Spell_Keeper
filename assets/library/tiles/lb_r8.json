@@ -370,16 +370,6 @@
         {
          "columns":0,
          "firstgid":81,
-         "margin":0,
-         "name":"Flames",
-         "spacing":0,
-         "tilecount":0,
-         "tileheight":1,
-         "tilewidth":1
-        }, 
-        {
-         "columns":0,
-         "firstgid":81,
          "grid":
             {
              "height":1,

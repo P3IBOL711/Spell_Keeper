@@ -1,12 +1,12 @@
-import lb_r1 from '../../../assets/library/tiles/lb_r1.json'
+import lb_r8 from '../../../assets/library/tiles/lb_r8.json'
 import Room from '../room.js';
 
 
-export default class LBR1 extends Room {
+export default class LBR8 extends Room {
 
     constructor() {
-        super({ key: 'lbR1', level:'lb' });
-        this.key = 'lbR1'
+        super({ key: 'lbR8', level:'lb' });
+        this.key = 'lbR8'
         this.level ='lb'
         this.x = 0;
         this.y = 0;
@@ -15,7 +15,7 @@ export default class LBR1 extends Room {
 
 
     preload() {
-        this.load.tilemapTiledJSON('tilemap', lb_r1)
+        this.load.tilemapTiledJSON('tilemap', lb_r8)
         super.preload();
     }
 

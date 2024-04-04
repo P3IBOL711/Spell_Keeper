@@ -13,9 +13,7 @@ export default class LBE1 extends Room {
         this.loadScene = this.loadScene.bind(this);
     }
 
-    init(obj){
-       super.init(obj)
-    }
+
 
     preload() {
         this.load.tilemapTiledJSON('tilemap', lb_e1)
