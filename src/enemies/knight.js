@@ -51,8 +51,8 @@ export default class Knight extends MeleeEnemy {
     }
 
     spawnHitbox(){
-        this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -65 : 65), this.y - 10, 60, 120, this.target, this.damage);
-        this.attackZoneDown = new HitBox(this.scene, this.x, this.y + 30, 60, 120, this.target, this.damage);
+        this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -20 : 20), this.y - 10, 30, 50, this.target, this.damage);
+        this.attackZoneDown = new HitBox(this.scene, this.x, this.y + 20, 30, 20, this.target, this.damage);
     }
 
     destroyAttackZones(){

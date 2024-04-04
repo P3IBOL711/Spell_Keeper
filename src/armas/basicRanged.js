@@ -14,10 +14,15 @@ export default class basicRanged extends arma {
         super(scene, x, y, 'poisonStaff', damage,equiped)
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.delay = 3000;
+        this.delay = 300;
+        this.setOrigin(0, 0.5);
+        this.x = x;
+        this.y = y;
 
         this.setActive(true);
         this.setVisible(true);
+
+        this.damage = damage;
 
         //Intorducir logica de los sprites
     }
@@ -30,8 +35,9 @@ export default class basicRanged extends arma {
         return false;
     }
 
-    attack(x, y, direction, target) {
-        new Bullet(this.scene, x, y, target, true, this.damage);
+    attack(direction, target) {
+        if(this.x != 0 && this.y != 0)
+            new Bullet(this.scene, this.x, this.y, target, true, this.damage);
     }
 
     manaCost() {

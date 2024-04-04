@@ -13,7 +13,7 @@ export default class MainMenu extends Phaser.Scene{
     }
 
     create(){
-        this.add.image(0,0,'controlsBackground').setOrigin(0).setDepth(0)//Background
+        this.add.image(0,0,'controlsBackground').setOrigin(0).setDepth(0).setDisplaySize(1025, 515)//Background
 
         this.add.image(190,5,'titleDecoration').setOrigin(0).setDepth(1).setScale(1.5)//Title decoration
 

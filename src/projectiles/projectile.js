@@ -21,7 +21,6 @@ export default class Projectile extends Phaser.GameObjects.Sprite {
             if (targetEnemy){
                 this.impact(); // impact animation
                 enemy.receiveDamage(damage)
-                //this.destroy();
             }
         });
 

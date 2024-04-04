@@ -271,6 +271,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         let newWepY = this.y + offsetY;
 
         this.equipedWeapon.setPosition(newWepX, newWepY);
+        this.equipedWeapon.angle = Phaser.Math.RadToDeg(angleToReticle);
     }
 
     /**FUNCION PARA QUE EL JUGADOR ATAQUE */
@@ -279,25 +280,32 @@ export default class Player extends Phaser.GameObjects.Sprite {
         //this.play();
         //Mientras se hace haces el ataque y luego se destruye el area
         if (this.active === false) { return; }
-        if(this.meleeMode) {
-            if(this.actualMana + this.equipedWeapon.manaRegen() >= this.maxMana)
-                this.actualMana = this.maxMana;
-            else 
-                this.actualMana += this.equipedWeapon.manaRegen();
-            this.equipedWeapon.attack(this.x, this.y, this.direction, this.reticle);
-            
-        }
-        else {
-            if(this.actualMana - this.equipedWeapon.manaCost() >= 0) {
-                this.actualMana -= this.equipedWeapon.manaCost();
-                this.equipedWeapon.attack(this.x, this.y, this.direction, this.reticle);
+        if(this.canAttack) {
+            if(this.meleeMode) {
+                //La regeneracion de mana va en otro metodo
+                this.equipedWeapon.attack(this.direction, this.reticle);
             }
-            //falta el else para calcular el daño
+            else {
+                if(this.actualMana - this.equipedWeapon.manaCost() >= 0) {
+                    this.actualMana -= this.equipedWeapon.manaCost();
+                    this.equipedWeapon.attack(this.direction, this.reticle);
+                }
+                //falta el else para calcular el daño
+            }
+    
+            hudEvents.emit('updateMana', [this.actualMana, this.maxMana]);
+            this.canAttack = false;
         }
-
-        hudEvents.emit('updateMana', [this.actualMana, this.maxMana]);
-        this.canAttack = false;
     }
+
+    regenMana() {
+        if (this.actualMana + this.equipedWeapon.manaRegen() >= this.maxMana)
+            this.actualMana = this.maxMana;
+        else
+            this.actualMana += this.equipedWeapon.manaRegen();
+    }
+
+    
 
     /**Funcion que se llama cuando el jugador recibe daño */
     receiveDamage(damage) {

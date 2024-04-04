@@ -20,9 +20,13 @@ import font from 'url:../../assets/fonts/VT323Regular.ttf'
 import fullHeart from '../../assets/HUD/ui-heart-full.png'
 import halfHeart from '../../assets/HUD/half-ui-heart.png'
 import emptyHeart from '../../assets/HUD/ui-heart-empty.png'
+// prueba
+import manaBar from '../../assets/HUD/manabar.png'
+import mainMana from '../../assets/HUD/main_mana.png'
+import finalMana from '../../assets/HUD/final_mana.png'
 import chest from '../../assets/armory/sprites/chests.png'
-import fireStaff from '../../assets/cSprites/fireStaff.png'
-import poisonStaff from '../../assets/cSprites/poisonStaff.png'
+import fireStaff from '../../assets/cSprites/fireStaff2.png'
+import poisonStaff from '../../assets/cSprites/poisonStaff2.png'
 // Controls Menu
 import ControlsBackground from '../../assets/controlsMenu/background.png'
 import wKey from '../../assets/controlsMenu/w.png'
@@ -90,6 +94,9 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('standardSkeletonSpritesheet', StandardSkeleton, { frameWidth: 72, frameHeight: 72 });
     this.load.spritesheet('purpleMagicBallSpritesheet', PurpleMagicBall, { frameWidth: 32, frameHeight: 32 });
     this.load.spritesheet('greenPoisonBallSpritesheet', GreenPoisonBall, { frameWidth: 32, frameHeight: 32 });
+    this.load.image('manaBar', manaBar);
+    this.load.image('mainMana', mainMana);
+    this.load.image('finalMana', finalMana);
 
     // Background
     let background = this.add.graphics();

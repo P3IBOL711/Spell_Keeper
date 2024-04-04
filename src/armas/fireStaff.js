@@ -16,9 +16,14 @@ export default class FireStaff extends arma {
         this.scene.physics.add.existing(this);
         this.delay = 5;
         this.id = 'FireStaff'
+        this.delay = 250;
+        this.x = x;
+        this.y = y;
        
         this.setActive(true);
         this.setVisible(true);
+
+        this.damage = damage;
         //Intorducir logica de los sprites
     }
 
@@ -30,8 +35,8 @@ export default class FireStaff extends arma {
         return false;
     }
 
-    attack(x, y, direction, target) {
-        new Fireball(this.scene, x, y, target, true, this.damage);
+    attack(direction, target) {
+        new Fireball(this.scene, this.x, this.y, target, true, this.damage);
     }
 
     manaCost() {

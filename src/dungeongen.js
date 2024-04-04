@@ -160,7 +160,9 @@ export default class Dungeongen {
         this.entranceY = Math.floor(Math.random() * (M - 2)) + 1;
 
         //Ponemos la entrada
-        dungeon[this.entranceY][this.entranceX] = r1 = {
+        
+
+        dungeon[this.entranceY][this.entranceX] = {
 
             name: "E1",
 
@@ -180,7 +182,6 @@ export default class Dungeongen {
             door_west: true
 
         }; //Asignamos la entrada
-
         console.log(`Entrada generada en la casilla: ${this.entranceY}, ${this.entranceX}`);
 
         this.thereIsExit = false;
