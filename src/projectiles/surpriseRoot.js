@@ -19,7 +19,7 @@ export default class SurpriseRoot extends Projectile {
         //this.setScale(2.5);
         this.anims.create({
             key: 'normal',
-            frames: this.anims.generateFrameNumbers('surpriseRootSpritesheet', { start: 0, end: 11 }),
+            frames: this.anims.generateFrameNumbers('surpriseRootSpritesheet', { start: 0, end: 15 }),
             frameRate: 7,
             repeat: -1
         });

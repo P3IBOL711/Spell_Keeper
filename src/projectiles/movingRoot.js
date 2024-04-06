@@ -19,14 +19,27 @@ export default class MovingRoot extends Projectile {
         //this.setScale(2.5);
         this.anims.create({
             key: 'normal',
-            frames: this.anims.generateFrameNumbers('movingRootSpritesheet', { start: 0, end: 7 }),
-            frameRate: 10,
+            frames: this.anims.generateFrameNumbers('movingRootSpritesheet', { start: 0, end: 9 }),
+            frameRate: 12,
             repeat: -1
         });
 
         this.speed = 50;
 
         this.body.setVelocityY(this.speed);
+
+        // this.on(Phaser.Animations.Events.ANIMATION_UPDATE, () => {
+            
+        //     if (this.anims.getName() === 'normal' && (this.anims.currentFrame.index === 0 || this.anims.currentFrame.index === 1 || this.anims.currentFrame.index === 7 || this.anims.currentFrame.index === 6)){
+        //         this.body.setVelocityY(this.speed - 30);
+        //     }
+        //     else{
+        //         this.body.setVelocityY(this.speed);
+        //     }
+            
+            
+        // })
+
     }
 
     impact(){

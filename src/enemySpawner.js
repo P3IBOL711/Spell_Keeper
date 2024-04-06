@@ -2,11 +2,12 @@ import PoisonousGoblin from "./enemies/poisonousGoblin"
 import Knight from "./enemies/knight"
 import Skeleton from "./enemies/archerSkeleton"
 import BossTree from './enemies/bossTree'
+import EvilWizard from "./enemies/evilWizard"
 
 export default class EnemySpawner {
 
     constructor(scene,x,y,target){
-        this.enemyPool = [BossTree]
+        this.enemyPool = [EvilWizard]
         this.scene = scene
         this.x = x
         this.y = y
