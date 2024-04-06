@@ -40,7 +40,7 @@ import TitleDecoration from  '../../assets/mainTitle.png'
 // Bosses
 import BossTree from '../../assets/bosses/tree/Arbol.png'
 import SurpriseRoot from '../../assets/bosses/tree/Atk2.png'
-import MovingRoot from '../../assets/bosses/tree/Atk1.png'
+import MovingRoot from '../../assets/bosses/tree/Atk1_.png'
 import Acorn from '../../assets/bosses/tree/Bellota.png'
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
