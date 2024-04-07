@@ -7,7 +7,7 @@ export default class arma extends Phaser.GameObjects.Sprite {
         * @param {number} x Coordenada X
         * @param {number} y Coordenada Y
         */
-    constructor(scene, x, y, WeaponName, WeaponDamage, equiped) {
+    constructor(scene, x, y, WeaponName) {
         super(scene, x, y, WeaponName)
         this.wName = WeaponName;
         this.id = ''
@@ -17,8 +17,7 @@ export default class arma extends Phaser.GameObjects.Sprite {
 
 
 
-        this.scene.physics.add.overlap(this, this.scene.player, (weapon) => {
-            
+        let overlapCollider = this.scene.physics.add.overlap(this, this.scene.player, (weapon) => {
                 if (weapon.isMelee()) {
                     this.scene.player.takeMeleeWeapon(weapon);
                 }
@@ -27,7 +26,7 @@ export default class arma extends Phaser.GameObjects.Sprite {
                 }
                 weapon.setActive(false);
                 weapon.setVisible(false);
-                console.log("arma equipada");
+                this.scene.physics.world.removeCollider(overlapCollider);
         });
 
 

@@ -10,8 +10,8 @@ export default class FireStaff extends arma {
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      */
-    constructor(scene, x, y, damage,equiped) {
-        super(scene, x, y, 'fireStaff', damage,equiped)
+    constructor(scene, x, y, damage) {
+        super(scene, x, y, 'fireStaff')
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.delay = 5;

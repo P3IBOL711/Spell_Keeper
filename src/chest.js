@@ -97,10 +97,8 @@ export default class Chest extends Phaser.GameObjects.Sprite {
         }
     }
 
-    generateLoot(){
-
-        new FireStaff(this.scene,this.x,this.y+50,10,false)
-
+    generateLoot() {
+        new FireStaff(this.scene, this.x, this.y + 50, 10)
     }
 
 

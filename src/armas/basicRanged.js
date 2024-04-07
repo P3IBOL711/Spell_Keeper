@@ -10,8 +10,8 @@ export default class basicRanged extends arma {
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      */
-    constructor(scene, x, y, damage,equiped) {
-        super(scene, x, y, 'poisonStaff', damage,equiped)
+    constructor(scene, x, y, damage) {
+        super(scene, x, y, 'poisonStaff')
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.delay = 300;
@@ -23,8 +23,6 @@ export default class basicRanged extends arma {
         this.setVisible(true);
 
         this.damage = damage;
-
-        //Intorducir logica de los sprites
     }
 
     preUpdate(t, dt) {

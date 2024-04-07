@@ -411,6 +411,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     /*Al mana*/
+    recoverMana(manaPoints) {
+        if(this.actualMana + manaPoints >= this.maxMana)
+            this.actualMana = this.maxMana;
+        else 
+            this.actualMana += manaPoints;
+        hudEvents.emit('updateMana', [this.actualMana, this.maxMana]);
+    }
+
     increaseMana(manaPoints) {
         if(this.maxMana + manaPoints < this.manaSuperiorCap) {
             this.maxMana += manaPoints;

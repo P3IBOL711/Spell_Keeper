@@ -11,8 +11,8 @@ export default class basicMelee extends arma {
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      */
-    constructor(scene, x, y, damage,equiped) {
-        super(scene, x, y, 'dagger', damage,equiped);
+    constructor(scene, x, y, damage) {
+        super(scene, x, y, 'dagger');
         this.setOrigin(0, 0.5);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);

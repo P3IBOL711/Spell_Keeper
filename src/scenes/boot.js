@@ -1,5 +1,7 @@
 import Phaser from 'phaser'
+//player assets
 import player from '../../assets/cSprites/characters/Mage_Walking.png'
+//Enemies assets
 import knight from '../../assets/armory/sprites/knight/knight_spritesheet.png'
 import skeleton from '../../assets/armory/sprites/skeleton/skeleton_spritesheet.png'
 import PoisonousGoblin from '../../assets/gardens/sprites/goblin/poisonous_goblin_spritesheet.png'
@@ -9,9 +11,10 @@ import StandardSkeleton from '../../assets/library/sprites/skeleton/skeleton_1_s
 import LavaGolem from '../../assets/throne_room/sprites/lava_golem/golem_spritesheet.png'
 import Slime from '../../assets/gardens/sprites/slime/slime_spritesheet.png'
 import Book from '../../assets/library/sprites/book/book_spritesheet_1.png'
+
 import room from '../../assets/armory/sprites/Hab_Prueba.png'
 import arrow from '../../assets/armory/sprites/arrow/arrow.png'
-import dagger from '../../assets/cSprites/espadaCheta.png'
+import dagger from '../../assets/cSprites/02.png'
 import Fireball from '../../assets/cSprites/fireball_spritesheet.png'
 import Lighting from '../../assets/cSprites/LightingEffect.png'
 import PurpleMagicBall from '../../assets/cSprites/purple_magic_ball_spritesheet.png'
@@ -24,6 +27,7 @@ import emptyHeart from '../../assets/HUD/ui-heart-empty.png'
 import manaBar from '../../assets/HUD/manabar.png'
 import mainMana from '../../assets/HUD/main_mana.png'
 import finalMana from '../../assets/HUD/final_mana.png'
+
 import chest from '../../assets/armory/sprites/chests.png'
 import fireStaff from '../../assets/cSprites/fireStaff2.png'
 import poisonStaff from '../../assets/cSprites/poisonStaff2.png'
