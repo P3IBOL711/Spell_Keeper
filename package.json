@@ -26,6 +26,7 @@
         "util": "^0.12.5"
     },
     "dependencies": {
+        "easystarjs": "^0.4.4",
         "phaser": "^3.70.0"
     }
 }

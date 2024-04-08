@@ -25,6 +25,8 @@ export default class MeleeEnemy extends Enemy {
 
         this.timerAttack.paused = true;
 
+        this.distanceAttack = 150;
+
         // SE PODRIA MEJORAR CON this.on(animationstart) PERO NO SABEMOS HACERLO
         this.on(Phaser.Animations.Events.ANIMATION_START, () => {
             if (this.life > 0){
@@ -82,14 +84,6 @@ export default class MeleeEnemy extends Enemy {
         // IMPORTANTE: Si no ponemos esta instrucción y el sprite está animado
         // no se podrá ejecutar la animación del sprite. 
         super.preUpdate(t, dt);
-        if (this.life > 0){
-            this.scene.physics.moveToObject(this, this.target, this.attacking ? 0 : this.speed);
-            this.playAfterRepeat('walking');
-            if (Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y) >= 150)
-                this.timerAttack.paused = true;
-            else
-                this.timerAttack.paused = false;
-        }
     }
 
 }
