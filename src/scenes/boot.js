@@ -1,4 +1,6 @@
 import Phaser from 'phaser'
+
+import room from '../../assets/armory/sprites/Hab_Prueba.png'
 //player assets
 import player from '../../assets/cSprites/characters/Mage_Walking.png'
 //Enemies assets
@@ -11,26 +13,34 @@ import StandardSkeleton from '../../assets/library/sprites/skeleton/skeleton_1_s
 import LavaGolem from '../../assets/throne_room/sprites/lava_golem/golem_spritesheet.png'
 import Slime from '../../assets/gardens/sprites/slime/slime_spritesheet.png'
 import Book from '../../assets/library/sprites/book/book_spritesheet_1.png'
-
-import room from '../../assets/armory/sprites/Hab_Prueba.png'
-import arrow from '../../assets/armory/sprites/arrow/arrow.png'
-import dagger from '../../assets/cSprites/02.png'
-import Fireball from '../../assets/cSprites/fireball_spritesheet.png'
-import Lighting from '../../assets/cSprites/LightingEffect.png'
 import PurpleMagicBall from '../../assets/cSprites/purple_magic_ball_spritesheet.png'
 import GreenPoisonBall from '../../assets/cSprites/green_poison_spritesheet.png'
+import arrow from '../../assets/armory/sprites/arrow/arrow.png'
+//Weapon assets
+import dagger from '../../assets/cSprites/weapons/02.png'
+import Fireball from '../../assets/cSprites/weapons/fireball_spritesheet.png'
+import Lighting from '../../assets/cSprites/LightingEffect.png'
+import fireStaff from '../../assets/cSprites/fireStaff2.png'
+import poisonStaff from '../../assets/cSprites/poisonStaff2.png'
+import espadaMortal from '../../assets/cSprites/weapons/espadaCheta.png'
+
+//Item assets
+import healingHeart from '../../assets/cSprites/items/healingHeart.png'
+import halfHealingHeart from '../../assets/cSprites/items/halfHealingHeart.png'
+import manaPotion from '../../assets/cSprites/items/PotionBlue.png'
+
+//UI assets
 import font from 'url:../../assets/fonts/VT323Regular.ttf'
 import fullHeart from '../../assets/HUD/ui-heart-full.png'
 import halfHeart from '../../assets/HUD/half-ui-heart.png'
 import emptyHeart from '../../assets/HUD/ui-heart-empty.png'
-// prueba
 import manaBar from '../../assets/HUD/manabar.png'
 import mainMana from '../../assets/HUD/main_mana.png'
 import finalMana from '../../assets/HUD/final_mana.png'
+import Uikey from '../../assets/HUD/key_32x32_24f.png';
 
 import chest from '../../assets/armory/sprites/chests.png'
-import fireStaff from '../../assets/cSprites/fireStaff2.png'
-import poisonStaff from '../../assets/cSprites/poisonStaff2.png'
+
 // Controls Menu
 import ControlsBackground from '../../assets/controlsMenu/background.png'
 import wKey from '../../assets/controlsMenu/w.png'
@@ -64,8 +74,10 @@ export default class Boot extends Phaser.Scene {
   preload() {
     // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
     this.load.setPath('assets/sprites/');
+    //Player
     this.load.spritesheet('player_spritesheet', player, { frameWidth: 32, frameHeight: 32 });
     this.load.image('escenaPrueba', room);
+    
     // Controls Menu
     this.load.image('controlsBackground', ControlsBackground);
     this.load.image('wKey', wKey);
@@ -77,18 +89,24 @@ export default class Boot extends Phaser.Scene {
     this.load.image('rightClick', rightClick);
     this.load.image('titleDecoration', TitleDecoration)
 
-    this.load.spritesheet('arrow', arrow,{frameWidth: 32, frameHeight: 32});
+    //Weapons
     this.load.image('dagger', dagger);
-    this.load.image('fireStaff',fireStaff)
-    this.load.image('poisonStaff',poisonStaff)
-    this.load.image('ui-heart-full', fullHeart);
-    this.load.image('half-ui-heart', halfHeart);
-    this.load.image('ui-heart-empty', emptyHeart);
+    this.load.image('fireStaff',fireStaff);
+    this.load.spritesheet('fireball_spritesheet', Fireball, { frameWidth: 32, frameHeight: 32 });
+    this.load.image('poisonStaff',poisonStaff);
+    this.load.spritesheet('lighting_spritesheet', Lighting, { frameWidth: 64, frameHeight:64 });
+    this.load.image('espadaCheta', espadaMortal);
+
+    //Items
+    this.load.spritesheet('chest',chest,{frameWidth: 32, frameHeight:32});
+    this.load.image('healingHeart', healingHeart);
+    this.load.image('halfHealingHeart', halfHealingHeart);
+    this.load.image('potionOfMana', manaPotion);
+
+    //Enemies
+    this.load.spritesheet('arrow', arrow, { frameWidth: 32, frameHeight: 32 });
     this.load.spritesheet('knight_spritesheet', knight, { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('skeleton_spritesheet', skeleton, { frameWidth: 64, frameHeight: 64 });
-    this.load.spritesheet('fireball_spritesheet', Fireball, { frameWidth: 32, frameHeight: 32 });
-    this.load.spritesheet('chest',chest,{frameWidth: 32, frameHeight:32})
-    this.load.spritesheet('lighting_spritesheet', Lighting, { frameWidth: 64, frameHeight:64 });
     this.load.spritesheet('poisonousGoblinSpritesheet', PoisonousGoblin, { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('carnivorousPlantSpritesheet', CarnivorousPlant, { frameWidth: 128, frameHeight: 128 });
     this.load.spritesheet('magicSkeletonSpritesheet', MagicSkeleton, { frameWidth: 64, frameHeight: 64 });
@@ -98,9 +116,15 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('standardSkeletonSpritesheet', StandardSkeleton, { frameWidth: 72, frameHeight: 72 });
     this.load.spritesheet('purpleMagicBallSpritesheet', PurpleMagicBall, { frameWidth: 32, frameHeight: 32 });
     this.load.spritesheet('greenPoisonBallSpritesheet', GreenPoisonBall, { frameWidth: 32, frameHeight: 32 });
+
+    //UI/HUD
+    this.load.image('ui-heart-full', fullHeart);
+    this.load.image('half-ui-heart', halfHeart);
+    this.load.image('ui-heart-empty', emptyHeart);
     this.load.image('manaBar', manaBar);
     this.load.image('mainMana', mainMana);
     this.load.image('finalMana', finalMana);
+    this.load.spritesheet('key', Uikey, { frameWidth: 32, frameHeight: 32 });
 
     // Background
     let background = this.add.graphics();

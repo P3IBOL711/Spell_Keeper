@@ -6,7 +6,6 @@ import manaDisplay from "../HUD/manaDisplay";
 import keysDisplay from "../HUD/keysDisplay";
 import activeDisplay from "../HUD/activeDisplay";
 import weaponDisplay from "../HUD/weaponDisplay";
-import Uikey from "../../assets/HUD/key_32x32_24f.png"
 
 import { eventManager as hudEvents } from "../eventCenter";
 
@@ -19,9 +18,9 @@ export default class GUI extends Phaser.Scene {
 
     preload() {
         this.load.tilemapTiledJSON('hud', Hud);
-        this.load.spritesheet('key', Uikey, { frameWidth: 32, frameHeight: 32 });
     }
-    init(obj){
+
+    init(obj) {
         this.life = obj.life;
         this.maxLife = obj.maxLife
         this.mana = obj.mana
