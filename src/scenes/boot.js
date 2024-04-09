@@ -1,5 +1,7 @@
 import Phaser from 'phaser'
 import player from '../../assets/cSprites/characters/Mage_Walking.png'
+import playerIdle from '../../assets/cSprites/characters/Mage_Idle.png'
+import playerDead from '../../assets/cSprites/characters/Mage_Dead.png'
 import knight from '../../assets/armory/sprites/knight/knight_spritesheet.png'
 import skeleton from '../../assets/armory/sprites/skeleton/skeleton_spritesheet.png'
 import PoisonousGoblin from '../../assets/gardens/sprites/goblin/poisonous_goblin_spritesheet.png'
@@ -62,6 +64,8 @@ export default class Boot extends Phaser.Scene {
     // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
     this.load.setPath('assets/sprites/');
     this.load.spritesheet('player_spritesheet', player, { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('player_idle',playerIdle, { frameWidth: 32, frameHeight: 32 })
+    this.load.spritesheet('player_dead',playerDead, { frameWidth: 32, frameHeight: 32 })
     this.load.image('escenaPrueba', room);
     // Controls Menu
     this.load.image('controlsBackground', ControlsBackground);
