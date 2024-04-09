@@ -111,6 +111,22 @@ export default class Player extends Phaser.GameObjects.Sprite {
             repeat: -1
         });
 
+        this.anims.create({
+            key:'dying',
+            frames: this.anims.generateFrameNames('playerDying_spritesheet', {start: 0, end: 3}),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        //Interaccion de la animacion de muerte
+        this.on(Phaser.Animations.Events.ANIMATION_STOP, () => {
+            if (this.anims.getName() === 'dying') {
+                this.body.enable = false;
+                this.active = false;
+                this.scene.scene.start('end');
+            }
+        });
+
         //Interacciones del teclado
         this.q.on('down', () => {
             if(this.meleeMode) {
@@ -208,6 +224,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
         
+        if (this.active === false) { return; }
         this.weaponDelay += dt;
         if(this.weaponDelay >= this.equipedWeapon.delay) {
             this.weaponDelay = 0;
@@ -276,11 +293,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     /**FUNCION PARA QUE EL JUGADOR ATAQUE */
     playerAttacks() {
-        //Animacion de ataque
-        //this.play();
-        //Mientras se hace haces el ataque y luego se destruye el area
         if (this.active === false) { return; }
-        if(this.canAttack) {
+        if (this.canAttack) {
             if(!this.meleeMode) {
                 if(this.actualMana - this.equipedWeapon.manaCost() >= 0) {
                     this.actualMana -= this.equipedWeapon.manaCost();
@@ -296,6 +310,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     regenMana() {
+        if (this.active === false) { return; }
         if (this.actualMana + this.equipedWeapon.manaRegen() >= this.maxMana)
             this.actualMana = this.maxMana;
         else
@@ -306,8 +321,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     /**Funcion que se llama cuando el jugador recibe daño */
     receiveDamage(damage) {
-        if(this.canBeDamaged) {
+        if (this.active === false) { return; }
+        if (this.canBeDamaged) {
             this.actualLife -= damage;
+
+            hudEvents.emit('updateHealth', this.actualLife);
         
             this.scene.tweens.add({
                 targets: this,
@@ -323,21 +341,21 @@ export default class Player extends Phaser.GameObjects.Sprite {
                     this.clearTint();
                     this.setAlpha(1);
                 }
-            })
-            
-            hudEvents.emit('updateHealth', this.actualLife);
+            });
 
-            if(this.actualLife <= 0) {
-                //Animacion de muerte
-                this.scene.scene.start('end');
+            if (this.actualLife <= 0) {
+                this.body.setVelocity(0);
+                this.stop();
+                this.play('dying', true);
             }
         }
     }
 
     //Relativo a las armas
     updatedWeapon(index) {
+        if (this.active === false) { return; }
         this.equipedWeapon.setVisible(false)
-        if(this.meleeMode) {
+        if (this.meleeMode) {
          
             this.equipedWeapon = this.meeleWeapons[index];
             this.equipedWeapon.setVisible(true)
@@ -352,15 +370,18 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     takeMeleeWeapon(weapon) {
+        if (this.active === false) { return; }
         this.meeleWeapons.push(weapon);
     }
 
     takeRangedWeapon(weapon) {
+        if (this.active === false) { return; }
         this.rangedWeapons.push(weapon);
     }
 
     //Relativo al escudo
     shieldOnCD() {
+        if (this.active === false) { return; }
         this.shieldCooldown = 1;
         this.canBeDamaged = true;
 
@@ -372,13 +393,15 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     shieldOffCD() {
+        if (this.active === false) { return; }
         this.shieldCooldown = 0;
     }
 
     //Relativo al cambio de estadisticas
     /*A la vida*/
     heal(healthPack) {
-        if(this.actualLife + healthPack < this.maxLife)
+        if (this.active === false) { return; }
+        if (this.actualLife + healthPack < this.maxLife)
             this.actualLife += healthPack;
         else
             this.actualLife = this.maxLife;
@@ -386,7 +409,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     increaseHealth(lifePoints) {
-        if(this.maxLife + lifePoints < this.lifeSuperiorCap) {
+        if (this.active === false) { return; }
+        if (this.maxLife + lifePoints < this.lifeSuperiorCap) {
             this.maxLife += lifePoints;
         }
         else {
@@ -398,21 +422,23 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     decreaseHealth(lifePoints) {
-        if(this.maxLife - lifePoints > this.lifeInferiorCap) {
+        if (this.active === false) { return; }
+        if (this.maxLife - lifePoints > this.lifeInferiorCap) {
             this.maxLife -= lifePoints;
         }
         else {
             this.maxLife = this.lifeInferiorCap;
         }
 
-        if(this.actualLife > this.maxLife)
+        if (this.actualLife > this.maxLife)
             this.actualLife = this.maxLife;
         hudEvents.emit('updateHealth', this.actualLife);
     }
 
     /*Al mana*/
     recoverMana(manaPoints) {
-        if(this.actualMana + manaPoints >= this.maxMana)
+        if (this.active === false) { return; }
+        if (this.actualMana + manaPoints >= this.maxMana)
             this.actualMana = this.maxMana;
         else 
             this.actualMana += manaPoints;
@@ -420,7 +446,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     increaseMana(manaPoints) {
-        if(this.maxMana + manaPoints < this.manaSuperiorCap) {
+        if (this.active === false) { return; }
+        if (this.maxMana + manaPoints < this.manaSuperiorCap) {
             this.maxMana += manaPoints;
         }
         else {
@@ -430,14 +457,15 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     decreaseMana(manaPoints) {
-        if(this.maxMana - manaPoints > this.manaInferiorCap) {
+        if (this.active === false) { return; }
+        if (this.maxMana - manaPoints > this.manaInferiorCap) {
             this.maxMana -= manaPoints;
         }
         else {
             this.maxMana = this.manaInferiorCap;
         }
 
-        if(this.actualMana > this.maxMana)
+        if (this.actualMana > this.maxMana)
             this.actualMana = this.maxMana;
         hudEvents.emit('updateMana', [this.actualMana, this.maxMana]);
     }
@@ -445,20 +473,23 @@ export default class Player extends Phaser.GameObjects.Sprite {
     /*A la velocidad de movimiento*/
     //Falta que te puedan ralentizar, con un tween deberia bastar
     increaseMovSpeed(moveModifier) {
-        if(this.movSpeed + moveModifier < this.movSpeedSuperiorCap)
+        if (this.active === false) { return; }
+        if (this.movSpeed + moveModifier < this.movSpeedSuperiorCap)
             this.movSpeed += moveModifier;
         else
             this.movSpeed = this.movSpeedSuperiorCap;
     }
 
     decreaseMovSpeed(moveModifier) {
-        if(this.movSpeed - moveModifier > this.movSpeedInferiorCap)
-        this.movSpeed -= moveModifier;
-    else
-        this.movSpeed = this.movSpeedInferiorCap;
+        if (this.active === false) { return; }
+        if (this.movSpeed - moveModifier > this.movSpeedInferiorCap)
+            this.movSpeed -= moveModifier;
+        else
+            this.movSpeed = this.movSpeedInferiorCap;
     }
 
     slowed(slowing, totalTime) {
+        if (this.active === false) { return; }
         let initialMovSpeed = this.movSpeed;
         this.scene.tweens.add({
             targets: this,
@@ -471,6 +502,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     fastened(speed, totalTime) {
+        if (this.active === false) { return; }
         let initialMovSpeed = this.movSpeed;
         this.scene.tweens.add({
             targets: this,
@@ -483,7 +515,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     changeMoveSpeed(moveMultiplier) {
-        if(this.movSpeed * moveMultiplier < this.movSpeedSuperiorCap)
+        if (this.active === false) { return; }
+        if (this.movSpeed * moveMultiplier < this.movSpeedSuperiorCap)
             this.movSpeed *= moveMultiplier;
         else
             this.movSpeed = this.movSpeedSuperiorCap;
@@ -491,6 +524,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     /*A la suerte*/
     increaseLuck(hiddenLuckModifier) {
+        if (this.active === false) { return; }
         this.luck += hiddenLuckModifier;
     }
 

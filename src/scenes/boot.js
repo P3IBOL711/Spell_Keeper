@@ -3,6 +3,8 @@ import Phaser from 'phaser'
 import room from '../../assets/armory/sprites/Hab_Prueba.png'
 //player assets
 import player from '../../assets/cSprites/characters/Mage_Walking.png'
+import deadPlayer from '../../assets/cSprites/characters/Mage_Dead.png'
+
 //Enemies assets
 import knight from '../../assets/armory/sprites/knight/knight_spritesheet.png'
 import skeleton from '../../assets/armory/sprites/skeleton/skeleton_spritesheet.png'
@@ -19,9 +21,9 @@ import arrow from '../../assets/armory/sprites/arrow/arrow.png'
 //Weapon assets
 import dagger from '../../assets/cSprites/weapons/02.png'
 import Fireball from '../../assets/cSprites/weapons/fireball_spritesheet.png'
-import Lighting from '../../assets/cSprites/LightingEffect.png'
-import fireStaff from '../../assets/cSprites/fireStaff2.png'
-import poisonStaff from '../../assets/cSprites/poisonStaff2.png'
+import Lighting from '../../assets/cSprites/weapons/LightingEffect.png'
+import fireStaff from '../../assets/cSprites/weapons/fireStaff2.png'
+import poisonStaff from '../../assets/cSprites/weapons/poisonStaff2.png'
 import espadaMortal from '../../assets/cSprites/weapons/espadaCheta.png'
 
 //Item assets
@@ -76,6 +78,7 @@ export default class Boot extends Phaser.Scene {
     this.load.setPath('assets/sprites/');
     //Player
     this.load.spritesheet('player_spritesheet', player, { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('playerDying_spritesheet', deadPlayer, { frameWidth: 32, frameHeight: 32 });
     this.load.image('escenaPrueba', room);
     
     // Controls Menu

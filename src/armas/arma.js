@@ -47,22 +47,52 @@ export default class arma extends Phaser.GameObjects.Sprite {
         this.wDmg = this.wDmg * weaponMultiplier;
     }
 
-    rotateAttack() {
-        if(this.isMelee()) {
-            let initialRotation = this.angle;
-            this.scene.tweens.add({
-                targets: this,
-                angle:  initialRotation + 60,
-                duration: 250,
-                onComplete: () => {
-                    this.angle = initialRotation;
-                }
-            });
+    attackAction() {
+        if (this.isMelee()) {
+            if (this.haveSlash()) {
+                let initialRotation = this.angle;
+                this.scene.tweens.add({
+                    targets: this,
+                    angle:  initialRotation + 60,
+                    duration: 250,
+                    onComplete: () => {
+                        this.angle = initialRotation;
+                    }
+                });
+            }
+
+            if (this.havePuncture()) {
+                let initialX = this.x;
+                let initialY = this.y;
+                let forwardDistance = 25;
+                let finalX = this.x + Math.cos(this.rotation) * forwardDistance;
+                let finalY = this.y + Math.sin(this.rotation) * forwardDistance;
+                this.scene.tweens.add({
+                    targets: this,
+                    x: finalX,
+                    y: finalY,
+                    duration: 250,
+                    onComplete: () => {
+                        this.completePuncture(initialX, initialY);
+                    }
+                });
+            }
         }
+    }
+
+    completePuncture(goToX, goToY) {
+        this.scene.tweens.add({
+            targets: this,
+            x: goToX,
+            y: goToY,
+            duration: 250
+        });
     }
 
     playIdle() { }
     isMelee() { }
     manaRegen() { }
     manaCost() { }
+    haveSlash() { }
+    havePuncture() { }
 }

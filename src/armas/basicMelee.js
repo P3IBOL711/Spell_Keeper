@@ -43,9 +43,16 @@ export default class basicMelee extends arma {
         return true;
     }
 
+    havePuncture() {
+        return true;
+    }
+
+    haveSlash() {
+        return false;
+    }
 
     attack(direction, target) {
-        super.rotateAttack(this.isMelee());
+        super.attackAction();
         this.hasAttacked = true;
         if(direction === 'left') {
             this.attackHitbox = new PlayerHitBox(this.scene, this.x - 30, this.y, 64, 64, this.damage);
