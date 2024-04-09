@@ -6,6 +6,8 @@ export default class ARR1 extends Room {
 
     constructor() {
         super({ key: 'arR1', level:'ar' });
+        this.key = 'arR1'
+        this.level = 'ar'
         this.x = 0;
         this.y = 0;
         this.loadScene = this.loadScene.bind(this);
