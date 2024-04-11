@@ -90,7 +90,7 @@ export default class GUI extends Phaser.Scene {
          * });
          * 
          * hudEvents.on('useActive', () => {
-         * 
+          * 
          * });
          */
     }
