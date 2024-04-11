@@ -1,10 +1,10 @@
 import Phaser from "phaser";
 import Projectile from "./projectile";
 
-export default class Bullet extends Projectile {
+export default class fireball extends Projectile {
 
     /**
-     * Constructor del jugador
+     * Constructor de la bola de fuego0
      * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
@@ -12,7 +12,7 @@ export default class Bullet extends Projectile {
 
     constructor (scene, x, y, target, targetEnemy, damage)
     {
-        super(scene, x, y, 'bullet', targetEnemy, damage);
+        super(scene, x, y, 'fireball', targetEnemy, damage);
 
         this.anims.create({
             key: 'normal',
