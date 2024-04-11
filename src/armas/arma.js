@@ -12,7 +12,7 @@ export default class arma extends Phaser.GameObjects.Sprite {
         this.wName = WeaponName;
         this.id = ''
         this.setDepth(8);
-        this.delay = 1000;
+        this.delayAttackAction = 150;
         this.isRotating = false;
 
 
@@ -71,7 +71,7 @@ export default class arma extends Phaser.GameObjects.Sprite {
                     targets: this,
                     x: finalX,
                     y: finalY,
-                    duration: 250,
+                    duration: this.delayAttackAction,
                     onComplete: () => {
                         this.completePuncture(initialX, initialY);
                     }
@@ -85,7 +85,7 @@ export default class arma extends Phaser.GameObjects.Sprite {
             targets: this,
             x: goToX,
             y: goToY,
-            duration: 250
+            duration: this.delayAttackAction
         });
     }
 

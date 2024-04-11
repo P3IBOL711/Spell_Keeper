@@ -16,7 +16,7 @@ export default class basicMelee extends arma {
         this.setOrigin(0, 0.5);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.delay = 500;
+        this.delay = 250;
         this.hasAttacked = false;
         this.damage = damage;
         this.timeOnField = 0;
@@ -31,7 +31,7 @@ export default class basicMelee extends arma {
         super.preUpdate(t, dt)
         if(this.hasAttacked) {
             this.timeOnField += dt;
-            if(this.timeOnField >= 250) {
+            if(this.timeOnField >= 150) {
                 this.hasAttacked = false;
                 this.timeOnField = 0;
                 this.attackFinished();

@@ -5,7 +5,7 @@ import arma from "./arma";
 
 export default class FireStaff extends arma {
  /**
-     * Constructor del jugador
+     * Constructor del baston de fuego
      * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
