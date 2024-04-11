@@ -104,7 +104,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('mainMana', mainMana);
     this.load.image('finalMana', finalMana);
 
-    // Background
+   /* // Background
     let background = this.add.graphics();
     background.fillStyle(0xad88c6, 1);
     // 363062
@@ -139,7 +139,7 @@ export default class Boot extends Phaser.Scene {
     let loadingText = this.add.text(420, 215, 'Loading...', { fontFamily: 'pixelFont', fontSize: 40, color: '#5e1675ff'});
 
     // Percent bar text
-    let percentText = this.add.text(485, 320, '0%', { fontFamily: 'pixelFont', fontSize: 24, color: '#5e1675ff'});
+    let percentText = this.add.text(485, 320, '0%', { fontFamily: 'pixelFont', fontSize: 24, color: '#5e1675ff'});*/
   }
 
   loadFont(name, url) {
