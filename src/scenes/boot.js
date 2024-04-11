@@ -37,7 +37,14 @@ import homeButton from '../../assets/controlsMenu/home.png'
 import leftClick from '../../assets/controlsMenu/leftClick.png'
 import rightClick from '../../assets/controlsMenu/rightClick.png'
 import TitleDecoration from  '../../assets/mainTitle.png'
-
+// Bosses
+// Tree
+import BossTree from '../../assets/bosses/tree/Arbol.png'
+import SurpriseRoot from '../../assets/bosses/tree/Atk2.png'
+import MovingRoot from '../../assets/bosses/tree/Atk1.png'
+import Acorn from '../../assets/bosses/tree/Bellota.png'
+// Evil Wizard
+import EvilWizard from '../../assets/bosses/evilWizard/Diablo.png'
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
  * Esta escena se puede mejorar añadiendo una imagen del juego y una 
@@ -97,6 +104,14 @@ export default class Boot extends Phaser.Scene {
     this.load.image('manaBar', manaBar);
     this.load.image('mainMana', mainMana);
     this.load.image('finalMana', finalMana);
+
+    // Bosses
+    // Tree
+    this.load.spritesheet('bossTreeSpritesheet', BossTree, { frameWidth: 64, frameHeight: 64 });
+    this.load.spritesheet('movingRootSpritesheet', MovingRoot, {frameWidth: 32, frameHeight: 32});
+    this.load.spritesheet('surpriseRootSpritesheet', SurpriseRoot, {frameWidth: 32, frameHeight: 32});
+    // Evil Wizard
+    this.load.spritesheet('evilWizardSpritesheet', EvilWizard, { frameWidth: 64, frameHeight: 64 });
 
     // Background
     let background = this.add.graphics();

@@ -32,6 +32,9 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         // is enemy attacking?
         this.attacking = false;
 
+        // distance from player to start attacking
+        this.distanceAttack = 150;
+
         this.setDepth(7);
 
         this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
@@ -86,6 +89,14 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         super.preUpdate(t, dt);
         if (this.life > 0){
             this.flipEnemy()
+            this.scene.physics.moveToObject(this, this.target, this.attacking ? 0 : this.speed);
+            this.playAfterRepeat('walking');
+            if (Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y) > this.distanceAttack){
+                this.timerAttack.paused = true;
+            }
+            else {  
+                this.timerAttack.paused = false;
+            } 
         }
     }
 

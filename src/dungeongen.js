@@ -1,4 +1,4 @@
-
+import e1 from './rooms/e1.js'
 import r1 from './rooms/r1.js'
 import r2 from './rooms/r2.js';
 import r3 from './rooms/r3.js';
@@ -28,8 +28,8 @@ import x3 from './rooms/x3.js';
 import x4 from './rooms/x4.js';
 
 
-const N = 10; //Numero de filas
-const M = 10; //Numero de columnas
+const N = 5; //Numero de filas
+const M = 5; //Numero de columnas
 const maxSteps = 60; //Maximo de habitaciones
 
 
@@ -77,6 +77,14 @@ export default class Dungeongen {
         }
 
         return SSM
+    }
+
+    getN(){
+        return N;
+    }
+
+    getM(){
+        return M;
     }
 
     //Genera la mazmorra del tutorial (siempre la misma)
@@ -162,26 +170,8 @@ export default class Dungeongen {
         //Ponemos la entrada
         
 
-        dungeon[this.entranceY][this.entranceX] = {
-
-            name: "E1",
-
-            level: "armory",
-
-            path: "../../assets/armory/r1.tmx",
-
-            entrance: true,
-            exit: false,
-            empty: false, //Habitacion vacia
-            deadend: false,//para saber que solo tiene una salida
-            shop: false,
-
-            door_north: true,
-            door_south: true,
-            door_east: true,
-            door_west: true
-
-        }; //Asignamos la entrada
+        dungeon[this.entranceY][this.entranceX] = e1
+         //Asignamos la entrada
         console.log(`Entrada generada en la casilla: ${this.entranceY}, ${this.entranceX}`);
 
         this.thereIsExit = false;
@@ -622,7 +612,7 @@ export default class Dungeongen {
 
 
     checkForValidity() {
-        return this.thereIsExit && this.thereIsShop;
+        return this.thereIsExit //&& this.thereIsShop;
     }
 
     fillRoomArray(floor) {
@@ -655,14 +645,14 @@ export default class Dungeongen {
             this.specialRoomArray.push(x2);
             this.specialRoomArray.push(x3);
             this.specialRoomArray.push(x4);
-            this.specialRoomArray.push(sh1);
+           /* this.specialRoomArray.push(sh1);
             this.specialRoomArray.push(sh2);
             this.specialRoomArray.push(sh3);
             this.specialRoomArray.push(sh4);
             this.specialRoomArray.push(sh5);
             this.specialRoomArray.push(sh6);
             this.specialRoomArray.push(sh7);
-            this.specialRoomArray.push(sh8);
+            this.specialRoomArray.push(sh8);*/
         }
     }
 

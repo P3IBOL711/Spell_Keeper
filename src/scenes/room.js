@@ -1,6 +1,8 @@
 
-import b from '../../assets/armory/tiles/Base.png'
-import w from '../../assets/armory/tiles/Weapons.png'
+import arb from '../../assets/armory/tiles/Base.png'
+import arw from '../../assets/armory/tiles/Weapons.png'
+import lbb from '../../assets/library/tiles/Base.png'
+import lbw from '../../assets/library/tiles/Objects.png'
 import f from '../../assets/misc/fire.png'
 
 import Player from '../player.js'
@@ -13,6 +15,10 @@ import EnemySpawner from '../enemySpawner.js';
 import Fire from '../fire.js'
 import Chest from '../chest.js';
 
+import EasyStar from 'easystarjs';
+
+//Pruebas
+import BossTree from '../enemies/bossTree.js'
 
 
 
@@ -31,14 +37,14 @@ export default class Room extends Phaser.Scene {
         this.eSpawn = { x: 0, y: 0 };
         this.wSpawn = { x: 0, y: 0 };
         this.cSpawn = { x: 0, y: 0 };
-        this.level = obj.level
+        // this.level = obj.level
 
 
     }
 
     init(obj) {
 
-        this.key = obj.key
+
         this.x = obj.X;
         this.y = obj.Y;
         this.dungeon = obj.dg;
@@ -66,16 +72,21 @@ export default class Room extends Phaser.Scene {
                 ActRangIndex: 0,     // Index of the currently active ranged weapon
                 lastWeaponUsed: null // Last weapon used (can be set to the name or ID of the weapon)
             };
-        } else{
+        } else {
             this.globalPlayerStats = obj.playerStat;
-           
+
         }
     }
 
 
     preload() {
-        this.load.image('Base', b)
-        this.load.image('Weapons', w)
+        if (this.level === 'ar') {
+            this.load.image('Base', arb)
+            this.load.image('Objects', arw)
+        } else {
+            this.load.image('Base', lbb)
+            this.load.image('Objects', lbw)
+        }
         this.load.image('fire', f)
 
     }
@@ -108,7 +119,7 @@ export default class Room extends Phaser.Scene {
 
 
     create() {
-       
+
         if (this.dungeon[this.y][this.x].visited === false)
             this.dungeon[this.y][this.x].visited = true
         else {
@@ -124,13 +135,13 @@ export default class Room extends Phaser.Scene {
         });
 
         let base = this.map.addTilesetImage('Base');
-        let weapons = this.map.addTilesetImage('Weapons');
+        let objects = this.map.addTilesetImage('Objects');
         let fondo = this.map.createLayer('Fondo', [base]).setDepth(0)
         let floor = this.map.createLayer('Floor', [base]).setDepth(1)
         let walls = this.map.createLayer('Walls', [base]).setDepth(2).setCollisionByExclusion(-1)
-        let cObjects = this.map.createLayer('CObjects', [weapons]).setDepth(3).setCollisionByExclusion(-1)
-        let nCObjects = this.map.createLayer('NCObjects', [weapons]).setDepth(4)
-        let extra = this.map.createLayer('Extra', [weapons]).setDepth(5)
+        let cObjects = this.map.createLayer('CObjects', [objects]).setDepth(3).setCollisionByExclusion(-1)
+        let nCObjects = this.map.createLayer('NCObjects', [objects]).setDepth(4)
+        let extra = this.map.createLayer('Extra', [objects]).setDepth(5)
 
         //DETERMINE PLAYER SPAWN
         let playerX = 300;
@@ -161,7 +172,7 @@ export default class Room extends Phaser.Scene {
         let newMeleeArray = []
         for (let weapon of this.globalPlayerStats.MeleeWeaponArray) {
             let newWeapon = weapon.constructor
-            newMeleeArray.push(new newWeapon(this,0,0,1,true))
+            newMeleeArray.push(new newWeapon(this, 0, 0, 1, true))
         }
         this.globalPlayerStats.MeleeWeaponArray = newMeleeArray;
 
@@ -169,29 +180,34 @@ export default class Room extends Phaser.Scene {
         let newRangedArray = []
         for (let weapon of this.globalPlayerStats.RangedWeaponArray) {
             let newWeapon = weapon.constructor
-            newRangedArray.push(new newWeapon(this,0,0,1,true))
+            newRangedArray.push(new newWeapon(this, 0, 0, 1, true))
         }
         this.globalPlayerStats.RangedWeaponArray = newRangedArray;
 
 
-        this.player = new Player(this, playerX, playerY, this.globalPlayerStats.life, this.globalPlayerStats.maximumLife, this.globalPlayerStats.mana, this.globalPlayerStats.maximumMana, this.globalPlayerStats.weaponMult, this.globalPlayerStats.moveSpeed, this.globalPlayerStats.lck, this.globalPlayerStats.MeleeWeaponArray, this.globalPlayerStats.RangedWeaponArray, this.globalPlayerStats.ActMelIndex, this.globalPlayerStats.ActRangIndex, this.globalPlayerStats.lastWeaponUsed);
-        this.physics.add.collider(this.player, walls)
-        this.physics.add.collider(this.player, cObjects)
+        //this.player = new Player(this, playerX, playerY, this.globalPlayerStats.life, this.globalPlayerStats.maximumLife, this.globalPlayerStats.mana, this.globalPlayerStats.maximumMana, this.globalPlayerStats.weaponMult, this.globalPlayerStats.moveSpeed, this.globalPlayerStats.lck, this.globalPlayerStats.MeleeWeaponArray, this.globalPlayerStats.RangedWeaponArray, this.globalPlayerStats.ActMelIndex, this.globalPlayerStats.ActRangIndex, this.globalPlayerStats.lastWeaponUsed);
+        this.player = new Player(this, 500, 200, this.globalPlayerStats.life, this.globalPlayerStats.maximumLife, this.globalPlayerStats.mana, this.globalPlayerStats.maximumMana, this.globalPlayerStats.weaponMult, this.globalPlayerStats.moveSpeed, this.globalPlayerStats.lck, this.globalPlayerStats.MeleeWeaponArray, this.globalPlayerStats.RangedWeaponArray, this.globalPlayerStats.ActMelIndex, this.globalPlayerStats.ActRangIndex, this.globalPlayerStats.lastWeaponUsed);
+
+
+        this.physics.add.collider(this.player, walls);
+        this.physics.add.collider(this.player, cObjects);
         this.player.setDepth(6);
 
 
 
-        this.scene.launch('gui', {life: this.player.actualLife, maxLife: this.player.maxLife, mana: this.player.actualMana, maxMana:  this.player.maxMana});
+        this.scene.launch('gui', { life: this.player.actualLife, maxLife: this.player.maxLife, mana: this.player.actualMana, maxMana: this.player.maxMana });
 
-        this.enemies = this.add.group()
+        this.enemies = this.add.group();
 
         //TRIGGERS AND STUFF
         this.loadObjects();
 
 
         this.cameras.main.setZoom(3);
-        this.cameras.main.setBounds(0, 0, 1024, 512)
-        this.cameras.main.startFollow(this.player)
+        this.cameras.main.setBounds(0, 0, 1024, 512);
+        this.cameras.main.startFollow(this.player);
+
+        this.pathfindingEnemies();
     }
 
     loadObjects() {
@@ -224,7 +240,10 @@ export default class Room extends Phaser.Scene {
                 }
             } else if (objeto.type === 'Fire') {
                 if (this.numberOfEnemies !== -1)
-                    this.fireArray.push(new Fire(this, objeto.x + objeto.width / 2, (objeto.y + objeto.height / 2) - 32, objeto.width, objeto.height))
+                    if (objeto.rotation !== 90 || objeto.rotation !== 270) {
+                        this.fireArray.push(new Fire(this, (objeto.y + objeto.height / 2) - 32, objeto.x - objeto.width / 2, objeto.width, objeto.height, objeto.rotation))
+                    } else
+                        this.fireArray.push(new Fire(this, objeto.x + objeto.width / 2, (objeto.y + objeto.height / 2) - 32, objeto.width, objeto.height, objeto.rotation))
             } else if (objeto.type === 'Chest') {
                 new Chest(this, objeto.x + objeto.width / 2, objeto.y - objeto.height / 2, objeto.width, objeto.height, this.player, this.chestOpened)
             }
@@ -315,10 +334,47 @@ export default class Room extends Phaser.Scene {
         this.globalPlayerStats.lastWeaponUsed = this.player.equipedWeapon
     }
 
+    pathfindingEnemies() {
+        this.finder = new EasyStar.js();
 
+        this.getTileID = (x, y) => {
+            return this.map.getTileAt(x, y);
+        };
 
+        let grid = [];
+        for (let y = 0; y < this.map.height; y++) {
+            let col = [];
+            for (let x = 0; x < this.map.width; x++) {
+                // In each cell we store the ID of the tile, which corresponds
+                // to its index in the tileset of the map ("ID" field in Tiled)
+                col.push(this.getTileID(x, y));
+            }
+            grid.push(col);
+        }
+        this.finder.setGrid(grid);
 
+        let tileset = this.map.tilesets[1];
+        let properties = tileset.tileProperties;
+        let acceptableTiles = [];
 
+        for (let i = tileset.firstgid - 1; i < tileset.length; i++) { // firstgid and total are fields from Tiled that indicate the range of IDs that the tiles can take in that tileset
+            if (!properties.hasOwnProperty(i)) {
+                // If there is no property indicated at all, it means it's a walkable tile
+                acceptableTiles.push(i + 1);
+                continue;
+            }
+            if (!properties[i].collide) acceptableTiles.push(i + 1);
+        }
+        this.finder.setAcceptableTiles(acceptableTiles);
 
-
+        this.finder.findPath(0, 0, 100, 100, function( path ) {
+            if (path === null)
+                console.warn("Path was not found.");
+            else {
+                console.log(path);
+                //Game.moveCharacter(path);
+            }
+        });
+        this.finder.calculate();
+    }
 }
