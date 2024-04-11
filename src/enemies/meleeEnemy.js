@@ -14,16 +14,9 @@ export default class MeleeEnemy extends Enemy {
      * @param {number} y Coordenada Y
      */
     constructor(scene, x, y, target, image, attackDelay) {
-        super(scene, x, y, target, image);
+        super(scene, x, y, target, image, attackDelay);
 
-        this.timerAttack = this.scene.time.addEvent({
-            delay: attackDelay,
-            callback: this.onTimerAttack,
-            callbackScope: this,
-            loop: true
-        });
-
-        this.timerAttack.paused = true;
+        
 
         this.distanceAttack = 150;
 

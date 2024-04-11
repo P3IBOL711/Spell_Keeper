@@ -15,7 +15,7 @@ export default class BossTree extends Enemy {
      * @param {number} y Coordenada Y
      */
     constructor(scene, x, y, target) {
-        super(scene, x, y, target, 'bossTree');
+        super(scene, x, y, target, 'bossTree', 10000);
         
         this.anims.create({
             key: 'spawn',

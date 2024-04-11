@@ -12,7 +12,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      */
-    constructor(scene, x, y, target, image) {
+    constructor(scene, x, y, target, image, attackDelay) {
         super(scene, x, y, image);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
@@ -34,6 +34,15 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
         // distance from player to start attacking
         this.distanceAttack = 150;
+
+        this.timerAttack = this.scene.time.addEvent({
+            delay: attackDelay,
+            callback: this.onTimerAttack,
+            callbackScope: this,
+            loop: true
+        });
+
+        this.timerAttack.paused = true;
 
         this.setDepth(7);
 

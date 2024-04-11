@@ -14,16 +14,7 @@ export default class DistanceEnemy extends Enemy {
      * @param {number} y Coordenada Y
      */
     constructor(scene, x, y, target, image, attackDelay) {
-        super(scene, x, y, target, image);
-
-        this.timerAttack = this.scene.time.addEvent({
-            delay: attackDelay,
-            callback: this.onTimerAttack,
-            callbackScope: this,
-            loop: true
-        });
-
-        this.timerAttack.paused = true;
+        super(scene, x, y, target, image, attackDelay);
 
         this.distanceAttack = 300;
 

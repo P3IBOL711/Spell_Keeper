@@ -137,7 +137,7 @@ export default class Room extends Phaser.Scene {
         let base = this.map.addTilesetImage('Base');
         let objects = this.map.addTilesetImage('Objects');
         let fondo = this.map.createLayer('Fondo', [base]).setDepth(0)
-        let floor = this.map.createLayer('Floor', [base]).setDepth(1)
+        this.floor = this.map.createLayer('Floor', [base]).setDepth(1)
         let walls = this.map.createLayer('Walls', [base]).setDepth(2).setCollisionByExclusion(-1)
         let cObjects = this.map.createLayer('CObjects', [objects]).setDepth(3).setCollisionByExclusion(-1)
         let nCObjects = this.map.createLayer('NCObjects', [objects]).setDepth(4)
@@ -338,7 +338,7 @@ export default class Room extends Phaser.Scene {
         this.finder = new EasyStar.js();
 
         this.getTileID = (x, y) => {
-            return this.map.getTileAt(x, y);
+            return this.map.getTileAt(x, y, true, "Floor" ).index;
         };
 
         let grid = [];
@@ -353,21 +353,21 @@ export default class Room extends Phaser.Scene {
         }
         this.finder.setGrid(grid);
 
-        let tileset = this.map.tilesets[1];
+        let tileset = this.map.tilesets[0];
         let properties = tileset.tileProperties;
-        let acceptableTiles = [];
+        let acceptableTiles = [0];
 
-        for (let i = tileset.firstgid - 1; i < tileset.length; i++) { // firstgid and total are fields from Tiled that indicate the range of IDs that the tiles can take in that tileset
-            if (!properties.hasOwnProperty(i)) {
-                // If there is no property indicated at all, it means it's a walkable tile
-                acceptableTiles.push(i + 1);
-                continue;
-            }
-            if (!properties[i].collide) acceptableTiles.push(i + 1);
+        for (let i = properties[0]; i < properties.length; i++) { // firstgid and total are fields from Tiled that indicate the range of IDs that the tiles can take in that tileset
+            // if (!properties.hasOwnProperty(i)) {
+            //     // If there is no property indicated at all, it means it's a walkable tile
+            //     acceptableTiles.push(i + 1);
+            //     continue;
+            // }
+            if (properties[i].Walkable) acceptableTiles.push(i + 1);
         }
         this.finder.setAcceptableTiles(acceptableTiles);
 
-        this.finder.findPath(0, 0, 100, 100, function( path ) {
+        this.finder.findPath(0, 0, 31, 15, function( path ) {
             if (path === null)
                 console.warn("Path was not found.");
             else {
