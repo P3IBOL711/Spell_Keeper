@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.10" tiledversion="1.10.2" name="Base" tilewidth="32" tileheight="32" tilecount="20" columns="5">
- <image source="../../Pixel Art PNGs/Armory_Tileset.png" width="160" height="128"/>
+ <image source="Base.png" width="160" height="128"/>
  <tile id="5">
   <properties>
    <property name="Walkable" type="bool" value="false"/>

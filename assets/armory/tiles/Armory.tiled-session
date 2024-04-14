@@ -1,0 +1,77 @@
+{
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "file.lastUsedOpenFilter": "Todos los archivos (*)",
+    "fileStates": {
+        "Base.tsx": {
+            "dynamicWrapping": false
+        },
+        "Flames.tsx": {
+            "dynamicWrapping": true
+        },
+        "Objects.tsx": {
+            "dynamicWrapping": false
+        },
+        "Weapons.tsx": {
+            "dynamicWrapping": false
+        },
+        "arR1.json": {
+            "scale": 0.93701171875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 512.2668056279313,
+                "y": 256.1334028139656
+            }
+        },
+        "arR1.json#Base": {
+            "scaleInDock": 1
+        },
+        "arR1.json#Objects": {
+            "scaleInDock": 1
+        },
+        "ar_r1.tmx": {
+            "expandedObjectLayers": [
+                8
+            ],
+            "scale": 3,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 428.66666666666663,
+                "y": 243
+            }
+        },
+        "ar_r2.tmx": {
+            "scale": 3,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 466.66666666666663,
+                "y": 177.33333333333331
+            }
+        },
+        "ar_r3.tmx": {
+            "scale": 1.0501953124999999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 512.2856611493398,
+                "y": 256.1428305746699
+            }
+        },
+        "ar_x1.tmx": {
+            "scale": 0.93701171875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 572.0312662845232,
+                "y": 256.1334028139656
+            }
+        }
+    },
+    "last.exportedFilePath": "C:/Users/pablo/Documents/Universidad/DVI/Proyecto_DVI/assets/armory/tiles",
+    "map.lastUsedExportFilter": "Todos los archivos (*)",
+    "openFiles": [
+    ],
+    "project": "Armory.tiled-project",
+    "recentFiles": [
+        "arR1.json"
+    ]
+}
