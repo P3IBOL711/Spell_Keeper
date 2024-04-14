@@ -1,0 +1,99 @@
+{
+    "activeFile": "lb_r13.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "file.lastUsedOpenFilter": "Todos los archivos (*)",
+    "fileStates": {
+        "Base.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Flames2.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Objects.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lb_e1.tmx": {
+            "expandedObjectLayers": [
+                9
+            ],
+            "scale": 2,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 501.5,
+                "y": 270.5
+            }
+        },
+        "lb_r1.tmx": {
+            "scale": 3,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 674.3333333333333,
+                "y": 193
+            }
+        },
+        "lb_r1.tmx#Flames": {
+            "scaleInDock": 1
+        },
+        "lb_r10.tmx": {
+            "scale": 1.2171874999999999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 512.6572528883183,
+                "y": 256.3286264441592
+            }
+        },
+        "lb_r11.tmx": {
+            "scale": 1.2171874999999999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 512.6572528883183,
+                "y": 256.3286264441592
+            }
+        },
+        "lb_r12.tmx": {
+            "scale": 1.2171874999999999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 512.6572528883183,
+                "y": 256.3286264441592
+            }
+        },
+        "lb_r13.tmx": {
+            "scale": 1.1858035714285713,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 560.8011444921317,
+                "y": 256.36623748211736
+            }
+        }
+    },
+    "last.exportedFilePath": "C:/Users/sandr/Documents/universidad/Spell_Keeper/assets/library/tiles",
+    "map.lastUsedExportFilter": "Todos los archivos (*)",
+    "openFiles": [
+        "lb_e1.tmx",
+        "lb_r10.tmx",
+        "lb_r11.tmx",
+        "lb_r12.tmx",
+        "lb_r13.tmx"
+    ],
+    "project": "Library.tiled-project",
+    "recentFiles": [
+        "lb_e1.tmx",
+        "lb_r10.tmx",
+        "lb_r11.tmx",
+        "lb_r12.tmx",
+        "lb_r13.tmx",
+        "lb_r1.tmx",
+        "Flames2.tsx",
+        "Objects.tsx",
+        "Base.tsx"
+    ]
+}
