@@ -178,7 +178,7 @@
                          "name":"Dir",
                          "propertytype":"Direction",
                          "type":"string",
-                         "value":"n"
+                         "value":"e"
                         }],
                  "rotation":0,
                  "type":"Trigger",
@@ -221,7 +221,7 @@
                          "name":"Dir",
                          "propertytype":"Direction",
                          "type":"string",
-                         "value":"n"
+                         "value":"e"
                         }],
                  "rotation":0,
                  "type":"PlayerSpawn",
