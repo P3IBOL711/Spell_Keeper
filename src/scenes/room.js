@@ -167,6 +167,10 @@ export default class Room extends Phaser.Scene {
                 break;
         }
 
+        // ENEMIES PATHFINDING
+        this.finder = new EasyStar.js();
+        this.pathfindingEnemies();
+
         this.enviromental = this.add.group()
 
         let newMeleeArray = []
@@ -206,8 +210,6 @@ export default class Room extends Phaser.Scene {
         this.cameras.main.setZoom(3);
         this.cameras.main.setBounds(0, 0, 1024, 512);
         this.cameras.main.startFollow(this.player);
-
-        this.pathfindingEnemies();
     }
 
     loadObjects() {
@@ -335,8 +337,6 @@ export default class Room extends Phaser.Scene {
     }
 
     pathfindingEnemies() {
-        this.finder = new EasyStar.js();
-
         this.getTileIDFloor = (x, y) => {
             return this.map.getTileAt(x, y, true, "Floor" ).index;
         };
@@ -366,15 +366,5 @@ export default class Room extends Phaser.Scene {
         this.finder.setGrid(grid);
         this.finder.setAcceptableTiles(acceptableTiles);
         this.finder.enableDiagonals();
-
-        this.finder.findPath(8, 8, 9, 10, function( path ) {
-            if (path === null)
-                console.warn("Path was not found.");
-            else {
-                console.log(path);
-                //Game.moveCharacter(path);
-            }
-        });
-        this.finder.calculate();
     }
 }

@@ -1,5 +1,5 @@
 
-import Phaser from 'phaser'
+import Phaser, { Game } from 'phaser'
 
 /**
  * Clase que representa un enemigo del juego.
@@ -53,6 +53,28 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
                 this.destroy();
             }
         });
+
+        this.pathFinding = this.scene.time.addEvent({
+            delay: 1000,
+            callback: this.onPathFinding,
+            callbackScope: this,
+            loop: true
+        });
+
+        this.moveEnemy = (path) => {
+            let tweens = [];
+            for(let i = 0; i < path.length-1; i++){
+                let ex = path[i+1].x;
+                let ey = path[i+1].y;
+                tweens.push({
+                    targets: this,
+                    x: {value: ex*this.scene.map.tileWidth, duration: 200},
+                    y: {value: ey*this.scene.map.tileHeight, duration: 200}
+                });
+            }
+            this.scene.tweens.timeline({
+                tweens: tweens })
+        };
     }
 
     doSomethingVerySpecificBecauseYoureMyBelovedChild() {
@@ -86,6 +108,23 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
             this.play('die', true);
         }
     }
+
+    onPathFinding(){
+        let toX = Math.floor(this.target.x/this.scene.map.tileWidth);
+        let toY = Math.floor(this.target.y/this.scene.map.tileHeight);
+        let fromX = Math.floor(this.x/this.scene.map.tileWidth);
+        let fromY = Math.floor(this.y/this.scene.map.tileHeight);
+        this.scene.finder.findPath(fromX, fromY, toX, toY, function( path ) {
+            if (path === null) {
+                console.warn("Path was not found.");
+            } else {
+                console.log(path);
+                this.moveEnemy(path);
+            }
+        });
+        this.scene.finder.calculate();
+    }
+
     /**
      * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
      * Como se puede ver, no se tratan las colisiones con las estrellas, ya que estas colisiones 
@@ -98,12 +137,11 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         super.preUpdate(t, dt);
         if (this.life > 0){
             this.flipEnemy()
-            this.scene.physics.moveToObject(this, this.target, this.attacking ? 0 : this.speed);
             this.playAfterRepeat('walking');
             if (Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y) > this.distanceAttack){
                 this.timerAttack.paused = true;
             }
-            else {  
+            else {
                 this.timerAttack.paused = false;
             } 
         }
