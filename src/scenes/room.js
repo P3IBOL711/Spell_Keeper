@@ -365,6 +365,7 @@ export default class Room extends Phaser.Scene {
         }
         this.finder.setGrid(grid);
         this.finder.setAcceptableTiles(acceptableTiles);
+        this.finder.enableDiagonals();
 
         this.finder.findPath(8, 8, 9, 10, function( path ) {
             if (path === null)
