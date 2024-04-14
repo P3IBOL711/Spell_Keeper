@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="16">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="39">
+ <editorsettings>
+  <export target="arX1.json" format="json"/>
+ </editorsettings>
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="21" source="Weapons.tsx"/>
  <tileset firstgid="277" source="Flames.tsx"/>
@@ -123,6 +126,16 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="8" name="navmesh">
+  <object id="29" x="231" y="133.333" width="240" height="35.3333"/>
+  <object id="30" x="324.333" y="101.333" width="53.6667" height="32"/>
+  <object id="33" x="231.375" y="168.75" width="23.625" height="210.583"/>
+  <object id="34" x="254.75" y="352.25" width="216.5" height="27.25"/>
+  <object id="35" x="326.75" y="379" width="51.5" height="31.75"/>
+  <object id="36" x="447" y="168.75" width="24.75" height="183.75"/>
+  <object id="37" x="287.25" y="169" width="128.5" height="183.25"/>
+  <object id="38" x="415" y="320.5" width="32.75" height="32"/>
+ </objectgroup>
  <objectgroup id="7" name="Cosas">
   <object id="1" type="Trigger" x="320" y="416" width="64" height="32">
    <properties>

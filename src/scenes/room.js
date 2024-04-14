@@ -141,7 +141,9 @@ export default class Room extends Phaser.Scene {
         let walls = this.map.createLayer('Walls', [base]).setDepth(2).setCollisionByExclusion(-1)
         let cObjects = this.map.createLayer('CObjects', [objects]).setDepth(3).setCollisionByExclusion(-1)
         let nCObjects = this.map.createLayer('NCObjects', [objects]).setDepth(4)
-        let extra = this.map.createLayer('Extra', [objects]).setDepth(5)
+        let extra = this.map.createLayer('Extra', [objects]).setDepth(5);
+        const objectLayer = this.map.getObjectLayer("navmesh");
+        this.navMesh = this.navMeshPlugin.buildMeshFromTiled("mesh1", objectLayer, 1);
 
         //DETERMINE PLAYER SPAWN
         let playerX = 300;
@@ -167,9 +169,6 @@ export default class Room extends Phaser.Scene {
                 break;
         }
 
-        // ENEMIES PATHFINDING
-        this.finder = new EasyStar.js();
-        this.pathfindingEnemies();
 
         this.enviromental = this.add.group()
 
@@ -336,34 +335,4 @@ export default class Room extends Phaser.Scene {
         this.globalPlayerStats.lastWeaponUsed = this.player.equipedWeapon
     }
 
-    pathfindingEnemies() {
-        this.getTileID = (x, y, layer) => {
-            return this.map.getTileAt(x, y, true, layer ).index;
-        };
-
-        let grid = [];
-        let acceptableTiles = []
-        for (let y = 0; y < this.map.height; y++) {
-            let col = [];
-            for (let x = 0; x < this.map.width; x++) {
-                // In each cell we store the ID of the tile, which corresponds
-                // to its index in the tileset of the map ("ID" field in Tiled)
-                let tileF = this.getTileID(x, y, "Floor");
-                let tileO = this.getTileID(x, y, "CObjects");
-                let tileE = this.getTileID(x, y, "Extra");
-                if (tileF !== -1 && tileO !== - 1 && tileO !== tileF)
-                    col.push(-1);
-                else if(tileF !== -1 && tileE !== - 1 && tileE !== tileF)
-                    col.push(-1);
-                else {
-                    col.push(tileF);
-                    acceptableTiles.push(tileF);
-                }
-            }
-            grid.push(col);
-        }
-        this.finder.setGrid(grid);
-        this.finder.setAcceptableTiles(acceptableTiles);
-        //this.finder.enableDiagonals();
-    }
 }

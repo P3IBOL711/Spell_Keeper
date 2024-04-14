@@ -166,6 +166,105 @@
         }, 
         {
          "draworder":"topdown",
+         "id":8,
+         "name":"navmesh",
+         "objects":[
+                {
+                 "height":35.3333333333333,
+                 "id":29,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":240,
+                 "x":231,
+                 "y":133.333333333333
+                }, 
+                {
+                 "height":32,
+                 "id":30,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":53.6666666666667,
+                 "x":324.333333333333,
+                 "y":101.333333333333
+                }, 
+                {
+                 "height":210.583333333333,
+                 "id":33,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":23.625,
+                 "x":231.375,
+                 "y":168.75
+                }, 
+                {
+                 "height":27.25,
+                 "id":34,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":216.5,
+                 "x":254.75,
+                 "y":352.25
+                }, 
+                {
+                 "height":31.75,
+                 "id":35,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":51.5,
+                 "x":326.75,
+                 "y":379
+                }, 
+                {
+                 "height":183.75,
+                 "id":36,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24.75,
+                 "x":447,
+                 "y":168.75
+                }, 
+                {
+                 "height":183.25,
+                 "id":37,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":128.5,
+                 "x":287.25,
+                 "y":169
+                }, 
+                {
+                 "height":32,
+                 "id":38,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32.75,
+                 "x":415,
+                 "y":320.5
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":7,
          "name":"Cosas",
          "objects":[
@@ -347,8 +446,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":8,
- "nextobjectid":16,
+ "nextlayerid":9,
+ "nextobjectid":39,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
@@ -357,7 +456,7 @@
         {
          "columns":5,
          "firstgid":1,
-         "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/Armory_Tileset.png",
+         "image":"Base.png",
          "imageheight":128,
          "imagewidth":160,
          "margin":0,
@@ -488,7 +587,7 @@
         {
          "columns":16,
          "firstgid":21,
-         "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/Weapons.png",
+         "image":"Weapons.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -515,16 +614,12 @@
          "tiles":[
                 {
                  "id":0,
-                 "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/LlamaArriba.png",
-                 "imageheight":32,
-                 "imagewidth":32,
+                 "image":"..\/..\/Pixel Art PNGs\/LlamaArriba.png",
                  "type":"Fire"
                 }, 
                 {
                  "id":1,
-                 "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/Chest.png",
-                 "imageheight":32,
-                 "imagewidth":32,
+                 "image":"..\/..\/Pixel Art PNGs\/Chest.png",
                  "type":"Chest"
                 }],
          "tilewidth":32

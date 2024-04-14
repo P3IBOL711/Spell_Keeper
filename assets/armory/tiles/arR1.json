@@ -170,70 +170,81 @@
          "name":"navmesh",
          "objects":[
                 {
-                 "height":32,
-                 "id":27,
+                 "height":33.4545454545454,
+                 "id":39,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":32,
-                 "x":256,
-                 "y":192
+                 "width":52.3636363636364,
+                 "x":356.727272727273,
+                 "y":162.545454545455
                 }, 
                 {
-                 "height":32,
-                 "id":28,
+                 "height":29.0909090909091,
+                 "id":40,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":256,
-                 "x":256,
+                 "width":120.363636363636,
+                 "x":323.454545454545,
+                 "y":194.545454545455
+                }, 
+                {
+                 "height":149.272727272727,
+                 "id":41,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":25.2727272727273,
+                 "x":262.181818181818,
+                 "y":197.454545454545
+                }, 
+                {
+                 "height":8.54545454545453,
+                 "id":42,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":35.8181818181818,
+                 "x":287.636363636364,
+                 "y":215.454545454545
+                }, 
+                {
+                 "height":149,
+                 "id":43,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":21.25,
+                 "x":484.25,
+                 "y":200
+                }, 
+                {
+                 "height":7,
+                 "id":45,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":40.5,
+                 "x":443.75,
+                 "y":217.25
+                }, 
+                {
+                 "height":124.75,
+                 "id":46,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":197,
+                 "x":287.25,
                  "y":224
-                }, 
-                {
-                 "height":32,
-                 "id":29,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":128,
-                 "x":320,
-                 "y":192
-                }, 
-                {
-                 "height":32,
-                 "id":31,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":480,
-                 "y":192
-                }, 
-                {
-                 "height":96,
-                 "id":35,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":256,
-                 "x":256,
-                 "y":256
-                }, 
-                {
-                 "height":32,
-                 "id":37,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":64,
-                 "x":352,
-                 "y":160
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -250,6 +261,13 @@
                  "height":32,
                  "id":1,
                  "name":"",
+                 "properties":[
+                        {
+                         "name":"Dir",
+                         "propertytype":"Direction",
+                         "type":"string",
+                         "value":"n"
+                        }],
                  "rotation":0,
                  "type":"Trigger",
                  "visible":true,
@@ -262,6 +280,13 @@
                  "id":3,
                  "name":"",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Dir",
+                         "propertytype":"Direction",
+                         "type":"string",
+                         "value":"n"
+                        }],
                  "rotation":0,
                  "type":"PlayerSpawn",
                  "visible":true,
@@ -316,19 +341,155 @@
          "y":0
         }],
  "nextlayerid":9,
- "nextobjectid":38,
+ "nextobjectid":47,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
  "tileheight":32,
  "tilesets":[
         {
+         "columns":5,
          "firstgid":1,
-         "source":"Base.tsx"
+         "image":"Base.png",
+         "imageheight":128,
+         "imagewidth":160,
+         "margin":0,
+         "name":"Base",
+         "spacing":0,
+         "tilecount":20,
+         "tileheight":32,
+         "tiles":[
+                {
+                 "id":5,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":6,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":7,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":8,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":9,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":10,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":11,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":12,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":13,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":14,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":15,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":16,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":17,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }],
+         "tilewidth":32
         }, 
         {
+         "columns":16,
          "firstgid":21,
-         "source":"Weapons.tsx"
+         "image":"Weapons.png",
+         "imageheight":512,
+         "imagewidth":512,
+         "margin":0,
+         "name":"Objects",
+         "spacing":0,
+         "tilecount":256,
+         "tileheight":32,
+         "tilewidth":32
         }],
  "tilewidth":32,
  "type":"map",

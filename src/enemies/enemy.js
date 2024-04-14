@@ -20,6 +20,8 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         this.scene.enviromental.add(this)
         // Queremos que el enemigo no se salga de los límites del mundo
         this.body.setCollideWorldBounds();
+
+        this.navMesh = scene.navMesh;
         // Velocidad 0 por defecto
         this.speed = 0;
         // Daño
@@ -34,6 +36,8 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
         // distance from player to start attacking
         this.distanceAttack = 150;
+
+        this.nextPosition = null;
 
         this.timerAttack = this.scene.time.addEvent({
             delay: attackDelay,
@@ -55,8 +59,8 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         });
 
         this.pathFinding = this.scene.time.addEvent({
-            delay: 300,
-            callback: this.onPathFinding,
+            delay: 500,
+            callback: this.goTo,
             callbackScope: this,
             loop: true
         });
@@ -66,6 +70,14 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
     doSomethingVerySpecificBecauseYoureMyBelovedChild() {
     }
 
+    goTo() {
+        // Find a path to the target
+        this.path = this.navMesh.findPath(new Phaser.Math.Vector2(this.x, this.y), new Phaser.Math.Vector2(this.target.x, this.target.y));
+    
+        // If there is a valid path, grab the first point from the path and set it as the target
+        if (this.path && this.path.length > 0) this.nextPosition = this.path.shift();
+        else this.nextPosition = null;
+    }
 
 
     receiveDamage(damage){
@@ -96,32 +108,6 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         }
     }
 
-    onPathFinding(){
-
-        const moveEnemy = (path) => {
-            if (path.length > 1){
-                let nextX = path[1].x * this.scene.map.tileWidth;
-                let nextY = path[1].y * this.scene.map.tileHeight;
-                this.scene.physics.moveTo(this, nextX, nextY, this.speed);
-            }
-            this.scene.finder.calculate();
-        };
-
-        let toX = Math.floor(this.target.x/this.scene.map.tileWidth);
-        let toY = Math.floor(this.target.y/this.scene.map.tileHeight);
-        let fromX = Math.floor(this.x/this.scene.map.tileWidth);
-        let fromY = Math.floor(this.y/this.scene.map.tileHeight);
-        this.scene.finder.findPath(fromX, fromY, toX, toY, function( path ) {
-            if (path === null) {
-                console.warn("Path was not found.");
-            } else {
-                console.log(path);
-                moveEnemy(path);
-            }
-        });
-        this.scene.finder.calculate();
-    }
-
     /**
      * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
      * Como se puede ver, no se tratan las colisiones con las estrellas, ya que estas colisiones 
@@ -134,13 +120,26 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         super.preUpdate(t, dt);
         if (this.life > 0){
             this.flipEnemy()
+
+            if (this.nextPosition) {
+                const { x, y } = this.nextPosition;
+                const distance = Phaser.Math.Distance.Between(this.x, this.y, x, y);
+
+                if (distance < 5) {
+                    // If there is path left, grab the next point. Otherwise, null the target.
+                    if (this.path.length > 0) this.nextPosition = this.path.shift();
+                    else this.nextPosition = null;
+                }
+
+                if (this.nextPosition) this.scene.physics.moveToObject(this, this.nextPosition, this.speed);
+            }
             this.playAfterRepeat('walking');
             if (Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y) > this.distanceAttack){
                 this.timerAttack.paused = true;
             }
             else {
                 this.timerAttack.paused = false;
-            } 
+            }
         }
     }
 

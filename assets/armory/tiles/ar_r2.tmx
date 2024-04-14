@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="20">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="35">
+ <editorsettings>
+  <export target="arR2.json" format="json"/>
+ </editorsettings>
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="21" source="Weapons.tsx"/>
  <tileset firstgid="277" source="Flames.tsx"/>
@@ -124,13 +127,13 @@
 </data>
  </layer>
  <objectgroup id="8" name="navmesh">
-  <object id="13" x="352" y="128" width="320" height="112"/>
-  <object id="14" x="352" y="240" width="72" height="48"/>
-  <object id="15" x="600" y="240" width="72" height="48"/>
-  <object id="16" x="424" y="280" width="176" height="8"/>
-  <object id="17" x="352" y="288" width="320" height="96"/>
-  <object id="18" x="480" y="96" width="64" height="32"/>
-  <object id="19" x="480" y="384" width="64" height="32"/>
+  <object id="27" x="485" y="100" width="53.5" height="35.25"/>
+  <object id="28" x="359.5" y="132.25" width="303.25" height="27.75"/>
+  <object id="29" x="359.5" y="159.5" width="303.25" height="75.25"/>
+  <object id="30" x="359.25" y="234.5" width="64.5" height="144.75"/>
+  <object id="31" x="422.75" y="288.5" width="177" height="91.5"/>
+  <object id="33" x="599.25" y="235" width="64.25" height="145"/>
+  <object id="34" x="484.5" y="379.75" width="51.5" height="30.25"/>
  </objectgroup>
  <objectgroup id="7" name="Cosas">
   <object id="1" type="EnemySpawn" x="400" y="175">
@@ -139,10 +142,6 @@
   <object id="2" type="EnemySpawn" x="619" y="173">
    <point/>
   </object>
-  <object id="3" gid="277" x="480" y="128" width="32" height="32"/>
-  <object id="4" gid="277" x="512" y="128" width="32" height="32"/>
-  <object id="5" gid="277" x="480" y="416" width="32" height="32"/>
-  <object id="6" gid="277" x="512" y="416" width="32" height="32"/>
   <object id="8" type="Trigger" x="480" y="64" width="64" height="32"/>
   <object id="9" type="Trigger" x="480" y="416" width="64" height="32">
    <properties>
