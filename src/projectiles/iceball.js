@@ -17,21 +17,16 @@ export default class iceball extends Projectile {
         this.setScale(0.5);
         this.anims.create({
             key: 'normal',
-            frames: this.anims.generateFrameNumbers('lighting_spritesheet', { start: 10, end: 12 }),
+            frames: this.anims.generateFrameNumbers('ice_spritesheet', { start: 0, end: 1 }),
             frameRate: 10,
             repeat: -1
         });
 
         this.anims.create({
             key: 'impact',
-            frames: this.anims.generateFrameNumbers('lighting_spritesheet', { start: 130, end: 133 }),
+            frames: this.anims.generateFrameNumbers('ice_spritesheet', { start: 2, end: 3 }),
             frameRate: 10,
-            repeat: 0
-        });
-
-        this.anims.create({
-            key: 'charco'
-
+            repeat: 1
         });
 
         this.x = x;
@@ -39,6 +34,7 @@ export default class iceball extends Projectile {
         this.destinationX = target.x;
         this.destinationY = target.y;
         this.proyectileDamage = damage;
+        this.objective = target;
         this.speed = 100;
         this.rotation = Phaser.Math.Angle.Between(x, y, target.x, target.y);
 
@@ -67,7 +63,7 @@ export default class iceball extends Projectile {
     impact(){
         super.impact();
         this.play('impact', true);
-        new IcePuddle(this.scene, this.x, this.y, target, this.proyectileDamage/10);
+        new IcePuddle(this.scene, this.x, this.y, this.objective, this.proyectileDamage/10);
     }
 
     preUpdate(t, dt) {

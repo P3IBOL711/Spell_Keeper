@@ -4,7 +4,7 @@ import arma from "./arma";
 import PlayerHitBox from "../playerHitbox";
 
 
-export default class basicMelee extends arma {
+export default class megaEspadaMortal extends arma {
  /**
      * Constructor del jugador
      * @param {Phaser.Scene} scene Escena a la que pertenece el jugador

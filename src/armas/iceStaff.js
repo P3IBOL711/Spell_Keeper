@@ -1,6 +1,7 @@
 import Phaser from "phaser";
 
 import arma from "./arma";
+import IceBall from "../projectiles/iceball";
 
 export default class IceStaff extends arma {
  /**
@@ -14,7 +15,7 @@ export default class IceStaff extends arma {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.delay = 5;
-        this.id = 'FireStaff'
+        this.id = 'iceStaff'
         this.delay = 250;
         this.x = x;
         this.y = y;

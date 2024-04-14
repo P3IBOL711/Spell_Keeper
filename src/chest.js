@@ -1,6 +1,8 @@
 import Phaser from 'phaser';
 import CollisionHitbox from './collisionHitbox';
 import FireStaff  from './armas/fireStaff';
+import IceStaff from './armas/iceStaff';
+import megaEspadaMortal from './armas/megaEspadaMortal';
 
 
 /**
@@ -34,9 +36,10 @@ export default class Chest extends Phaser.GameObjects.Sprite {
         this.isOverlapping = false;
 
         this.open = opened;
+        this.availableLoot = ['iceStaff', 'fireStaff', 'espadaCheta'];
 
-        this.setDepth(7)
-        this.scene = scene
+        this.setDepth(7);
+        this.scene = scene;
 
         this.anims.create({
             key: 'idle_chest',
@@ -98,7 +101,21 @@ export default class Chest extends Phaser.GameObjects.Sprite {
     }
 
     generateLoot() {
-        new FireStaff(this.scene, this.x, this.y + 50, 10)
+        new IceStaff(this.scene, this.x, this.y + 50, 10);
+//        let randIndex = Phaser.Math.Between(0, this.availableLoot.length - 1);
+//        let keyValue = this.availableLoot[randIndex];
+//        switch (keyValue) {
+//            case 'iceStaff':
+//                new IceStaff(this.scene, this.x, this.y + 50, 10);
+//                break;
+//            case 'fireStaff':
+//                new FireStaff(this.scene, this.x, this.y + 50, 10);
+//                break;
+//            case 'espadaCheta':
+//                new megaEspadaMortal(this.scene, this.x, this.y + 50, 100000);
+//            default:
+//                break;
+//        }
     }
 
 

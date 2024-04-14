@@ -49,10 +49,10 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
     receiveDamageOverTime(damage) {
         this.scene.tweens.add ({
             targets: this,
-            life: life - damage,
+            life: this.life - damage,
             alpha: 0,
             ease: Phaser.Math.Easing.Elastic.InOut,
-            duration: 20, 
+            duration: 200, 
             repeat: 5,
             onStart: () => {
                 this.setTint(0xff0000);
@@ -60,8 +60,16 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
             onComplete: () => {
                 this.clearTint();
                 this.setAlpha(1);
+
+                if (this.life <= 0){
+                    this.body.setVelocity(0);
+                    this.body.enable = false;
+                    this.scene.enemyHasDied();
+                    this.stop();
+                    this.play('die', true);
+                }
             }
-        })
+        });
     }
 
     receiveDamage(damage){

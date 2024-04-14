@@ -22,6 +22,9 @@ import arrow from '../../assets/armory/sprites/arrow/arrow.png'
 import dagger from '../../assets/cSprites/weapons/02.png'
 import Fireball from '../../assets/cSprites/weapons/fireball_spritesheet.png'
 import Lighting from '../../assets/cSprites/weapons/LightingEffect.png'
+import iceEffects from '../../assets/cSprites/weapons/iceEffect.png'
+import puddleEffects from '../../assets/cSprites/weapons/puddlePlaceholder.png'
+import iceStaff from '../../assets/cSprites/weapons/28no_rotated.png'
 import fireStaff from '../../assets/cSprites/weapons/fireStaff2.png'
 import poisonStaff from '../../assets/cSprites/weapons/poisonStaff2.png'
 import espadaMortal from '../../assets/cSprites/weapons/espadaCheta.png'
@@ -74,8 +77,6 @@ export default class Boot extends Phaser.Scene {
    * Carga de los assets del juego
    */
   preload() {
-    // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
-    this.load.setPath('assets/sprites/');
     //Player
     this.load.spritesheet('player_spritesheet', player, { frameWidth: 32, frameHeight: 32 });
     this.load.spritesheet('playerDying_spritesheet', deadPlayer, { frameWidth: 32, frameHeight: 32 });
@@ -96,6 +97,9 @@ export default class Boot extends Phaser.Scene {
     this.load.image('dagger', dagger);
     this.load.image('fireStaff',fireStaff);
     this.load.spritesheet('fireball_spritesheet', Fireball, { frameWidth: 32, frameHeight: 32 });
+    this.load.image('iceStaff', iceStaff);
+    this.load.spritesheet('ice_spritesheet', iceEffects, { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('puddle_spritesheet', puddleEffects, { frameWidth: 32, frameHeight: 32 });
     this.load.image('poisonStaff',poisonStaff);
     this.load.spritesheet('lighting_spritesheet', Lighting, { frameWidth: 64, frameHeight:64 });
     this.load.image('espadaCheta', espadaMortal);
