@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="13">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="20">
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="21" source="Weapons.tsx"/>
  <tileset firstgid="277" source="Flames.tsx"/>
@@ -123,6 +123,15 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="8" name="navmesh">
+  <object id="13" x="352" y="128" width="320" height="112"/>
+  <object id="14" x="352" y="240" width="72" height="48"/>
+  <object id="15" x="600" y="240" width="72" height="48"/>
+  <object id="16" x="424" y="280" width="176" height="8"/>
+  <object id="17" x="352" y="288" width="320" height="96"/>
+  <object id="18" x="480" y="96" width="64" height="32"/>
+  <object id="19" x="480" y="384" width="64" height="32"/>
+ </objectgroup>
  <objectgroup id="7" name="Cosas">
   <object id="1" type="EnemySpawn" x="400" y="175">
    <point/>
