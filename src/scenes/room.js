@@ -337,37 +337,36 @@ export default class Room extends Phaser.Scene {
     pathfindingEnemies() {
         this.finder = new EasyStar.js();
 
-        this.getTileID = (x, y) => {
+        this.getTileIDFloor = (x, y) => {
             return this.map.getTileAt(x, y, true, "Floor" ).index;
         };
 
+        this.getTileIDCObj = (x, y) => {
+            return this.map.getTileAt(x, y, true, "CObjects" ).index;
+        };
+
         let grid = [];
+        let acceptableTiles = []
         for (let y = 0; y < this.map.height; y++) {
             let col = [];
             for (let x = 0; x < this.map.width; x++) {
                 // In each cell we store the ID of the tile, which corresponds
                 // to its index in the tileset of the map ("ID" field in Tiled)
-                col.push(this.getTileID(x, y));
+                let tileF = this.getTileIDFloor(x, y);
+                let tileO = this.getTileIDCObj(x, y);
+                if (tileF !== -1 && tileO !== - 1 && tileO !== tileF)
+                    col.push(-1);
+                else {
+                    col.push(tileF);
+                    acceptableTiles.push(tileF);
+                }
             }
             grid.push(col);
         }
         this.finder.setGrid(grid);
-
-        let tileset = this.map.tilesets[0];
-        let properties = tileset.tileProperties;
-        let acceptableTiles = [0];
-
-        for (let i = properties[0]; i < properties.length; i++) { // firstgid and total are fields from Tiled that indicate the range of IDs that the tiles can take in that tileset
-            // if (!properties.hasOwnProperty(i)) {
-            //     // If there is no property indicated at all, it means it's a walkable tile
-            //     acceptableTiles.push(i + 1);
-            //     continue;
-            // }
-            if (properties[i].Walkable) acceptableTiles.push(i + 1);
-        }
         this.finder.setAcceptableTiles(acceptableTiles);
 
-        this.finder.findPath(0, 0, 31, 15, function( path ) {
+        this.finder.findPath(8, 8, 9, 10, function( path ) {
             if (path === null)
                 console.warn("Path was not found.");
             else {
