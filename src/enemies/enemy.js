@@ -55,30 +55,17 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         });
 
         this.pathFinding = this.scene.time.addEvent({
-            delay: 1000,
+            delay: 300,
             callback: this.onPathFinding,
             callbackScope: this,
             loop: true
         });
 
-        this.moveEnemy = (path) => {
-            let tweens = [];
-            for(let i = 0; i < path.length-1; i++){
-                let ex = path[i+1].x;
-                let ey = path[i+1].y;
-                tweens.push({
-                    targets: this,
-                    x: {value: ex*this.scene.map.tileWidth, duration: 200},
-                    y: {value: ey*this.scene.map.tileHeight, duration: 200}
-                });
-            }
-            this.scene.tweens.timeline({
-                tweens: tweens })
-        };
     }
 
     doSomethingVerySpecificBecauseYoureMyBelovedChild() {
     }
+
 
 
     receiveDamage(damage){
@@ -110,6 +97,16 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
     }
 
     onPathFinding(){
+
+        const moveEnemy = (path) => {
+            if (path.length > 1){
+                let nextX = path[1].x * this.scene.map.tileWidth;
+                let nextY = path[1].y * this.scene.map.tileHeight;
+                this.scene.physics.moveTo(this, nextX, nextY, this.speed);
+            }
+            this.scene.finder.calculate();
+        };
+
         let toX = Math.floor(this.target.x/this.scene.map.tileWidth);
         let toY = Math.floor(this.target.y/this.scene.map.tileHeight);
         let fromX = Math.floor(this.x/this.scene.map.tileWidth);
@@ -119,7 +116,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
                 console.warn("Path was not found.");
             } else {
                 console.log(path);
-                this.moveEnemy(path);
+                moveEnemy(path);
             }
         });
         this.scene.finder.calculate();

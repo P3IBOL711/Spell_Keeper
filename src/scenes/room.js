@@ -337,12 +337,8 @@ export default class Room extends Phaser.Scene {
     }
 
     pathfindingEnemies() {
-        this.getTileIDFloor = (x, y) => {
-            return this.map.getTileAt(x, y, true, "Floor" ).index;
-        };
-
-        this.getTileIDCObj = (x, y) => {
-            return this.map.getTileAt(x, y, true, "CObjects" ).index;
+        this.getTileID = (x, y, layer) => {
+            return this.map.getTileAt(x, y, true, layer ).index;
         };
 
         let grid = [];
@@ -352,9 +348,12 @@ export default class Room extends Phaser.Scene {
             for (let x = 0; x < this.map.width; x++) {
                 // In each cell we store the ID of the tile, which corresponds
                 // to its index in the tileset of the map ("ID" field in Tiled)
-                let tileF = this.getTileIDFloor(x, y);
-                let tileO = this.getTileIDCObj(x, y);
+                let tileF = this.getTileID(x, y, "Floor");
+                let tileO = this.getTileID(x, y, "CObjects");
+                let tileE = this.getTileID(x, y, "Extra");
                 if (tileF !== -1 && tileO !== - 1 && tileO !== tileF)
+                    col.push(-1);
+                else if(tileF !== -1 && tileE !== - 1 && tileE !== tileF)
                     col.push(-1);
                 else {
                     col.push(tileF);
@@ -365,6 +364,6 @@ export default class Room extends Phaser.Scene {
         }
         this.finder.setGrid(grid);
         this.finder.setAcceptableTiles(acceptableTiles);
-        this.finder.enableDiagonals();
+        //this.finder.enableDiagonals();
     }
 }
