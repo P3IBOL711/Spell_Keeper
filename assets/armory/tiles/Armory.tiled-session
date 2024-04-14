@@ -29,8 +29,8 @@
             "scale": 0.93701171875,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 512.8004168837936,
-                "y": 256.1334028139656
+                "x": 503.72902553413235,
+                "y": 247.59562272016672
             }
         },
         "arR1.json#Base": {
@@ -46,8 +46,8 @@
             "scale": 3,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 378.16666666666663,
-                "y": 250.66666666666666
+                "x": 377.3333333333333,
+                "y": 250
             }
         },
         "ar_r2.tmx": {
@@ -55,27 +55,27 @@
                 8,
                 7
             ],
-            "scale": 4,
+            "scale": 3,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 503.375,
-                "y": 342.25
+                "x": 551,
+                "y": 184
             }
         },
         "ar_r3.tmx": {
             "scale": 4,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 337.375,
-                "y": 231.75
+                "x": 337,
+                "y": 279.5
             }
         },
         "ar_x1.tmx": {
-            "scale": 2,
-            "selectedLayer": 6,
+            "scale": 8,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 511.75,
-                "y": 179
+                "x": 367.875,
+                "y": 431.875
             }
         }
     },
@@ -94,9 +94,9 @@
     ],
     "project": "Armory.tiled-project",
     "recentFiles": [
+        "arR1.json",
         "Base.tsx",
         "ar_r2.tmx",
-        "arR1.json",
         "Weapons.tsx",
         "Objects.tsx",
         "Flames.tsx",

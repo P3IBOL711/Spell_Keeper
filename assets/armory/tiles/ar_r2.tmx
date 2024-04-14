@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="35">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="52">
  <editorsettings>
   <export target="arR2.json" format="json"/>
  </editorsettings>
@@ -127,13 +127,12 @@
 </data>
  </layer>
  <objectgroup id="8" name="navmesh">
-  <object id="27" x="485" y="100" width="53.5" height="35.25"/>
-  <object id="28" x="359.5" y="132.25" width="303.25" height="27.75"/>
-  <object id="29" x="359.5" y="159.5" width="303.25" height="75.25"/>
-  <object id="30" x="359.25" y="234.5" width="64.5" height="144.75"/>
-  <object id="31" x="422.75" y="288.5" width="177" height="91.5"/>
-  <object id="33" x="599.25" y="235" width="64.25" height="145"/>
-  <object id="34" x="484.5" y="379.75" width="51.5" height="30.25"/>
+  <object id="46" x="360" y="136" width="304" height="96"/>
+  <object id="47" x="488" y="104" width="48" height="32"/>
+  <object id="48" x="360" y="232" width="64" height="144"/>
+  <object id="49" x="424" y="280" width="176" height="96"/>
+  <object id="50" x="600" y="232" width="64" height="144"/>
+  <object id="51" x="488" y="376" width="48" height="32"/>
  </objectgroup>
  <objectgroup id="7" name="Cosas">
   <object id="1" type="EnemySpawn" x="400" y="175">
@@ -158,5 +157,9 @@
    <point/>
   </object>
   <object id="12" type="Hitbox" x="429.667" y="240.667" width="164.667" height="36.3333"/>
+  <object id="38" gid="277" x="480" y="416" width="32" height="32"/>
+  <object id="42" gid="277" x="512" y="416" width="32" height="32"/>
+  <object id="43" gid="277" x="480" y="128" width="32" height="32"/>
+  <object id="45" gid="277" x="512" y="128" width="32" height="32"/>
  </objectgroup>
 </map>

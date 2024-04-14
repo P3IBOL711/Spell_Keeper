@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="47">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="53">
  <editorsettings>
   <export target="arR1.json" format="json"/>
  </editorsettings>
@@ -126,13 +126,11 @@
 </data>
  </layer>
  <objectgroup id="8" name="navmesh">
-  <object id="39" x="356.727" y="162.545" width="52.3636" height="33.4545"/>
-  <object id="40" x="323.455" y="194.545" width="120.364" height="29.0909"/>
-  <object id="41" x="262.182" y="197.455" width="25.2727" height="149.273"/>
-  <object id="42" x="287.636" y="215.455" width="35.8182" height="8.54545"/>
-  <object id="43" x="484.25" y="200" width="21.25" height="149"/>
-  <object id="45" x="443.75" y="217.25" width="40.5" height="7"/>
-  <object id="46" x="287.25" y="224" width="197" height="124.75"/>
+  <object id="47" x="264" y="216" width="240" height="128"/>
+  <object id="48" x="480" y="192" width="24" height="24"/>
+  <object id="50" x="320" y="200" width="128" height="16"/>
+  <object id="51" x="264" y="200" width="24" height="16"/>
+  <object id="52" x="360" y="168" width="48" height="32"/>
  </objectgroup>
  <objectgroup id="7" name="Cosas">
   <object id="1" type="Trigger" x="352" y="128" width="64" height="32"/>
