@@ -3,6 +3,8 @@ import arb from '../../assets/armory/tiles/Base.png'
 import arw from '../../assets/armory/tiles/Weapons.png'
 import lbb from '../../assets/library/tiles/Base.png'
 import lbw from '../../assets/library/tiles/Objects.png'
+import grb from '../../assets/gardens/tiles/Base.png'
+import grw from '../../assets/gardens/tiles/Objects.png'
 import f from '../../assets/misc/fire.png'
 
 import Player from '../player.js'
@@ -89,6 +91,10 @@ export default class Room extends Phaser.Scene {
         if (this.level === 'ar') {
             this.load.image('Base', arb)
             this.load.image('Objects', arw)
+        }
+        else if(this.level === 'gr'){
+            this.load.image('Base', grb)
+            this.load.image('Objects', grw)
         } else {
             this.load.image('Base', lbb)
             this.load.image('Objects', lbw)
@@ -161,6 +167,9 @@ export default class Room extends Phaser.Scene {
         let cObjects = this.map.createLayer('CObjects', [objects]).setDepth(3).setCollisionByExclusion(-1)
         let nCObjects = this.map.createLayer('NCObjects', [objects]).setDepth(4)
         let extra = this.map.createLayer('Extra', [objects]).setDepth(5)
+        if(this.level === 'gr'){
+            let arbol = this.map.createLayer('Arbol', [objects]).setDepth(15)
+        }
 
         //DETERMINE PLAYER SPAWN
         let playerX = 300;

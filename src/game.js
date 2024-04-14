@@ -27,6 +27,8 @@ import LBX1 from './scenes/library/lbX1.js';
 import LBX2 from './scenes/library/lbX2.js';
 import LBX3 from './scenes/library/lbX3.js';
 import LBX4 from './scenes/library/lbX4.js';
+import GRR1 from './scenes/garden/grR1.js';
+import GRR2 from './scenes/garden/grR2.js';
 import Controls from './scenes/controlsMenu.js';
 import End from './scenes/end.js'
 
@@ -45,7 +47,7 @@ let config = {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
     pixelArt: true,
-    scene: [Boot, MainMenu, Controls, ArmeriaPrueba,ARR1,ARR2,ARR3,ARX1,LBE1,LBR1,LBR2,LBR3,LBR4,LBR5,LBR6,LBR7,LBR8,LBR9,LBR10,LBR11,LBR12,LBR13,LBR14,LBR15,LBX1,LBX2,LBX3,LBX4, GUI, End],
+    scene: [Boot, MainMenu, Controls, ArmeriaPrueba,ARR1,ARR2,ARR3,ARX1,LBE1,LBR1,LBR2,LBR3,LBR4,LBR5,LBR6,LBR7,LBR8,LBR9,LBR10,LBR11,LBR12,LBR13,LBR14,LBR15,LBX1,LBX2,LBX3,LBX4,GRR1,GRR2, GUI, End],
     physics: {
         default: 'arcade',
         arcade: {
