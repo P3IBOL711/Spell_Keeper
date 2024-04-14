@@ -137,7 +137,7 @@ export default class Room extends Phaser.Scene {
         let base = this.map.addTilesetImage('Base');
         let objects = this.map.addTilesetImage('Objects');
         let fondo = this.map.createLayer('Fondo', [base]).setDepth(0)
-        let floor = this.map.createLayer('Floor', [base]).setDepth(1)
+        this.floor = this.map.createLayer('Floor', [base]).setDepth(1)
         let walls = this.map.createLayer('Walls', [base]).setDepth(2).setCollisionByExclusion(-1)
         let cObjects = this.map.createLayer('CObjects', [objects]).setDepth(3).setCollisionByExclusion(-1)
         let nCObjects = this.map.createLayer('NCObjects', [objects]).setDepth(4)
@@ -166,6 +166,10 @@ export default class Room extends Phaser.Scene {
                 playerX = this.cSpawn.x; playerY = this.cSpawn.y;
                 break;
         }
+
+        // ENEMIES PATHFINDING
+        this.finder = new EasyStar.js();
+        this.pathfindingEnemies();
 
         this.enviromental = this.add.group()
 
@@ -206,8 +210,6 @@ export default class Room extends Phaser.Scene {
         this.cameras.main.setZoom(3);
         this.cameras.main.setBounds(0, 0, 1024, 512);
         this.cameras.main.startFollow(this.player);
-
-        this.pathfindingEnemies();
     }
 
     loadObjects() {
@@ -335,46 +337,33 @@ export default class Room extends Phaser.Scene {
     }
 
     pathfindingEnemies() {
-        this.finder = new EasyStar.js();
-
-        this.getTileID = (x, y) => {
-            return this.map.getTileAt(x, y);
+        this.getTileID = (x, y, layer) => {
+            return this.map.getTileAt(x, y, true, layer ).index;
         };
 
         let grid = [];
+        let acceptableTiles = []
         for (let y = 0; y < this.map.height; y++) {
             let col = [];
             for (let x = 0; x < this.map.width; x++) {
                 // In each cell we store the ID of the tile, which corresponds
                 // to its index in the tileset of the map ("ID" field in Tiled)
-                col.push(this.getTileID(x, y));
+                let tileF = this.getTileID(x, y, "Floor");
+                let tileO = this.getTileID(x, y, "CObjects");
+                let tileE = this.getTileID(x, y, "Extra");
+                if (tileF !== -1 && tileO !== - 1 && tileO !== tileF)
+                    col.push(-1);
+                else if(tileF !== -1 && tileE !== - 1 && tileE !== tileF)
+                    col.push(-1);
+                else {
+                    col.push(tileF);
+                    acceptableTiles.push(tileF);
+                }
             }
             grid.push(col);
         }
         this.finder.setGrid(grid);
-
-        let tileset = this.map.tilesets[1];
-        let properties = tileset.tileProperties;
-        let acceptableTiles = [];
-
-        for (let i = tileset.firstgid - 1; i < tileset.length; i++) { // firstgid and total are fields from Tiled that indicate the range of IDs that the tiles can take in that tileset
-            if (!properties.hasOwnProperty(i)) {
-                // If there is no property indicated at all, it means it's a walkable tile
-                acceptableTiles.push(i + 1);
-                continue;
-            }
-            if (!properties[i].collide) acceptableTiles.push(i + 1);
-        }
         this.finder.setAcceptableTiles(acceptableTiles);
-
-        this.finder.findPath(0, 0, 100, 100, function( path ) {
-            if (path === null)
-                console.warn("Path was not found.");
-            else {
-                console.log(path);
-                //Game.moveCharacter(path);
-            }
-        });
-        this.finder.calculate();
+        //this.finder.enableDiagonals();
     }
 }

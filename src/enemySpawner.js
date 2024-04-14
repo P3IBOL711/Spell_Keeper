@@ -7,7 +7,7 @@ import EvilWizard from "./enemies/evilWizard"
 export default class EnemySpawner {
 
     constructor(scene,x,y,target){
-        this.enemyPool = [EvilWizard]
+        this.enemyPool = [Knight]
         this.scene = scene
         this.x = x
         this.y = y

@@ -18,7 +18,7 @@ export default class CarnivorousPlant extends Enemy {
     */
 
     constructor(scene, x, y, target) {
-        super(scene, x, y, target, 'carnivorous_plant');
+        super(scene, x, y, target, 'carnivorous_plant', 10000);
         
         this.anims.create({
             key: 'idle',

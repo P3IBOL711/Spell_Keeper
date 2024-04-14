@@ -13,7 +13,7 @@ export default class EvilWizard extends Enemy {
      * @param {number} y Coordenada Y
      */
     constructor(scene, x, y, target) {
-        super(scene, x, y, target, 'evilWizard');
+        super(scene, x, y, target, 'evilWizard', 10000);
         
         this.anims.create({
             key: 'spawn',

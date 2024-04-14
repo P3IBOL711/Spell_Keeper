@@ -1,5 +1,5 @@
 
-import Phaser from 'phaser'
+import Phaser, { Game } from 'phaser'
 
 /**
  * Clase que representa un enemigo del juego.
@@ -12,7 +12,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      */
-    constructor(scene, x, y, target, image) {
+    constructor(scene, x, y, target, image, attackDelay) {
         super(scene, x, y, image);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
@@ -35,6 +35,15 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         // distance from player to start attacking
         this.distanceAttack = 150;
 
+        this.timerAttack = this.scene.time.addEvent({
+            delay: attackDelay,
+            callback: this.onTimerAttack,
+            callbackScope: this,
+            loop: true
+        });
+
+        this.timerAttack.paused = true;
+
         this.setDepth(7);
 
         this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
@@ -44,10 +53,19 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
                 this.destroy();
             }
         });
+
+        this.pathFinding = this.scene.time.addEvent({
+            delay: 300,
+            callback: this.onPathFinding,
+            callbackScope: this,
+            loop: true
+        });
+
     }
 
     doSomethingVerySpecificBecauseYoureMyBelovedChild() {
     }
+
 
 
     receiveDamage(damage){
@@ -77,6 +95,33 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
             this.play('die', true);
         }
     }
+
+    onPathFinding(){
+
+        const moveEnemy = (path) => {
+            if (path.length > 1){
+                let nextX = path[1].x * this.scene.map.tileWidth;
+                let nextY = path[1].y * this.scene.map.tileHeight;
+                this.scene.physics.moveTo(this, nextX, nextY, this.speed);
+            }
+            this.scene.finder.calculate();
+        };
+
+        let toX = Math.floor(this.target.x/this.scene.map.tileWidth);
+        let toY = Math.floor(this.target.y/this.scene.map.tileHeight);
+        let fromX = Math.floor(this.x/this.scene.map.tileWidth);
+        let fromY = Math.floor(this.y/this.scene.map.tileHeight);
+        this.scene.finder.findPath(fromX, fromY, toX, toY, function( path ) {
+            if (path === null) {
+                console.warn("Path was not found.");
+            } else {
+                console.log(path);
+                moveEnemy(path);
+            }
+        });
+        this.scene.finder.calculate();
+    }
+
     /**
      * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
      * Como se puede ver, no se tratan las colisiones con las estrellas, ya que estas colisiones 
@@ -89,12 +134,11 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         super.preUpdate(t, dt);
         if (this.life > 0){
             this.flipEnemy()
-            this.scene.physics.moveToObject(this, this.target, this.attacking ? 0 : this.speed);
             this.playAfterRepeat('walking');
             if (Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y) > this.distanceAttack){
                 this.timerAttack.paused = true;
             }
-            else {  
+            else {
                 this.timerAttack.paused = false;
             } 
         }

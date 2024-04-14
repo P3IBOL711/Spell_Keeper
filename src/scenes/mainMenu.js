@@ -58,8 +58,8 @@ export default class MainMenu extends Phaser.Scene{
        })
 
        this.playButton.on("pointerup", ()=>{
-            //this.scene.start('arR1',{X: 0, Y: 3, dg:dungeonGenerator.tutorial(),dir:'c', SSM: dungeonGenerator.generateSaveStateMatrix(4,1),playerStat:null});
-            this.scene.start('lbX1',{ dg:dungeonGenerator.init(),X: dungeonGenerator.getEntranceX(), Y: dungeonGenerator.getEntranceY(),dir:'n', SSM: dungeonGenerator.generateSaveStateMatrix(dungeonGenerator.getN(),dungeonGenerator.getM()),playerStat:null});
+            this.scene.start('arR1',{X: 0, Y: 3, dg:dungeonGenerator.tutorial(),dir:'c', SSM: dungeonGenerator.generateSaveStateMatrix(4,1),playerStat:null});
+            //this.scene.start('lbX1',{ dg:dungeonGenerator.init(),X: dungeonGenerator.getEntranceX(), Y: dungeonGenerator.getEntranceY(),dir:'n', SSM: dungeonGenerator.generateSaveStateMatrix(dungeonGenerator.getN(),dungeonGenerator.getM()),playerStat:null});
        })
 
        this.controlsButton.setInteractive();
