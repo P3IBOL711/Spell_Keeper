@@ -170,70 +170,70 @@
          "name":"navmesh",
          "objects":[
                 {
-                 "height":144,
-                 "id":25,
+                 "height":72,
+                 "id":32,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":64,
-                 "x":456,
-                 "y":168
+                 "width":240,
+                 "x":440,
+                 "y":136
                 }, 
                 {
-                 "height":32,
-                 "id":26,
+                 "height":56,
+                 "id":34,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":144,
-                 "x":520,
-                 "y":280
+                 "width":240,
+                 "x":440,
+                 "y":272
                 }, 
                 {
-                 "height":32,
-                 "id":27,
+                 "height":64,
+                 "id":35,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":144,
-                 "x":520,
-                 "y":168
+                 "width":112,
+                 "x":416,
+                 "y":208
                 }, 
                 {
-                 "height":80,
-                 "id":28,
+                 "height":64,
+                 "id":36,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":64,
-                 "x":600,
-                 "y":200
+                 "width":88,
+                 "x":592,
+                 "y":208
                 }, 
                 {
-                 "height":16,
-                 "id":29,
+                 "height":40,
+                 "id":37,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":664,
-                 "y":232
+                 "x":680,
+                 "y":224
                 }, 
                 {
                  "height":16,
-                 "id":30,
+                 "id":39,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":32,
-                 "x":424,
-                 "y":232
+                 "width":24,
+                 "x":680,
+                 "y":208
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -386,7 +386,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":31,
+ "nextobjectid":40,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",

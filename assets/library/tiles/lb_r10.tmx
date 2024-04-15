@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="30">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="55">
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="81" source="Flames2.tsx"/>
  <tileset firstgid="84" source="Objects.tsx"/>
@@ -124,18 +124,19 @@
 </data>
  </layer>
  <objectgroup id="9" name="navmesh">
-  <object id="18" x="296" y="232" width="144" height="48"/>
-  <object id="19" x="392" y="280" width="48" height="32"/>
-  <object id="20" x="424" y="312" width="48" height="32"/>
-  <object id="21" x="424" y="200" width="16" height="32"/>
-  <object id="22" x="440" y="296" width="32" height="16"/>
-  <object id="23" x="472" y="328" width="96" height="48"/>
-  <object id="24" x="456" y="344" width="16" height="32"/>
-  <object id="25" x="552" y="296" width="16" height="32"/>
-  <object id="26" x="568" y="296" width="32" height="48"/>
-  <object id="27" x="584" y="200" width="16" height="96"/>
-  <object id="28" x="600" y="232" width="128" height="48"/>
-  <object id="29" x="600" y="280" width="32" height="32"/>
+  <object id="30" x="288" y="200" width="88" height="96"/>
+  <object id="31" x="376" y="224" height="72"/>
+  <object id="43" x="376" y="224" width="80" height="104"/>
+  <object id="44" x="456" y="264" width="32" height="120"/>
+  <object id="45" x="416" y="328" width="40" height="24"/>
+  <object id="46" x="440" y="352" width="16" height="40"/>
+  <object id="48" x="416" y="168" width="40" height="56"/>
+  <object id="49" x="488" y="296" width="88" height="96"/>
+  <object id="50" x="536" y="264" width="40" height="32"/>
+  <object id="51" x="568" y="168" width="80" height="96"/>
+  <object id="52" x="576" y="264" width="40" height="96"/>
+  <object id="53" x="616" y="264" width="32" height="64"/>
+  <object id="54" x="648" y="200" width="88" height="96"/>
  </objectgroup>
  <objectgroup id="7" name="Cosas">
   <object id="1" type="Trigger" x="224" y="224" width="32" height="64">

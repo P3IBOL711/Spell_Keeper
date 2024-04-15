@@ -1,5 +1,5 @@
 {
-    "activeFile": "lb_x4.tmx",
+    "activeFile": "lb_r13.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -41,19 +41,22 @@
             "expandedObjectLayers": [
                 9
             ],
-            "scale": 3,
-            "selectedLayer": 6,
+            "scale": 2,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 510,
-                "y": 235.49999999999997
+                "x": 525.75,
+                "y": 243.25
             }
         },
         "lb_r1.tmx": {
-            "scale": 1.5,
+            "expandedObjectLayers": [
+                13
+            ],
+            "scale": 2,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 694,
-                "y": 254.99999999999997
+                "x": 692.25,
+                "y": 270.25
             }
         },
         "lb_r1.tmx#Flames": {
@@ -63,11 +66,11 @@
             "expandedObjectLayers": [
                 9
             ],
-            "scale": 2,
+            "scale": 1.5,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 508.75,
-                "y": 255.25
+                "x": 517,
+                "y": 192.99999999999997
             }
         },
         "lb_r11.tmx": {
@@ -77,8 +80,8 @@
             "scale": 2,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 508.75,
-                "y": 255.25
+                "x": 512.25,
+                "y": 205.75
             }
         },
         "lb_r12.tmx": {
@@ -88,41 +91,41 @@
             "scale": 2,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 508.75,
-                "y": 255.25
+                "x": 475.25,
+                "y": 195.75
             }
         },
         "lb_r13.tmx": {
             "expandedObjectLayers": [
                 9
             ],
-            "scale": 2,
+            "scale": 1,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 723.75,
-                "y": 282.75
+                "x": 485.5,
+                "y": 263.5
             }
         },
         "lb_r14.tmx": {
             "expandedObjectLayers": [
                 9
             ],
-            "scale": 2,
+            "scale": 1.5,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 648.25,
-                "y": 345.75
+                "x": 550.3333333333333,
+                "y": 262.3333333333333
             }
         },
         "lb_r15.tmx": {
             "expandedObjectLayers": [
                 9
             ],
-            "scale": 2,
+            "scale": 1.5,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 508.75,
-                "y": 318.75
+                "x": 344.99999999999994,
+                "y": 381
             }
         },
         "lb_r16.json": {
@@ -142,6 +145,14 @@
         "lb_r16.json#Objects": {
             "scaleInDock": 1
         },
+        "lb_r16.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 510.75,
+                "y": 242.75
+            }
+        },
         "lb_r2.tmx": {
             "expandedObjectLayers": [
                 9
@@ -149,8 +160,8 @@
             "scale": 2,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 396.75,
-                "y": 221.75
+                "x": 423.25,
+                "y": 130.25
             }
         },
         "lb_r3.tmx": {
@@ -160,16 +171,19 @@
             "scale": 2,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 511.75,
-                "y": 255.75
+                "x": 511.25,
+                "y": 255.25
             }
         },
         "lb_r4.tmx": {
+            "expandedObjectLayers": [
+                9
+            ],
             "scale": 2,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 511.25,
-                "y": 255.25
+                "x": 567.25,
+                "y": 285.75
             }
         },
         "lb_r5.tmx": {
@@ -179,19 +193,19 @@
             "scale": 2,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 511.75,
-                "y": 255.75
+                "x": 510.25,
+                "y": 254.25
             }
         },
         "lb_r6.tmx": {
             "expandedObjectLayers": [
                 9
             ],
-            "scale": 3,
+            "scale": 1.5,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 511.8333333333333,
-                "y": 255.83333333333331
+                "x": 458.99999999999994,
+                "y": 242.33333333333331
             }
         },
         "lb_r7.tmx": {
@@ -201,19 +215,19 @@
             "scale": 3,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 511.8333333333333,
-                "y": 255.83333333333331
+                "x": 510.8333333333333,
+                "y": 254.83333333333331
             }
         },
         "lb_r8.tmx": {
             "expandedObjectLayers": [
                 9
             ],
-            "scale": 2,
+            "scale": 1.5,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 527.75,
-                "y": 163.25
+                "x": 398.99999999999994,
+                "y": 269.6666666666667
             }
         },
         "lb_r9.tmx": {
@@ -223,8 +237,8 @@
             "scale": 2,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 769.75,
-                "y": 255.75
+                "x": 725.25,
+                "y": 256.75
             }
         },
         "lb_x1.tmx": {
@@ -234,8 +248,8 @@
             "scale": 1.004736328125,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 512.0746464499199,
-                "y": 256.28614472469263
+                "x": 446.3857705204841,
+                "y": 255.2908587257618
             }
         },
         "lb_x2.tmx": {
@@ -245,8 +259,8 @@
             "scale": 1.004736328125,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 512.0746464499199,
-                "y": 256.28614472469263
+                "x": 446.3857705204841,
+                "y": 255.2908587257618
             }
         },
         "lb_x3.tmx": {
@@ -256,22 +270,35 @@
             "scale": 1.004736328125,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 512.0746464499199,
-                "y": 256.28614472469263
+                "x": 446.3857705204841,
+                "y": 255.2908587257618
             }
         },
         "lb_x4.tmx": {
+            "expandedObjectLayers": [
+                9
+            ],
             "scale": 1.004736328125,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 512.0746464499199,
-                "y": 256.28614472469263
+                "x": 446.3857705204841,
+                "y": 255.2908587257618
             }
         }
     },
-    "last.exportedFilePath": "/home/pablo/Documents/University/Spell_Keeper/assets/library/tiles",
-    "map.lastUsedExportFilter": "All Files (*)",
+    "last.exportedFilePath": "C:/Users/pablo/Documents/Universidad/DVI/Proyecto_DVI/assets/library/tiles",
+    "map.lastUsedExportFilter": "Todos los archivos (*)",
     "openFiles": [
+        "lb_r1.tmx",
+        "lb_r10.tmx",
+        "lb_r11.tmx",
+        "lb_r12.tmx",
+        "lb_r13.tmx",
+        "lb_r14.tmx",
+        "lb_r15.tmx",
+        "lb_r16.tmx",
+        "lb_r2.tmx",
+        "lb_r3.tmx",
         "lb_r4.tmx",
         "lb_r5.tmx",
         "lb_r6.tmx",
@@ -285,17 +312,17 @@
     ],
     "project": "Library.tiled-project",
     "recentFiles": [
-        "lb_r4.tmx",
-        "lb_r5.tmx",
-        "lb_r6.tmx",
-        "lb_r7.tmx",
-        "lb_r8.tmx",
-        "lb_r9.tmx",
-        "lb_x1.tmx",
-        "lb_x2.tmx",
-        "lb_x3.tmx",
-        "lb_x4.tmx",
+        "lb_r1.tmx",
         "lb_r10.tmx",
-        "lb_r11.tmx"
+        "lb_r11.tmx",
+        "lb_r12.tmx",
+        "lb_x4.tmx",
+        "lb_x3.tmx",
+        "lb_x2.tmx",
+        "lb_x1.tmx",
+        "lb_r9.tmx",
+        "lb_r8.tmx",
+        "lb_r7.tmx",
+        "lb_r6.tmx"
     ]
 }
