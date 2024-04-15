@@ -11,14 +11,14 @@ export default class megaEspadaMortal extends arma {
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      */
-    constructor(scene, x, y, damage) {
+    constructor(scene, x, y) {
         super(scene, x, y, 'espadaCheta');
         this.setOrigin(0, 0.5);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.delay = 500;
         this.hasAttacked = false;
-        this.damage = damage;
+        this.damage = 1000000;
         this.timeOnField = 0;
         this.x = x;
         this.y = y;

@@ -10,7 +10,7 @@ export default class basicRanged extends arma {
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      */
-    constructor(scene, x, y, damage) {
+    constructor(scene, x, y) {
         super(scene, x, y, 'poisonStaff')
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
@@ -22,7 +22,7 @@ export default class basicRanged extends arma {
         this.setActive(true);
         this.setVisible(true);
 
-        this.damage = damage;
+        this.damage = 1;
     }
 
     preUpdate(t, dt) {

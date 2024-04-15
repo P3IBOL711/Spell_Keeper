@@ -10,7 +10,7 @@ export default class FireStaff extends arma {
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      */
-    constructor(scene, x, y, damage) {
+    constructor(scene, x, y) {
         super(scene, x, y, 'fireStaff')
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
@@ -23,8 +23,7 @@ export default class FireStaff extends arma {
         this.setActive(true);
         this.setVisible(true);
 
-        this.damage = damage;
-        //Intorducir logica de los sprites
+        this.damage = 10;
     }
 
     preUpdate(t, dt) {
