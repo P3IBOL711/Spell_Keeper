@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="32">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="49">
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="81" source="Flames2.tsx"/>
  <tileset firstgid="84" source="Objects.tsx"/>
@@ -123,6 +123,22 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="9" name="navmesh">
+  <object id="32" x="584" y="232" width="80" height="144"/>
+  <object id="33" x="664" y="232" width="32" height="48"/>
+  <object id="34" x="696" y="264" width="64" height="16"/>
+  <object id="35" x="712" y="280" width="48" height="32"/>
+  <object id="36" x="744" y="232" width="16" height="32"/>
+  <object id="37" x="488" y="136" width="48" height="48"/>
+  <object id="41" x="520" y="184" width="80" height="32"/>
+  <object id="42" x="552" y="216" width="32" height="32"/>
+  <object id="43" x="584" y="216" width="16" height="16"/>
+  <object id="44" x="536" y="168" width="64" height="16"/>
+  <object id="45" x="488" y="392" width="80" height="48"/>
+  <object id="46" x="568" y="392" width="64" height="16"/>
+  <object id="47" x="584" y="376" width="48" height="16"/>
+  <object id="48" x="520" y="360" width="16" height="32"/>
+ </objectgroup>
  <objectgroup id="7" name="Cosas">
   <object id="17" type="Trigger" x="480" y="64" width="64" height="32"/>
   <object id="18" type="Trigger" x="800" y="256" width="32" height="32">

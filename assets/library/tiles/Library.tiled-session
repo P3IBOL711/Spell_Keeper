@@ -1,7 +1,6 @@
 {
-    "activeFile": "lb_r13.tmx",
+    "activeFile": "",
     "expandedProjectPaths": [
-        "."
     ],
     "file.lastUsedOpenFilter": "Todos los archivos (*)",
     "fileStates": {
@@ -20,80 +19,240 @@
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
+        "lb_e1.json": {
+            "scale": 1.01494140625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 503.47734051765616,
+                "y": 247.79755604733958
+            }
+        },
+        "lb_e1.json#Base": {
+            "scaleInDock": 1
+        },
+        "lb_e1.json#Flames": {
+            "scaleInDock": 1
+        },
+        "lb_e1.json#Objects": {
+            "scaleInDock": 1
+        },
         "lb_e1.tmx": {
             "expandedObjectLayers": [
                 9
             ],
-            "scale": 2,
-            "selectedLayer": 6,
-            "viewCenter": {
-                "x": 501.5,
-                "y": 270.5
-            }
-        },
-        "lb_r1.tmx": {
             "scale": 3,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 674.3333333333333,
-                "y": 193
+                "x": 510,
+                "y": 235.49999999999997
+            }
+        },
+        "lb_r1.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 694,
+                "y": 254.99999999999997
             }
         },
         "lb_r1.tmx#Flames": {
             "scaleInDock": 1
         },
         "lb_r10.tmx": {
-            "scale": 1.2171874999999999,
-            "selectedLayer": 0,
+            "expandedObjectLayers": [
+                9
+            ],
+            "scale": 2,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 512.6572528883183,
-                "y": 256.3286264441592
+                "x": 508.75,
+                "y": 255.25
             }
         },
         "lb_r11.tmx": {
-            "scale": 1.2171874999999999,
-            "selectedLayer": 0,
+            "expandedObjectLayers": [
+                9
+            ],
+            "scale": 2,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 512.6572528883183,
-                "y": 256.3286264441592
+                "x": 508.75,
+                "y": 255.25
             }
         },
         "lb_r12.tmx": {
-            "scale": 1.2171874999999999,
-            "selectedLayer": 0,
+            "expandedObjectLayers": [
+                9
+            ],
+            "scale": 2,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 512.6572528883183,
-                "y": 256.3286264441592
+                "x": 508.75,
+                "y": 255.25
             }
         },
         "lb_r13.tmx": {
-            "scale": 1.1858035714285713,
+            "expandedObjectLayers": [
+                9
+            ],
+            "scale": 2,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 723.75,
+                "y": 282.75
+            }
+        },
+        "lb_r14.tmx": {
+            "expandedObjectLayers": [
+                9
+            ],
+            "scale": 2,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 648.25,
+                "y": 345.75
+            }
+        },
+        "lb_r15.tmx": {
+            "expandedObjectLayers": [
+                9
+            ],
+            "scale": 2,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 508.75,
+                "y": 318.75
+            }
+        },
+        "lb_r16.json": {
+            "scale": 1.004736328125,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 560.8011444921317,
-                "y": 256.36623748211736
+                "x": 512.0746464499199,
+                "y": 256.28614472469263
+            }
+        },
+        "lb_r16.json#Base": {
+            "scaleInDock": 1
+        },
+        "lb_r16.json#Flames": {
+            "scaleInDock": 1
+        },
+        "lb_r16.json#Objects": {
+            "scaleInDock": 1
+        },
+        "lb_r2.tmx": {
+            "expandedObjectLayers": [
+                9
+            ],
+            "scale": 2,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 396.75,
+                "y": 221.75
+            }
+        },
+        "lb_r3.tmx": {
+            "expandedObjectLayers": [
+                9
+            ],
+            "scale": 2,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 511.75,
+                "y": 255.75
+            }
+        },
+        "lb_r4.tmx": {
+            "scale": 2,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 511.25,
+                "y": 255.25
+            }
+        },
+        "lb_r5.tmx": {
+            "scale": 2,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 511.75,
+                "y": 255.75
+            }
+        },
+        "lb_r6.tmx": {
+            "scale": 3,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 511.8333333333333,
+                "y": 255.83333333333331
+            }
+        },
+        "lb_r7.tmx": {
+            "scale": 3,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 511.8333333333333,
+                "y": 255.83333333333331
+            }
+        },
+        "lb_r8.tmx": {
+            "scale": 2,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 527.75,
+                "y": 163.25
+            }
+        },
+        "lb_r9.tmx": {
+            "scale": 2,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 769.75,
+                "y": 255.75
+            }
+        },
+        "lb_x1.tmx": {
+            "scale": 1.004736328125,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 512.0746464499199,
+                "y": 256.28614472469263
+            }
+        },
+        "lb_x2.tmx": {
+            "scale": 1.004736328125,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 512.0746464499199,
+                "y": 256.28614472469263
+            }
+        },
+        "lb_x3.tmx": {
+            "scale": 1.004736328125,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 512.0746464499199,
+                "y": 256.28614472469263
             }
         }
     },
-    "last.exportedFilePath": "C:/Users/sandr/Documents/universidad/Spell_Keeper/assets/library/tiles",
-    "map.lastUsedExportFilter": "Todos los archivos (*)",
+    "last.exportedFilePath": "/home/pablo/Documents/University/Spell_Keeper/assets/library/tiles",
+    "map.lastUsedExportFilter": "All Files (*)",
     "openFiles": [
-        "lb_e1.tmx",
-        "lb_r10.tmx",
-        "lb_r11.tmx",
-        "lb_r12.tmx",
-        "lb_r13.tmx"
     ],
     "project": "Library.tiled-project",
     "recentFiles": [
-        "lb_e1.tmx",
         "lb_r10.tmx",
         "lb_r11.tmx",
         "lb_r12.tmx",
         "lb_r13.tmx",
-        "lb_r1.tmx",
-        "Flames2.tsx",
-        "Objects.tsx",
-        "Base.tsx"
+        "lb_r14.tmx",
+        "lb_r15.tmx",
+        "lb_r16.json",
+        "lb_r2.tmx",
+        "lb_r3.tmx",
+        "lb_r4.tmx",
+        "lb_e1.json",
+        "lb_e1.tmx"
     ]
 }
