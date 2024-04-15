@@ -37,7 +37,7 @@ export default class Room extends Phaser.Scene {
         this.eSpawn = { x: 0, y: 0 };
         this.wSpawn = { x: 0, y: 0 };
         this.cSpawn = { x: 0, y: 0 };
-        // this.level = obj.level
+        this.level = obj.level
 
 
     }
