@@ -176,75 +176,75 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":128,
-                 "x":288,
+                 "width":112,
+                 "x":296,
                  "y":136
                 }, 
                 {
-                 "height":56,
+                 "height":48,
                  "id":41,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":56,
-                 "x":416,
-                 "y":320
+                 "width":64,
+                 "x":408,
+                 "y":328
                 }, 
                 {
-                 "height":24,
+                 "height":16,
                  "id":42,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":56,
+                 "width":64,
                  "x":232,
-                 "y":352
+                 "y":360
                 }, 
                 {
-                 "height":216,
+                 "height":224,
                  "id":43,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":24,
+                 "width":16,
                  "x":232,
                  "y":136
                 }, 
                 {
-                 "height":32,
+                 "height":24,
                  "id":44,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":32,
-                 "x":256,
+                 "width":48,
+                 "x":248,
                  "y":136
                 }, 
                 {
-                 "height":32,
+                 "height":24,
                  "id":45,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":56,
-                 "x":416,
+                 "width":64,
+                 "x":408,
                  "y":136
                 }, 
                 {
-                 "height":152,
+                 "height":168,
                  "id":46,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":24,
-                 "x":448,
-                 "y":168
+                 "width":16,
+                 "x":456,
+                 "y":160
                 }, 
                 {
                  "height":32,
@@ -625,7 +625,9 @@
          "tiles":[
                 {
                  "id":0,
-                 "image":"..\/..\/Pixel Art PNGs\/LlamaArriba.png",
+                 "image":"..\/..\/misc\/fire.png",
+                 "imageheight":32,
+                 "imagewidth":32,
                  "type":"Fire"
                 }, 
                 {

@@ -205,7 +205,6 @@ export default class Room extends Phaser.Scene {
         //TRIGGERS AND STUFF
         this.loadObjects();
 
-
         this.cameras.main.setZoom(3);
         this.cameras.main.setBounds(0, 0, 1024, 512);
         this.cameras.main.startFollow(this.player);

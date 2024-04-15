@@ -170,7 +170,7 @@
          "name":"navmesh",
          "objects":[
                 {
-                 "height":96,
+                 "height":88,
                  "id":46,
                  "name":"",
                  "rotation":0,
@@ -192,37 +192,37 @@
                  "y":104
                 }, 
                 {
-                 "height":144,
+                 "height":152,
                  "id":48,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":64,
+                 "width":56,
                  "x":360,
-                 "y":232
+                 "y":224
                 }, 
                 {
-                 "height":96,
+                 "height":88,
                  "id":49,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":176,
-                 "x":424,
-                 "y":280
+                 "width":192,
+                 "x":416,
+                 "y":288
                 }, 
                 {
-                 "height":144,
+                 "height":152,
                  "id":50,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":64,
-                 "x":600,
-                 "y":232
+                 "width":56,
+                 "x":608,
+                 "y":224
                 }, 
                 {
                  "height":32,
@@ -577,7 +577,9 @@
          "tiles":[
                 {
                  "id":0,
-                 "image":"..\/..\/Pixel Art PNGs\/LlamaArriba.png",
+                 "image":"..\/..\/misc\/fire.png",
+                 "imageheight":32,
+                 "imagewidth":32,
                  "type":"Fire"
                 }, 
                 {

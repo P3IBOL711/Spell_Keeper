@@ -127,13 +127,13 @@
 </data>
  </layer>
  <objectgroup id="8" name="navmesh">
-  <object id="40" x="288" y="136" width="128" height="240"/>
-  <object id="41" x="416" y="320" width="56" height="56"/>
-  <object id="42" x="232" y="352" width="56" height="24"/>
-  <object id="43" x="232" y="136" width="24" height="216"/>
-  <object id="44" x="256" y="136" width="32" height="32"/>
-  <object id="45" x="416" y="136" width="56" height="32"/>
-  <object id="46" x="448" y="168" width="24" height="152"/>
+  <object id="40" x="296" y="136" width="112" height="240"/>
+  <object id="41" x="408" y="328" width="64" height="48"/>
+  <object id="42" x="232" y="360" width="64" height="16"/>
+  <object id="43" x="232" y="136" width="16" height="224"/>
+  <object id="44" x="248" y="136" width="48" height="24"/>
+  <object id="45" x="408" y="136" width="64" height="24"/>
+  <object id="46" x="456" y="160" width="16" height="168"/>
   <object id="47" x="328" y="376" width="48" height="32"/>
   <object id="48" x="328" y="104" width="48" height="32"/>
  </objectgroup>
