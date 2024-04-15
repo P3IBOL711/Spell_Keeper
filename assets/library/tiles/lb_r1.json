@@ -166,6 +166,193 @@
         }, 
         {
          "draworder":"topdown",
+         "id":13,
+         "name":"navmesh",
+         "objects":[
+                {
+                 "height":150.666666666667,
+                 "id":88,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":56.3333333333334,
+                 "x":547.666666666667,
+                 "y":132.333333333333
+                }, 
+                {
+                 "height":24.6666666666667,
+                 "id":89,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":130.666666666667,
+                 "x":604.333333333333,
+                 "y":132.333333333333
+                }, 
+                {
+                 "height":33.6666666666667,
+                 "id":90,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":60,
+                 "x":674,
+                 "y":98.6666666666667
+                }, 
+                {
+                 "height":45.6666666666667,
+                 "id":91,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":63,
+                 "x":735.333333333333,
+                 "y":143
+                }, 
+                {
+                 "height":12,
+                 "id":92,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":30.3333333333333,
+                 "x":768,
+                 "y":130.666666666667
+                }, 
+                {
+                 "height":26,
+                 "id":94,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":61.6666666666666,
+                 "x":799,
+                 "y":162.666666666667
+                }, 
+                {
+                 "height":159.666666666667,
+                 "id":95,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":58.6666666666666,
+                 "x":802,
+                 "y":189
+                }, 
+                {
+                 "height":62.3333333333333,
+                 "id":97,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":26,
+                 "x":834.333333333333,
+                 "y":349
+                }, 
+                {
+                 "height":25.6666666666667,
+                 "id":98,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":287,
+                 "x":547.333333333333,
+                 "y":385.666666666667
+                }, 
+                {
+                 "height":102.666666666667,
+                 "id":99,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":25.6666666666666,
+                 "x":547.666666666667,
+                 "y":282.666666666667
+                }, 
+                {
+                 "height":63.3333333333333,
+                 "id":100,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":224.333333333333,
+                 "x":573,
+                 "y":322.333333333333
+                }, 
+                {
+                 "height":89,
+                 "id":101,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":130,
+                 "x":604,
+                 "y":194
+                }, 
+                {
+                 "height":36.3333333333333,
+                 "id":102,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":91,
+                 "x":643,
+                 "y":157
+                }, 
+                {
+                 "height":39,
+                 "id":104,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":94.3333333333333,
+                 "x":707,
+                 "y":282.666666666667
+                }, 
+                {
+                 "height":56.3333333333333,
+                 "id":105,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":67.6666666666667,
+                 "x":734.333333333333,
+                 "y":225.666666666667
+                }, 
+                {
+                 "height":27.3333333333334,
+                 "id":106,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":5,
+                 "x":797.666666666667,
+                 "y":321.666666666667
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":4,
          "name":"Cosas",
          "objects":[
@@ -466,8 +653,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":13,
- "nextobjectid":76,
+ "nextlayerid":14,
+ "nextobjectid":107,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
@@ -490,9 +677,7 @@
          "tiles":[
                 {
                  "id":0,
-                 "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/LlamaArriba.png",
-                 "imageheight":32,
-                 "imagewidth":32,
+                 "image":"..\/..\/Pixel Art PNGs\/LlamaArriba.png",
                  "type":"Fire"
                 }],
          "tilewidth":32
@@ -500,7 +685,7 @@
         {
          "columns":10,
          "firstgid":2,
-         "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/Library_Tileset .png",
+         "image":"Base.png",
          "imageheight":256,
          "imagewidth":320,
          "margin":0,
@@ -513,7 +698,7 @@
         {
          "columns":16,
          "firstgid":82,
-         "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/Library_Objects.png",
+         "image":"Objects.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
