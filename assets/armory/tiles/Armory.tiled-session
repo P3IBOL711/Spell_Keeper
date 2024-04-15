@@ -30,7 +30,7 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 511.1995831162063,
-                "y": 256.667014069828
+                "y": 256.66701406982804
             }
         },
         "arR1.json#Base": {
@@ -46,19 +46,20 @@
             "scale": 3,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 376.6666666666667,
-                "y": 249.16666666666666
+                "x": 512,
+                "y": 255.83333333333331
             }
         },
         "ar_r2.tmx": {
             "expandedObjectLayers": [
-                8
+                8,
+                7
             ],
             "scale": 2,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 593,
-                "y": 150.25
+                "x": 512,
+                "y": 255.75
             }
         },
         "ar_r3.tmx": {
@@ -68,8 +69,8 @@
             "scale": 4,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 336.5,
-                "y": 155.125
+                "x": 512,
+                "y": 220.375
             }
         },
         "ar_x1.tmx": {
@@ -77,10 +78,10 @@
                 7
             ],
             "scale": 3,
-            "selectedLayer": 7,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 348.6666666666667,
-                "y": 416.5
+                "x": 512,
+                "y": 208.5
             }
         }
     },
