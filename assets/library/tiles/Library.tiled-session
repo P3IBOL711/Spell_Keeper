@@ -1,6 +1,7 @@
 {
-    "activeFile": "",
+    "activeFile": "lb_x4.tmx",
     "expandedProjectPaths": [
+        "."
     ],
     "file.lastUsedOpenFilter": "Todos los archivos (*)",
     "fileStates": {
@@ -172,6 +173,9 @@
             }
         },
         "lb_r5.tmx": {
+            "expandedObjectLayers": [
+                9
+            ],
             "scale": 2,
             "selectedLayer": 6,
             "viewCenter": {
@@ -180,6 +184,9 @@
             }
         },
         "lb_r6.tmx": {
+            "expandedObjectLayers": [
+                9
+            ],
             "scale": 3,
             "selectedLayer": 6,
             "viewCenter": {
@@ -188,6 +195,9 @@
             }
         },
         "lb_r7.tmx": {
+            "expandedObjectLayers": [
+                9
+            ],
             "scale": 3,
             "selectedLayer": 6,
             "viewCenter": {
@@ -196,6 +206,9 @@
             }
         },
         "lb_r8.tmx": {
+            "expandedObjectLayers": [
+                9
+            ],
             "scale": 2,
             "selectedLayer": 6,
             "viewCenter": {
@@ -204,6 +217,9 @@
             }
         },
         "lb_r9.tmx": {
+            "expandedObjectLayers": [
+                9
+            ],
             "scale": 2,
             "selectedLayer": 6,
             "viewCenter": {
@@ -212,6 +228,9 @@
             }
         },
         "lb_x1.tmx": {
+            "expandedObjectLayers": [
+                9
+            ],
             "scale": 1.004736328125,
             "selectedLayer": 6,
             "viewCenter": {
@@ -220,6 +239,9 @@
             }
         },
         "lb_x2.tmx": {
+            "expandedObjectLayers": [
+                9
+            ],
             "scale": 1.004736328125,
             "selectedLayer": 6,
             "viewCenter": {
@@ -228,6 +250,17 @@
             }
         },
         "lb_x3.tmx": {
+            "expandedObjectLayers": [
+                9
+            ],
+            "scale": 1.004736328125,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 512.0746464499199,
+                "y": 256.28614472469263
+            }
+        },
+        "lb_x4.tmx": {
             "scale": 1.004736328125,
             "selectedLayer": 6,
             "viewCenter": {
@@ -239,20 +272,30 @@
     "last.exportedFilePath": "/home/pablo/Documents/University/Spell_Keeper/assets/library/tiles",
     "map.lastUsedExportFilter": "All Files (*)",
     "openFiles": [
+        "lb_r4.tmx",
+        "lb_r5.tmx",
+        "lb_r6.tmx",
+        "lb_r7.tmx",
+        "lb_r8.tmx",
+        "lb_r9.tmx",
+        "lb_x1.tmx",
+        "lb_x2.tmx",
+        "lb_x3.tmx",
+        "lb_x4.tmx"
     ],
     "project": "Library.tiled-project",
     "recentFiles": [
-        "lb_r10.tmx",
-        "lb_r11.tmx",
-        "lb_r12.tmx",
-        "lb_r13.tmx",
-        "lb_r14.tmx",
-        "lb_r15.tmx",
-        "lb_r16.json",
-        "lb_r2.tmx",
-        "lb_r3.tmx",
         "lb_r4.tmx",
-        "lb_e1.json",
-        "lb_e1.tmx"
+        "lb_r5.tmx",
+        "lb_r6.tmx",
+        "lb_r7.tmx",
+        "lb_r8.tmx",
+        "lb_r9.tmx",
+        "lb_x1.tmx",
+        "lb_x2.tmx",
+        "lb_x3.tmx",
+        "lb_x4.tmx",
+        "lb_r10.tmx",
+        "lb_r11.tmx"
     ]
 }
