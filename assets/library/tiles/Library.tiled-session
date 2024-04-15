@@ -4,10 +4,49 @@
     ],
     "file.lastUsedOpenFilter": "Todos los archivos (*)",
     "fileStates": {
+        "Base.tsx": {
+            "dynamicWrapping": false,
+            "scaleInEditor": 1
+        },
+        "Flames2.tsx": {
+            "dynamicWrapping": true,
+            "scaleInEditor": 1
+        },
+        "Objects.tsx": {
+            "scaleInEditor": 1
+        },
+        "lb_e1.json": {
+            "scale": 1.01494140625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 512.3448474935053,
+                "y": 256.6650630231887
+            }
+        },
+        "lb_e1.json#Base": {
+            "scaleInDock": 1
+        },
+        "lb_e1.json#Flames": {
+            "scaleInDock": 1
+        },
+        "lb_e1.json#Objects": {
+            "scaleInDock": 1
+        },
+        "lb_e1.tmx": {
+            "scale": 4,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 511.25,
+                "y": 278.625
+            }
+        }
     },
     "openFiles": [
     ],
     "project": "Library.tiled-project",
     "recentFiles": [
+        "Flames2.tsx",
+        "Base.tsx",
+        "Objects.tsx"
     ]
 }
