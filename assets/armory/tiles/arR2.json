@@ -170,70 +170,70 @@
          "name":"navmesh",
          "objects":[
                 {
-                 "height":88,
-                 "id":46,
+                 "height":112,
+                 "id":52,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":304,
-                 "x":360,
-                 "y":136
-                }, 
-                {
-                 "height":32,
-                 "id":47,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":48,
-                 "x":488,
-                 "y":104
+                 "width":336,
+                 "x":344,
+                 "y":128
                 }, 
                 {
                  "height":152,
-                 "id":48,
+                 "id":58,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":56,
-                 "x":360,
-                 "y":224
+                 "width":88,
+                 "x":344,
+                 "y":240
                 }, 
                 {
-                 "height":88,
-                 "id":49,
+                 "height":112,
+                 "id":61,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":192,
-                 "x":416,
-                 "y":288
+                 "width":248,
+                 "x":432,
+                 "y":280
                 }, 
                 {
-                 "height":152,
-                 "id":50,
+                 "height":48,
+                 "id":62,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":56,
-                 "x":608,
-                 "y":224
+                 "width":80,
+                 "x":600,
+                 "y":240
+                }, 
+                {
+                 "height":24,
+                 "id":63,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":80,
+                 "x":472,
+                 "y":392
                 }, 
                 {
                  "height":32,
-                 "id":51,
+                 "id":64,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":48,
-                 "x":488,
-                 "y":376
+                 "width":336,
+                 "x":344,
+                 "y":96
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -410,7 +410,7 @@
          "y":0
         }],
  "nextlayerid":9,
- "nextobjectid":52,
+ "nextobjectid":65,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",

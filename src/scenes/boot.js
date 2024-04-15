@@ -133,7 +133,7 @@ export default class Boot extends Phaser.Scene {
     363062
     background.fillRect(0, 0, 1000, 600);
     
-    Loading bar 
+    //Loading bar 
     let progressBar = this.add.graphics();
     let progressBox = this.add.graphics();
     progressBox.fillStyle(0x8f3ea9, 0.8);
@@ -157,11 +157,11 @@ export default class Boot extends Phaser.Scene {
       percentText.destroy();
     });
 
-    Loading bar text
+    //Loading bar text
     this.loadFont('pixelFont', font);
     let loadingText = this.add.text(420, 215, 'Loading...', { fontFamily: 'pixelFont', fontSize: 40, color: '#5e1675ff'});
 
-    Percent bar text
+    //Percent bar text
     let percentText = this.add.text(485, 320, '0%', { fontFamily: 'pixelFont', fontSize: 24, color: '#5e1675ff'});
   }
 

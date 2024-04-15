@@ -123,14 +123,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="8" name="navmesh">
-  <object id="18" x="264" y="168" width="144" height="40"/>
-  <object id="19" x="328" y="136" width="16" height="32"/>
-  <object id="20" x="264" y="208" width="48" height="104"/>
-  <object id="21" x="312" y="256" width="96" height="56"/>
-  <object id="22" x="360" y="208" width="48" height="48"/>
-  <object id="24" x="328" y="312" width="16" height="32"/>
- </objectgroup>
+ <objectgroup id="8" name="navmesh"/>
  <objectgroup id="7" name="Cosas">
   <object id="1" gid="278" x="320" y="250" width="32" height="32"/>
   <object id="2" type="Trigger" x="320" y="96" width="32" height="32"/>
