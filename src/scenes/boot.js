@@ -79,7 +79,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('leftClick', leftClick);
     this.load.image('rightClick', rightClick);
     this.load.image('titleDecoration', TitleDecoration)
-    this.load.image('fire',Fire)
+    this.load.spritesheet('fire',Fire,{ frameWidth: 32, frameHeight: 32 })
 
     this.load.spritesheet('arrow', arrow,{frameWidth: 32, frameHeight: 32});
     this.load.image('dagger', dagger);

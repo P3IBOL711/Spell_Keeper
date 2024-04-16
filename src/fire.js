@@ -15,7 +15,15 @@ export default class Fire extends Phaser.GameObjects.Sprite {
         scene.add.existing(this);
         scene.physics.add.existing(this);
         this.setDepth(7)
+
+        this.anims.create({
+            key: 'idle_fire',
+            frames: scene.anims.generateFrameNumbers('fire', { start: 0, end: 3 }),
+            frameRate: 10,
+            repeat: -1 
+        })
         
+        this.anims.play('idle_fire');
 
         this.angle = rotation
         this.body.setImmovable(true)
@@ -29,6 +37,7 @@ export default class Fire extends Phaser.GameObjects.Sprite {
             this.body.setSize(height/2,width,false)
             this.body.setOffset(height/2,0)
         }
+
 
 
 
