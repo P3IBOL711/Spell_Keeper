@@ -208,6 +208,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             }
         });
 
+        
         this.scene.input.on('pointermove', () => {
             this.reticle.x = this.scene.input.activePointer.worldX;
             this.reticle.y = this.scene.input.activePointer.worldY;

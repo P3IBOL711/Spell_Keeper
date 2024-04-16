@@ -196,7 +196,7 @@
                          "name":"Level",
                          "propertytype":"Level",
                          "type":"string",
-                         "value":"lb"
+                         "value":"gr"
                         }],
                  "rotation":0,
                  "type":"SpecialTrigger",
@@ -365,6 +365,124 @@
          "spacing":0,
          "tilecount":20,
          "tileheight":32,
+         "tiles":[
+                {
+                 "id":5,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":6,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":7,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":8,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":9,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":10,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":11,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":12,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":13,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":14,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":15,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":16,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":17,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }],
          "tilewidth":32
         }, 
         {

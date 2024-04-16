@@ -20,6 +20,8 @@ import LevelTrigger from '../levelTrigger.js'
 import Dungeongen from '../dungeongen'
 
 import font from 'url:../../assets/fonts/VT323Regular.ttf'
+import SecretTrigger from '../secretTrigger.js'
+import Button from '../button.js'
 
 
 export default class Room extends Phaser.Scene {
@@ -53,6 +55,7 @@ export default class Room extends Phaser.Scene {
         this.chestOpened = false;
         this.loadScene = this.loadScene.bind(this);
         this.loadLevel = this.loadLevel.bind(this);
+        this.loadInvernadero = this.loadInvernadero.bind(this)
         this.cache.tilemap.remove('tilemap');
         this.saveStateMatrix = obj.SSM
         this.fireArray = [] //El array que guarda los fuegos en el nivel para destruirlos una vez matados a todos los bichos
@@ -92,14 +95,15 @@ export default class Room extends Phaser.Scene {
             this.load.image('Base', arb)
             this.load.image('Objects', arw)
         }
-        else if(this.level === 'gr'){
+        else if (this.level === 'gr') {
             this.load.image('Base', grb)
             this.load.image('Objects', grw)
+
         } else {
             this.load.image('Base', lbb)
             this.load.image('Objects', lbw)
         }
-
+        this.load.image('Invernadero', arb)
         this.load.image('fire', f)
 
     }
@@ -129,16 +133,24 @@ export default class Room extends Phaser.Scene {
         this.scene.start(level + dungeon[y][x].name, { X: x, Y: y, dg: dungeon, dir: direction, SSM: this.saveStateMatrix, playerStat: this.globalPlayerStats });
     }
 
+    loadInvernadero(x, y, dungeon) {
+        this.map.removeAllLayers()
+        this.map.destroy()
+
+        this.unloadScene(this.key)
+        this.scene.start('grR16', { X: x, Y: y, dg: dungeon, dir: 'c', SSM: this.saveStateMatrix, playerStat: this.globalPlayerStats });
+    }
+
     loadLevel(level) {
         this.map.removeAllLayers()
         this.map.destroy()
 
         this.unloadScene(this.key)
         this.loadingBar()
-        
-        if (level === 'ar')
-            this.scene.start('lbE1', { dg: this.dungeonGenerator.init(), X: this.dungeonGenerator.getEntranceX(), Y: this.dungeonGenerator.getEntranceY(), dir: 'c', SSM: this.dungeonGenerator.generateSaveStateMatrix(this.dungeonGenerator.getN(), this.dungeonGenerator.getM()), playerStat: this.globalPlayerStats })
 
+       
+        this.scene.start(`${level}E1`, { dg: this.dungeonGenerator.init(), X: this.dungeonGenerator.getEntranceX(), Y: this.dungeonGenerator.getEntranceY(), dir: 'c', SSM: this.dungeonGenerator.generateSaveStateMatrix(this.dungeonGenerator.getN(), this.dungeonGenerator.getM()), playerStat: this.globalPlayerStats })
+       
     }
 
 
@@ -160,14 +172,25 @@ export default class Room extends Phaser.Scene {
         });
 
         let base = this.map.addTilesetImage('Base');
+
         let objects = this.map.addTilesetImage('Objects');
         let fondo = this.map.createLayer('Fondo', [base]).setDepth(0)
-        let floor = this.map.createLayer('Floor', [base]).setDepth(1)
-        let walls = this.map.createLayer('Walls', [base]).setDepth(2).setCollisionByExclusion(-1)
+        let walls;
+        if (this.key !== 'grR16') {
+            let floor = this.map.createLayer('Floor', [base]).setDepth(1)
+            walls = this.map.createLayer('Walls', [base]).setDepth(2).setCollisionByExclusion(-1)
+        }
+        else {
+            let invernadero = this.map.addTilesetImage('Invernadero');
+            let floor = this.map.createLayer('Floor', [base, invernadero]).setDepth(1)
+            walls = this.map.createLayer('Walls', [base, invernadero]).setDepth(2).setCollisionByExclusion(-1)
+        }
+
+
         let cObjects = this.map.createLayer('CObjects', [objects]).setDepth(3).setCollisionByExclusion(-1)
         let nCObjects = this.map.createLayer('NCObjects', [objects]).setDepth(4)
         let extra = this.map.createLayer('Extra', [objects]).setDepth(5)
-        if(this.level === 'gr'){
+        if (this.level === 'gr') {
             let arbol = this.map.createLayer('Arbol', [objects]).setDepth(15)
         }
 
@@ -241,6 +264,7 @@ export default class Room extends Phaser.Scene {
 
     loadObjects() {
         // En Tiled tiene que haber una capa de objetos llamada `capaObjetos`
+        this.cont = 0
         for (const objeto of this.map.getObjectLayer('Cosas').objects) {
             // `objeto.name` u `objeto.type` nos llegan de las propiedades del
             // objeto en Tiled
@@ -257,6 +281,9 @@ export default class Room extends Phaser.Scene {
                         break;
                     case 'w':
                         new Trigger(this, objeto.x + objeto.width / 2, objeto.y + objeto.height / 2, objeto.width, objeto.height, this.player, this.level, this.x, this.y, this.loadScene, 'w', this.dungeon);
+                        break;
+                    case 'c':
+                        new Trigger(this, objeto.x + objeto.width / 2, objeto.y + 16, objeto.width, objeto.height, this.player, this.level, this.x, this.y, this.loadScene, 'c', this.dungeon);
                         break;
                 }
 
@@ -277,9 +304,14 @@ export default class Room extends Phaser.Scene {
                         this.fireArray.push(new Fire(this, (objeto.x - objeto.width / 2) + 32, (objeto.y + objeto.height / 2) - 40, objeto.width, objeto.height, objeto.rotation))
                 }
             } else if (objeto.type === 'Chest') {
-                new Chest(this, objeto.x + objeto.width / 2, objeto.y - objeto.height / 2, objeto.width, objeto.height, this.player, this.chestOpened)
+                new Chest(this, objeto.x + objeto.width / 2, objeto.y - objeto.height / 2, objeto.width, objeto.height - 8, this.player, this.chestOpened)
             } else if (objeto.type === 'SpecialTrigger') {
-                new LevelTrigger(this, objeto.x + objeto.width / 2, objeto.y + 16, objeto.width, objeto.height, this.player, this.level, this.loadLevel)
+                new LevelTrigger(this, objeto.x + objeto.width / 2, objeto.y + 16, objeto.width, objeto.height, this.player, this.level, this.loadLevel,objeto.properties[0].value)
+            } else if (objeto.type === 'SecretTrigger') {
+                this.secretTrigger = new SecretTrigger(this, objeto.x + objeto.width / 2, objeto.y + 16, objeto.width, objeto.height, this.player, this.level, this.x, this.y, this.loadInvernadero, 'c', this.dungeon)
+            } else if (objeto.type === 'Button'){
+                new Button(this,objeto.x+19,objeto.y+8,objeto.width,objeto.height,this.player,this.cont,this.secretTrigger)
+                this.cont++
             }
         }
     }
@@ -414,7 +446,7 @@ export default class Room extends Phaser.Scene {
         }).catch(function (error) {
             return error;
         });
-      }
+    }
 
 
 

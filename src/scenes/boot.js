@@ -1,5 +1,6 @@
 import Phaser from 'phaser'
 import player from '../../assets/cSprites/characters/Mage_Walking.png'
+import inv from '../../assets/gardens/sprites/InvernaderoAbierto.png'
 import playerIdle from '../../assets/cSprites/characters/Mage_Idle.png'
 import playerDead from '../../assets/cSprites/characters/Mage_Dead.png'
 import knight from '../../assets/armory/sprites/knight/knight_spritesheet.png'
@@ -67,6 +68,7 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('player_idle',playerIdle, { frameWidth: 32, frameHeight: 32 })
     this.load.spritesheet('player_dead',playerDead, { frameWidth: 32, frameHeight: 32 })
     this.load.image('escenaPrueba', room);
+    this.load.image('inv',inv)
     // Controls Menu
     this.load.image('controlsBackground', ControlsBackground);
     this.load.image('wKey', wKey);

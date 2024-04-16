@@ -12,14 +12,14 @@ export default class LevelTrigger extends Phaser.GameObjects.Zone {
      * @param {number} y Coordenada Y
     */
 
-    constructor(scene, x, y, width, height, player,level,callback) {
+    constructor(scene, x, y, width, height, player,level,callback,goToLevel) {
         super(scene, x, y, width, height);
         
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
 
         this.scene.physics.add.overlap(this, player, (player) => {
-            callback(level)
+            callback(goToLevel)
             
         });
     }
