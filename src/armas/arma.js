@@ -39,7 +39,7 @@ export default class arma extends Phaser.GameObjects.Sprite {
 
     updateAngle(degrees, radians) {
         this.angle = degrees;
-        this.body.rotation = radians;
+        //this.body.rotation = radians;
     }
 
     preUpdate(t, dt) {

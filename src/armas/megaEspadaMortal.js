@@ -52,24 +52,22 @@ export default class megaEspadaMortal extends arma {
     }
 
 
-    attack(direction, target) {
+    attack(target) {
         super.attackAction();
         this.hasAttacked = true;
-        if(direction === 'left') {
-            this.attackHitbox = new PlayerHitBox(this.scene, this.x - 30, this.y, 64, 64, this.damage);
-        }
-        else if(direction === 'right') {
-            this.attackHitbox = new PlayerHitBox(this.scene, this.x + 30, this.y, 64, 64, this.damage);
-        }
-        else if(direction === 'up') {
-            this.attackHitbox = new PlayerHitBox(this.scene, this.x, this.y - 30, 64, 64, this.damage);
-        }
-        else if(direction === 'down') {
-            this.attackHitbox = new PlayerHitBox(this.scene, this.x, this.y + 30, 64, 64, this.damage);
-        }
-        else { //Por si acaso
-            this.attackHitbox = new PlayerHitBox(this.scene, this.x - 30, this.y, 64, 64, this.damage);
-        }
+
+        let angle = Phaser.Math.DegToRad(this.angle);
+
+        let hitboxWidth = this.width * 2;
+        let hitboxHeight = this.width * 2; 
+
+        let hitboxOffsetX = this.width * 0.4 * Math.cos(angle);
+        let hitboxOffsetY = this.height * 0.4 * Math.sin(angle);
+
+        let hitboxX = this.x + hitboxOffsetX;
+        let hitboxY = this.y + hitboxOffsetY;
+
+        this.attackHitbox = new PlayerHitBox(this.scene, hitboxX, hitboxY, hitboxWidth, hitboxHeight, this.damage, this.angle);
     }
 
     attackFinished() {

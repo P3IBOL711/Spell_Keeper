@@ -51,7 +51,7 @@ export default class basicMelee extends arma {
         return false;
     }
 
-    attack(direction, target) {
+    attack(target) {
         super.attackAction();
         this.hasAttacked = true;
 

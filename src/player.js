@@ -68,7 +68,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.a = this.scene.input.keyboard.addKey('A');
         this.s = this.scene.input.keyboard.addKey('S');
         this.d = this.scene.input.keyboard.addKey('D');
-        this.direction = null;
+        
         //Interacciones
         this.q = this.scene.input.keyboard.addKey('Q');
         this.e = this.scene.input.keyboard.addKey('E');
@@ -236,23 +236,19 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         //Parte de imprimir la fuerza
         if (this.a.isDown) {
-            this.direction = 'left';
             stopped = false;
             this.body.setVelocityX(-this.movSpeed);
         }
         else if (this.d.isDown) {
-            this.direction = 'right';
             stopped = false;
             this.body.setVelocityX(this.movSpeed);
         }
 
         if (this.w.isDown) {
-            this.direction = 'up';
             stopped = false;
             this.body.setVelocityY(-this.movSpeed);
         }
         else if (this.s.isDown) {
-            this.direction = 'down';
             stopped = false;
             this.body.setVelocityY(this.movSpeed);
         }
@@ -288,7 +284,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         this.equipedWeapon.updatePosition(newWepX, newWepY);
         this.equipedWeapon.updateAngle(Phaser.Math.RadToDeg(angleToReticle), angleToReticle);
-        //this.equipedWeapon.angle = Phaser.Math.RadToDeg(angleToReticle);
     }
 
     /**FUNCION PARA QUE EL JUGADOR ATAQUE */
@@ -303,7 +298,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
                     this.equipedWeapon.recalculateDamage(this.actualMana);
                 }
             }
-            this.equipedWeapon.attack(this.direction, this.reticle);
+            this.equipedWeapon.attack(this.reticle);
             hudEvents.emit('updateMana', [this.actualMana, this.maxMana]);
             this.canAttack = false;
         }
@@ -383,7 +378,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     //Relativo al escudo
     shieldOnCD() {
-        if (this.active === false) { return; }
         this.shieldCooldown = 1;
         this.canBeDamaged = true;
 
@@ -395,7 +389,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     shieldOffCD() {
-        if (this.active === false) { return; }
         this.shieldCooldown = 0;
     }
 
@@ -495,8 +488,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
         let initialMovSpeed = this.movSpeed;
         this.scene.tweens.add({
             targets: this,
-            movSpeed: initialMovSpeed - slowing,
             duration: totalTime,
+            onStart: () => {
+                this.decreaseMovSpeed(slowing);
+            },
             onComplete: () => {
                 this.movSpeed = initialMovSpeed;
             }
@@ -508,8 +503,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
         let initialMovSpeed = this.movSpeed;
         this.scene.tweens.add({
             targets: this,
-            movSpeed: initialMovSpeed + speed,
             duration: totalTime,
+            onStart: () => {
+                this.increaseMovSpeed(speed);
+            },
             onComplete: () => {
                 this.movSpeed = initialMovSpeed;
             }

@@ -42,7 +42,7 @@ export default class IceStaff extends arma {
         return false;
     }
 
-    attack(direction, target) {
+    attack(target) {
         super.attackAction();
         if(this.x != 0 && this.y != 0)
             new IceBall(this.scene, this.x, this.y, target, true, this.damage);

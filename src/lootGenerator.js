@@ -7,10 +7,11 @@ import megaEspadaMortal from "./armas/megaEspadaMortal";
 import halfHeart from './objetos/halfHeart';
 import heart from './objetos/heart';
 import manaPotion from './objetos/manaPotion';
+import hoe from "./armas/HOE";
 
 export default class lootGenerator {
     constructor(scene, x, y, luck) {
-        this.weaponsPool = [fireStaff, iceStaff, megaEspadaMortal];
+        this.weaponsPool = [fireStaff, iceStaff, megaEspadaMortal, hoe];
         this.itemsPool = [halfHeart, heart, manaPotion];
 
         this.scene = scene;

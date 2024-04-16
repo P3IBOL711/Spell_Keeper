@@ -41,7 +41,7 @@ export default class basicRanged extends arma {
         return false;
     }
 
-    attack(direction, target) {
+    attack(target) {
         super.attackAction();
         if(this.x != 0 && this.y != 0)
             new Bullet(this.scene, this.x, this.y, target, true, this.damage);
