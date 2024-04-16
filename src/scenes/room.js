@@ -105,7 +105,6 @@ export default class Room extends Phaser.Scene {
         }
         this.load.image('Invernadero', arb)
         this.load.image('fire', f)
-
     }
 
 

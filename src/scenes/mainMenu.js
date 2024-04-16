@@ -76,6 +76,53 @@ export default class MainMenu extends Phaser.Scene{
        this.controlsButton.on("pointerup", ()=>{
          this.scene.start('controlsMenu');
        })
+
+        let fullscreen = this.add.image(990, 35, 'fullScreenButton').setDepth(10).setScale(2);
+        let normalscreen = this.add.image(990, 35, 'normalScreenButton').setDepth(10).setScale(1.5).setVisible(false);
+        
+        fullscreen.setInteractive();
+        fullscreen.on("pointerover", ()=>{
+            fullscreen.setScale(2.1)
+        })
+
+        fullscreen.on("pointerout", ()=>{
+            fullscreen.setScale(2)
+        })
+
+        fullscreen.on("pointerdown", ()=>{
+            if (!this.scale.isFullscreen) {
+                this.scale.startFullscreen();
+                fullscreen.setVisible(false);
+                normalscreen.setVisible(true);
+            }
+            else{
+                this.scale.stopFullscreen();
+                normalscreen.setVisible(false);
+                fullscreen.setVisible(true);
+            }
+        })
+
+        normalscreen.setInteractive();
+        normalscreen.on("pointerover", ()=>{
+            normalscreen.setScale(1.6)
+        })
+
+        normalscreen.on("pointerout", ()=>{
+            normalscreen.setScale(1.5)
+        })
+
+        normalscreen.on("pointerdown", ()=>{
+            if (this.scale.isFullscreen) {
+                this.scale.stopFullscreen();
+                normalscreen.setVisible(false);
+                fullscreen.setVisible(true);
+            }
+            else{
+                this.scale.startFullscreen();
+                fullscreen.setVisible(false);
+                normalscreen.setVisible(true);
+            }
+        })
     }
 
 }
