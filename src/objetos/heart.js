@@ -11,10 +11,9 @@ export default class heart extends item {
         this.healEffective = 2;
         this.x = x;
         this.y = y;
+    }
 
-        this.scene.physics.add.overlap(this, this.scene.player, () => {
-            this.scene.player.heal(this.healEffective);
-            this.destroy();
-        });
+    itemFuction() {
+        this.scene.player.heal(this.healEffective);
     }
 }

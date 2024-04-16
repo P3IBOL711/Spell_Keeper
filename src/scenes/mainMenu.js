@@ -8,7 +8,7 @@ import Dungeongen from '../dungeongen'
 
 
 
-export default class MainMenu extends Phaser.Scene{
+export default class MainMenu extends Phaser.Scene {
 
     constructor() {
         super({ key: 'mainMenu' });

@@ -20,12 +20,13 @@ export default class lootGenerator {
     }
 
     generateWeapon() {
-        let newWeapon = Phaser.Math.RandomDataGenerator.weightedPick(this.weaponsPool);
+        let dataGenerator = new Phaser.Math.RandomDataGenerator();
+        let newWeapon = dataGenerator.weightedPick(this.weaponsPool);
         return new newWeapon(this.scene, this.x, this.y);
     }
 
     generateLoot() {
-        let randomIndex = Math.floor(Math.random() * this.enemyPool.length - 1);
+        let randomIndex = Math.floor(Math.random() * this.itemsPool.length);
         let loot = this.itemsPool[randomIndex];
         return new loot(this.scene, this.x, this.y);
     }

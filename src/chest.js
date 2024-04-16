@@ -1,8 +1,6 @@
 import Phaser from 'phaser';
 import CollisionHitbox from './collisionHitbox';
-import FireStaff  from './armas/fireStaff';
-import IceStaff from './armas/iceStaff';
-import megaEspadaMortal from './armas/megaEspadaMortal';
+import lootGenerator from './lootGenerator';
 
 
 /**
@@ -101,21 +99,8 @@ export default class Chest extends Phaser.GameObjects.Sprite {
     }
 
     generateLoot() {
-        new IceStaff(this.scene, this.x, this.y + 50, 10);
-//        let randIndex = Phaser.Math.Between(0, this.availableLoot.length - 1);
-//        let keyValue = this.availableLoot[randIndex];
-//        switch (keyValue) {
-//            case 'iceStaff':
-//                new IceStaff(this.scene, this.x, this.y + 50, 10);
-//                break;
-//            case 'fireStaff':
-//                new FireStaff(this.scene, this.x, this.y + 50, 10);
-//                break;
-//            case 'espadaCheta':
-//                new megaEspadaMortal(this.scene, this.x, this.y + 50, 100000);
-//            default:
-//                break;
-//        }
+        let generate = new lootGenerator(this.scene, this.x, this.y + 50, this.scene.player.luck);
+        generate.generateWeapon();
     }
 
 
