@@ -28,8 +28,8 @@ import x3 from './rooms/x3.js';
 import x4 from './rooms/x4.js';
 
 
-const N = 5; //Numero de filas
-const M = 5; //Numero de columnas
+const N = 7; //Numero de filas
+const M = 7; //Numero de columnas
 const maxSteps = 60; //Maximo de habitaciones
 
 
