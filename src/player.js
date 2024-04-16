@@ -115,7 +115,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             key: 'dying',
             frames: this.anims.generateFrameNames('playerDying_spritesheet', { start: 0, end: 3 }),
             frameRate: 10,
-            repeat: 1
+            repeat: 0
         });
 
         //Interaccion de la animacion de muerte
