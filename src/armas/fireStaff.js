@@ -14,7 +14,6 @@ export default class FireStaff extends arma {
         super(scene, x, y, 'fireStaff')
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.delay = 5;
         this.id = 'FireStaff'
         this.delay = 250;
         this.x = x;

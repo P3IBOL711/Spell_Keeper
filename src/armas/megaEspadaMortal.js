@@ -18,7 +18,7 @@ export default class megaEspadaMortal extends arma {
         this.scene.physics.add.existing(this);
         this.delay = 500;
         this.hasAttacked = false;
-        this.damage = 1000000;
+        this.damage = 1000;
         this.timeOnField = 0;
         this.x = x;
         this.y = y;

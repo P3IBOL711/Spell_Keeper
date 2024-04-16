@@ -232,7 +232,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
         }
 
         //MOVIMIENTO DEL JUGADOR
-        //Notas: imprimir la fuerza y que animacion se usa va por separado porque si no produce bugs
         let stopped = true;
 
         //Parte de imprimir la fuerza
@@ -287,8 +286,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
         let newWepX = this.x + offsetX;
         let newWepY = this.y + offsetY;
 
-        this.equipedWeapon.setPosition(newWepX, newWepY);
-        this.equipedWeapon.angle = Phaser.Math.RadToDeg(angleToReticle);
+        this.equipedWeapon.updatePosition(newWepX, newWepY);
+        this.equipedWeapon.updateAngle(Phaser.Math.RadToDeg(angleToReticle), angleToReticle);
+        //this.equipedWeapon.angle = Phaser.Math.RadToDeg(angleToReticle);
     }
 
     /**FUNCION PARA QUE EL JUGADOR ATAQUE */
@@ -346,7 +346,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
                 if (this.actualLife <= 0) {
                     this.body.setVelocity(0);
-                    this.stop()
+                    this.stop();
                     this.play('dying', true);
                 }
             }

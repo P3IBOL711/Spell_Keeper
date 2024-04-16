@@ -54,21 +54,24 @@ export default class basicMelee extends arma {
     attack(direction, target) {
         super.attackAction();
         this.hasAttacked = true;
-        if(direction === 'left') {
-            this.attackHitbox = new PlayerHitBox(this.scene, this.x - 30, this.y, 64, 64, this.damage);
-        }
-        else if(direction === 'right') {
-            this.attackHitbox = new PlayerHitBox(this.scene, this.x + 30, this.y, 64, 64, this.damage);
-        }
-        else if(direction === 'up') {
-            this.attackHitbox = new PlayerHitBox(this.scene, this.x, this.y - 30, 64, 64, this.damage);
-        }
-        else if(direction === 'down') {
-            this.attackHitbox = new PlayerHitBox(this.scene, this.x, this.y + 30, 64, 64, this.damage);
-        }
-        else { //Por si acaso
-            this.attackHitbox = new PlayerHitBox(this.scene, this.x - 30, this.y, 64, 64, this.damage);
-        }
+
+        // Obtener la rotación actual del arma
+        let angle = Phaser.Math.DegToRad(this.angle);
+
+        // Calcular las dimensiones de la hitbox en función del tamaño del arma
+        let hitboxWidth = this.width * 4; // Ajusta el factor según lo deseado
+        let hitboxHeight = this.height * 4; // Ajusta el factor según lo deseado
+
+
+        // Calcular las coordenadas de la hitbox relativas al arma
+        let hitboxOffsetX = this.width * 0.4 * Math.cos(angle); // Ajusta el factor según lo deseado
+        let hitboxOffsetY = this.height * 0.4 * Math.sin(angle); // Ajusta el factor según lo deseado
+
+        // Calcular las coordenadas absolutas de la hitbox en el mundo
+        let hitboxX = this.x + hitboxOffsetX;
+        let hitboxY = this.y + hitboxOffsetY;
+
+        this.attackHitbox = new PlayerHitBox(this.scene, hitboxX, hitboxY, hitboxWidth, hitboxHeight, this.damage, this.angle);
     }
 
     attackFinished() {

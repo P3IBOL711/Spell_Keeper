@@ -13,8 +13,6 @@ export default class arma extends Phaser.GameObjects.Sprite {
         this.id = ''
         this.setDepth(8);
         this.delayAttackAction = 150;
-        this.isRotating = false;
-
 
 
         let overlapCollider = this.scene.physics.add.overlap(this, this.scene.player, (weapon) => {
@@ -34,9 +32,14 @@ export default class arma extends Phaser.GameObjects.Sprite {
         this.setVisible(false);
     }
 
-    updatePosition(x,y){
+    updatePosition(x,y) {
         this.x = x
         this.y = y
+    }
+
+    updateAngle(degrees, radians) {
+        this.angle = degrees;
+        this.body.rotation = radians;
     }
 
     preUpdate(t, dt) {
