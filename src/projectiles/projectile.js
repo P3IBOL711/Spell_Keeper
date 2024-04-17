@@ -18,21 +18,24 @@ export default class Projectile extends Phaser.GameObjects.Sprite {
         this.scene.physics.add.existing(this);
         this.scene.enviromental.add(this)
         this.scene.physics.add.overlap(this, this.scene.enemies, (projectile, enemy) => {
-            if (targetEnemy){
+            if (targetEnemy) {
                 this.impact(); // impact animation
-                enemy.receiveDamage(damage)
+                if (image !== 'bullet') //Bullet es la bala venenosa
+                    enemy.receiveDamage(damage)
+                else
+                    enemy.receiveDamageOverTime(damage)
             }
         });
 
         this.scene.physics.add.overlap(this, this.scene.player, (projectile, player) => {
-            if (!targetEnemy){
+            if (!targetEnemy) {
                 this.impact(); // impact animation
                 player.receiveDamage(damage)
             }
         });
 
         this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
-            if (this.anims.getName() === 'impact'){
+            if (this.anims.getName() === 'impact') {
                 this.destroy();
             }
         });
@@ -42,12 +45,12 @@ export default class Projectile extends Phaser.GameObjects.Sprite {
         //this.play('normal', true);
     }
 
-    impact(){
+    impact() {
         this.impacted = true;
         this.body.setVelocity(0);
     }
 
-    isProjectile(){
+    isProjectile() {
         return true;
     }
 
@@ -65,7 +68,7 @@ export default class Projectile extends Phaser.GameObjects.Sprite {
             this.play('normal', true);
 
         // on overlap(fn(con quien) { ... })
-        
+
     }
 
 }

@@ -20,6 +20,8 @@ import Book from '../../assets/library/sprites/book/book_spritesheet_1.png'
 import PurpleMagicBall from '../../assets/cSprites/purple_magic_ball_spritesheet.png'
 import GreenPoisonBall from '../../assets/cSprites/green_poison_spritesheet.png'
 import arrow from '../../assets/armory/sprites/arrow/arrow.png'
+import Spear from '../../assets/cSprites/weapons/Spear.png'
+import Knife from '../../assets/cSprites/weapons/knife.png'
 
 //Weapon assets
 import dagger from '../../assets/cSprites/weapons/02.png'
@@ -34,9 +36,11 @@ import espadaMortal from '../../assets/cSprites/weapons/espadaCheta.png'
 import Bullet from '../../assets/cSprites/Bullet.png'
 import Shotgun from '../../assets/cSprites/weapons/Escopeta.png'
 import Thompson  from '../../assets/cSprites/weapons/Thompson.png'
-import magicSword from '../../assets/cSprites/weapons'
+//import magicSword from '../../assets/cSprites/weapons'
+import MagicKnife from '../../assets/cSprites/weapons/MagicKnife.png'
 import magicBullet from '../../assets/cSprites/weapons/magicBullet_effects.png'
 import DrainSword from '../../assets/cSprites/weapons/DrainSword.png'
+import PoisonDagger from '../../assets/cSprites/weapons/PoisonDagger.png'
 import ultimateWeapon from '../../assets/cSprites/weapons/UltimateHoe.png'
 
 //Item assets
@@ -109,6 +113,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('dagger', dagger);
     this.load.image('drainsword',DrainSword)
     this.load.image('fireStaff',fireStaff);
+    this.load.image('spear',Spear)
+    this.load.image('magicknife',MagicKnife)
     this.load.spritesheet('fireball_spritesheet', Fireball, { frameWidth: 32, frameHeight: 32 });
     this.load.image('iceStaff', iceStaff);
     this.load.spritesheet('ice_spritesheet', iceEffects, { frameWidth: 32, frameHeight: 32 });
@@ -121,6 +127,8 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('shotgun',Shotgun,{ frameWidth: 32, frameHeight: 32 })
     this.load.spritesheet('thompson',Thompson,{ frameWidth: 32, frameHeight: 32 })
     this.load.spritesheet('ironbullet',Bullet,{ frameWidth: 16, frameHeight: 16 })
+    this.load.spritesheet('knife',Knife,{ frameWidth: 12, frameHeight: 5 })
+    this.load.image('poisondagger',PoisonDagger)
 
     //Items
     this.load.spritesheet('chest',chest,{frameWidth: 32, frameHeight:32});

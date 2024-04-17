@@ -52,10 +52,10 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
             life: this.life - damage,
             alpha: 0,
             ease: Phaser.Math.Easing.Elastic.InOut,
-            duration: 200, 
+            duration: 500, 
             repeat: 5,
             onStart: () => {
-                this.setTint(0xff0000);
+                this.setTint(0xfff000);
             },
             onComplete: () => {
                 this.clearTint();
@@ -72,6 +72,40 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         });
     }
 
+    applyPoisonEffect(duration, damagePerTick) {
+        const totalTicks = duration / 1000 * 60; // Assuming 60 ticks per second
+        let ticksRemaining = totalTicks;
+    
+        const poisonTween = this.scene.tweens.add({
+            targets: this,
+            alpha: 0.5, // Reduce entity's opacity to indicate poison effect
+            ease: Phaser.Math.Easing.Linear,
+            duration: 500,
+            repeat: -1, // Repeat indefinitely until duration ends
+            yoyo: true, // Reverse the tween to create a flickering effect
+            onRepeat: () => {
+                // Reduce entity's life with each tick
+                this.receiveDamage(damagePerTick);
+                
+                ticksRemaining--;
+    
+                if (ticksRemaining <= 0 && this.life > 0) {
+                    // End the poison effect
+                    poisonTween.stop();
+                    this.clearPoisonEffect();
+                }
+            }
+        });
+    }
+    
+    clearPoisonEffect() {
+        // Reset the entity's appearance and stop the poison tween
+        this.setAlpha(1); // Reset alpha to fully visible
+        this.scene.tweens.killTweensOf(this); // Stop all tweens targeting this entity
+    }
+    
+
+
     receiveDamage(damage){
         this.life -= damage;
 
@@ -80,7 +114,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
             alpha: 0,
             ease: Phaser.Math.Easing.Elastic.InOut,
             duration: 40, 
-            repeat: 1,
+            repeat: 0,
             yoyo: true,
             onStart: () => {
                 this.setTint(0xff0000);

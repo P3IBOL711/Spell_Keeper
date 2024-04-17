@@ -3,8 +3,8 @@ import Phaser from "phaser";
 import arma from "./arma";
 import PlayerHitBox from "../playerHitbox";
 
-const DAMAGE = 20;
-export default class BigSword extends arma {
+const DAMAGE = 3;
+export default class PoisonDagger extends arma {
  /**
      * Constructor del jugador
      * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
@@ -12,17 +12,17 @@ export default class BigSword extends arma {
      * @param {number} y Coordenada Y
      */
     constructor(scene, x, y) {
-        super(scene, x, y, 'espadaCheta');
+        super(scene, x, y, 'poisondagger');
         this.setOrigin(0, 0.5);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.delay = 500;
+        this.delay = 250;
         this.hasAttacked = false;
         this.damage = DAMAGE;
         this.timeOnField = 0;
         this.x = x;
         this.y = y;
-        this.id = 'espadaCheta'
+        this.id = 'poisondagger'
 
         this.setActive(true);
         this.setVisible(true);
@@ -32,7 +32,7 @@ export default class BigSword extends arma {
         super.preUpdate(t, dt)
         if(this.hasAttacked) {
             this.timeOnField += dt;
-            if(this.timeOnField >= 250) {
+            if(this.timeOnField >= 150) {
                 this.hasAttacked = false;
                 this.timeOnField = 0;
                 this.attackFinished();
@@ -45,40 +45,39 @@ export default class BigSword extends arma {
     }
 
     havePuncture() {
-        return false;
-    }
-
-    haveSlash() {
         return true;
     }
 
-    isUltimateWeapon() {
+    haveSlash() {
         return false;
     }
-
 
     attack(target) {
         super.attackAction(true);
         this.hasAttacked = true;
 
+        // Obtener la rotación actual del arma
         let angle = Phaser.Math.DegToRad(this.angle);
 
+        // Calcular las dimensiones de la hitbox en función del tamaño del arma
         let hitboxWidth
         let hitboxHeight
-        //0.675 -0.755 -2.487 2.292
         if (Math.abs(Math.cos(angle)) > 0.6) {
             // El arma mira hacia la derecha o hacia la izquierda
-            hitboxWidth = this.width * 1.75;
-            hitboxHeight = this.height * 1.75;
+            hitboxWidth = this.width * 2;
+            hitboxHeight = this.height * 2;
         } else {
             // El arma mira hacia arriba o hacia abajo
-            hitboxWidth = this.height * 1.75;
-            hitboxHeight = this.width * 1.75;
+            hitboxWidth = this.height * 2;
+            hitboxHeight = this.width * 2;
         }
 
-        let hitboxOffsetX = this.width * 0.4 * Math.cos(angle);
-        let hitboxOffsetY = this.height * 0.4 * Math.sin(angle);
 
+        // Calcular las coordenadas de la hitbox relativas al arma
+        let hitboxOffsetX = this.width * 0.4 * Math.cos(angle); // Ajusta el factor según lo deseado
+        let hitboxOffsetY = this.height * 0.4 * Math.sin(angle); // Ajusta el factor según lo deseado
+
+        // Calcular las coordenadas absolutas de la hitbox en el mundo
         let hitboxX = this.x + hitboxOffsetX;
         let hitboxY = this.y + hitboxOffsetY;
 

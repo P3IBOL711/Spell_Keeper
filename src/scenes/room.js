@@ -4,7 +4,7 @@ import w from '../../assets/armory/tiles/Weapons.png'
 import f from '../../assets/misc/fire.png'
 
 import Player from '../player.js'
-import basicRanged from '../armas/basicRanged.js';
+import basicRanged from '../armas/poisonStaff.js';
 import basicMelee from '../armas/basicMelee.js';
 import FireStaff from '../armas/fireStaff.js';
 import Trigger from '../trigger.js';
@@ -16,6 +16,11 @@ import Shotgun from '../armas/shotgun.js';
 import Thompson from '../armas/thompson.js';
 import DrainSword from '../armas/drainSword.js';
 import hoe from '../armas/HOE.js';
+import PoisonStaff from '../armas/poisonStaff.js';
+import Spear from '../armas/spear.js';
+import BigSword from '../armas/megaEspadaMortal.js';
+import MagicKnife from '../armas/magicKnife.js';
+import PoisonDagger from '../armas/poisonDagger.js';
 
 
 
@@ -64,8 +69,8 @@ export default class Room extends Phaser.Scene {
                 weaponMult: 1,       // Multiplier for weapon damage
                 moveSpeed: 0,        // Player movement speed
                 lck: 0,              // Player luck stat
-                MeleeWeaponArray: [new hoe(this, 0, 0, 1)], // Array to store melee weapons
-                RangedWeaponArray: [new Shotgun(this, 0, 0, 1)],// Array to store ranged weapons
+                MeleeWeaponArray: [new PoisonDagger(this, 0, 0, 1)], // Array to store melee weapons
+                RangedWeaponArray: [new MagicKnife(this, 0, 0)],// Array to store ranged weapons
                 ActMelIndex: 0,      // Index of the currently active melee weapon
                 ActRangIndex: 0,     // Index of the currently active ranged weapon
                 lastWeaponUsed: null // Last weapon used (can be set to the name or ID of the weapon)

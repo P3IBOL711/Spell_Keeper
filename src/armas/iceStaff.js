@@ -3,6 +3,8 @@ import Phaser from "phaser";
 import arma from "./arma";
 import IceBall from "../projectiles/iceball";
 
+const DAMAGE = 10;
+
 export default class IceStaff extends arma {
  /**
      * Constructor del baston de fuego
@@ -23,7 +25,7 @@ export default class IceStaff extends arma {
         this.setActive(true);
         this.setVisible(true);
 
-        this.damage = 10;
+        this.damage = DAMAGE;
     }
 
     preUpdate(t, dt) {

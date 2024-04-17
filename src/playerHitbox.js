@@ -21,10 +21,15 @@ export default class PlayerHitBox extends Phaser.GameObjects.Zone {
 
         this.scene.physics.add.overlap(this.scene.enemies, this, (enemy) => {
             enemy.receiveDamage(damage);
-            if (id !== 'drainsword')
-                this.scene.player.regenMana();
+            if (id === 'drainsword')
+                this.scene.player.addHealth(damage / 2);
+            else if(id === 'poisondagger'){
+                enemy.applyPoisonEffect(3,damage/4)
+            }
             else
-                this.scene.player.addHealth(damage/2);
+                this.scene.player.regenMana();
+                this.destroy()
         });
+       
     }
 }
