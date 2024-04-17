@@ -113,4 +113,8 @@ export default class arma extends Phaser.GameObjects.Sprite {
     isUltimateWeapon() {
         return false;
     }
+
+    isLethalForYouCarefull() {
+        return false;
+    }
 }

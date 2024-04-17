@@ -341,7 +341,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
         if (this.actualLife > 0) {
             if (this.active === false) { return; }
             if (this.canBeDamaged) {
-                this.actualLife -= damage;
+                if(this.equipedWeapon.isLethalForYouCarefull())
+                    this.actualLife = 0;
+                else
+                    this.actualLife -= damage;
 
                 hudEvents.emit('updateHealth', this.actualLife);
 
