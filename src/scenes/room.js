@@ -12,6 +12,9 @@ import CollisionHitbox from '../collisionHitbox.js';
 import EnemySpawner from '../enemySpawner.js';
 import Fire from '../fire.js'
 import Chest from '../chest.js';
+import Shotgun from '../armas/shotgun.js';
+import Thompson from '../armas/thompson.js';
+import DrainSword from '../armas/drainSword.js';
 
 
 
@@ -60,8 +63,8 @@ export default class Room extends Phaser.Scene {
                 weaponMult: 1,       // Multiplier for weapon damage
                 moveSpeed: 0,        // Player movement speed
                 lck: 0,              // Player luck stat
-                MeleeWeaponArray: [new basicMelee(this, 0, 0, 1)], // Array to store melee weapons
-                RangedWeaponArray: [new basicRanged(this, 0, 0, 1)],// Array to store ranged weapons
+                MeleeWeaponArray: [new DrainSword(this, 0, 0, 1)], // Array to store melee weapons
+                RangedWeaponArray: [new Shotgun(this, 0, 0, 1)],// Array to store ranged weapons
                 ActMelIndex: 0,      // Index of the currently active melee weapon
                 ActRangIndex: 0,     // Index of the currently active ranged weapon
                 lastWeaponUsed: null // Last weapon used (can be set to the name or ID of the weapon)

@@ -1,19 +1,29 @@
 import Phaser from "phaser";
 
 import arma from "./arma";
+import PlayerHitBox from "../playerHitbox";
 
-export default class hoe extends arma {
-    constructor(scene, x, y) {
-        super(scene, x, y, 'hoe');
+
+export default class DrainSword extends arma {
+ /**
+     * Constructor del jugador
+     * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
+     * @param {number} x Coordenada X
+     * @param {number} y Coordenada Y
+     */
+    constructor(scene, x, y, damage) {
+        super(scene, x, y, 'drainsword');
+        this.setOrigin(0, 0.5);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.delay = 100;
+        this.delay = 500;
         this.hasAttacked = false;
-        this.damage = Number.MAX_SAFE_INTEGER;
+        this.damage = damage;
         this.timeOnField = 0;
         this.x = x;
         this.y = y;
-        this.id = 'hoe'
+        this.id = 'drainsword'
+
         this.setActive(true);
         this.setVisible(true);
     }
@@ -22,7 +32,7 @@ export default class hoe extends arma {
         super.preUpdate(t, dt)
         if(this.hasAttacked) {
             this.timeOnField += dt;
-            if(this.timeOnField >= 100) {
+            if(this.timeOnField >= 250) {
                 this.hasAttacked = false;
                 this.timeOnField = 0;
                 this.attackFinished();
@@ -34,17 +44,14 @@ export default class hoe extends arma {
         return true;
     }
 
-    haveSlash() {
-        return true;
-    }
-
     havePuncture() {
         return false;
     }
 
-    isUltimateWeapon() {
+    haveSlash() {
         return true;
     }
+
 
     attack(target) {
         super.attackAction();
@@ -52,10 +59,22 @@ export default class hoe extends arma {
 
         // Obtener la rotación actual del arma
         let angle = Phaser.Math.DegToRad(this.angle);
+        let hitboxWidth
+        let hitboxHeight
+        //0.675 -0.755 -2.487 2.292
+        if (Math.abs(Math.cos(angle)) > 0.6) {
+        
+            // El arma mira hacia la derecha o hacia la izquierda
+            hitboxWidth = this.width * 1.5;
+            hitboxHeight = this.height * 1.5;
+        } else {
 
-        // Calcular las dimensiones de la hitbox en función del tamaño del arma
-        let hitboxWidth = this.width * 4; // Ajusta el factor según lo deseado
-        let hitboxHeight = this.height * 4; // Ajusta el factor según lo deseado
+            // El arma mira hacia arriba o hacia abajo
+            hitboxWidth = this.height * 1.5;
+            hitboxHeight = this.width * 1.5;
+        }
+        
+        
 
 
         // Calcular las coordenadas de la hitbox relativas al arma
@@ -75,6 +94,6 @@ export default class hoe extends arma {
     }
 
     manaRegen() {
-        return this.scene.player.maxMana;
+        return 20;
     }
 }

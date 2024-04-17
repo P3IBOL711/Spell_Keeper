@@ -8,10 +8,13 @@ import halfHeart from './objetos/halfHeart';
 import heart from './objetos/heart';
 import manaPotion from './objetos/manaPotion';
 import hoe from "./armas/HOE";
+import Shotgun from "./armas/shotgun";
+import Thompson from "./armas/thompson";
+import DrainSword from "./armas/drainSword";
 
 export default class lootGenerator {
     constructor(scene, x, y, luck) {
-        this.weaponsPool = [fireStaff, iceStaff, megaEspadaMortal, hoe];
+        this.weaponsPool = [fireStaff, iceStaff, megaEspadaMortal, hoe,Shotgun,Thompson,DrainSword];
         this.itemsPool = [halfHeart, heart, manaPotion];
 
         this.scene = scene;

@@ -86,7 +86,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.a = this.scene.input.keyboard.addKey('A');
         this.s = this.scene.input.keyboard.addKey('S');
         this.d = this.scene.input.keyboard.addKey('D');
-        
+
         //Interacciones
         this.q = this.scene.input.keyboard.addKey('Q');
         this.e = this.scene.input.keyboard.addKey('E');
@@ -377,7 +377,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         if (this.meleeMode) {
             this.equipedWeapon = this.meeleWeapons[index];
             this.equipedWeapon.setVisible(true);
-            if(this.equipedWeapon.isUltimateWeapon())
+            if (this.equipedWeapon.isUltimateWeapon())
                 this.sombrerinni.setVisible(true);
             else
                 this.sombrerinni.setVisible(false);
@@ -439,6 +439,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
         }
 
         this.actualLife = this.maxLife;
+        hudEvents.emit('updateHealth', this.actualLife);
+    }
+
+    addHealth(lifePoints) {
+        this.actualLife += lifePoints
+        if (this.actualLife > this.maxLife)
+            this.actualLife = this.maxLife
         hudEvents.emit('updateHealth', this.actualLife);
     }
 
