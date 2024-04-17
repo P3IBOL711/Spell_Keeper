@@ -98,4 +98,7 @@ export default class arma extends Phaser.GameObjects.Sprite {
     manaCost() { }
     haveSlash() { }
     havePuncture() { }
+    isUltimateWeapon() {
+        return false;
+    }
 }

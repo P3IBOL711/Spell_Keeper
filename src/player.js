@@ -20,7 +20,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         super(scene, x, y, 'player');
 
         if (lastWeaponUsed === null)//Primera vez
-            lastWeaponUsed = MeleeWeaponArray[ActMelIndex]
+            lastWeaponUsed = MeleeWeaponArray[ActMelIndex];
 
         /**RELATIVO A LA ESCENA**/
         this.scene.add.existing(this);
@@ -29,12 +29,30 @@ export default class Player extends Phaser.GameObjects.Sprite {
         /**RELATIVO A BODY**/
         this.scene.enviromental.add(this)
         this.setScale(1);
+        this.body.setSize(this.width * 0.4, this.height * 0.65, true);
+        this.body.setOffset(this.width * 0.3, this.height * 0.35);
+        this.setOrigin(0.25, 0.65);
         //Booleano para interactuar
         this.isFPressed = false
 
-        this.body.setSize(this.width * 0.4, this.height * 0.65, true);
-        this.body.setOffset(this.width * 0.3, this.height * 0.35);
-        this.setOrigin(0.25, 0.65)
+        //Cosas adicionales al propio cuerpo que van junto a el
+        this.escudo = this.scene.add.sprite(this.x, this.y, 'escudo');
+        this.scene.physics.add.existing(this.escudo);
+        this.escudo.setDepth(8); //Por encima de player
+        this.escudo.body.setSize(this.width * 0.4, this.height * 0.65, true);
+        this.escudo.body.setOffset(this.width * 0.3, this.height * 0.35);
+        this.escudo.setOrigin(0.25, 0.65);
+        this.escudo.setVisible(false);
+
+        this.sombrerinni = this.scene.add.sprite(this.x, this.y, 'sombreroPajero');
+        this.scene.physics.add.existing(this.sombrerinni);
+        this.sombrerinni.setDepth(8); //Por encima de player
+        this.sombrerinni.body.setSize(this.width * 0.4, this.height * 0.65, true);
+        this.sombrerinni.body.setOffset(this.width * 0.3, this.height * 0.35);
+        this.sombrerinni.setOrigin(0.25, 0.65);
+        this.sombrerinni.setVisible(false);
+
+
         /**ESTADISTICAS**/
         //CAPADO inferiormente a 1 y superiormente a 20
         //Vida inicial = 10
@@ -158,6 +176,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.shift.on('down', () => {
             if (this.shieldCooldown === 0) {
                 this.canBeDamaged = false;
+                this.escudo.setVisible(true);
                 let timer = this.scene.time.addEvent({
                     delay: 3000,
                     callback: this.scene.player.shieldOnCD,
@@ -284,6 +303,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         this.equipedWeapon.updatePosition(newWepX, newWepY);
         this.equipedWeapon.updateAngle(Phaser.Math.RadToDeg(angleToReticle), angleToReticle);
+
+        this.escudo.copyPosition(this);
+        this.sombrerinni.copyPosition(this);
     }
 
     /**FUNCION PARA QUE EL JUGADOR ATAQUE */
@@ -351,15 +373,18 @@ export default class Player extends Phaser.GameObjects.Sprite {
     //Relativo a las armas
     updatedWeapon(index) {
         if (this.active === false) { return; }
-        this.equipedWeapon.setVisible(false)
+        this.equipedWeapon.setVisible(false);
         if (this.meleeMode) {
-
             this.equipedWeapon = this.meeleWeapons[index];
-            this.equipedWeapon.setVisible(true)
+            this.equipedWeapon.setVisible(true);
+            if(this.equipedWeapon.isUltimateWeapon())
+                this.sombrerinni.setVisible(true);
+            else
+                this.sombrerinni.setVisible(false);
         }
         else {
             this.equipedWeapon = this.rangedWeapons[index];
-            this.equipedWeapon.setVisible(true)
+            this.equipedWeapon.setVisible(true);
         }
 
         this.weaponDelay = 0;
@@ -380,6 +405,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     shieldOnCD() {
         this.shieldCooldown = 1;
         this.canBeDamaged = true;
+        this.escudo.setVisible(false);
 
         let cdShield = this.scene.time.addEvent({
             delay: 10000,

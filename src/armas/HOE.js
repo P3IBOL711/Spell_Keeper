@@ -42,6 +42,10 @@ export default class hoe extends arma {
         return false;
     }
 
+    isUltimateWeapon() {
+        return true;
+    }
+
     attack(target) {
         super.attackAction();
         this.hasAttacked = true;

@@ -4,6 +4,8 @@ import room from '../../assets/armory/sprites/Hab_Prueba.png'
 //player assets
 import player from '../../assets/cSprites/characters/Mage_Walking.png'
 import deadPlayer from '../../assets/cSprites/characters/Mage_Dead.png'
+import shield from '../../assets/cSprites/characters/Escudo.png'
+import sombreraco from '../../assets/cSprites/characters/SombreroPajerini.png'
 
 //Enemies assets
 import knight from '../../assets/armory/sprites/knight/knight_spritesheet.png'
@@ -82,6 +84,8 @@ export default class Boot extends Phaser.Scene {
     //Player
     this.load.spritesheet('player_spritesheet', player, { frameWidth: 32, frameHeight: 32 });
     this.load.spritesheet('playerDying_spritesheet', deadPlayer, { frameWidth: 32, frameHeight: 32 });
+    this.load.image('escudo', shield);
+    this.load.image('sombreroPajero', sombreraco);
     this.load.image('escenaPrueba', room);
     
     // Controls Menu
