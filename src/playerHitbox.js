@@ -12,16 +12,19 @@ export default class PlayerHitBox extends Phaser.GameObjects.Zone {
      * @param {number} y Coordenada Y
     */
 
-    constructor(scene, x, y, width, height, damage, angle) {
+    constructor(scene, x, y, width, height, damage, angle, id) {
         super(scene, x, y, width, height);
-        
+
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.angle = angle;
 
         this.scene.physics.add.overlap(this.scene.enemies, this, (enemy) => {
             enemy.receiveDamage(damage);
-            this.scene.player.regenMana();
+            if (id !== 'drainsword')
+                this.scene.player.regenMana();
+            else
+                this.scene.player.addHealth(damage/2);
         });
     }
 }

@@ -22,6 +22,7 @@ export default class DrainSword extends arma {
         this.timeOnField = 0;
         this.x = x;
         this.y = y;
+        this.id = 'drainsword'
 
         this.setActive(true);
         this.setVisible(true);
@@ -52,24 +53,39 @@ export default class DrainSword extends arma {
     }
 
 
-    attack(direction, target) {
+    attack(target) {
         super.attackAction();
         this.hasAttacked = true;
-        if(direction === 'left') {
-            this.attackHitbox = new PlayerHitBox(this.scene, this.x - 30, this.y, 64, 64, this.damage);
+
+        // Obtener la rotación actual del arma
+        let angle = Phaser.Math.DegToRad(this.angle);
+        let hitboxWidth
+        let hitboxHeight
+        //0.675 -0.755 -2.487 2.292
+        if (Math.abs(Math.cos(angle)) > 0.6) {
+        
+            // El arma mira hacia la derecha o hacia la izquierda
+            hitboxWidth = this.width * 1.5;
+            hitboxHeight = this.height * 1.5;
+        } else {
+
+            // El arma mira hacia arriba o hacia abajo
+            hitboxWidth = this.height * 1.5;
+            hitboxHeight = this.width * 1.5;
         }
-        else if(direction === 'right') {
-            this.attackHitbox = new PlayerHitBox(this.scene, this.x + 30, this.y, 64, 64, this.damage);
-        }
-        else if(direction === 'up') {
-            this.attackHitbox = new PlayerHitBox(this.scene, this.x, this.y - 30, 64, 64, this.damage);
-        }
-        else if(direction === 'down') {
-            this.attackHitbox = new PlayerHitBox(this.scene, this.x, this.y + 30, 64, 64, this.damage);
-        }
-        else { //Por si acaso
-            this.attackHitbox = new PlayerHitBox(this.scene, this.x - 30, this.y, 64, 64, this.damage);
-        }
+        
+        
+
+
+        // Calcular las coordenadas de la hitbox relativas al arma
+        let hitboxOffsetX = this.width * 0.4 * Math.cos(angle); // Ajusta el factor según lo deseado
+        let hitboxOffsetY = this.height * 0.4 * Math.sin(angle); // Ajusta el factor según lo deseado
+
+        // Calcular las coordenadas absolutas de la hitbox en el mundo
+        let hitboxX = this.x + hitboxOffsetX;
+        let hitboxY = this.y + hitboxOffsetY;
+
+        this.attackHitbox = new PlayerHitBox(this.scene, hitboxX, hitboxY, hitboxWidth, hitboxHeight, this.damage, this.angle,this.id);
     }
 
     attackFinished() {

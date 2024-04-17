@@ -22,6 +22,7 @@ export default class BigSword extends arma {
         this.timeOnField = 0;
         this.x = x;
         this.y = y;
+        this.id = 'espadaCheta'
 
         this.setActive(true);
         this.setVisible(true);
@@ -67,7 +68,7 @@ export default class BigSword extends arma {
         let hitboxX = this.x + hitboxOffsetX;
         let hitboxY = this.y + hitboxOffsetY;
 
-        this.attackHitbox = new PlayerHitBox(this.scene, hitboxX, hitboxY, hitboxWidth, hitboxHeight, this.damage, this.angle);
+        this.attackHitbox = new PlayerHitBox(this.scene, hitboxX, hitboxY, hitboxWidth, hitboxHeight, this.damage, this.angle,this.id);
     }
 
     attackFinished() {

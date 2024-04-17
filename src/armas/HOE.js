@@ -13,7 +13,7 @@ export default class hoe extends arma {
         this.timeOnField = 0;
         this.x = x;
         this.y = y;
-
+        this.id = 'hoe'
         this.setActive(true);
         this.setVisible(true);
     }
@@ -66,7 +66,7 @@ export default class hoe extends arma {
         let hitboxX = this.x + hitboxOffsetX;
         let hitboxY = this.y + hitboxOffsetY;
 
-        this.attackHitbox = new PlayerHitBox(this.scene, hitboxX, hitboxY, hitboxWidth, hitboxHeight, this.damage, this.angle);
+        this.attackHitbox = new PlayerHitBox(this.scene, hitboxX, hitboxY, hitboxWidth, hitboxHeight, this.damage, this.angle,this.id);
     }
 
     attackFinished() {
