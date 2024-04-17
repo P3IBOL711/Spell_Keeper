@@ -77,8 +77,7 @@ export default class Shotgun extends arma {
                 let velocityY = speed * Math.sin(angle);
         
                 // Apply velocity to the bullet
-                bullet.body.setVelocity(velocityX, velocityY);
-        
+                bullet.body.setVelocity(velocityX, velocityY);     
             }
 
             this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {

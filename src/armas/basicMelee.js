@@ -53,15 +53,24 @@ export default class basicMelee extends arma {
     }
 
     attack(target) {
-        super.attackAction();
+        super.attackAction(true);
         this.hasAttacked = true;
 
         // Obtener la rotación actual del arma
         let angle = Phaser.Math.DegToRad(this.angle);
 
         // Calcular las dimensiones de la hitbox en función del tamaño del arma
-        let hitboxWidth = this.width * 4; // Ajusta el factor según lo deseado
-        let hitboxHeight = this.height * 4; // Ajusta el factor según lo deseado
+        let hitboxWidth
+        let hitboxHeight
+        if (Math.abs(Math.cos(angle)) > 0.6) {
+            // El arma mira hacia la derecha o hacia la izquierda
+            hitboxWidth = this.width * 4;
+            hitboxHeight = this.height * 4;
+        } else {
+            // El arma mira hacia arriba o hacia abajo
+            hitboxWidth = this.height * 4;
+            hitboxHeight = this.width * 4;
+        }
 
 
         // Calcular las coordenadas de la hitbox relativas al arma

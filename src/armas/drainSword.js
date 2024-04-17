@@ -54,7 +54,7 @@ export default class DrainSword extends arma {
 
 
     attack(target) {
-        super.attackAction();
+        super.attackAction(true);
         this.hasAttacked = true;
 
         // Obtener la rotación actual del arma
@@ -63,19 +63,14 @@ export default class DrainSword extends arma {
         let hitboxHeight
         //0.675 -0.755 -2.487 2.292
         if (Math.abs(Math.cos(angle)) > 0.6) {
-        
             // El arma mira hacia la derecha o hacia la izquierda
             hitboxWidth = this.width * 1.5;
             hitboxHeight = this.height * 1.5;
         } else {
-
             // El arma mira hacia arriba o hacia abajo
             hitboxWidth = this.height * 1.5;
             hitboxHeight = this.width * 1.5;
         }
-        
-        
-
 
         // Calcular las coordenadas de la hitbox relativas al arma
         let hitboxOffsetX = this.width * 0.4 * Math.cos(angle); // Ajusta el factor según lo deseado

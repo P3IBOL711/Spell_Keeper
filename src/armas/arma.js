@@ -50,18 +50,30 @@ export default class arma extends Phaser.GameObjects.Sprite {
         this.wDmg = this.wDmg * weaponMultiplier;
     }
 
-    attackAction() {
+    attackAction(clockwise) {
         if (this.isMelee()) {
             if (this.haveSlash()) {
                 let initialRotation = this.angle;
-                this.scene.tweens.add({
-                    targets: this,
-                    angle:  initialRotation + 60,
-                    duration: 250,
-                    onComplete: () => {
-                        this.angle = initialRotation;
-                    }
-                });
+                if(clockwise) {
+                    this.scene.tweens.add({
+                        targets: this,
+                        angle:  initialRotation + 60,
+                        duration: 250,
+                        onComplete: () => {
+                            this.angle = initialRotation;
+                        }
+                    });
+                }
+                else {
+                    this.scene.tweens.add({
+                        targets: this,
+                        angle:  initialRotation - 60,
+                        duration: 250,
+                        onComplete: () => {
+                            this.angle = initialRotation;
+                        }
+                    });                   
+                }
             }
 
             if (this.havePuncture()) {

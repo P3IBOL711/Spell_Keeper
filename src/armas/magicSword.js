@@ -1,6 +1,7 @@
 //arma que cuando tienes toda la vida aparte de atacar hace un disparo hacia delante
 import Phaser from "phaser";
 import arma from "./arma";
+import PlayerHitBox from "../playerHitbox";
 
 export default class magicSword extends arma {
     constructor(scene, x, y) {
@@ -43,15 +44,25 @@ export default class magicSword extends arma {
     }
 
     attack(target) {
-        super.attackAction();
+        super.attackAction(true);
         this.hasAttacked = true;
 
         // Obtener la rotación actual del arma
         let angle = Phaser.Math.DegToRad(this.angle);
 
         // Calcular las dimensiones de la hitbox en función del tamaño del arma
-        let hitboxWidth = this.width * 4; // Ajusta el factor según lo deseado
-        let hitboxHeight = this.height * 4; // Ajusta el factor según lo deseado
+        let hitboxWidth
+        let hitboxHeight
+        //0.675 -0.755 -2.487 2.292
+        if (Math.abs(Math.cos(angle)) > 0.6) {
+            // El arma mira hacia la derecha o hacia la izquierda
+            hitboxWidth = this.width * 1.5;
+            hitboxHeight = this.height * 1.5;
+        } else {
+            // El arma mira hacia arriba o hacia abajo
+            hitboxWidth = this.height * 1.5;
+            hitboxHeight = this.width * 1.5;
+        }
 
 
         // Calcular las coordenadas de la hitbox relativas al arma
@@ -64,7 +75,9 @@ export default class magicSword extends arma {
 
         this.attackHitbox = new PlayerHitBox(this.scene, hitboxX, hitboxY, hitboxWidth, hitboxHeight, this.damage, this.angle);
 
-        if(this.scene.player.actualLife === this.scene.player.maxLife)
+        if(this.scene.player.actualLife === this.scene.player.maxLife) {
+
+        }
             //crea bala magica, tiene otra textura
     }
 }

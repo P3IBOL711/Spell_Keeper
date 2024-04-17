@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 import Projectile from "./projectile";
 
-export default class Bullet extends Projectile {
+export default class MagicBullet extends Projectile {
 
     /**
      * Constructor de una bala en el juego
@@ -12,18 +12,25 @@ export default class Bullet extends Projectile {
 
     constructor (scene, x, y, target, targetEnemy, damage)
     {
-        super(scene, x, y, 'bullet', targetEnemy, damage);
+        super(scene, x, y, 'magicBullet', targetEnemy, damage);
         this.setScale(0.5);
         this.anims.create({
+            key:'creation',
+            frames: this.anims.generateFrameNumbers('magicBullet_spritesheet', { start: 0, end: 2 }),
+            frameRate: 10,
+            repeat: 0
+        });
+
+        this.anims.create({
             key: 'normal',
-            frames: this.anims.generateFrameNumbers('lighting_spritesheet', { start: 10, end: 12 }),
+            frames: this.anims.generateFrameNumbers('magicBullet_spritesheet', { start: 3, end: 4 }),
             frameRate: 10,
             repeat: -1
         });
 
         this.anims.create({
             key: 'impact',
-            frames: this.anims.generateFrameNumbers('lighting_spritesheet', { start: 130, end: 133 }),
+            frames: this.anims.generateFrameNumbers('magicBullet_spritesheet', { start: 5, end: 8 }),
             frameRate: 10,
             repeat: 0
         });
@@ -51,12 +58,13 @@ export default class Bullet extends Projectile {
         this.setDepth(7);
         this.body.setVelocityX(this.speed * Math.cos(this.rotation));
         this.body.setVelocityY(this.speed * Math.sin(this.rotation));
+
+        this.play('creation', true);
     }
 
     impact(){
         super.impact();
         this.play('impact', true);
-
     }
 
     preUpdate(t, dt) {

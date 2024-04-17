@@ -54,13 +54,23 @@ export default class BigSword extends arma {
 
 
     attack(target) {
-        super.attackAction();
+        super.attackAction(true);
         this.hasAttacked = true;
 
         let angle = Phaser.Math.DegToRad(this.angle);
 
-        let hitboxWidth = this.width * 2;
-        let hitboxHeight = this.width * 2; 
+        let hitboxWidth
+        let hitboxHeight
+        //0.675 -0.755 -2.487 2.292
+        if (Math.abs(Math.cos(angle)) > 0.6) {
+            // El arma mira hacia la derecha o hacia la izquierda
+            hitboxWidth = this.width * 2;
+            hitboxHeight = this.height * 2;
+        } else {
+            // El arma mira hacia arriba o hacia abajo
+            hitboxWidth = this.height * 2;
+            hitboxHeight = this.width * 2;
+        }
 
         let hitboxOffsetX = this.width * 0.4 * Math.cos(angle);
         let hitboxOffsetY = this.height * 0.4 * Math.sin(angle);

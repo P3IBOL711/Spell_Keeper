@@ -1,6 +1,7 @@
 import Phaser from "phaser";
 
 import arma from "./arma";
+import PlayerHitBox from "../playerHitbox";
 
 export default class hoe extends arma {
     constructor(scene, x, y) {
@@ -11,6 +12,7 @@ export default class hoe extends arma {
         this.hasAttacked = false;
         this.damage = Number.MAX_SAFE_INTEGER;
         this.timeOnField = 0;
+        this.setOrigin(0,1);
         this.x = x;
         this.y = y;
         this.id = 'hoe'
@@ -47,15 +49,24 @@ export default class hoe extends arma {
     }
 
     attack(target) {
-        super.attackAction();
+        super.attackAction(false);
         this.hasAttacked = true;
 
         // Obtener la rotación actual del arma
         let angle = Phaser.Math.DegToRad(this.angle);
 
         // Calcular las dimensiones de la hitbox en función del tamaño del arma
-        let hitboxWidth = this.width * 4; // Ajusta el factor según lo deseado
-        let hitboxHeight = this.height * 4; // Ajusta el factor según lo deseado
+        let hitboxWidth
+        let hitboxHeight
+        if (Math.abs(Math.cos(angle)) > 0.6) {
+            // El arma mira hacia la derecha o hacia la izquierda
+            hitboxWidth = this.width * 1.5;
+            hitboxHeight = this.height * 1.5;
+        } else {
+            // El arma mira hacia arriba o hacia abajo
+            hitboxWidth = this.height * 1.5;
+            hitboxHeight = this.width * 1.5;
+        }
 
 
         // Calcular las coordenadas de la hitbox relativas al arma

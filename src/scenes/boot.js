@@ -34,8 +34,9 @@ import espadaMortal from '../../assets/cSprites/weapons/espadaCheta.png'
 import Bullet from '../../assets/cSprites/Bullet.png'
 import Shotgun from '../../assets/cSprites/weapons/Escopeta.png'
 import Thompson  from '../../assets/cSprites/weapons/Thompson.png'
+import magicSword from '../../assets/cSprites/weapons'
+import magicBullet from '../../assets/cSprites/weapons/magicBullet_effects.png'
 import DrainSword from '../../assets/cSprites/weapons/DrainSword.png'
-
 import ultimateWeapon from '../../assets/cSprites/weapons/UltimateHoe.png'
 
 //Item assets
@@ -109,10 +110,14 @@ export default class Boot extends Phaser.Scene {
     this.load.image('drainsword',DrainSword)
     this.load.image('fireStaff',fireStaff);
     this.load.spritesheet('fireball_spritesheet', Fireball, { frameWidth: 32, frameHeight: 32 });
+    this.load.image('iceStaff', iceStaff);
+    this.load.spritesheet('ice_spritesheet', iceEffects, { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('puddle_spritesheet', puddleEffects, { frameWidth: 32, frameHeight: 32 });
     this.load.image('poisonStaff',poisonStaff);
     this.load.spritesheet('lighting_spritesheet', Lighting, { frameWidth: 64, frameHeight:64 });
     this.load.image('espadaCheta', espadaMortal);
     this.load.image('hoe', ultimateWeapon);
+    this.load.spritesheet('magicBullet_spritesheet', magicBullet, { frameWidth: 32, frameHeight: 32 });
     this.load.spritesheet('shotgun',Shotgun,{ frameWidth: 32, frameHeight: 32 })
     this.load.spritesheet('thompson',Thompson,{ frameWidth: 32, frameHeight: 32 })
     this.load.spritesheet('ironbullet',Bullet,{ frameWidth: 16, frameHeight: 16 })
