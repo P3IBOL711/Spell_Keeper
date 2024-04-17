@@ -4,6 +4,8 @@ import room from '../../assets/armory/sprites/Hab_Prueba.png'
 //player assets
 import player from '../../assets/cSprites/characters/Mage_Walking.png'
 import deadPlayer from '../../assets/cSprites/characters/Mage_Dead.png'
+import shield from '../../assets/cSprites/characters/Escudo.png'
+import sombreraco from '../../assets/cSprites/characters/SombreroPajerini.png'
 
 //Enemies assets
 import knight from '../../assets/armory/sprites/knight/knight_spritesheet.png'
@@ -18,10 +20,14 @@ import Book from '../../assets/library/sprites/book/book_spritesheet_1.png'
 import PurpleMagicBall from '../../assets/cSprites/purple_magic_ball_spritesheet.png'
 import GreenPoisonBall from '../../assets/cSprites/green_poison_spritesheet.png'
 import arrow from '../../assets/armory/sprites/arrow/arrow.png'
+
 //Weapon assets
 import dagger from '../../assets/cSprites/weapons/02.png'
 import Fireball from '../../assets/cSprites/weapons/fireball_spritesheet.png'
 import Lighting from '../../assets/cSprites/weapons/LightingEffect.png'
+import iceEffects from '../../assets/cSprites/weapons/iceEffect.png'
+import puddleEffects from '../../assets/cSprites/weapons/puddlePlaceholder.png'
+import iceStaff from '../../assets/cSprites/weapons/28no_rotated.png'
 import fireStaff from '../../assets/cSprites/weapons/fireStaff2.png'
 import poisonStaff from '../../assets/cSprites/weapons/poisonStaff2.png'
 import espadaMortal from '../../assets/cSprites/weapons/espadaCheta.png'
@@ -30,6 +36,7 @@ import Shotgun from '../../assets/cSprites/weapons/Escopeta.png'
 import Thompson  from '../../assets/cSprites/weapons/Thompson.png'
 import DrainSword from '../../assets/cSprites/weapons/DrainSword.png'
 
+import ultimateWeapon from '../../assets/cSprites/weapons/UltimateHoe.png'
 
 //Item assets
 import healingHeart from '../../assets/cSprites/items/healingHeart.png'
@@ -79,11 +86,11 @@ export default class Boot extends Phaser.Scene {
    * Carga de los assets del juego
    */
   preload() {
-    // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
-    this.load.setPath('assets/sprites/');
     //Player
     this.load.spritesheet('player_spritesheet', player, { frameWidth: 32, frameHeight: 32 });
     this.load.spritesheet('playerDying_spritesheet', deadPlayer, { frameWidth: 32, frameHeight: 32 });
+    this.load.image('escudo', shield);
+    this.load.image('sombreroPajero', sombreraco);
     this.load.image('escenaPrueba', room);
     
     // Controls Menu
@@ -102,12 +109,10 @@ export default class Boot extends Phaser.Scene {
     this.load.image('drainsword',DrainSword)
     this.load.image('fireStaff',fireStaff);
     this.load.spritesheet('fireball_spritesheet', Fireball, { frameWidth: 32, frameHeight: 32 });
-    this.load.spritesheet('ironbullet',Bullet, { frameWidth: 16, frameHeight: 16 })
-    this.load.spritesheet('shotgun',Shotgun,{ frameWidth: 32, frameHeight: 32 })
-    this.load.spritesheet('thompson',Thompson,{ frameWidth: 32, frameHeight: 32 })
     this.load.image('poisonStaff',poisonStaff);
     this.load.spritesheet('lighting_spritesheet', Lighting, { frameWidth: 64, frameHeight:64 });
     this.load.image('espadaCheta', espadaMortal);
+    this.load.image('hoe', ultimateWeapon);
 
     //Items
     this.load.spritesheet('chest',chest,{frameWidth: 32, frameHeight:32});

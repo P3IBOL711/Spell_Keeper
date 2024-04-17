@@ -104,6 +104,8 @@ export default class Room extends Phaser.Scene {
         this.map.destroy()
 
         this.unloadScene(this.key)
+        if(this.haveGUI)
+            this.scene.remove('gui');
         this.scene.start(level + dungeon[y][x].name, { X: x, Y: y, dg: dungeon, dir: direction, SSM: this.saveStateMatrix, playerStat: this.globalPlayerStats });
     }
 
@@ -183,7 +185,7 @@ export default class Room extends Phaser.Scene {
 
 
 
-        this.scene.launch('gui', {life: this.player.actualLife, maxLife: this.player.maxLife, mana: this.player.actualMana, maxMana:  this.player.maxMana});
+        let haveGUI = this.scene.launch('gui', {life: this.player.actualLife, maxLife: this.player.maxLife, mana: this.player.actualMana, maxMana:  this.player.maxMana});
 
         this.enemies = this.add.group()
 

@@ -13,20 +13,17 @@ export default class item extends Phaser.GameObjects.Sprite {
         this.id = ''
         this.setDepth(8);
 
-        //Ver que coño hace esto
-        let overlapCollider = this.scene.physics.add.overlap(this, this.scene.player, (weapon) => {
-
+        this.scene.physics.add.overlap(this, this.scene.player, () => {
+            this.itemFuction();
+            this.destroy();
         });
-
-
-        this.setActive(false);
-        this.setVisible(false);
     }
 
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
     }
 
+    itemFuction() { }
     isActive() {
         return false;
     }

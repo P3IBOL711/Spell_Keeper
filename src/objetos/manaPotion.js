@@ -11,11 +11,10 @@ export default class manaPotion extends item {
         this.manaRegeration = 50;
         this.x = x;
         this.y = y;
+    }
 
-        this.scene.physics.add.overlap(this, this.scene.player, () => {
-            this.scene.player.recoverMana(this.manaRegeration);
-            this.destroy();
-        });
+    itemFuction() {
+        this.scene.player.recoverMana(this.manaRegeration);
     }
 
     isActive() {

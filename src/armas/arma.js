@@ -12,9 +12,7 @@ export default class arma extends Phaser.GameObjects.Sprite {
         this.wName = WeaponName;
         this.id = ''
         this.setDepth(8);
-        this.delay = 1000;
-        this.isRotating = false;
-
+        this.delayAttackAction = 150;
 
 
         let overlapCollider = this.scene.physics.add.overlap(this, this.scene.player, (weapon) => {
@@ -34,9 +32,14 @@ export default class arma extends Phaser.GameObjects.Sprite {
         this.setVisible(false);
     }
 
-    updatePosition(x,y){
+    updatePosition(x,y) {
         this.x = x
         this.y = y
+    }
+
+    updateAngle(degrees, radians) {
+        this.angle = degrees;
+        //this.body.rotation = radians;
     }
 
     preUpdate(t, dt) {
@@ -71,7 +74,7 @@ export default class arma extends Phaser.GameObjects.Sprite {
                     targets: this,
                     x: finalX,
                     y: finalY,
-                    duration: 250,
+                    duration: this.delayAttackAction,
                     onComplete: () => {
                         this.completePuncture(initialX, initialY);
                     }
@@ -85,7 +88,7 @@ export default class arma extends Phaser.GameObjects.Sprite {
             targets: this,
             x: goToX,
             y: goToY,
-            duration: 250
+            duration: this.delayAttackAction
         });
     }
 
@@ -95,4 +98,7 @@ export default class arma extends Phaser.GameObjects.Sprite {
     manaCost() { }
     haveSlash() { }
     havePuncture() { }
+    isUltimateWeapon() {
+        return false;
+    }
 }

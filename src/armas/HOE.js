@@ -1,24 +1,15 @@
 import Phaser from "phaser";
 
 import arma from "./arma";
-import PlayerHitBox from "../playerHitbox";
 
-
-export default class basicMelee extends arma {
- /**
-     * Constructor del jugador
-     * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
-     * @param {number} x Coordenada X
-     * @param {number} y Coordenada Y
-     */
+export default class hoe extends arma {
     constructor(scene, x, y) {
-        super(scene, x, y, 'dagger');
-        this.setOrigin(0, 0.5);
+        super(scene, x, y, 'hoe');
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.delay = 250;
+        this.delay = 100;
         this.hasAttacked = false;
-        this.damage = 1;
+        this.damage = Number.MAX_SAFE_INTEGER;
         this.timeOnField = 0;
         this.x = x;
         this.y = y;
@@ -31,7 +22,7 @@ export default class basicMelee extends arma {
         super.preUpdate(t, dt)
         if(this.hasAttacked) {
             this.timeOnField += dt;
-            if(this.timeOnField >= 150) {
+            if(this.timeOnField >= 100) {
                 this.hasAttacked = false;
                 this.timeOnField = 0;
                 this.attackFinished();
@@ -43,12 +34,16 @@ export default class basicMelee extends arma {
         return true;
     }
 
-    havePuncture() {
+    haveSlash() {
         return true;
     }
 
-    haveSlash() {
+    havePuncture() {
         return false;
+    }
+
+    isUltimateWeapon() {
+        return true;
     }
 
     attack(target) {
@@ -80,6 +75,6 @@ export default class basicMelee extends arma {
     }
 
     manaRegen() {
-        return 20;
+        return this.scene.player.maxMana;
     }
 }

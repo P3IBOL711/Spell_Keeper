@@ -1,22 +1,23 @@
 import Phaser from 'phaser'
 
 /**
- * Clase que se usa para crear las hitbox del juego.
+ * Clase que se usa para crear las hitbox de las armas.
  */
 export default class PlayerHitBox extends Phaser.GameObjects.Zone {
 
     /**
-     * Constructor del jugador
+     * Constructor de la hitbox de las armas a melee
      * @param {Phaser.Scene} scene Escena a la que pertenece el enemigo
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
     */
 
-    constructor(scene, x, y, width, height, damage) {
+    constructor(scene, x, y, width, height, damage, angle) {
         super(scene, x, y, width, height);
         
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
+        this.angle = angle;
 
         this.scene.physics.add.overlap(this.scene.enemies, this, (enemy) => {
             enemy.receiveDamage(damage);

@@ -11,10 +11,9 @@ export default class heartAmulet extends item {
         this.healUp = 4;
         this.x = x;
         this.y = y;
+    }
 
-        this.scene.physics.add.overlap(this, this.scene.player, () => {
-            this.scene.player.increaseHealth(this.healUp);
-            this.destroy();
-        });
+    itemFuction() {
+        this.scene.player.increaseHealth(this.healUp);
     }
 }

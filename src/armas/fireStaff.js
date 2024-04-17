@@ -5,16 +5,15 @@ import arma from "./arma";
 
 export default class FireStaff extends arma {
  /**
-     * Constructor del jugador
+     * Constructor del baston de fuego
      * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      */
-    constructor(scene, x, y, damage) {
+    constructor(scene, x, y) {
         super(scene, x, y, 'fireStaff')
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.delay = 5;
         this.id = 'FireStaff'
         this.delay = 250;
         this.x = x;
@@ -23,8 +22,7 @@ export default class FireStaff extends arma {
         this.setActive(true);
         this.setVisible(true);
 
-        this.damage = damage;
-        //Intorducir logica de los sprites
+        this.damage = 10;
     }
 
     preUpdate(t, dt) {
@@ -43,7 +41,7 @@ export default class FireStaff extends arma {
         return false;
     }
 
-    attack(direction, target) {
+    attack(target) {
         super.attackAction();
         if(this.x != 0 && this.y != 0)
             new Fireball(this.scene, this.x, this.y, target, true, this.damage);

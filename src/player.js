@@ -19,8 +19,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, life, maximumLife, mana, maximumMana, weaponMult, moveSpeed, lck, MeleeWeaponArray, RangedWeaponArray, ActMelIndex, ActRangIndex, lastWeaponUsed) {
         super(scene, x, y, 'player');
 
-        if(lastWeaponUsed === null)//Primera vez
-        lastWeaponUsed =  MeleeWeaponArray[ActMelIndex]
+        if (lastWeaponUsed === null)//Primera vez
+            lastWeaponUsed = MeleeWeaponArray[ActMelIndex];
 
         /**RELATIVO A LA ESCENA**/
         this.scene.add.existing(this);
@@ -29,12 +29,30 @@ export default class Player extends Phaser.GameObjects.Sprite {
         /**RELATIVO A BODY**/
         this.scene.enviromental.add(this)
         this.setScale(1);
+        this.body.setSize(this.width * 0.4, this.height * 0.65, true);
+        this.body.setOffset(this.width * 0.3, this.height * 0.35);
+        this.setOrigin(0.25, 0.65);
         //Booleano para interactuar
         this.isFPressed = false
 
-        this.body.setSize(this.width * 0.4, this.height * 0.65, true);
-        this.body.setOffset(this.width * 0.3, this.height * 0.35);
-        this.setOrigin(0.25,0.65)
+        //Cosas adicionales al propio cuerpo que van junto a el
+        this.escudo = this.scene.add.sprite(this.x, this.y, 'escudo');
+        this.scene.physics.add.existing(this.escudo);
+        this.escudo.setDepth(8); //Por encima de player
+        this.escudo.body.setSize(this.width * 0.4, this.height * 0.65, true);
+        this.escudo.body.setOffset(this.width * 0.3, this.height * 0.35);
+        this.escudo.setOrigin(0.25, 0.65);
+        this.escudo.setVisible(false);
+
+        this.sombrerinni = this.scene.add.sprite(this.x, this.y, 'sombreroPajero');
+        this.scene.physics.add.existing(this.sombrerinni);
+        this.sombrerinni.setDepth(8); //Por encima de player
+        this.sombrerinni.body.setSize(this.width * 0.4, this.height * 0.65, true);
+        this.sombrerinni.body.setOffset(this.width * 0.3, this.height * 0.35);
+        this.sombrerinni.setOrigin(0.25, 0.65);
+        this.sombrerinni.setVisible(false);
+
+
         /**ESTADISTICAS**/
         //CAPADO inferiormente a 1 y superiormente a 20
         //Vida inicial = 10
@@ -68,7 +86,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.a = this.scene.input.keyboard.addKey('A');
         this.s = this.scene.input.keyboard.addKey('S');
         this.d = this.scene.input.keyboard.addKey('D');
-        this.direction = null;
+        
         //Interacciones
         this.q = this.scene.input.keyboard.addKey('Q');
         this.e = this.scene.input.keyboard.addKey('E');
@@ -77,49 +95,49 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.meleeMode = true;
         this.canAttack = true;
         this.canBeDamaged = true;
-        this.shieldCooldown = 0; 
+        this.shieldCooldown = 0;
         this.shieldUptime = 0;
 
-       
+
 
         /**ANIMACIONES**/
         this.anims.create({
-            key:'idle',
+            key: 'idle',
             frames: this.anims.generateFrameNumbers('player_spritesheet', { start: 0, end: 0 }),
             frameRate: 10,
             repeat: -1
         });
 
         this.anims.create({
-            key:'walkDown',
-            frames: this.anims.generateFrameNumbers('player_spritesheet',{ start: 0, end: 3 }),
+            key: 'walkDown',
+            frames: this.anims.generateFrameNumbers('player_spritesheet', { start: 0, end: 3 }),
             frameRate: 10,
             repeat: -1
         });
 
         this.anims.create({
-            key:'walkUp',
-            frames: this.anims.generateFrameNumbers('player_spritesheet',{ start: 4, end: 7 }),
+            key: 'walkUp',
+            frames: this.anims.generateFrameNumbers('player_spritesheet', { start: 4, end: 7 }),
             frameRate: 10,
             repeat: -1
         });
 
         this.anims.create({
-            key:'walkRight',
-            frames: this.anims.generateFrameNumbers('player_spritesheet',{ start: 8, end: 11 }),
+            key: 'walkRight',
+            frames: this.anims.generateFrameNumbers('player_spritesheet', { start: 8, end: 11 }),
             frameRate: 10,
             repeat: -1
         });
 
         this.anims.create({
-            key:'dying',
-            frames: this.anims.generateFrameNames('playerDying_spritesheet', {start: 0, end: 3}),
+            key: 'dying',
+            frames: this.anims.generateFrameNames('playerDying_spritesheet', { start: 0, end: 3 }),
             frameRate: 10,
-            repeat: -1
+            repeat: 0
         });
 
         //Interaccion de la animacion de muerte
-        this.on(Phaser.Animations.Events.ANIMATION_STOP, () => {
+        this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
             if (this.anims.getName() === 'dying') {
                 this.body.enable = false;
                 this.active = false;
@@ -129,22 +147,22 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         //Interacciones del teclado
         this.q.on('down', () => {
-            if(this.meleeMode) {
+            if (this.meleeMode) {
                 this.meleeIndex = this.meleeIndex - 1;
-                if(this.meleeIndex < 0)
+                if (this.meleeIndex < 0)
                     this.meleeIndex = this.meeleWeapons.length - 1;
                 this.updatedWeapon(this.meleeIndex);
             }
             else {
                 this.rangedIndex = this.rangedIndex - 1;
-                if(this.rangedIndex < 0)
+                if (this.rangedIndex < 0)
                     this.rangedIndex = this.rangedWeapons.length - 1;
                 this.updatedWeapon(this.rangedIndex);
             }
         });
 
         this.e.on('down', () => {
-            if(this.meleeMode) {
+            if (this.meleeMode) {
                 this.meleeIndex = (this.meleeIndex + 1) % this.meeleWeapons.length;
                 this.updatedWeapon(this.meleeIndex);
             }
@@ -156,8 +174,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         //Esucdo del jugador, falta añadir la animacion del escudo
         this.shift.on('down', () => {
-            if(this.shieldCooldown === 0) {
+            if (this.shieldCooldown === 0) {
                 this.canBeDamaged = false;
+                this.escudo.setVisible(true);
                 let timer = this.scene.time.addEvent({
                     delay: 3000,
                     callback: this.scene.player.shieldOnCD,
@@ -166,28 +185,28 @@ export default class Player extends Phaser.GameObjects.Sprite {
             }
         });
 
-        this.f.on('down',() => {
+        this.f.on('down', () => {
             this.isFPressed = true;
         })
 
-        this.f.on('up',() => {
+        this.f.on('up', () => {
             this.isFPressed = false;
         })
 
         //Cursor de ataque y eventos del cursor (faltan los hover para cambiar la textura del raton)
         this.scene.input.mouse.disableContextMenu();
-        this.scene.input.on('pointerup', pointer =>  {
-            if(pointer.rightButtonReleased()) {
+        this.scene.input.on('pointerup', pointer => {
+            if (pointer.rightButtonReleased()) {
                 this.meleeMode = false;
                 this.updatedWeapon(this.rangedIndex);
-                if(this.canAttack) {
+                if (this.canAttack) {
                     this.playerAttacks();
                 }
             }
-            else if(pointer.leftButtonReleased()) {
+            else if (pointer.leftButtonReleased()) {
                 this.meleeMode = true;
                 this.updatedWeapon(this.meleeIndex);
-                if(this.canAttack) {
+                if (this.canAttack) {
                     this.playerAttacks();
                 }
             }
@@ -208,9 +227,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         this.equipedWeapon = lastWeaponUsed;
 
-        if(this.meleeMode){
+        if (this.meleeMode) {
             this.rangedWeapons[this.rangedIndex].setVisible(false)
-        }else{
+        } else {
             this.meeleWeapons[this.meleeIndex].setVisible(false)
         }
     }
@@ -223,59 +242,54 @@ export default class Player extends Phaser.GameObjects.Sprite {
      */
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-        
+
         if (this.active === false) { return; }
         this.weaponDelay += dt;
-        if(this.weaponDelay >= this.equipedWeapon.delay) {
+        if (this.weaponDelay >= this.equipedWeapon.delay) {
             this.weaponDelay = 0;
             this.canAttack = true;
         }
 
         //MOVIMIENTO DEL JUGADOR
-        //Notas: imprimir la fuerza y que animacion se usa va por separado porque si no produce bugs
         let stopped = true;
-        
+
         //Parte de imprimir la fuerza
-        if(this.a.isDown) {
-            this.direction = 'left';
-            stopped=false;
+        if (this.a.isDown) {
+            stopped = false;
             this.body.setVelocityX(-this.movSpeed);
         }
-        else if(this.d.isDown) {
-            this.direction = 'right';
-            stopped=false;
+        else if (this.d.isDown) {
+            stopped = false;
             this.body.setVelocityX(this.movSpeed);
         }
-        
-        if(this.w.isDown) {
-            this.direction = 'up';
-            stopped=false;
+
+        if (this.w.isDown) {
+            stopped = false;
             this.body.setVelocityY(-this.movSpeed);
         }
-        else if(this.s.isDown) {
-            this.direction = 'down';
-            stopped=false;
+        else if (this.s.isDown) {
+            stopped = false;
             this.body.setVelocityY(this.movSpeed);
         }
 
         //Parte de la animacion
-        if(this.a.isDown || (this.a.isDown && this.w.isDown) || (this.a.isDown && this.s.isDown)) {
+        if (this.a.isDown || (this.a.isDown && this.w.isDown) || (this.a.isDown && this.s.isDown)) {
             this.setFlipX(true);
             this.play('walkRight', true);
         }
-        else if(this.d.isDown || (this.d.isDown && this.w.isDown) || (this.d.isDown && this.s.isDown)) {
+        else if (this.d.isDown || (this.d.isDown && this.w.isDown) || (this.d.isDown && this.s.isDown)) {
             this.setFlipX(false);
             this.play('walkRight', true);
         }
-        
-        if(this.w.isDown && !(this.a.isDown || this.d.isDown)) {
+
+        if (this.w.isDown && !(this.a.isDown || this.d.isDown)) {
             this.play('walkUp', true);
         }
-        else if(this.s.isDown && !(this.a.isDown || this.d.isDown)) {
+        else if (this.s.isDown && !(this.a.isDown || this.d.isDown)) {
             this.play('walkDown', true);
         }
 
-        if(stopped) {
+        if (stopped && this.actualLife > 0) {
             this.play('idle', true);
             this.body.setVelocity(0);
         }
@@ -283,27 +297,30 @@ export default class Player extends Phaser.GameObjects.Sprite {
         let angleToReticle = Phaser.Math.Angle.Between(this.x, this.y, this.reticle.x, this.reticle.y);
         let maxRange = 25;
         let offsetX = Math.cos(angleToReticle) * maxRange;
-        let offsetY = Math.sin(angleToReticle) * maxRange; 
+        let offsetY = Math.sin(angleToReticle) * maxRange;
         let newWepX = this.x + offsetX;
         let newWepY = this.y + offsetY;
 
-        this.equipedWeapon.setPosition(newWepX, newWepY);
-        this.equipedWeapon.angle = Phaser.Math.RadToDeg(angleToReticle);
+        this.equipedWeapon.updatePosition(newWepX, newWepY);
+        this.equipedWeapon.updateAngle(Phaser.Math.RadToDeg(angleToReticle), angleToReticle);
+
+        this.escudo.copyPosition(this);
+        this.sombrerinni.copyPosition(this);
     }
 
     /**FUNCION PARA QUE EL JUGADOR ATAQUE */
     playerAttacks() {
         if (this.active === false) { return; }
         if (this.canAttack) {
-            if(!this.meleeMode) {
-                if(this.actualMana - this.equipedWeapon.manaCost() >= 0) {
+            if (!this.meleeMode) {
+                if (this.actualMana - this.equipedWeapon.manaCost() >= 0) {
                     this.actualMana -= this.equipedWeapon.manaCost();
                 }
                 else {
                     this.equipedWeapon.recalculateDamage(this.actualMana);
                 }
             }
-            this.equipedWeapon.attack(this.direction, this.reticle);
+            this.equipedWeapon.attack(this.reticle);
             hudEvents.emit('updateMana', [this.actualMana, this.maxMana]);
             this.canAttack = false;
         }
@@ -317,36 +334,38 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.actualMana += this.equipedWeapon.manaRegen();
     }
 
-    
+
 
     /**Funcion que se llama cuando el jugador recibe daño */
     receiveDamage(damage) {
-        if (this.active === false) { return; }
-        if (this.canBeDamaged) {
-            this.actualLife -= damage;
+        if (this.actualLife > 0) {
+            if (this.active === false) { return; }
+            if (this.canBeDamaged) {
+                this.actualLife -= damage;
 
-            hudEvents.emit('updateHealth', this.actualLife);
-        
-            this.scene.tweens.add({
-                targets: this,
-                alpha: 0,
-                ease: Phaser.Math.Easing.Elastic.InOut,
-                duration: 40, 
-                repeat: 1,
-                yoyo: true,
-                onStart: () => {
-                    this.setTint(0xff0000);
-                },
-                onComplete: () => {
-                    this.clearTint();
-                    this.setAlpha(1);
+                hudEvents.emit('updateHealth', this.actualLife);
+
+                this.scene.tweens.add({
+                    targets: this,
+                    alpha: 0,
+                    ease: Phaser.Math.Easing.Elastic.InOut,
+                    duration: 40,
+                    repeat: 1,
+                    yoyo: true,
+                    onStart: () => {
+                        this.setTint(0xff0000);
+                    },
+                    onComplete: () => {
+                        this.clearTint();
+                        this.setAlpha(1);
+                    }
+                });
+
+                if (this.actualLife <= 0) {
+                    this.body.setVelocity(0);
+                    this.stop();
+                    this.play('dying', true);
                 }
-            });
-
-            if (this.actualLife <= 0) {
-                this.body.setVelocity(0);
-                this.stop();
-                this.play('dying', true);
             }
         }
     }
@@ -354,15 +373,18 @@ export default class Player extends Phaser.GameObjects.Sprite {
     //Relativo a las armas
     updatedWeapon(index) {
         if (this.active === false) { return; }
-        this.equipedWeapon.setVisible(false)
+        this.equipedWeapon.setVisible(false);
         if (this.meleeMode) {
-         
             this.equipedWeapon = this.meeleWeapons[index];
-            this.equipedWeapon.setVisible(true)
+            this.equipedWeapon.setVisible(true);
+            if(this.equipedWeapon.isUltimateWeapon())
+                this.sombrerinni.setVisible(true);
+            else
+                this.sombrerinni.setVisible(false);
         }
         else {
             this.equipedWeapon = this.rangedWeapons[index];
-            this.equipedWeapon.setVisible(true)
+            this.equipedWeapon.setVisible(true);
         }
 
         this.weaponDelay = 0;
@@ -381,11 +403,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     //Relativo al escudo
     shieldOnCD() {
-        if (this.active === false) { return; }
         this.shieldCooldown = 1;
         this.canBeDamaged = true;
+        this.escudo.setVisible(false);
 
-        let cdShield = this.scene.time.addEvent ({
+        let cdShield = this.scene.time.addEvent({
             delay: 10000,
             callback: this.scene.player.shieldOffCD,
             callbackScope: this
@@ -393,7 +415,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     shieldOffCD() {
-        if (this.active === false) { return; }
         this.shieldCooldown = 0;
     }
 
@@ -440,7 +461,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         if (this.active === false) { return; }
         if (this.actualMana + manaPoints >= this.maxMana)
             this.actualMana = this.maxMana;
-        else 
+        else
             this.actualMana += manaPoints;
         hudEvents.emit('updateMana', [this.actualMana, this.maxMana]);
     }
@@ -493,8 +514,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
         let initialMovSpeed = this.movSpeed;
         this.scene.tweens.add({
             targets: this,
-            movSpeed: initialMovSpeed - slowing, 
-            duration: totalTime, 
+            duration: totalTime,
+            onStart: () => {
+                this.decreaseMovSpeed(slowing);
+            },
             onComplete: () => {
                 this.movSpeed = initialMovSpeed;
             }
@@ -506,8 +529,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
         let initialMovSpeed = this.movSpeed;
         this.scene.tweens.add({
             targets: this,
-            movSpeed: initialMovSpeed + speed, 
-            duration: totalTime, 
+            duration: totalTime,
+            onStart: () => {
+                this.increaseMovSpeed(speed);
+            },
             onComplete: () => {
                 this.movSpeed = initialMovSpeed;
             }
@@ -529,11 +554,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     //Otras cosas
-    getIsFPressed(){
+    getIsFPressed() {
         return this.isFPressed;
     }
 
-    isProjectile(){
+    isProjectile() {
         return false;
     }
 
