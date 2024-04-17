@@ -4,7 +4,7 @@ import arma from "./arma";
 import PlayerHitBox from "../playerHitbox";
 
 
-export default class BigSword extends arma {
+export default class DrainSword extends arma {
  /**
      * Constructor del jugador
      * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
@@ -12,7 +12,7 @@ export default class BigSword extends arma {
      * @param {number} y Coordenada Y
      */
     constructor(scene, x, y, damage) {
-        super(scene, x, y, 'espadaCheta');
+        super(scene, x, y, 'drainsword');
         this.setOrigin(0, 0.5);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
