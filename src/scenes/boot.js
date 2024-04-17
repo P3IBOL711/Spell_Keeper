@@ -113,6 +113,9 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('lighting_spritesheet', Lighting, { frameWidth: 64, frameHeight:64 });
     this.load.image('espadaCheta', espadaMortal);
     this.load.image('hoe', ultimateWeapon);
+    this.load.spritesheet('shotgun',Shotgun,{ frameWidth: 32, frameHeight: 32 })
+    this.load.spritesheet('thompson',Thompson,{ frameWidth: 32, frameHeight: 32 })
+    this.load.spritesheet('ironbullet',Bullet,{ frameWidth: 16, frameHeight: 16 })
 
     //Items
     this.load.spritesheet('chest',chest,{frameWidth: 32, frameHeight:32});
