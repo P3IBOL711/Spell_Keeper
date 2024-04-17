@@ -59,7 +59,7 @@ export default class Shotgun extends arma {
         return false;
     }
 
-    attack(direction, target) {
+    attack( target) {
         super.attackAction();
         if (this.x != 0 && this.y != 0) {
             this.anims.play('shooting')
