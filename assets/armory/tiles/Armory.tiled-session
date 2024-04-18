@@ -49,20 +49,20 @@
             "scale": 3,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 664,
-                "y": 234.99999999999997
+                "x": 398.66666666666663,
+                "y": 234.33333333333331
             }
         },
         "ar_r2.tmx": {
             "expandedObjectLayers": [
-                7,
-                8
+                8,
+                7
             ],
             "scale": 2,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 726,
-                "y": 295.5
+                "x": 512,
+                "y": 256
             }
         },
         "ar_r3.tmx": {
@@ -72,24 +72,24 @@
             "scale": 4,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 626.25,
-                "y": 240.25
+                "x": 512,
+                "y": 220.5
             }
         },
         "ar_x1.tmx": {
             "expandedObjectLayers": [
-                7,
-                8
+                8,
+                7
             ],
             "scale": 1.5,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 481.99999999999994,
-                "y": 284
+                "x": 480.66666666666663,
+                "y": 283.3333333333333
             }
         }
     },
-    "last.exportedFilePath": "C:/Users/pablo/Documents/Universidad/DVI/Proyecto_DVI/assets/armory/tiles",
+    "last.exportedFilePath": "C:/Users/usuario_local/Spell_Keeper/assets/armory/tiles",
     "map.lastUsedExportFilter": "Todos los archivos (*)",
     "openFiles": [
         "ar_r1.tmx",
