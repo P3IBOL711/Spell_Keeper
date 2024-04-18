@@ -49,6 +49,7 @@ export default class arma extends Phaser.GameObjects.Sprite {
         this.wDmg = this.wDmg * weaponMultiplier;
     }
 
+    //Propiedades de las armas
     isMelee() { 
         return false;
     }
@@ -63,5 +64,9 @@ export default class arma extends Phaser.GameObjects.Sprite {
     }
     isLethalForYouCarefull() {
         return false;
+    }
+
+    forwardSlash() {
+        return true;
     }
 }

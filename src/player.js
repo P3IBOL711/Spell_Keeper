@@ -295,7 +295,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         }
 
         let angleToReticle = Phaser.Math.Angle.Between(this.x, this.y, this.reticle.x, this.reticle.y);
-        let maxRange = 25;
+        let maxRange = 30;
         let offsetX = Math.cos(angleToReticle) * maxRange;
         let offsetY = Math.sin(angleToReticle) * maxRange;
         let newWepX = this.x + offsetX;

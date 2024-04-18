@@ -26,10 +26,11 @@ export default class PlayerHitBox extends Phaser.GameObjects.Zone {
             else if(id === 'poisondagger'){
                 enemy.applyPoisonEffect(3,damage/4)
             }
-            else
+            else {
                 this.scene.player.regenMana();
-                this.destroy();
+            }
             this.scene.physics.world.removeCollider(overlapDmg);
+            this.destroy();
         });
        
     }

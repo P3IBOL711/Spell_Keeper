@@ -6,14 +6,13 @@ import PlayerHitBox from "../playerHitbox";
 export default class meleeWeapon extends arma {
     constructor(scene, x, y, name) {
         super(scene, x, y, name);
+        this.wName = name;
         this.setOrigin(0, 0.5);
         this.hasAttacked = false;
         this.timeOnField = 0;
+        this.angleOfRotation = 60;
         this.x = x;
         this.y = y;
-
-        this.setActive(true);
-        this.setVisible(true);
     }
 
     preUpdate(t, dt) {
@@ -32,13 +31,13 @@ export default class meleeWeapon extends arma {
         return true;
     }
 
-    attackAction(clockwise) {
+    attackAction() {
         if (this.haveSlash()) {
             let initialRotation = this.angle;
-            if(clockwise) {
+            if(this.forwardSlash()) {
                 this.scene.tweens.add({
                     targets: this,
-                    angle:  initialRotation + 60,
+                    angle:  initialRotation + this.angleOfRotation,
                     duration: 250,
                     onComplete: () => {
                         this.angle = initialRotation;
@@ -48,7 +47,7 @@ export default class meleeWeapon extends arma {
             else {
                 this.scene.tweens.add({
                     targets: this,
-                    angle:  initialRotation - 60,
+                    angle:  initialRotation - rotation,
                     duration: 250,
                     onComplete: () => {
                         this.angle = initialRotation;
@@ -86,7 +85,7 @@ export default class meleeWeapon extends arma {
     }
 
     attack(target) {
-        this.attackAction(true);
+        this.attackAction();
         this.hasAttacked = true;
 
         // Obtener la rotación actual del arma

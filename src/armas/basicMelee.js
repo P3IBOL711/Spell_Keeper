@@ -20,6 +20,8 @@ export default class basicMelee extends meleeWeapon {
         this.damage = 1;
 
         this.id = 'dagger';
+        this.setActive(true);
+        this.setVisible(true);
     }
 
     preUpdate(t, dt) {

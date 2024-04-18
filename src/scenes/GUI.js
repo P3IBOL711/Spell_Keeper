@@ -22,9 +22,10 @@ export default class GUI extends Phaser.Scene {
 
     init(obj) {
         this.life = obj.life;
-        this.maxLife = obj.maxLife
-        this.mana = obj.mana
-        this.maxMana = obj.maxMana
+        this.maxLife = obj.maxLife;
+        this.mana = obj.mana;
+        this.maxMana = obj.maxMana;
+        this.weaponEquiped = obj.equipedWeapon;
     }
 
     create() {
@@ -55,7 +56,7 @@ export default class GUI extends Phaser.Scene {
                     break;
                 case 'ArmaEquipada':
                     //Arma inicial: basicMelee
-                    this.displayEquipedWeapon = new weaponDisplay(this, obj.x, obj.y, 'dagger');
+                    this.displayEquipedWeapon = new weaponDisplay(this, obj.x, obj.y, this.weaponEquiped);
                     break;
                 default:
                     console.warn('Tipo de objeto no reconocido:', obj.name);

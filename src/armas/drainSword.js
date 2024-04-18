@@ -2,9 +2,10 @@ import Phaser from "phaser";
 
 import arma from "./arma";
 import PlayerHitBox from "../playerHitbox";
+import meleeWeapon from "./meleeWeapon";
 
 
-export default class DrainSword extends arma {
+export default class DrainSword extends meleeWeapon {
  /**
      * Constructor del jugador
      * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
@@ -17,13 +18,9 @@ export default class DrainSword extends arma {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.delay = 500;
-        this.hasAttacked = false;
-        this.damage = damage;
-        this.timeOnField = 0;
-        this.x = x;
-        this.y = y;
-        this.id = 'drainsword'
+        this.damage = 1;
 
+        this.id = 'drainsword';
         this.setActive(true);
         this.setVisible(true);
     }
@@ -37,38 +34,7 @@ export default class DrainSword extends arma {
     }
 
     attack(target) {
-        super.attackAction(true);
-        this.hasAttacked = true;
-
-        // Obtener la rotación actual del arma
-        let angle = Phaser.Math.DegToRad(this.angle);
-        let hitboxWidth
-        let hitboxHeight
-        //0.675 -0.755 -2.487 2.292
-        if (Math.abs(Math.cos(angle)) > 0.6) {
-            // El arma mira hacia la derecha o hacia la izquierda
-            hitboxWidth = this.width * 1.5;
-            hitboxHeight = this.height * 1.5;
-        } else {
-            // El arma mira hacia arriba o hacia abajo
-            hitboxWidth = this.height * 1.5;
-            hitboxHeight = this.width * 1.5;
-        }
-
-        // Calcular las coordenadas de la hitbox relativas al arma
-        let hitboxOffsetX = this.width * 0.4 * Math.cos(angle); // Ajusta el factor según lo deseado
-        let hitboxOffsetY = this.height * 0.4 * Math.sin(angle); // Ajusta el factor según lo deseado
-
-        // Calcular las coordenadas absolutas de la hitbox en el mundo
-        let hitboxX = this.x + hitboxOffsetX;
-        let hitboxY = this.y + hitboxOffsetY;
-
-        this.attackHitbox = new PlayerHitBox(this.scene, hitboxX, hitboxY, hitboxWidth, hitboxHeight, this.damage, this.angle,this.id);
-    }
-
-    attackFinished() {
-        if(this.attackHitbox)
-            this.attackHitbox.destroy();
+        super.attack(target);
     }
 
     manaRegen() {
