@@ -2,9 +2,9 @@
 <tileset version="1.10" tiledversion="1.10.2" name="Flames" tilewidth="32" tileheight="32" tilecount="2" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0" type="Fire">
-  <image width="32" height="32" source="../../Pixel Art PNGs/LlamaArriba.png"/>
+  <image width="32" height="32" source="../../misc/fire.png"/>
  </tile>
  <tile id="1" type="Chest">
-  <image width="32" height="32" source="../../Pixel Art PNGs/Chest.png"/>
+  <image source="../../Pixel Art PNGs/Chest.png"/>
  </tile>
 </tileset>

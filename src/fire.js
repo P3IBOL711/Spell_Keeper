@@ -1,6 +1,6 @@
 import Phaser from 'phaser'
 
-export default class Fire extends Phaser.GameObjects.Zone {
+export default class Fire extends Phaser.GameObjects.Sprite {
 
     /**
      * Constructor del jugador
@@ -10,26 +10,39 @@ export default class Fire extends Phaser.GameObjects.Zone {
     */
 
     constructor(scene, x, y, width, height,rotation) {
-        super(scene, x, y+8, width, height/2);
+        super(scene, x, y+8,'fire');
         
-        this.scene.add.existing(this);
-        this.scene.physics.add.existing(this);
+        scene.add.existing(this);
+        scene.physics.add.existing(this);
+        this.setDepth(7)
+        
 
         this.angle = rotation
         this.body.setImmovable(true)
+        if(rotation === 0){
+        this.body.setSize(width,height/2,false)
+        this.body.setOffset(0,height/2)
+        }
+        else if(rotation === 90){
+            this.body.setSize(height/2,width,false)
+        }else{
+            this.body.setSize(height/2,width,false)
+            this.body.setOffset(height/2,0)
+        }
+
+
 
         this.collider =  this.scene.physics.add.collider( this.scene.enviromental,this,(obj) => {
             if(obj.isProjectile())
                 obj.destroy();
         });
-
-         this.sprite = this.scene.add.sprite(x,y,'fire').setDepth(7);
-         this.sprite.angle = -rotation
+        
+        
         
     }
 
     destroySprite(){
-        this.sprite.destroy();
+        this.destroy();
     }
        
 

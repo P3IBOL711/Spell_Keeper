@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="31">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="84">
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="81" source="Flames2.tsx"/>
  <tileset firstgid="84" source="Objects.tsx"/>
@@ -123,6 +123,31 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="9" name="navmesh">
+  <object id="59" x="408" y="192" width="104" height="64"/>
+  <object id="60" x="448" y="104" width="32" height="88"/>
+  <object id="61" x="440" y="104" width="8" height="56"/>
+  <object id="62" x="480" y="136" width="120" height="56"/>
+  <object id="63" x="544" y="104" width="40" height="32"/>
+  <object id="64" x="408" y="288" width="192" height="40"/>
+  <object id="65" x="472" y="328" width="80" height="24"/>
+  <object id="66" x="448" y="256" width="96" height="32"/>
+  <object id="67" x="512" y="224" width="96" height="32"/>
+  <object id="68" x="544" y="192" width="64" height="32"/>
+  <object id="69" x="576" y="256" width="32" height="32"/>
+  <object id="70" x="608" y="200" width="96" height="64"/>
+  <object id="71" x="704" y="136" width="40" height="144"/>
+  <object id="72" x="696" y="264" width="8" height="16"/>
+  <object id="74" x="696" y="136" width="8" height="64"/>
+  <object id="76" x="728" y="104" width="40" height="32"/>
+  <object id="77" x="832" y="104" width="40" height="32"/>
+  <object id="78" x="744" y="136" width="120" height="24"/>
+  <object id="79" x="864" y="152" width="40" height="136"/>
+  <object id="80" x="744" y="160" width="88" height="96"/>
+  <object id="81" x="832" y="192" width="32" height="136"/>
+  <object id="82" x="744" y="256" width="56" height="72"/>
+  <object id="83" x="800" y="288" width="32" height="40"/>
+ </objectgroup>
  <objectgroup id="7" name="Cosas">
   <object id="6" type="Hitbox" x="704.545" y="278.455" width="42.9091" height="42.1818"/>
   <object id="9" type="Hitbox" x="596" y="161" width="12" height="36.6667"/>

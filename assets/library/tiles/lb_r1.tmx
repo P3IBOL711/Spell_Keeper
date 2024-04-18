@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="107">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="140">
  <tileset firstgid="1" name="Flames" tilewidth="32" tileheight="32" tilecount="1" columns="0">
   <grid orientation="orthogonal" width="1" height="1"/>
   <tile id="0" type="Fire">
@@ -129,22 +129,19 @@
 </data>
  </layer>
  <objectgroup id="13" name="navmesh">
-  <object id="88" x="547.667" y="132.333" width="56.3333" height="150.667"/>
-  <object id="89" x="604.333" y="132.333" width="130.667" height="24.6667"/>
-  <object id="90" x="674" y="98.6667" width="60" height="33.6667"/>
-  <object id="91" x="735.333" y="143" width="63" height="45.6667"/>
-  <object id="92" x="768" y="130.667" width="30.3333" height="12"/>
-  <object id="94" x="799" y="162.667" width="61.6667" height="26"/>
-  <object id="95" x="802" y="189" width="58.6667" height="159.667"/>
-  <object id="97" x="834.333" y="349" width="26" height="62.3333"/>
-  <object id="98" x="547.333" y="385.667" width="287" height="25.6667"/>
-  <object id="99" x="547.667" y="282.667" width="25.6667" height="102.667"/>
-  <object id="100" x="573" y="322.333" width="224.333" height="63.3333"/>
-  <object id="101" x="604" y="194" width="130" height="89"/>
-  <object id="102" x="643" y="157" width="91" height="36.3333"/>
-  <object id="104" x="707" y="282.667" width="94.3333" height="39"/>
-  <object id="105" x="734.333" y="225.667" width="67.6667" height="56.3333"/>
-  <object id="106" x="797.667" y="321.667" width="5" height="27.3333"/>
+  <object id="126" x="536" y="104" width="200" height="56"/>
+  <object id="127" x="536" y="160" width="72" height="128"/>
+  <object id="129" x="608" y="192" width="128" height="96"/>
+  <object id="130" x="640" y="160" width="232" height="32"/>
+  <object id="131" x="736" y="144" width="64" height="16"/>
+  <object id="132" x="768" y="104" width="32" height="40"/>
+  <object id="133" x="800" y="192" width="72" height="160"/>
+  <object id="134" x="832" y="352" width="40" height="72"/>
+  <object id="135" x="736" y="224" width="64" height="200"/>
+  <object id="136" x="800" y="384" width="32" height="40"/>
+  <object id="137" x="536" y="288" width="40" height="136"/>
+  <object id="138" x="576" y="320" width="160" height="104"/>
+  <object id="139" x="704" y="288" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="4" name="Cosas">
   <object id="12" gid="1" x="672" y="96" width="32" height="32"/>

@@ -14,6 +14,8 @@ import CollisionHitbox from '../collisionHitbox.js';
 import EnemySpawner from '../enemySpawner.js';
 import Fire from '../fire.js'
 import Chest from '../chest.js';
+import LevelTrigger from '../levelTrigger.js'
+import Dungeongen from '../dungeongen'
 
 import EasyStar from 'easystarjs';
 
@@ -38,7 +40,7 @@ export default class Room extends Phaser.Scene {
         this.wSpawn = { x: 0, y: 0 };
         this.cSpawn = { x: 0, y: 0 };
         // this.level = obj.level
-
+        this.dungeonGenerator = new Dungeongen();
 
     }
 
@@ -52,6 +54,7 @@ export default class Room extends Phaser.Scene {
         this.numberOfEnemies = 0;
         this.chestOpened = false;
         this.loadScene = this.loadScene.bind(this);
+        this.loadLevel = this.loadLevel.bind(this);
         this.cache.tilemap.remove('tilemap');
         this.saveStateMatrix = obj.SSM
         this.fireArray = [] //El array que guarda los fuegos en el nivel para destruirlos una vez matados a todos los bichos
@@ -80,6 +83,13 @@ export default class Room extends Phaser.Scene {
 
 
     preload() {
+
+        if (this.textures.exists('Base'))
+            this.textures.remove('Base')
+
+        if (this.textures.exists('Objects'))
+            this.textures.remove('Objects')
+
         if (this.level === 'ar') {
             this.load.image('Base', arb)
             this.load.image('Objects', arw)
@@ -87,6 +97,7 @@ export default class Room extends Phaser.Scene {
             this.load.image('Base', lbb)
             this.load.image('Objects', lbw)
         }
+
         this.load.image('fire', f)
 
     }
@@ -116,6 +127,18 @@ export default class Room extends Phaser.Scene {
         this.scene.start(level + dungeon[y][x].name, { X: x, Y: y, dg: dungeon, dir: direction, SSM: this.saveStateMatrix, playerStat: this.globalPlayerStats });
     }
 
+    loadLevel(level) {
+        this.map.removeAllLayers()
+        this.map.destroy()
+
+        this.unloadScene(this.key)
+        this.loadingBar()
+        
+        if (level === 'ar')
+            this.scene.start('lbE1', { dg: this.dungeonGenerator.init(), X: this.dungeonGenerator.getEntranceX(), Y: this.dungeonGenerator.getEntranceY(), dir: 'c', SSM: this.dungeonGenerator.generateSaveStateMatrix(this.dungeonGenerator.getN(), this.dungeonGenerator.getM()), playerStat: this.globalPlayerStats })
+
+    }
+
 
 
     create() {
@@ -141,7 +164,9 @@ export default class Room extends Phaser.Scene {
         let walls = this.map.createLayer('Walls', [base]).setDepth(2).setCollisionByExclusion(-1)
         let cObjects = this.map.createLayer('CObjects', [objects]).setDepth(3).setCollisionByExclusion(-1)
         let nCObjects = this.map.createLayer('NCObjects', [objects]).setDepth(4)
-        let extra = this.map.createLayer('Extra', [objects]).setDepth(5)
+        let extra = this.map.createLayer('Extra', [objects]).setDepth(5);
+        const objectLayer = this.map.getObjectLayer("navmesh");
+        this.navMesh = this.navMeshPlugin.buildMeshFromTiled("mesh1", objectLayer, 1);
 
         //DETERMINE PLAYER SPAWN
         let playerX = 300;
@@ -167,9 +192,6 @@ export default class Room extends Phaser.Scene {
                 break;
         }
 
-        // ENEMIES PATHFINDING
-        this.finder = new EasyStar.js();
-        this.pathfindingEnemies();
 
         this.enviromental = this.add.group()
 
@@ -190,11 +212,15 @@ export default class Room extends Phaser.Scene {
 
 
         //this.player = new Player(this, playerX, playerY, this.globalPlayerStats.life, this.globalPlayerStats.maximumLife, this.globalPlayerStats.mana, this.globalPlayerStats.maximumMana, this.globalPlayerStats.weaponMult, this.globalPlayerStats.moveSpeed, this.globalPlayerStats.lck, this.globalPlayerStats.MeleeWeaponArray, this.globalPlayerStats.RangedWeaponArray, this.globalPlayerStats.ActMelIndex, this.globalPlayerStats.ActRangIndex, this.globalPlayerStats.lastWeaponUsed);
-        this.player = new Player(this, 500, 200, this.globalPlayerStats.life, this.globalPlayerStats.maximumLife, this.globalPlayerStats.mana, this.globalPlayerStats.maximumMana, this.globalPlayerStats.weaponMult, this.globalPlayerStats.moveSpeed, this.globalPlayerStats.lck, this.globalPlayerStats.MeleeWeaponArray, this.globalPlayerStats.RangedWeaponArray, this.globalPlayerStats.ActMelIndex, this.globalPlayerStats.ActRangIndex, this.globalPlayerStats.lastWeaponUsed);
-
-
-        this.physics.add.collider(this.player, walls);
-        this.physics.add.collider(this.player, cObjects);
+        this.player = new Player(this, playerX, playerY, this.globalPlayerStats.life, this.globalPlayerStats.maximumLife, this.globalPlayerStats.mana, this.globalPlayerStats.maximumMana, this.globalPlayerStats.weaponMult, this.globalPlayerStats.moveSpeed, this.globalPlayerStats.lck, this.globalPlayerStats.MeleeWeaponArray, this.globalPlayerStats.RangedWeaponArray, this.globalPlayerStats.ActMelIndex, this.globalPlayerStats.ActRangIndex, this.globalPlayerStats.lastWeaponUsed);
+        this.physics.add.collider(this.enviromental, walls, (obj) => {
+            if (obj.isProjectile())
+                obj.destroy();
+        });
+        this.physics.add.collider(this.enviromental, cObjects, (obj) => {
+            if (obj.isProjectile())
+                obj.destroy();
+        });
         this.player.setDepth(6);
 
 
@@ -205,7 +231,6 @@ export default class Room extends Phaser.Scene {
 
         //TRIGGERS AND STUFF
         this.loadObjects();
-
 
         this.cameras.main.setZoom(3);
         this.cameras.main.setBounds(0, 0, 1024, 512);
@@ -226,10 +251,10 @@ export default class Room extends Phaser.Scene {
                         new Trigger(this, objeto.x + objeto.width / 2, objeto.y + 16, objeto.width, objeto.height, this.player, this.level, this.x, this.y, this.loadScene, 's', this.dungeon);
                         break;
                     case 'e':
-                        new Trigger(this, objeto.x + objeto.width / 2, objeto.y + 16, objeto.width, objeto.height, this.player, this.level, this.x, this.y, this.loadScene, 'e', this.dungeon);
+                        new Trigger(this, objeto.x + objeto.width / 2, objeto.y + objeto.height / 2, objeto.width, objeto.height, this.player, this.level, this.x, this.y, this.loadScene, 'e', this.dungeon);
                         break;
                     case 'w':
-                        new Trigger(this, objeto.x + objeto.width / 2, objeto.y + 16, objeto.width, objeto.height, this.player, this.level, this.x, this.y, this.loadScene, 'w', this.dungeon);
+                        new Trigger(this, objeto.x + objeto.width / 2, objeto.y + objeto.height / 2, objeto.width, objeto.height, this.player, this.level, this.x, this.y, this.loadScene, 'w', this.dungeon);
                         break;
                 }
 
@@ -241,13 +266,18 @@ export default class Room extends Phaser.Scene {
                     this.numberOfEnemies++
                 }
             } else if (objeto.type === 'Fire') {
-                if (this.numberOfEnemies !== -1)
-                    if (objeto.rotation !== 90 || objeto.rotation !== 270) {
-                        this.fireArray.push(new Fire(this, (objeto.y + objeto.height / 2) - 32, objeto.x - objeto.width / 2, objeto.width, objeto.height, objeto.rotation))
-                    } else
-                        this.fireArray.push(new Fire(this, objeto.x + objeto.width / 2, (objeto.y + objeto.height / 2) - 32, objeto.width, objeto.height, objeto.rotation))
+                if (this.numberOfEnemies !== -1) {
+                    if (objeto.rotation === 270)
+                        this.fireArray.push(new Fire(this, objeto.x - objeto.width / 2, (objeto.y + objeto.height / 2) - 40, objeto.width, objeto.height, objeto.rotation))
+                    else if (objeto.rotation === 90)
+                        this.fireArray.push(new Fire(this, objeto.x + objeto.width / 2, (objeto.y + objeto.height / 2) - 8, objeto.width, objeto.height, objeto.rotation))
+                    else
+                        this.fireArray.push(new Fire(this, (objeto.x - objeto.width / 2) + 32, (objeto.y + objeto.height / 2) - 40, objeto.width, objeto.height, objeto.rotation))
+                }
             } else if (objeto.type === 'Chest') {
                 new Chest(this, objeto.x + objeto.width / 2, objeto.y - objeto.height / 2, objeto.width, objeto.height, this.player, this.chestOpened)
+            } else if (objeto.type === 'SpecialTrigger') {
+                new LevelTrigger(this, objeto.x + objeto.width / 2, objeto.y + 16, objeto.width, objeto.height, this.player, this.level, this.loadLevel)
             }
         }
     }
@@ -336,34 +366,57 @@ export default class Room extends Phaser.Scene {
         this.globalPlayerStats.lastWeaponUsed = this.player.equipedWeapon
     }
 
-    pathfindingEnemies() {
-        this.getTileID = (x, y, layer) => {
-            return this.map.getTileAt(x, y, true, layer ).index;
-        };
+    loadingBar() {
+        // Background
+        let background = this.add.graphics();
+        background.fillStyle(0xad88c6, 1);
+        // 363062
+        background.fillRect(0, 0, 1000, 600);
 
-        let grid = [];
-        let acceptableTiles = []
-        for (let y = 0; y < this.map.height; y++) {
-            let col = [];
-            for (let x = 0; x < this.map.width; x++) {
-                // In each cell we store the ID of the tile, which corresponds
-                // to its index in the tileset of the map ("ID" field in Tiled)
-                let tileF = this.getTileID(x, y, "Floor");
-                let tileO = this.getTileID(x, y, "CObjects");
-                let tileE = this.getTileID(x, y, "Extra");
-                if (tileF !== -1 && tileO !== - 1 && tileO !== tileF)
-                    col.push(-1);
-                else if(tileF !== -1 && tileE !== - 1 && tileE !== tileF)
-                    col.push(-1);
-                else {
-                    col.push(tileF);
-                    acceptableTiles.push(tileF);
-                }
-            }
-            grid.push(col);
-        }
-        this.finder.setGrid(grid);
-        this.finder.setAcceptableTiles(acceptableTiles);
-        //this.finder.enableDiagonals();
+        // Loading bar 
+        let progressBar = this.add.graphics();
+        let progressBox = this.add.graphics();
+        progressBox.fillStyle(0x8f3ea9, 0.8);
+        progressBox.fillRect(340, 270, 320, 50);
+
+        this.load.on('progress', function (value) {
+            progressBar.clear();
+            progressBar.fillStyle(0x8f3ea9, 1);
+            progressBar.fillRect(350, 280, 300 * value, 30);
+            percentText.setText(parseInt(value * 100) + '%');
+        });
+
+        this.load.on('fileprogress', function (file) {
+            console.log(file.src);
+        });
+        this.load.on('complete', function () {
+            console.log('complete');
+            progressBar.destroy();
+            progressBox.destroy();
+            loadingText.destroy();
+            percentText.destroy();
+        });
+
+        // Loading bar text
+        this.loadFont('pixelFont', font);
+        let loadingText = this.add.text(420, 215, 'Loading...', { fontFamily: 'pixelFont', fontSize: 40, color: '#5e1675ff' });
+
+        // Percent bar text
+        let percentText = this.add.text(485, 320, '0%', { fontFamily: 'pixelFont', fontSize: 24, color: '#5e1675ff' });
     }
+
+    loadFont(name, url) {
+        let newFont = new FontFace(name, `url(${url})`);
+        newFont.load().then(function (loaded) {
+            document.fonts.add(loaded);
+        }).catch(function (error) {
+            return error;
+        });
+      }
+
+
+
+
+
+
 }
