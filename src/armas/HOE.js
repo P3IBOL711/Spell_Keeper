@@ -3,6 +3,8 @@ import Phaser from "phaser";
 import arma from "./arma";
 import PlayerHitBox from "../playerHitbox";
 
+const DAMAGE =  Number.MAX_SAFE_INTEGER;
+
 export default class hoe extends arma {
     constructor(scene, x, y) {
         super(scene, x, y, 'hoe');
@@ -10,7 +12,7 @@ export default class hoe extends arma {
         this.scene.physics.add.existing(this);
         this.delay = 100;
         this.hasAttacked = false;
-        this.damage = Number.MAX_SAFE_INTEGER;
+        this.damage = DAMAGE;
         this.timeOnField = 0;
         this.setOrigin(0,1);
         this.x = x;

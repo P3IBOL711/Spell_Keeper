@@ -2,8 +2,10 @@ import Phaser from "phaser";
 
 import Bullet from "../projectiles/bullet";
 import arma from "./arma";
+    
+const DAMAGE = 1;
 
-export default class basicRanged extends arma {
+export default class PoisonStaff extends arma {
  /**
      * Constructor del jugador
      * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
@@ -19,14 +21,19 @@ export default class basicRanged extends arma {
         this.x = x;
         this.y = y;
 
+
         this.setActive(true);
         this.setVisible(true);
 
-        this.damage = 1;
+        this.damage =  DAMAGE ;
     }
 
     preUpdate(t, dt) {
         super.preUpdate(t, dt)
+    }
+
+    isUltimateWeapon() {
+        return false;
     }
 
     isMelee() {

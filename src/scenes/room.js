@@ -4,7 +4,7 @@ import w from '../../assets/armory/tiles/Weapons.png'
 import f from '../../assets/misc/fire.png'
 
 import Player from '../player.js'
-import basicRanged from '../armas/basicRanged.js';
+import basicRanged from '../armas/poisonStaff.js';
 import basicMelee from '../armas/basicMelee.js';
 import FireStaff from '../armas/fireStaff.js';
 import Trigger from '../trigger.js';
@@ -16,6 +16,11 @@ import Shotgun from '../armas/shotgun.js';
 import Thompson from '../armas/thompson.js';
 import DrainSword from '../armas/drainSword.js';
 import hoe from '../armas/HOE.js';
+import PoisonStaff from '../armas/poisonStaff.js';
+import Spear from '../armas/spear.js';
+import BigSword from '../armas/megaEspadaMortal.js';
+import MagicKnife from '../armas/magicKnife.js';
+import PoisonDagger from '../armas/poisonDagger.js';
 
 
 

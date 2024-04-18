@@ -52,6 +52,10 @@ export default class DrainSword extends arma {
         return true;
     }
 
+    isUltimateWeapon() {
+        return false;
+    }
+
 
     attack(target) {
         super.attackAction(true);

@@ -43,6 +43,10 @@ export default class magicSword extends arma {
         return false;
     }
 
+    isUltimateWeapon() {
+        return false;
+    }
+
     attack(target) {
         super.attackAction(true);
         this.hasAttacked = true;

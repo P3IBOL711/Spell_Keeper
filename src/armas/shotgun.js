@@ -4,6 +4,8 @@ import Phaser from "phaser";
 import arma from "./arma";
 import IronBullet from '../projectiles/ironBullet.js';
 
+const DAMAGE = 0.5;
+
 export default class Shotgun extends arma {
     /**
         * Constructor del jugador
@@ -11,7 +13,7 @@ export default class Shotgun extends arma {
         * @param {number} x Coordenada X
         * @param {number} y Coordenada Y
         */
-    constructor(scene, x, y, damage) {
+    constructor(scene, x, y) {
         super(scene, x, y, 'shotgun')
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
@@ -38,7 +40,7 @@ export default class Shotgun extends arma {
         this.setActive(true);
         this.setVisible(true);
 
-        this.damage = damage;
+        this.damage = DAMAGE;
         this.anims.play('normal')
         //Intorducir logica de los sprites
     }

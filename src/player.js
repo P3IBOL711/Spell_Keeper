@@ -388,6 +388,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         else {
             this.equipedWeapon = this.rangedWeapons[index];
             this.equipedWeapon.setVisible(true);
+            this.sombrerinni.setVisible(false);
         }
 
         this.weaponDelay = 0;
