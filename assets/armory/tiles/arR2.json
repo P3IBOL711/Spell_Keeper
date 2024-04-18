@@ -170,7 +170,7 @@
          "name":"navmesh",
          "objects":[
                 {
-                 "height":112,
+                 "height":107,
                  "id":52,
                  "name":"",
                  "rotation":0,
@@ -181,15 +181,15 @@
                  "y":128
                 }, 
                 {
-                 "height":152,
+                 "height":157,
                  "id":58,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":88,
+                 "width":80,
                  "x":344,
-                 "y":240
+                 "y":235
                 }, 
                 {
                  "height":112,
@@ -198,8 +198,8 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":248,
-                 "x":432,
+                 "width":256,
+                 "x":424,
                  "y":280
                 }, 
                 {
@@ -225,26 +225,26 @@
                  "y":96
                 }, 
                 {
-                 "height":40,
+                 "height":45,
                  "id":65,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":88,
-                 "x":592,
-                 "y":240
+                 "width":80,
+                 "x":600,
+                 "y":235
                 }, 
                 {
-                 "height":16,
+                 "height":10,
                  "id":73,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":160,
-                 "x":432,
-                 "y":264
+                 "width":176,
+                 "x":424,
+                 "y":270
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -424,7 +424,7 @@
  "nextobjectid":74,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.10.1",
+ "tiledversion":"1.10.2",
  "tileheight":32,
  "tilesets":[
         {

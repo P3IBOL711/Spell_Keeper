@@ -168,6 +168,8 @@ export default class Room extends Phaser.Scene {
         const objectLayer = this.map.getObjectLayer("navmesh");
         this.navMesh = this.navMeshPlugin.buildMeshFromTiled("mesh1", objectLayer, 1);
 
+        this.navMesh.enableDebug();
+
 
         //DETERMINE PLAYER SPAWN
         let playerX = 300;

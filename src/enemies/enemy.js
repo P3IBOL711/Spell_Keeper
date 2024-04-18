@@ -60,7 +60,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
         this.pathFinding = this.scene.time.addEvent({
             delay: 200,
-            callback: this.goTo,
+            callback: this.goTo, 
             callbackScope: this,
             loop: true
         });
@@ -76,8 +76,9 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
     goTo() {
         // Find a path to the targetdsa
+
         this.path = this.navMesh.findPath({x: this.x, y: this.y},
-            {x:this.target.x + this.target.body.width / 2 , y:this.target.y + this.target.body.height / 2 });
+            {x: this.target.x, y: this.target.y});
 
         // If there is a valid path, grab the first point from the path and set it as the target
         if (this.path && this.path.length > 0) this.nextPosition = this.path.shift();
