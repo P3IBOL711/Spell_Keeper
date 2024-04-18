@@ -90,15 +90,15 @@ export default class MainMenu extends Phaser.Scene{
         })
 
         fullscreen.on("pointerdown", ()=>{
-            if (!this.scale.isFullscreen) {
+            if (this.scale.isFullscreen) {
+                this.scale.stopFullscreen();
+                fullscreen.setVisible(true);
+                normalscreen.setVisible(false);
+            }
+            else{
                 this.scale.startFullscreen();
                 fullscreen.setVisible(false);
                 normalscreen.setVisible(true);
-            }
-            else{
-                this.scale.stopFullscreen();
-                normalscreen.setVisible(false);
-                fullscreen.setVisible(true);
             }
         })
 
@@ -114,8 +114,8 @@ export default class MainMenu extends Phaser.Scene{
         normalscreen.on("pointerdown", ()=>{
             if (this.scale.isFullscreen) {
                 this.scale.stopFullscreen();
-                normalscreen.setVisible(false);
                 fullscreen.setVisible(true);
+                normalscreen.setVisible(false);
             }
             else{
                 this.scale.startFullscreen();
@@ -123,6 +123,17 @@ export default class MainMenu extends Phaser.Scene{
                 normalscreen.setVisible(true);
             }
         })
+
+        // Para quitar tambien pantalla completa con la tecla esc
+        this.esc = this.scene.input.keyboard.addKey('ESC');
+
+        this.esc.on('up', () => {
+            if (this.scale.isFullscreen) {
+                this.scale.stopFullscreen();
+                fullscreen.setVisible(true);
+                normalscreen.setVisible(false);
+            }
+        });
     }
 
 }
