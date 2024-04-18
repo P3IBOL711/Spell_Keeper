@@ -4,15 +4,13 @@ import arma from "./arma";
 import PlayerHitBox from "../playerHitbox";
 
 export default class meleeWeapon extends arma {
-    constructor(scene, x, y, name, height, width) {
+    constructor(scene, x, y, name) {
         super(scene, x, y, name);
         this.setOrigin(0, 0.5);
         this.hasAttacked = false;
         this.timeOnField = 0;
         this.x = x;
         this.y = y;
-        this.height = height;
-        this.width = width;
 
         this.setActive(true);
         this.setVisible(true);

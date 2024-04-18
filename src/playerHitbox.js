@@ -19,7 +19,7 @@ export default class PlayerHitBox extends Phaser.GameObjects.Zone {
         this.scene.physics.add.existing(this);
         this.angle = angle;
 
-        this.scene.physics.add.overlap(this.scene.enemies, this, (enemy) => {
+        let overlapDmg = this.scene.physics.add.overlap(this.scene.enemies, this, (enemy) => {
             enemy.receiveDamage(damage);
             if (id === 'drainsword')
                 this.scene.player.addHealth(damage / 2);
@@ -28,7 +28,8 @@ export default class PlayerHitBox extends Phaser.GameObjects.Zone {
             }
             else
                 this.scene.player.regenMana();
-                this.destroy()
+                this.destroy();
+            this.scene.physics.world.removeCollider(overlapDmg);
         });
        
     }
