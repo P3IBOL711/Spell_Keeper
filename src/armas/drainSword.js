@@ -30,32 +30,11 @@ export default class DrainSword extends arma {
 
     preUpdate(t, dt) {
         super.preUpdate(t, dt)
-        if(this.hasAttacked) {
-            this.timeOnField += dt;
-            if(this.timeOnField >= 250) {
-                this.hasAttacked = false;
-                this.timeOnField = 0;
-                this.attackFinished();
-            }
-        }
-    }
-
-    isMelee() {
-        return true;
-    }
-
-    havePuncture() {
-        return false;
     }
 
     haveSlash() {
         return true;
     }
-
-    isUltimateWeapon() {
-        return false;
-    }
-
 
     attack(target) {
         super.attackAction(true);
@@ -93,6 +72,6 @@ export default class DrainSword extends arma {
     }
 
     manaRegen() {
-        return 20;
+        return 2;
     }
 }
