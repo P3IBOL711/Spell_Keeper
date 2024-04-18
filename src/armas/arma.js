@@ -10,7 +10,6 @@ export default class arma extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, WeaponName) {
         super(scene, x, y, WeaponName)
         this.wName = WeaponName;
-        this.id = ''
         this.setDepth(8);
         this.delayAttackAction = 150;
 
@@ -50,70 +49,18 @@ export default class arma extends Phaser.GameObjects.Sprite {
         this.wDmg = this.wDmg * weaponMultiplier;
     }
 
-    attackAction(clockwise) {
-        if (this.isMelee()) {
-            if (this.haveSlash()) {
-                let initialRotation = this.angle;
-                if(clockwise) {
-                    this.scene.tweens.add({
-                        targets: this,
-                        angle:  initialRotation + 60,
-                        duration: 250,
-                        onComplete: () => {
-                            this.angle = initialRotation;
-                        }
-                    });
-                }
-                else {
-                    this.scene.tweens.add({
-                        targets: this,
-                        angle:  initialRotation - 60,
-                        duration: 250,
-                        onComplete: () => {
-                            this.angle = initialRotation;
-                        }
-                    });                   
-                }
-            }
-
-            if (this.havePuncture()) {
-                let initialX = this.x;
-                let initialY = this.y;
-                let forwardDistance = 25;
-                let finalX = this.x + Math.cos(this.rotation) * forwardDistance;
-                let finalY = this.y + Math.sin(this.rotation) * forwardDistance;
-                this.scene.tweens.add({
-                    targets: this,
-                    x: finalX,
-                    y: finalY,
-                    duration: this.delayAttackAction,
-                    onComplete: () => {
-                        this.completePuncture(initialX, initialY);
-                    }
-                });
-            }
-        }
+    isMelee() { 
+        return false;
     }
-
-    completePuncture(goToX, goToY) {
-        this.scene.tweens.add({
-            targets: this,
-            x: goToX,
-            y: goToY,
-            duration: this.delayAttackAction
-        });
+    haveSlash() {
+        return false;
+     }
+    havePuncture() { 
+        return false;
     }
-
-    playIdle() { }
-    isMelee() { }
-    manaRegen() { }
-    manaCost() { }
-    haveSlash() { }
-    havePuncture() { }
     isUltimateWeapon() {
         return false;
     }
-
     isLethalForYouCarefull() {
         return false;
     }
