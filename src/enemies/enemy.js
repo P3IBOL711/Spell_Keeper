@@ -1,5 +1,6 @@
 
 import Phaser from 'phaser'
+import lootGenerator from '../lootGenerator';
 
 /**
  * Clase que representa un enemigo del juego.
@@ -38,6 +39,10 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
             if (this.anims.getName() === 'die'){
                 this.doSomethingVerySpecificBecauseYoureMyBelovedChild()
                 this.scene.enemies.remove(this);
+                let loot = new lootGenerator(this.scene,this.x,this.y,this.scene.player.luck)
+                let rnd = Math.random();
+                if(rnd >= 0.15 -(this.scene.player.luck/20) )
+                loot.generateLoot();
                 this.destroy();
             }
         });

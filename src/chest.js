@@ -89,8 +89,9 @@ export default class Chest extends Phaser.GameObjects.Sprite {
         }
 
         if (this.isOverlapping && !this.open) {
-            if (this.jug.getIsFPressed()) {
+            if (this.jug.getIsFPressed()&& this.jug.getNumberOfKeys() > 0) {
                 this.open = true;
+                this.jug.decreaseKey()
                 this.scene.chestWasOpened();
                 this.anims.play('open_chest');
                 this.generateLoot()

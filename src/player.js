@@ -16,7 +16,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
      * @param {number} y Coordenada Y
      */
 
-    constructor(scene, x, y, life, maximumLife, mana, maximumMana, weaponMult, moveSpeed, lck, MeleeWeaponArray, RangedWeaponArray, ActMelIndex, ActRangIndex, lastWeaponUsed) {
+    constructor(scene, x, y, life, maximumLife, mana, maximumMana, weaponMult, moveSpeed, lck, MeleeWeaponArray, RangedWeaponArray, ActMelIndex, ActRangIndex, lastWeaponUsed,keys) {
         super(scene, x, y, 'player');
 
         if (lastWeaponUsed === null)//Primera vez
@@ -77,8 +77,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.movSpeedSuperiorCap = 200;
         this.movSpeed = (moveSpeed === 0) ? 100 : moveSpeed;
 
-        this.luck = (lck === 0) ? 5 : lck;
+        this.luck = (lck === 0) ? 1 : lck;
         this.reticle = new Reticle(this.scene, x, y - 30);
+
+        this.key = keys;
 
         /**CONTROLES**/
         //Direcciones
@@ -315,10 +317,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
             if (!this.meleeMode) {
                 if (this.actualMana - this.equipedWeapon.manaCost() >= 0) {
                     this.actualMana -= this.equipedWeapon.manaCost();
-                }
-                else {
-                    this.equipedWeapon.recalculateDamage(this.actualMana);
-                }
+                }else
+                    return;
+
             }
             this.equipedWeapon.attack(this.reticle);
             hudEvents.emit('updateMana', [this.actualMana, this.maxMana]);
@@ -465,6 +466,23 @@ export default class Player extends Phaser.GameObjects.Sprite {
         if (this.actualLife > this.maxLife)
             this.actualLife = this.maxLife;
         hudEvents.emit('updateHealth', this.actualLife);
+    }
+
+    //Llaves
+    addKey(){
+        this.key++;
+
+        hudEvents.emit('updateKeys',this.key)
+    }
+
+    decreaseKey(){
+        this.key--;
+
+        hudEvents.emit('updateKeys',this.key)
+    }
+
+    getNumberOfKeys(){
+        return this.key;
     }
 
     /*Al mana*/

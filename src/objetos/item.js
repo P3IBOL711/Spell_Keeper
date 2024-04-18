@@ -12,7 +12,7 @@ export default class item extends Phaser.GameObjects.Sprite {
         this.iName = itemName;
         this.id = ''
         this.setDepth(8);
-
+        this.setScale(0.4)
         this.scene.physics.add.overlap(this, this.scene.player, () => {
             this.itemFuction();
             this.destroy();

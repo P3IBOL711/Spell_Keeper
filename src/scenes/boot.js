@@ -48,6 +48,7 @@ import healingHeart from '../../assets/cSprites/items/healingHeart.png'
 import halfHealingHeart from '../../assets/cSprites/items/halfHealingHeart.png'
 import manaPotion from '../../assets/cSprites/items/PotionBlue.png'
 
+
 //UI assets
 import font from 'url:../../assets/fonts/VT323Regular.ttf'
 import fullHeart from '../../assets/HUD/ui-heart-full.png'

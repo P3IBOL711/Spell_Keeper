@@ -26,6 +26,7 @@ export default class GUI extends Phaser.Scene {
         this.mana = obj.mana;
         this.maxMana = obj.maxMana;
         this.weaponEquiped = obj.equipedWeapon;
+        this.keys = obj.keys
     }
 
     create() {
@@ -48,7 +49,7 @@ export default class GUI extends Phaser.Scene {
                     break;
                 case 'Keys':
                     //Valor inicial de las llaves: 0
-                    this.playerKeysInfo = new keysDisplay(this, obj.x + 70, obj.y, 'key', 0);
+                    this.playerKeysInfo = new keysDisplay(this, obj.x + 70, obj.y, 'key', this.keys);
                     break;
                 case 'Active':
                     //No tienes activo al principio
@@ -81,7 +82,7 @@ export default class GUI extends Phaser.Scene {
         });
 
         hudEvents.on('updateKeys', (keys) => {
-            this.playerKeysInfo.setKeys(keys);
+            this.playerKeysInfo.updateKeys(keys);
         });
 
         /**
