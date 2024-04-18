@@ -49,7 +49,7 @@ export default class MagicKnife extends arma {
     attack(target) {
         //super.attackAction();
         if (this.x != 0 && this.y != 0)
-            for (let i = 0; i < 1; i++) {
+            for (let i = 0; i < 10; i++) {
                 new Knife(this.scene, this.x + (-5 + i * 2), this.y + (-5 + i * 2), target, true, this.damage);
             }
     }

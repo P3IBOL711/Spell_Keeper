@@ -317,10 +317,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
             if (!this.meleeMode) {
                 if (this.actualMana - this.equipedWeapon.manaCost() >= 0) {
                     this.actualMana -= this.equipedWeapon.manaCost();
-                }
-                else {
-                    this.equipedWeapon.recalculateDamage(this.actualMana);
-                }
+                }else
+                    return;
+
             }
             this.equipedWeapon.attack(this.reticle);
             hudEvents.emit('updateMana', [this.actualMana, this.maxMana]);
