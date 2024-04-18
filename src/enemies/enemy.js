@@ -28,7 +28,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         this.damage = 1;
         // Vida
         this.life = 1;
-        
+
         this.target = target;
 
         // is enemy attacking?
@@ -51,7 +51,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         this.setDepth(7);
 
         this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
-            if (this.anims.getName() === 'die'){
+            if (this.anims.getName() === 'die') {
                 this.doSomethingVerySpecificBecauseYoureMyBelovedChild()
                 this.scene.enemies.remove(this);
                 this.destroy();
@@ -65,29 +65,34 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
             loop: true
         });
 
+        // Para que los enemigos no se solapen uno encima de otro
+        this.scene.physics.add.collider(this, this.scene.enemies, () => {
+        });
+
     }
 
     doSomethingVerySpecificBecauseYoureMyBelovedChild() {
     }
 
     goTo() {
-        // Find a path to the target
-        this.path = this.navMesh.findPath(new Phaser.Math.Vector2(this.x, this.y), new Phaser.Math.Vector2(this.target.x, this.target.y));
-    
+        // Find a path to the targetdsa
+        this.path = this.navMesh.findPath({x: this.x, y: this.y},
+            {x:this.target.x + this.target.body.width / 2 , y:this.target.y + this.target.body.height / 2 });
+
         // If there is a valid path, grab the first point from the path and set it as the target
         if (this.path && this.path.length > 0) this.nextPosition = this.path.shift();
         else this.nextPosition = null;
     }
 
 
-    receiveDamage(damage){
+    receiveDamage(damage) {
         this.life -= damage;
 
         this.scene.tweens.add({
             targets: this,
             alpha: 0,
             ease: Phaser.Math.Easing.Elastic.InOut,
-            duration: 40, 
+            duration: 40,
             repeat: 1,
             yoyo: true,
             onStart: () => {
@@ -99,7 +104,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
             }
         })
 
-        if (this.life <= 0){
+        if (this.life <= 0) {
             this.body.setVelocity(0);
             this.body.enable = false;
             this.scene.enemyHasDied();
@@ -118,7 +123,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         // IMPORTANTE: Si no ponemos esta instrucción y el sprite está animado
         // no se podrá ejecutar la animación del sprite. 
         super.preUpdate(t, dt);
-        if (this.life > 0){
+        if (this.life > 0) {
             this.flipEnemy()
 
             if (this.nextPosition) {
@@ -134,7 +139,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
                 if (this.nextPosition) this.scene.physics.moveToObject(this, this.nextPosition, this.speed);
             }
             this.playAfterRepeat('walking');
-            if (Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y) > this.distanceAttack){
+            if (Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y) > this.distanceAttack) {
                 this.timerAttack.paused = true;
             }
             else {
@@ -143,11 +148,11 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         }
     }
 
-    flipEnemy(){
+    flipEnemy() {
         this.setFlipX(this.body.velocity.x <= 0);
     }
 
-    isProjectile(){
+    isProjectile() {
         return false;
     }
 }
