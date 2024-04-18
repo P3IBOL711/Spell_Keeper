@@ -53,7 +53,7 @@ export default class PoisonDagger extends arma {
     }
 
     attack(target) {
-        super.attackAction(true);
+        //super.attackAction(true);
         this.hasAttacked = true;
 
         // Obtener la rotación actual del arma

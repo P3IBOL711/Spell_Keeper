@@ -61,7 +61,7 @@ export default class Thompson extends arma {
     }
 
     attack(target) {
-        super.attackAction();
+        //super.attackAction();
         if (this.x != 0 && this.y != 0) {
             this.anims.play('shooting')
 

@@ -62,7 +62,7 @@ export default class Shotgun extends arma {
     }
 
     attack( target) {
-        super.attackAction();
+       // super.attackAction();
         if (this.x != 0 && this.y != 0) {
             this.anims.play('shooting')
             let bulletsToFire = 15; // Number of bullets to fire

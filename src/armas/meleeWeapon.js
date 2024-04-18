@@ -88,7 +88,7 @@ export default class meleeWeapon extends arma {
     }
 
     attack(target) {
-        this.attackAction(true);
+        //this.attackAction(true);
         this.hasAttacked = true;
 
         // Obtener la rotación actual del arma

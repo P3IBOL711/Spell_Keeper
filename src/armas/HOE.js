@@ -51,7 +51,7 @@ export default class hoe extends arma {
     }
 
     attack(target) {
-        super.attackAction(false);
+        //super.attackAction(false);
         this.hasAttacked = true;
 
         // Obtener la rotación actual del arma

@@ -49,7 +49,7 @@ export default class PoisonStaff extends arma {
     }
 
     attack(target) {
-        super.attackAction();
+        //super.attackAction();
         if(this.x != 0 && this.y != 0)
             new Bullet(this.scene, this.x, this.y, target, true, this.damage);
     }

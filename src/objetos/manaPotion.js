@@ -11,6 +11,7 @@ export default class manaPotion extends item {
         this.manaRegeration = 50;
         this.x = x;
         this.y = y;
+        this.setScale(0.6)
     }
 
     itemFuction() {

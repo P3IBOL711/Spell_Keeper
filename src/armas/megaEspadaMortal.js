@@ -58,7 +58,7 @@ export default class BigSword extends arma {
 
 
     attack(target) {
-        super.attackAction(true);
+       // super.attackAction(true);
         this.hasAttacked = true;
 
         let angle = Phaser.Math.DegToRad(this.angle);
