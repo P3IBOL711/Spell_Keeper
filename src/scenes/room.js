@@ -78,7 +78,6 @@ export default class Room extends Phaser.Scene {
             };
         } else {
             this.globalPlayerStats = obj.playerStat;
-
         }
     }
 
