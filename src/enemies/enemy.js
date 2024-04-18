@@ -59,7 +59,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         });
 
         this.pathFinding = this.scene.time.addEvent({
-            delay: 500,
+            delay: 200,
             callback: this.goTo,
             callbackScope: this,
             loop: true
@@ -144,7 +144,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
     }
 
     flipEnemy(){
-        this.setFlipX(this.body.velocity.x < 0 || this.target.x < this.x);
+        this.setFlipX(this.body.velocity.x <= 0);
     }
 
     isProjectile(){
