@@ -1,10 +1,10 @@
 import Phaser from "phaser";
 
-import arma from "./arma";
+import meleeWeapon from "./meleeWeapon";
 
 const INIFINITY =  Number.MAX_SAFE_INTEGER;
 
-export default class hoe extends arma {
+export default class hoe extends meleeWeapon {
     constructor(scene, x, y) {
         super(scene, x, y, 'hoe');
         this.scene.add.existing(this);
@@ -39,6 +39,6 @@ export default class hoe extends arma {
     }
 
     manaRegen() {
-        return ;
+        return;
     }
 }

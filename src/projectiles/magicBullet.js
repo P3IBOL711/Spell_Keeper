@@ -13,7 +13,7 @@ export default class MagicBullet extends Projectile {
     constructor (scene, x, y, target, targetEnemy, damage)
     {
         super(scene, x, y, 'magicBullet', targetEnemy, damage);
-        this.setScale(0.5);
+        //this.setScale(0.5);
         this.anims.create({
             key:'creation',
             frames: this.anims.generateFrameNumbers('magicBullet_spritesheet', { start: 0, end: 2 }),

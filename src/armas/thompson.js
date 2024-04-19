@@ -17,7 +17,6 @@ export default class Thompson extends arma {
         super(scene, x, y, 'thompson')
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.id = 'Thompson'
         this.delay = 50;
         this.x = x;
         this.y = y;
@@ -36,32 +35,19 @@ export default class Thompson extends arma {
             repeat: 0
         });
 
+        this.id = 'thompson';
         this.setActive(true);
         this.setVisible(true);
 
         this.damage = DAMAGE;
-        this.anims.play('normal')
-        //Intorducir logica de los sprites
+        this.anims.play('normal');
     }
 
     preUpdate(t, dt) {
-        super.preUpdate(t, dt)
-    }
-
-    isMelee() {
-        return false;
-    }
-
-    havePuncture() {
-        return false;
-    }
-
-    haveSlash() {
-        return false;
+        super.preUpdate(t, dt);
     }
 
     attack(target) {
-        //super.attackAction();
         if (this.x != 0 && this.y != 0) {
             this.anims.play('shooting')
 

@@ -57,7 +57,7 @@ export default class GUI extends Phaser.Scene {
                     break;
                 case 'ArmaEquipada':
                     //Arma inicial: basicMelee
-                    this.displayEquipedWeapon = new weaponDisplay(this, obj.x, obj.y, this.weaponEquiped);
+                    this.displayEquipedWeapon = new weaponDisplay(this, obj.x, obj.y, this.weaponEquiped.id);
                     break;
                 default:
                     console.warn('Tipo de objeto no reconocido:', obj.name);

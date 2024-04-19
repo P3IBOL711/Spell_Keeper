@@ -1,6 +1,5 @@
 import Phaser from "phaser";
 
-import Fireball from "../projectiles/fireball";
 import arma from "./arma";
 import Knife from "../projectiles/knife";
 
@@ -19,11 +18,11 @@ export default class MagicKnife extends arma {
         super(scene, x, y, 'magicknife')
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.id = 'magicknife'
         this.delay = 250;
         this.x = x;
         this.y = y;
 
+        this.id = 'magicknife';
         this.setActive(true);
         this.setVisible(true);
 
@@ -31,23 +30,10 @@ export default class MagicKnife extends arma {
     }
 
     preUpdate(t, dt) {
-        super.preUpdate(t, dt)
-    }
-
-    isMelee() {
-        return false;
-    }
-
-    havePuncture() {
-        return false;
-    }
-
-    haveSlash() {
-        return false;
+        super.preUpdate(t, dt);
     }
 
     attack(target) {
-        //super.attackAction();
         if (this.x != 0 && this.y != 0)
             for (let i = 0; i < 10; i++) {
                 new Knife(this.scene, this.x + (-5 + i * 2), this.y + (-5 + i * 2), target, true, this.damage);

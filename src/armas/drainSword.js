@@ -1,9 +1,6 @@
 import Phaser from "phaser";
 
-import arma from "./arma";
-import PlayerHitBox from "../playerHitbox";
 import meleeWeapon from "./meleeWeapon";
-
 
 export default class DrainSword extends meleeWeapon {
  /**
@@ -12,9 +9,8 @@ export default class DrainSword extends meleeWeapon {
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      */
-    constructor(scene, x, y, damage) {
+    constructor(scene, x, y) {
         super(scene, x, y, 'drainsword');
-        this.setOrigin(0, 0.5);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.delay = 500;
@@ -26,7 +22,7 @@ export default class DrainSword extends meleeWeapon {
     }
 
     preUpdate(t, dt) {
-        super.preUpdate(t, dt)
+        super.preUpdate(t, dt);
     }
 
     haveSlash() {

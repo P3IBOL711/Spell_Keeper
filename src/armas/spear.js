@@ -13,83 +13,29 @@ export default class Spear extends arma {
      */
     constructor(scene, x, y) {
         super(scene, x, y, 'spear');
-        this.setOrigin(0, 0.5);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.delay = 250;
-        this.hasAttacked = false;
         this.damage = DAMAGE;
-        this.timeOnField = 0;
-        this.x = x;
-        this.y = y;
-        this.id = 'spear'
 
+        this.id = 'spear';
         this.setActive(true);
         this.setVisible(true);
     }
 
     preUpdate(t, dt) {
-        super.preUpdate(t, dt)
-        if(this.hasAttacked) {
-            this.timeOnField += dt;
-            if(this.timeOnField >= 150) {
-                this.hasAttacked = false;
-                this.timeOnField = 0;
-                this.attackFinished();
-            }
-        }
-    }
-
-    isMelee() {
-        return true;
+        super.preUpdate(t, dt);
     }
 
     havePuncture() {
         return true;
     }
 
-    haveSlash() {
-        return false;
-    }
-
     attack(target) {
-       // super.attackAction(true);
-        this.hasAttacked = true;
-
-        // Obtener la rotación actual del arma
-        let angle = Phaser.Math.DegToRad(this.angle);
-
-        // Calcular las dimensiones de la hitbox en función del tamaño del arma
-        let hitboxWidth
-        let hitboxHeight
-        if (Math.abs(Math.cos(angle)) > 0.6) {
-            // El arma mira hacia la derecha o hacia la izquierda
-            hitboxWidth = this.width * 2;
-            hitboxHeight = this.height * 2;
-        } else {
-            // El arma mira hacia arriba o hacia abajo
-            hitboxWidth = this.height * 2;
-            hitboxHeight = this.width * 2;
-        }
-
-
-        // Calcular las coordenadas de la hitbox relativas al arma
-        let hitboxOffsetX = this.width * 0.4 * Math.cos(angle); // Ajusta el factor según lo deseado
-        let hitboxOffsetY = this.height * 0.4 * Math.sin(angle); // Ajusta el factor según lo deseado
-
-        // Calcular las coordenadas absolutas de la hitbox en el mundo
-        let hitboxX = this.x + hitboxOffsetX;
-        let hitboxY = this.y + hitboxOffsetY;
-
-        this.attackHitbox = new PlayerHitBox(this.scene, hitboxX, hitboxY, hitboxWidth, hitboxHeight, this.damage, this.angle,this.id);
-    }
-
-    attackFinished() {
-        if(this.attackHitbox)
-            this.attackHitbox.destroy();
+       super.attack(target);
     }
 
     manaRegen() {
-        return 20;
+        return 30;
     }
 }

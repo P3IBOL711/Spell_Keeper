@@ -17,11 +17,10 @@ export default class PoisonStaff extends arma {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.delay = 300;
-        this.setOrigin(0, 0.5);
         this.x = x;
         this.y = y;
 
-
+        this.id = 'poisonStaff';
         this.setActive(true);
         this.setVisible(true);
 
@@ -32,24 +31,7 @@ export default class PoisonStaff extends arma {
         super.preUpdate(t, dt)
     }
 
-    isUltimateWeapon() {
-        return false;
-    }
-
-    isMelee() {
-        return false;
-    }
-
-    havePuncture() {
-        return false;
-    }
-
-    haveSlash() {
-        return false;
-    }
-
     attack(target) {
-        //super.attackAction();
         if(this.x != 0 && this.y != 0)
             new Bullet(this.scene, this.x, this.y, target, true, this.damage);
     }

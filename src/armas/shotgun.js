@@ -18,7 +18,6 @@ export default class Shotgun extends arma {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.delay = 5;
-        this.id = 'Shotgun'
         this.delay = 250;
         this.x = x;
         this.y = y;
@@ -37,32 +36,19 @@ export default class Shotgun extends arma {
             repeat: 0
         });
 
+        this.id = 'Shotgun';
         this.setActive(true);
         this.setVisible(true);
 
         this.damage = DAMAGE;
-        this.anims.play('normal')
-        //Intorducir logica de los sprites
+        this.anims.play('normal');
     }
 
     preUpdate(t, dt) {
-        super.preUpdate(t, dt)
-    }
-
-    isMelee() {
-        return false;
-    }
-
-    havePuncture() {
-        return false;
-    }
-
-    haveSlash() {
-        return false;
+        super.preUpdate(t, dt);
     }
 
     attack( target) {
-        //super.attackAction();
         if (this.x != 0 && this.y != 0) {
             this.anims.play('shooting')
             let bulletsToFire = 15; // Number of bullets to fire

@@ -7,7 +7,6 @@ export default class meleeWeapon extends arma {
     constructor(scene, x, y, name) {
         super(scene, x, y, name);
         this.wName = name;
-        this.setOrigin(0, 0.5);
         this.hasAttacked = false;
         this.timeOnField = 0;
         this.angleOfRotation = 60;
@@ -28,6 +27,9 @@ export default class meleeWeapon extends arma {
     }
 
     isMelee() {
+        return true;
+    }
+    forwardSlash() {
         return true;
     }
 

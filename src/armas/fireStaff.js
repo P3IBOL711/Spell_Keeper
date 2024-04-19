@@ -18,11 +18,11 @@ export default class FireStaff extends arma {
         super(scene, x, y, 'fireStaff')
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.id = 'FireStaff'
         this.delay = 250;
         this.x = x;
         this.y = y;
        
+        this.id = 'fireStaff';
         this.setActive(true);
         this.setVisible(true);
 
@@ -30,23 +30,10 @@ export default class FireStaff extends arma {
     }
 
     preUpdate(t, dt) {
-        super.preUpdate(t, dt)
-    }
-
-    isMelee() {
-        return false;
-    }
-
-    havePuncture() {
-        return false;
-    }
-
-    haveSlash() {
-        return false;
+        super.preUpdate(t, dt);
     }
 
     attack(target) {
-       // super.attackAction();
         if(this.x != 0 && this.y != 0)
             new Fireball(this.scene, this.x, this.y, target, true, this.damage);
     }

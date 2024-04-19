@@ -16,12 +16,11 @@ export default class IceStaff extends arma {
         super(scene, x, y, 'iceStaff')
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.delay = 5;
-        this.id = 'iceStaff'
         this.delay = 250;
         this.x = x;
         this.y = y;
-       
+
+        this.id = 'iceStaff';
         this.setActive(true);
         this.setVisible(true);
 
@@ -29,19 +28,7 @@ export default class IceStaff extends arma {
     }
 
     preUpdate(t, dt) {
-        super.preUpdate(t, dt)
-    }
-
-    isMelee() {
-        return false;
-    }
-
-    havePuncture() {
-        return false;
-    }
-
-    haveSlash() {
-        return false;
+        super.preUpdate(t, dt);
     }
 
     attack(target) {

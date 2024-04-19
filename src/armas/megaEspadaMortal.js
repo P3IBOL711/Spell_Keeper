@@ -17,7 +17,7 @@ export default class BigSword extends meleeWeapon {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.angleOfRotation = 120;
-        this.delay = 750;
+        this.delay = 1000;
         this.damage = DAMAGE;
 
         this.id = 'espadaCheta';
