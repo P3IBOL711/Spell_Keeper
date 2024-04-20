@@ -22,6 +22,9 @@ import Dungeongen from '../dungeongen'
 import font from 'url:../../assets/fonts/VT323Regular.ttf'
 import SecretTrigger from '../secretTrigger.js'
 import Button from '../button.js'
+import Jukebox from '../jukebox.js'
+
+
 
 
 export default class Room extends Phaser.Scene {
@@ -41,6 +44,7 @@ export default class Room extends Phaser.Scene {
         this.cSpawn = { x: 0, y: 0 };
         // this.level = obj.level
         this.dungeonGenerator = new Dungeongen();
+        this.jukebox = new Jukebox(this);
 
     }
 
@@ -78,11 +82,14 @@ export default class Room extends Phaser.Scene {
             };
         } else {
             this.globalPlayerStats = obj.playerStat;
+
         }
     }
 
 
     preload() {
+
+        this.jukebox.preload();
 
         if (this.textures.exists('Base'))
             this.textures.remove('Base')
@@ -104,6 +111,7 @@ export default class Room extends Phaser.Scene {
         }
         this.load.image('Invernadero', arb)
         this.load.image('fire', f)
+
     }
 
 
@@ -146,14 +154,19 @@ export default class Room extends Phaser.Scene {
         this.unloadScene(this.key)
         this.loadingBar()
 
-       
+        this.jukebox.playIntro(level)
         this.scene.start(`${level}E1`, { dg: this.dungeonGenerator.init(), X: this.dungeonGenerator.getEntranceX(), Y: this.dungeonGenerator.getEntranceY(), dir: 'c', SSM: this.dungeonGenerator.generateSaveStateMatrix(this.dungeonGenerator.getN(), this.dungeonGenerator.getM()), playerStat: this.globalPlayerStats })
-       
+
     }
 
 
 
     create() {
+
+        //Audio
+
+        this.jukebox.create()
+
 
         if (this.dungeon[this.y][this.x].visited === false)
             this.dungeon[this.y][this.x].visited = true
@@ -304,11 +317,11 @@ export default class Room extends Phaser.Scene {
             } else if (objeto.type === 'Chest') {
                 new Chest(this, objeto.x + objeto.width / 2, objeto.y - objeto.height / 2, objeto.width, objeto.height - 8, this.player, this.chestOpened)
             } else if (objeto.type === 'SpecialTrigger') {
-                new LevelTrigger(this, objeto.x + objeto.width / 2, objeto.y + 16, objeto.width, objeto.height, this.player, this.level, this.loadLevel,objeto.properties[0].value)
+                new LevelTrigger(this, objeto.x + objeto.width / 2, objeto.y + 16, objeto.width, objeto.height, this.player, this.level, this.loadLevel, objeto.properties[0].value)
             } else if (objeto.type === 'SecretTrigger') {
                 this.secretTrigger = new SecretTrigger(this, objeto.x + objeto.width / 2, objeto.y + 16, objeto.width, objeto.height, this.player, this.level, this.x, this.y, this.loadInvernadero, 'c', this.dungeon)
-            } else if (objeto.type === 'Button'){
-                new Button(this,objeto.x+19,objeto.y+8,objeto.width,objeto.height,this.player,this.cont,this.secretTrigger)
+            } else if (objeto.type === 'Button') {
+                new Button(this, objeto.x + 19, objeto.y + 8, objeto.width, objeto.height, this.player, this.cont, this.secretTrigger)
                 this.cont++
             }
         }

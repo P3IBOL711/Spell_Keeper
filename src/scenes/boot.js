@@ -44,6 +44,14 @@ import TitleDecoration from  '../../assets/mainTitle.png'
 import fullScreenButton from '../../assets/main_menu/full_screen_icon.png'
 import normalScreenButton from '../../assets/main_menu/normal_screen_icon.png'
 
+//Music
+import libLoop from 'url:../../assets/sound/music/libloop.wav'
+import libIntro from 'url:../../assets/sound/music/libintro.wav'
+
+//Sfx
+import playerhit from 'url:../../assets/sound/effects/playerhit.wav'
+
+
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
  * Esta escena se puede mejorar añadiendo una imagen del juego y una 
@@ -107,6 +115,14 @@ export default class Boot extends Phaser.Scene {
     this.load.image('manaBar', manaBar);
     this.load.image('mainMana', mainMana);
     this.load.image('finalMana', finalMana);
+
+
+    this.load.audio('libloop', libLoop)
+    this.load.audio('libintro', libIntro)
+
+    this.load.audio('playerhit',playerhit)
+
+   
 
     // Background
     let background = this.add.graphics();

@@ -80,8 +80,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.shieldCooldown = 0;
         this.shieldUptime = 0;
 
-
-
+        //SONIDO
+        this.initAudio()
 
         /**ANIMACIONES**/
         this.playerDead = false
@@ -378,6 +378,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
             hudEvents.emit('updateHealth', this.actualLife);
 
+            this.playerHitSfx.play()
+
             if (this.actualLife <= 0) {
                 //Animacion de muerte
                 this.playerDead = true
@@ -545,6 +547,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.movSpeed *= moveMultiplier;
         else
             this.movSpeed = this.movSpeedSuperiorCap;
+    }
+
+    initAudio(){
+        this.playerHitSfx = this.scene.sound.add('playerhit')
     }
 
     /*A la suerte*/

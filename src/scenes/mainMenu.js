@@ -20,7 +20,8 @@ export default class MainMenu extends Phaser.Scene{
         this.load.image('title_bg',bg);
         this.load.image('main_title',mt);
         this.load.image('play',play);
-        this.load.image('play_sel',playSel);
+        this.load.image('play_sel',playSel);    
+
 
         // Archivo .ttf descargable desde
         // https://www.dafont.com/es/happy-donuts.font
@@ -40,6 +41,7 @@ export default class MainMenu extends Phaser.Scene{
         let dungeonGenerator = new Dungeongen();
        
         this.controlsButton = this.add.text(180, 230, '> CONTROLS', { fontFamily: 'pixelFont', fontSize: 60, color: '#000000' , fontStyle: 'bold'});
+
         /*let nuevoTexto = 
         this.add.text(390, 70, 
             'Spell Keeper', 
@@ -125,7 +127,7 @@ export default class MainMenu extends Phaser.Scene{
         })
 
         // Para quitar tambien pantalla completa con la tecla esc
-        this.esc = this.scene.input.keyboard.addKey('ESC');
+       /* this.esc = this.scene.input.keyboard.addKey('ESC');
 
         this.esc.on('up', () => {
             if (this.scale.isFullscreen) {
@@ -133,7 +135,7 @@ export default class MainMenu extends Phaser.Scene{
                 fullscreen.setVisible(true);
                 normalscreen.setVisible(false);
             }
-        });
+        });*/
     }
 
 }

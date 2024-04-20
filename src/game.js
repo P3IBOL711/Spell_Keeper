@@ -72,6 +72,10 @@ let config = {
         arcade: {
             debug: true
         }
+    },
+    audio: {
+        disableWebAudio: false, // Enable this if you want to use HTML5 Audio instead of Web Audio
+        noAudio: false // Set to true if you want to disable audio entirely
     }
 };
 
