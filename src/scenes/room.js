@@ -63,7 +63,7 @@ export default class Room extends Phaser.Scene {
         this.cache.tilemap.remove('tilemap');
         this.saveStateMatrix = obj.SSM
         this.fireArray = [] //El array que guarda los fuegos en el nivel para destruirlos una vez matados a todos los bichos
-
+        this.cameras.main.fadeIn(120, 0, 0, 0)
         if (obj.playerStat === null) {
 
             this.globalPlayerStats = {
@@ -132,11 +132,14 @@ export default class Room extends Phaser.Scene {
             direction = 'e'
         }
         // console.log(level + dungeon[y][x].name)
+
+
         this.map.removeAllLayers()
         this.map.destroy()
 
-        this.unloadScene(this.key)
         this.scene.start(level + dungeon[y][x].name, { X: x, Y: y, dg: dungeon, dir: direction, SSM: this.saveStateMatrix, playerStat: this.globalPlayerStats });
+        this.unloadScene(this.key)
+
     }
 
     loadInvernadero(x, y, dungeon) {
