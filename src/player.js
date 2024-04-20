@@ -196,21 +196,31 @@ export default class Player extends Phaser.GameObjects.Sprite {
         })
 
         //Cursor de ataque y eventos del cursor (faltan los hover para cambiar la textura del raton)
+        this.lastClick = '';
+        this.changedWeapon = true;
         this.scene.input.mouse.disableContextMenu();
         this.scene.input.on('pointerup', pointer => {
             if (pointer.rightButtonReleased()) {
                 this.meleeMode = false;
                 this.updatedWeapon(this.rangedIndex);
-                if (this.canAttack) {
-                    this.playerAttacks();
+                if(this.lastClick !== 'left'){
+                    if (this.canAttack) {
+                        this.playerAttacks();
+                    }
                 }
+
+                this.lastClick = 'right';
             }
             else if (pointer.leftButtonReleased()) {
                 this.meleeMode = true;
                 this.updatedWeapon(this.meleeIndex);
-                if (this.canAttack) {
-                    this.playerAttacks();
+                if(this.lastClick !== 'right') {
+                    if (this.canAttack) {
+                        this.playerAttacks();
+                    }
                 }
+
+                this.lastClick = 'left';
             }
         });
 
