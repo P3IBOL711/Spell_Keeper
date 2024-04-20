@@ -82,6 +82,7 @@ import normalScreenButton from '../../assets/main_menu/normal_screen_icon.png'
 //Music
 import libLoop from 'url:../../assets/sound/music/libloop.wav'
 import libIntro from 'url:../../assets/sound/music/libintro.wav'
+import tutloop from 'url:../../assets/sound/music/tutloop.wav'
 
 //Sfx
 import playerhit from 'url:../../assets/sound/effects/playerhit.wav'
@@ -177,8 +178,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('manaBar', manaBar);
     this.load.image('mainMana', mainMana);
     this.load.image('finalMana', finalMana);
-    this.load.spritesheet('key', Uikey, { frameWidth: 32, frameHeight: 32 });
 
+    this.load.audio('tutloop',tutloop)
     this.load.audio('libloop', libLoop)
     this.load.audio('libintro', libIntro)
 
