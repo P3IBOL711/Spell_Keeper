@@ -2,9 +2,10 @@ import Phaser from "phaser";
 
 import arma from "./arma";
 import PlayerHitBox from "../playerHitbox";
+import meleeWeapon from "./meleeWeapon";
 
-const DAMAGE = 3;
-export default class PoisonDagger extends arma {
+const DAMAGE = 4;
+export default class PoisonDagger extends meleeWeapon {
  /**
      * Constructor del jugador
      * @param {Phaser.Scene} scene Escena a la que pertenece el jugador

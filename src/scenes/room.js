@@ -70,7 +70,7 @@ export default class Room extends Phaser.Scene {
                 weaponMult: 1,       // Multiplier for weapon damage
                 moveSpeed: 0,        // Player movement speed
                 lck: 0,              // Player luck stat
-                MeleeWeaponArray: [new magicSword(this, 0, 0, 1)], // Array to store melee weapons
+                MeleeWeaponArray: [new PoisonDagger(this, 0, 0, 1)], // Array to store melee weapons
                 RangedWeaponArray: [new Thompson(this, 0, 0, 1)],// Array to store ranged weapons
                 ActMelIndex: 0,      // Index of the currently active melee weapon
                 ActRangIndex: 0,     // Index of the currently active ranged weapon
