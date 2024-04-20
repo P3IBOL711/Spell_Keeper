@@ -157,6 +157,8 @@ export default class Room extends Phaser.Scene {
         this.unloadScene(this.key)
         this.loadingBar()
 
+        
+
         this.jukebox.playIntro(level)
         this.scene.start(`${level}E1`, { dg: this.dungeonGenerator.init(), X: this.dungeonGenerator.getEntranceX(), Y: this.dungeonGenerator.getEntranceY(), dir: 'c', SSM: this.dungeonGenerator.generateSaveStateMatrix(this.dungeonGenerator.getN(), this.dungeonGenerator.getM()), playerStat: this.globalPlayerStats })
 
