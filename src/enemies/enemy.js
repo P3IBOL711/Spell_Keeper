@@ -19,6 +19,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         this.scene.physics.add.existing(this);
         this.scene.enemies.add(this)
         this.scene.enviromental.add(this)
+        this.scene = scene
         // Queremos que el enemigo no se salga de los límites del mundo
         this.body.setCollideWorldBounds();
         // Velocidad 0 por defecto
@@ -27,7 +28,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         this.damage = 1;
         // Vida
         this.life = 1;
-        
+
         this.target = target;
 
         // is enemy attacking?
@@ -36,13 +37,14 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         this.setDepth(7);
 
         this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
-            if (this.anims.getName() === 'die'){
+            if (this.anims.getName() === 'die') {
                 this.doSomethingVerySpecificBecauseYoureMyBelovedChild()
                 this.scene.enemies.remove(this);
-                let loot = new lootGenerator(this.scene,this.x,this.y,this.scene.player.luck)
+                this.scene.enemyHasDied();
+                let loot = new lootGenerator(this.scene, this.x, this.y, this.scene.player.luck)
                 let rnd = Math.random();
-                if(rnd >= 0.15 -(this.scene.player.luck/20) )
-                loot.generateLoot();
+                if (rnd >= 0.15 - (this.scene.player.luck / 20))
+                    loot.generateLoot();
                 this.destroy();
             }
         });
@@ -51,77 +53,47 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
     doSomethingVerySpecificBecauseYoureMyBelovedChild() {
     }
 
-    receiveDamageOverTime(damage) {
-        this.scene.tweens.add ({
+    receiveDamageOverTime(damage, durationInSeconds) {
+        const totalTicks = durationInSeconds * 60; // Assuming 60 ticks per second
+    
+        // Calculate the damage per tick
+        const damagePerTick = damage / totalTicks;
+    
+        // Create a tween for the poison effect
+        this.tween = this.scene.tweens.add({
             targets: this,
-            life: this.life - damage,
-            alpha: 0,
-            ease: Phaser.Math.Easing.Elastic.InOut,
-            duration: 500, 
-            repeat: 5,
-            onStart: () => {
-                this.setTint(0xfff000);
-            },
-            onComplete: () => {
-                this.clearTint();
-                this.setAlpha(1);
+            repeat: totalTicks - 1, // Repeat for 'totalTicks' times
+            alpha: 0.5, // Example: Lower alpha to visualize poison effect
+            ease: 'Linear',
+            duration: 1000, // Duration of each tick (in milliseconds)
+            onUpdate: () => {
+                // Apply damage to the target
+                this.receiveDamage(damagePerTick,'poison')
+              //  console.log("Poisoned! Damage taken: " + damagePerTick + ". Remaining health: " + this.life);
+    
+                // Check if target is dead
+                if (this.life <= 0 ) {
 
-                if (this.life <= 0){
-                    this.body.setVelocity(0);
-                    this.body.enable = false;
-                    this.scene.enemyHasDied();
-                    this.stop();
-                    this.play('die', true);
+                    this.tween.stop()
                 }
             }
         });
     }
-
-    applyPoisonEffect(duration, damagePerTick) {
-        const totalTicks = duration / 1000 * 60; // Assuming 60 ticks per second
-        let ticksRemaining = totalTicks;
-    
-        const poisonTween = this.scene.tweens.add({
-            targets: this,
-            alpha: 0.5, // Reduce entity's opacity to indicate poison effect
-            ease: Phaser.Math.Easing.Linear,
-            duration: 500,
-            repeat: -1, // Repeat indefinitely until duration ends
-            yoyo: true, // Reverse the tween to create a flickering effect
-            onRepeat: () => {
-                // Reduce entity's life with each tick
-                this.receiveDamage(damagePerTick);
-                
-                ticksRemaining--;
-    
-                if (ticksRemaining <= 0 && this.life > 0) {
-                    // End the poison effect
-                    poisonTween.stop();
-                    this.clearPoisonEffect();
-                }
-            }
-        });
-    }
-    
-    clearPoisonEffect() {
-        // Reset the entity's appearance and stop the poison tween
-        this.setAlpha(1); // Reset alpha to fully visible
-        this.scene.tweens.killTweensOf(this); // Stop all tweens targeting this entity
-    }
+ 
     
 
-
-    receiveDamage(damage){
+    receiveDamage(damage,effect) {
         this.life -= damage;
 
         this.scene.tweens.add({
             targets: this,
             alpha: 0,
             ease: Phaser.Math.Easing.Elastic.InOut,
-            duration: 40, 
+            duration: 40,
             repeat: 0,
             yoyo: true,
             onStart: () => {
+                if(effect !== 'poison')
                 this.setTint(0xff0000);
             },
             onComplete: () => {
@@ -130,10 +102,9 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
             }
         })
 
-        if (this.life <= 0){
+        if (this.life <= 0) {
             this.body.setVelocity(0);
             this.body.enable = false;
-            this.scene.enemyHasDied();
             this.stop();
             this.play('die', true);
         }
@@ -148,16 +119,16 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         // IMPORTANTE: Si no ponemos esta instrucción y el sprite está animado
         // no se podrá ejecutar la animación del sprite. 
         super.preUpdate(t, dt);
-        if (this.life > 0){
+        if (this.life > 0) {
             this.flipEnemy()
         }
     }
 
-    flipEnemy(){
+    flipEnemy() {
         this.setFlipX(this.body.velocity.x < 0 || this.target.x < this.x);
     }
 
-    isProjectile(){
+    isProjectile() {
         return false;
     }
 }
