@@ -1,11 +1,11 @@
 import Phaser from "phaser";
 
-//import arma from "./arma";
-//import PlayerHitBox from "../playerHitbox";
-import meleeWeapon from "./meleeWeapon";
+import Bullet from "../projectiles/bullet";
+import arma from "./arma";
+    
+const DAMAGE = 1;
 
-
-export default class basicMelee extends meleeWeapon {
+export default class PoisonStaff extends arma {
  /**
      * Constructor del jugador
      * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
@@ -13,30 +13,30 @@ export default class basicMelee extends meleeWeapon {
      * @param {number} y Coordenada Y
      */
     constructor(scene, x, y) {
-        super(scene, x, y, 'dagger');
+        super(scene, x, y, 'poisonStaff')
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.delay = 250;
-        this.damage = 1;
+        this.delay = 300;
+        this.x = x;
+        this.y = y;
 
-        this.id = 'dagger';
+        this.id = 'poisonStaff';
         this.setActive(true);
         this.setVisible(true);
+
+        this.damage =  DAMAGE ;
     }
 
     preUpdate(t, dt) {
         super.preUpdate(t, dt)
     }
 
-    havePuncture() {
-        return true;
-    }
-
     attack(target) {
-        super.attack(target);
+        if(this.x != 0 && this.y != 0)
+            new Bullet(this.scene, this.x, this.y, target, true, this.damage);
     }
 
-    manaRegen() {
-        return 20;
+    manaCost() {
+        return 10;
     }
 }

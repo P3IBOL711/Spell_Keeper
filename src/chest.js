@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import CollisionHitbox from './collisionHitbox';
-import FireStaff  from './armas/fireStaff';
+import lootGenerator from './lootGenerator';
 
 
 /**
@@ -34,9 +34,10 @@ export default class Chest extends Phaser.GameObjects.Sprite {
         this.isOverlapping = false;
 
         this.open = opened;
+        this.availableLoot = ['iceStaff', 'fireStaff', 'espadaCheta'];
 
-        this.setDepth(7)
-        this.scene = scene
+        this.setDepth(7);
+        this.scene = scene;
 
         this.anims.create({
             key: 'idle_chest',
@@ -88,8 +89,9 @@ export default class Chest extends Phaser.GameObjects.Sprite {
         }
 
         if (this.isOverlapping && !this.open) {
-            if (this.jug.getIsFPressed()) {
+            if (this.jug.getIsFPressed()&& this.jug.getNumberOfKeys() > 0) {
                 this.open = true;
+                this.jug.decreaseKey()
                 this.scene.chestWasOpened();
                 this.anims.play('open_chest');
                 this.generateLoot()
@@ -97,10 +99,9 @@ export default class Chest extends Phaser.GameObjects.Sprite {
         }
     }
 
-    generateLoot(){
-
-        new FireStaff(this.scene,this.x,this.y+50,10,false)
-
+    generateLoot() {
+        let generate = new lootGenerator(this.scene, this.x, this.y + 50, this.scene.player.luck);
+        generate.generateWeapon();
     }
 
 

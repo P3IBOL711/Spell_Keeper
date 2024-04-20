@@ -4,7 +4,7 @@ import Skeleton from "./enemies/archerSkeleton"
 
 export default class EnemySpawner {
 
-    constructor(scene,x,y,target){
+    constructor(scene,x,y,target) {
         this.enemyPool = [PoisonousGoblin,Knight,Skeleton]
         this.scene = scene
         this.x = x

@@ -6,7 +6,6 @@ import manaDisplay from "../HUD/manaDisplay";
 import keysDisplay from "../HUD/keysDisplay";
 import activeDisplay from "../HUD/activeDisplay";
 import weaponDisplay from "../HUD/weaponDisplay";
-import Uikey from "../../assets/HUD/key_32x32_24f.png"
 
 import { eventManager as hudEvents } from "../eventCenter";
 
@@ -19,13 +18,15 @@ export default class GUI extends Phaser.Scene {
 
     preload() {
         this.load.tilemapTiledJSON('hud', Hud);
-        this.load.spritesheet('key', Uikey, { frameWidth: 32, frameHeight: 32 });
     }
-    init(obj){
+
+    init(obj) {
         this.life = obj.life;
-        this.maxLife = obj.maxLife
-        this.mana = obj.mana
-        this.maxMana = obj.maxMana
+        this.maxLife = obj.maxLife;
+        this.mana = obj.mana;
+        this.maxMana = obj.maxMana;
+        this.weaponEquiped = obj.equipedWeapon;
+        this.keys = obj.keys
     }
 
     create() {
@@ -48,7 +49,7 @@ export default class GUI extends Phaser.Scene {
                     break;
                 case 'Keys':
                     //Valor inicial de las llaves: 0
-                    this.playerKeysInfo = new keysDisplay(this, obj.x + 70, obj.y, 'key', 0);
+                    this.playerKeysInfo = new keysDisplay(this, obj.x + 70, obj.y, 'key', this.keys);
                     break;
                 case 'Active':
                     //No tienes activo al principio
@@ -56,7 +57,7 @@ export default class GUI extends Phaser.Scene {
                     break;
                 case 'ArmaEquipada':
                     //Arma inicial: basicMelee
-                    this.displayEquipedWeapon = new weaponDisplay(this, obj.x, obj.y, 'dagger');
+                    this.displayEquipedWeapon = new weaponDisplay(this, obj.x, obj.y, this.weaponEquiped.id);
                     break;
                 default:
                     console.warn('Tipo de objeto no reconocido:', obj.name);
@@ -81,7 +82,7 @@ export default class GUI extends Phaser.Scene {
         });
 
         hudEvents.on('updateKeys', (keys) => {
-            this.playerKeysInfo.setKeys(keys);
+            this.playerKeysInfo.updateKeys(keys);
         });
 
         /**

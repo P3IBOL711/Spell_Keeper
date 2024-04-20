@@ -8,7 +8,7 @@ import grw from '../../assets/gardens/tiles/Objects.png'
 import f from '../../assets/misc/fire.png'
 
 import Player from '../player.js'
-import basicRanged from '../armas/basicRanged.js';
+import basicRanged from '../armas/poisonStaff.js';
 import basicMelee from '../armas/basicMelee.js';
 import FireStaff from '../armas/fireStaff.js';
 import Trigger from '../trigger.js';
@@ -74,11 +74,12 @@ export default class Room extends Phaser.Scene {
                 weaponMult: 1,       // Multiplier for weapon damage
                 moveSpeed: 0,        // Player movement speed
                 lck: 0,              // Player luck stat
-                MeleeWeaponArray: [new basicMelee(this, 0, 0, 1, true)], // Array to store melee weapons
-                RangedWeaponArray: [new basicRanged(this, 0, 0, 1, true)],// Array to store ranged weapons
+                MeleeWeaponArray: [new PoisonDagger(this, 0, 0, 1)], // Array to store melee weapons
+                RangedWeaponArray: [new Thompson(this, 0, 0, 1)],// Array to store ranged weapons
                 ActMelIndex: 0,      // Index of the currently active melee weapon
                 ActRangIndex: 0,     // Index of the currently active ranged weapon
-                lastWeaponUsed: null // Last weapon used (can be set to the name or ID of the weapon)
+                lastWeaponUsed: null, // Last weapon used (can be set to the name or ID of the weapon)
+                keys: 1
             };
         } else {
             this.globalPlayerStats = obj.playerStat;
@@ -136,6 +137,8 @@ export default class Room extends Phaser.Scene {
         this.map.destroy()
 
         this.unloadScene(this.key)
+        if(this.haveGUI)
+            this.scene.remove('gui');
         this.scene.start(level + dungeon[y][x].name, { X: x, Y: y, dg: dungeon, dir: direction, SSM: this.saveStateMatrix, playerStat: this.globalPlayerStats });
     }
 
@@ -247,7 +250,7 @@ export default class Room extends Phaser.Scene {
         this.globalPlayerStats.RangedWeaponArray = newRangedArray;
 
 
-        this.player = new Player(this, playerX, playerY, this.globalPlayerStats.life, this.globalPlayerStats.maximumLife, this.globalPlayerStats.mana, this.globalPlayerStats.maximumMana, this.globalPlayerStats.weaponMult, this.globalPlayerStats.moveSpeed, this.globalPlayerStats.lck, this.globalPlayerStats.MeleeWeaponArray, this.globalPlayerStats.RangedWeaponArray, this.globalPlayerStats.ActMelIndex, this.globalPlayerStats.ActRangIndex, this.globalPlayerStats.lastWeaponUsed);
+        this.player = new Player(this, playerX, playerY, this.globalPlayerStats.life, this.globalPlayerStats.maximumLife, this.globalPlayerStats.mana, this.globalPlayerStats.maximumMana, this.globalPlayerStats.weaponMult, this.globalPlayerStats.moveSpeed, this.globalPlayerStats.lck, this.globalPlayerStats.MeleeWeaponArray, this.globalPlayerStats.RangedWeaponArray, this.globalPlayerStats.ActMelIndex, this.globalPlayerStats.ActRangIndex, this.globalPlayerStats.lastWeaponUsed,this.globalPlayerStats.keys);
         this.physics.add.collider(this.enviromental, walls, (obj) => {
             if (obj.isProjectile())
                 obj.destroy();
@@ -260,7 +263,7 @@ export default class Room extends Phaser.Scene {
 
 
 
-        this.scene.launch('gui', { life: this.player.actualLife, maxLife: this.player.maxLife, mana: this.player.actualMana, maxMana: this.player.maxMana });
+        let haveGUI = this.scene.launch('gui', {life: this.player.actualLife, maxLife: this.player.maxLife, mana: this.player.actualMana, maxMana:  this.player.maxMana,keys: this.player.key, equipedWeapon: this.player.equipedWeapon});
 
         this.enemies = this.add.group()
 
@@ -409,6 +412,7 @@ export default class Room extends Phaser.Scene {
         this.globalPlayerStats.ActMelIndex = this.player.meleeIndex
         this.globalPlayerStats.ActRangIndex = this.player.rangedIndex
         this.globalPlayerStats.lastWeaponUsed = this.player.equipedWeapon
+        this.globalPlayerStats.keys = this.player.key
     }
 
     loadingBar() {

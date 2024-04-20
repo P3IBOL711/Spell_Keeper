@@ -1,11 +1,10 @@
 import Phaser from "phaser";
 
-//import arma from "./arma";
-//import PlayerHitBox from "../playerHitbox";
-import meleeWeapon from "./meleeWeapon";
+import arma from "./arma";
+import PlayerHitBox from "../playerHitbox";
 
-
-export default class basicMelee extends meleeWeapon {
+const DAMAGE = 3;
+export default class Spear extends arma {
  /**
      * Constructor del jugador
      * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
@@ -13,19 +12,19 @@ export default class basicMelee extends meleeWeapon {
      * @param {number} y Coordenada Y
      */
     constructor(scene, x, y) {
-        super(scene, x, y, 'dagger');
+        super(scene, x, y, 'spear');
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.delay = 250;
-        this.damage = 1;
+        this.damage = DAMAGE;
 
-        this.id = 'dagger';
+        this.id = 'spear';
         this.setActive(true);
         this.setVisible(true);
     }
 
     preUpdate(t, dt) {
-        super.preUpdate(t, dt)
+        super.preUpdate(t, dt);
     }
 
     havePuncture() {
@@ -33,10 +32,10 @@ export default class basicMelee extends meleeWeapon {
     }
 
     attack(target) {
-        super.attack(target);
+       super.attack(target);
     }
 
     manaRegen() {
-        return 20;
+        return 30;
     }
 }
