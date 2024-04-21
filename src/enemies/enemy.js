@@ -43,7 +43,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
                 this.scene.enemyHasDied();
                 let loot = new lootGenerator(this.scene, this.x, this.y, this.scene.player.luck)
                 let rnd = Math.random();
-                if (rnd >= 0.15 - (this.scene.player.luck / 20))
+                if (rnd >= 0.85 - (this.scene.player.luck / 20))
                     loot.generateLoot();
                 this.destroy();
             }

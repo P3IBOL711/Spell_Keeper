@@ -32,19 +32,19 @@ export default class fireball extends Projectile {
         this.rotation = Phaser.Math.Angle.Between(x, y, target.x, target.y);
 
         if (this.angle >= 45 && this.angle <= 135) {
-            this.body.setSize(this.width * 0.5, this.height * 0.5, true);
+            this.body.setSize(this.width * 0.35, this.height * 0.35, true);
             this.body.setOffset(this.width * 0.1, this.height * 0.1)
         }
         else if(this.angle >= -135 && this.angle <= -45){
-            this.body.setSize(this.width * 0.5, this.height * 0.5, true);
+            this.body.setSize(this.width * 0.35, this.height * 0.35, true);
             this.body.setOffset(this.width * 0.3, this.height * 0.6)
         }
         else if (this.angle > 135 || this.angle < -135) {
-            this.body.setSize(this.width * 0.5, this.height * 0.5, true);
+            this.body.setSize(this.width * 0.35, this.height * 0.35, true);
             this.body.setOffset(this.width * 0.1, this.height * 0.1)
         }
         else if (this.angle < 45 && this.angle > -45) {
-            this.body.setSize(this.width * 0.5, this.height * 0.5, true);
+            this.body.setSize(this.width * 0.35, this.height * 0.35, true);
             this.body.setOffset(this.width * 0.4, this.height * 0.1)
         }
 

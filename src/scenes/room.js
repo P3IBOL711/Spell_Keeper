@@ -43,13 +43,13 @@ export default class Room extends Phaser.Scene {
         this.cSpawn = { x: 0, y: 0 };
         // this.level = obj.level
         this.dungeonGenerator = new Dungeongen();
-        this.jukebox = new Jukebox(this);
+
 
     }
 
     init(obj) {
 
-
+        this.jukebox = obj.jukebox
         this.x = obj.X;
         this.y = obj.Y;
         this.dungeon = obj.dg;
@@ -140,7 +140,7 @@ export default class Room extends Phaser.Scene {
         this.unloadScene(this.key)
         if(this.haveGUI)
             this.scene.remove('gui');
-        this.scene.start(level + dungeon[y][x].name, { X: x, Y: y, dg: dungeon, dir: direction, SSM: this.saveStateMatrix, playerStat: this.globalPlayerStats });
+        this.scene.start(level + dungeon[y][x].name, { X: x, Y: y, dg: dungeon, dir: direction, SSM: this.saveStateMatrix, playerStat: this.globalPlayerStats,jukebox: this.jukebox });
         this.unloadScene(this.key)
 
     }
@@ -150,7 +150,7 @@ export default class Room extends Phaser.Scene {
         this.map.destroy()
 
         this.unloadScene(this.key)
-        this.scene.start('grR16', { X: x, Y: y, dg: dungeon, dir: 'c', SSM: this.saveStateMatrix, playerStat: this.globalPlayerStats });
+        this.scene.start('grR16', { X: x, Y: y, dg: dungeon, dir: 'c', SSM: this.saveStateMatrix, playerStat: this.globalPlayerStats,jukebox: this.jukebox });
     }
 
     loadLevel(level) {
@@ -161,9 +161,9 @@ export default class Room extends Phaser.Scene {
         this.loadingBar()
 
         
-
+        this.jukebox.stopAllMusic()
         this.jukebox.playIntro(level)
-        this.scene.start(`${level}E1`, { dg: this.dungeonGenerator.init(), X: this.dungeonGenerator.getEntranceX(), Y: this.dungeonGenerator.getEntranceY(), dir: 'c', SSM: this.dungeonGenerator.generateSaveStateMatrix(this.dungeonGenerator.getN(), this.dungeonGenerator.getM()), playerStat: this.globalPlayerStats })
+        this.scene.start(`${level}E1`, { dg: this.dungeonGenerator.init(), X: this.dungeonGenerator.getEntranceX(), Y: this.dungeonGenerator.getEntranceY(), dir: 'c', SSM: this.dungeonGenerator.generateSaveStateMatrix(this.dungeonGenerator.getN(), this.dungeonGenerator.getM()), playerStat: this.globalPlayerStats,jukebox: this.jukebox })
 
     }
 

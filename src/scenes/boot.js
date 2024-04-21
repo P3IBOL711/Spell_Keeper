@@ -178,6 +178,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('manaBar', manaBar);
     this.load.image('mainMana', mainMana);
     this.load.image('finalMana', finalMana);
+    this.load.spritesheet('key', Uikey, { frameWidth: 32, frameHeight: 32 });
 
     this.load.audio('tutloop',tutloop)
     this.load.audio('libloop', libLoop)

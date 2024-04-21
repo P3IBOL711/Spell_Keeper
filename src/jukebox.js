@@ -52,9 +52,8 @@ export default class Jukebox {
 
     stopAllMusic() {
 
-        this.music.forEach(song => {
-            song.stop();
-        });
+        for(let song of this.music)
+            song.stop()
     }
 
 }
