@@ -5,7 +5,7 @@ import Phaser from "phaser";
 import meleeWeapon from "./meleeWeapon";
 
 
-export default class basicMelee extends meleeWeapon {
+export default class dagger extends meleeWeapon {
  /**
      * Constructor del jugador
      * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
