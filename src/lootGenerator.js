@@ -1,19 +1,20 @@
 import Phaser from "phaser";
 
-import fireStaff from './armas/fireStaff'
+import poisonStaff from './armas/poisonStaff'
 import iceStaff from './armas/iceStaff'
 import megaEspadaMortal from "./armas/megaEspadaMortal";
-
-import halfHeart from './objetos/halfHeart';
-import heart from './objetos/heart';
-import manaPotion from './objetos/manaPotion';
 import hoe from "./armas/HOE";
 import Shotgun from "./armas/shotgun";
 import Thompson from "./armas/thompson";
 import DrainSword from "./armas/drainSword";
+
+
+import halfHeart from './objetos/halfHeart';
+import heart from './objetos/heart';
+import manaPotion from './objetos/manaPotion';
 import key from "./objetos/key";
 
-let weaponsPool = [[fireStaff, iceStaff], [hoe, Shotgun, Thompson], [megaEspadaMortal, DrainSword]];
+let weaponsPool = [[poisonStaff, iceStaff], [hoe, Shotgun, Thompson], [megaEspadaMortal, DrainSword]];
 
 export default class lootGenerator {
     constructor(scene, x, y, luck) {

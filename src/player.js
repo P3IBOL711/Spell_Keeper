@@ -166,7 +166,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             key: 'dying',
             frames: this.anims.generateFrameNames('playerDying_spritesheet', { start: 0, end: 3 }),
             frameRate: 10,
-            repeat: 1
+            repeat: 0
         });
 
         //Interaccion de la animacion de muerte
@@ -255,6 +255,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
             }
         });
 
+        this.scene.input.on('pointerdown', pointer => {
+            
+        });
         
         this.scene.input.on('pointermove', () => {
             this.reticle.x = this.scene.input.activePointer.worldX;
@@ -410,7 +413,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
                     this.actualLife -= damage;
                 
                 if(this.actualLife <= 0)
-                    this.died()
+                    this.died();
 
                 hudEvents.emit('updateHealth', this.actualLife);
 
