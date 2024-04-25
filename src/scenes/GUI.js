@@ -41,19 +41,19 @@ export default class GUI extends Phaser.Scene {
             switch(obj.name) {
                 case 'LifeBar':
                     //Valor inicial de la vida maxima: 10
-                    this.playerLifeBar = new healthDisplay(this, obj.x, obj.y, this.life,this.maxLife);
+                    this.playerLifeBar = new healthDisplay(this, obj.x, obj.y, this.life, this.maxLife);
                     break;
                 case 'Manabar':
                     //Valores inciales del manaInicial y el manaMaximo: 250 y 500
                     this.playerManaBar = new manaDisplay(this, obj.x, obj.y, obj.width, obj.height, this.mana, this.maxMana);
                     break;
                 case 'Keys':
-                    //Valor inicial de las llaves: 0
+                    //Valor inicial de las llaves: 1
                     this.playerKeysInfo = new keysDisplay(this, obj.x + 70, obj.y, 'key', this.keys);
                     break;
-                case 'Active':
+                case 'Shield':
                     //No tienes activo al principio
-                    //this.playerActiveInfo = new activeDisplay();
+                    this.playerShieldInfo = new shieldDisplay(this, obj.x + 30, obj.y, 'ready_ui_shield', 'cd_ui_shield');
                     break;
                 case 'ArmaEquipada':
                     //Arma inicial: basicMelee
@@ -84,14 +84,8 @@ export default class GUI extends Phaser.Scene {
             this.playerKeysInfo.updateKeys(keys);
         });
 
-        /**
-         * hudEvents.on('changedActive', () => {
-         * 
-         * });
-         * 
-         * hudEvents.on('useActive', () => {
-          * 
-         * });
-         */
+        hudEvents.on('updateShield', (isItReady) => {
+            this.playerShieldInfo.updateShield(isItReady);
+        });
     }
 }

@@ -52,20 +52,20 @@ import healingHeart from '../../assets/cSprites/items/healingHeart.png'
 import halfHealingHeart from '../../assets/cSprites/items/halfHealingHeart.png'
 import manaPotion from '../../assets/cSprites/items/PotionBlue.png'
 
-
 //UI assets
-import font from 'url:../../assets/fonts/VT323Regular.ttf'
 import fullHeart from '../../assets/HUD/ui-heart-full.png'
 import halfHeart from '../../assets/HUD/half-ui-heart.png'
 import emptyHeart from '../../assets/HUD/ui-heart-empty.png'
-import Fire from '../../assets/misc/fire.png'
-// prueba
 import manaBar from '../../assets/HUD/manabar.png'
 import mainMana from '../../assets/HUD/main_mana.png'
 import finalMana from '../../assets/HUD/final_mana.png'
-import Uikey from '../../assets/HUD/key_32x32_24f.png';
+import Uikey from '../../assets/HUD/key_32x32_24f.png'
+import shieldReady from '../../assets/HUD/UI_shield_ready.png'
+import shieldCD from '../../assets/HUD/UI_shield_cd.png'
 
 import chest from '../../assets/armory/sprites/chests.png'
+import Fire from '../../assets/misc/fire.png'
+import font from 'url:../../assets/fonts/VT323Regular.ttf'
 
 // Controls Menu
 import ControlsBackground from '../../assets/controlsMenu/background.png'
@@ -117,7 +117,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('escudo', shield);
     this.load.image('sombreroPajero', sombreraco);
     this.load.image('escenaPrueba', room);
-    this.load.image('inv',inv)
+    this.load.image('inv',inv);
+
     // Controls Menu
     this.load.image('controlsBackground', ControlsBackground);
     this.load.image('wKey', wKey);
@@ -181,7 +182,10 @@ export default class Boot extends Phaser.Scene {
     this.load.image('mainMana', mainMana);
     this.load.image('finalMana', finalMana);
     this.load.spritesheet('key', Uikey, { frameWidth: 32, frameHeight: 32 });
+    this.load.image('ready_ui_shield', shieldReady);
+    this.load.image('cd_ui_shield', shieldCD);
 
+    //Audio
     this.load.audio('tutloop',tutloop)
     this.load.audio('libloop', libLoop)
     this.load.audio('libintro', libIntro)

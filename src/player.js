@@ -210,6 +210,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             if (this.shieldCooldown === 0) {
                 this.canBeDamaged = false;
                 this.escudo.setVisible(true);
+                
                 let timer = this.scene.time.addEvent({
                     delay: 3000,
                     callback: this.scene.player.shieldOnCD,
@@ -484,6 +485,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.shieldCooldown = 1;
         this.canBeDamaged = true;
         this.escudo.setVisible(false);
+        hudEvents.emit('updateShield', false);
 
         let cdShield = this.scene.time.addEvent({
             delay: 10000,
@@ -494,6 +496,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     shieldOffCD() {
         this.shieldCooldown = 0;
+        hudEvents.emit('updateShield', true);
     }
 
     //Relativo al cambio de estadisticas

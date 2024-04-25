@@ -8,7 +8,7 @@ import grw from '../../assets/gardens/tiles/Objects.png'
 import f from '../../assets/misc/fire.png'
 
 import Player from '../player.js'
-import basicMelee from '../armas/basicMelee.js';
+import dagger from '../armas/dagger.js';
 import FireStaff from '../armas/fireStaff.js';
 import Trigger from '../trigger.js';
 import CollisionHitbox from '../collisionHitbox.js';
@@ -16,9 +16,9 @@ import EnemySpawner from '../enemySpawner.js';
 import Fire from '../fire.js'
 import Chest from '../chest.js';
 import LevelTrigger from '../levelTrigger.js'
-import Thongen from '../dungeongen'
+import Dungeongen from '../dungeongen'
 
-import font from '../assets/fonts/VT323Regular.ttf'
+import font from '../../assets/fonts/VT323Regular.ttf'
 import SecretTrigger from '../secretTrigger.js'
 import Button from '../button.js'
 import Jukebox from '../jukebox.js'
@@ -28,6 +28,7 @@ import hoe from '../armas/HOE'
 import IceStaff from '../armas/iceStaff'
 import PoisonDagger from '../armas/poisonDagger'
 import ChargeSword from '../armas/chargeSword.js';
+import Thompson from '../armas/thompson.js'
 
 
 

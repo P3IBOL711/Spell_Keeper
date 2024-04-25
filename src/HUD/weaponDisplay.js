@@ -11,7 +11,6 @@ export default class weaponDisplay extends Phaser.GameObjects.Sprite {
         super(scene, x, y, initialWeaponName);
         this.setScale(3);
         this.scene.add.existing(this);
-        this.scene.physics.add.existing(this);
         this.showedWeapon = initialWeaponName;
     }
 
