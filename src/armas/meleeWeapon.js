@@ -49,7 +49,7 @@ export default class meleeWeapon extends arma {
             else {
                 this.scene.tweens.add({
                     targets: this,
-                    angle:  initialRotation - rotation,
+                    angle:  initialRotation - this.angleOfRotation,
                     duration: 250,
                     onComplete: () => {
                         this.angle = initialRotation;

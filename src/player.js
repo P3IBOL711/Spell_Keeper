@@ -166,7 +166,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             key: 'dying',
             frames: this.anims.generateFrameNames('playerDying_spritesheet', { start: 0, end: 3 }),
             frameRate: 10,
-            repeat: 0
+            repeat: 1
         });
 
         //Interaccion de la animacion de muerte
@@ -408,6 +408,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
                     this.actualLife = 0;
                 else
                     this.actualLife -= damage;
+                
+                if(this.actualLife <= 0)
+                    this.died()
 
                 hudEvents.emit('updateHealth', this.actualLife);
 
@@ -427,15 +430,18 @@ export default class Player extends Phaser.GameObjects.Sprite {
                     }
                 });
 
-                this.playerHitSfx.play()
+                this.playerHitSfx.play();
 
-                if (this.actualLife <= 0) {
-                    this.body.setVelocity(0);
-                    this.stop();
-                    this.play('dying', true);
-                }
             }
         }
+        else if (this.actualLife <= 0)
+            this.died();
+    }
+
+    died() {
+        this.body.setVelocity(0);
+        this.stop();
+        this.play('dying', true);
     }
 
     //Relativo a las armas

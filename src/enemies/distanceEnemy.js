@@ -58,8 +58,15 @@ export default class DistanceEnemy extends Enemy {
         this.scene.time.removeEvent(this.timerAttack);
     }
 
+    receiveDamageOverTime(damage, durationInSeconds) {
+        super.receiveDamageOverTime(damage, durationInSeconds);
+        if (this.life <= 0){
+            this.timerAttack.paused = true;
+        }
+    }
 
-    receiveDamage(damage){
+
+    receiveDamage(damage) {
         super.receiveDamage(damage);
         if (this.life <= 0){
             this.timerAttack.paused = true;
