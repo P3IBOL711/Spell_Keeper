@@ -4,7 +4,7 @@ import Hud from '../../assets/HUD/HUD.json';
 import healthDisplay from "../HUD/healthDisplay";
 import manaDisplay from "../HUD/manaDisplay";
 import keysDisplay from "../HUD/keysDisplay";
-import activeDisplay from "../HUD/activeDisplay";
+import shieldDisplay from "../HUD/shieldDisplay";
 import weaponDisplay from "../HUD/weaponDisplay";
 
 import { eventManager as hudEvents } from "../eventCenter";
@@ -69,7 +69,6 @@ export default class GUI extends Phaser.Scene {
         });
 
         hudEvents.on('updateMana', (playerManaStats) => {
-            //this.playerManaBar.setMana(playerManaStats[0], playerManaStats[1]);
             this.playerManaBar.setMeterPercentageAnimated(playerManaStats[0] / playerManaStats[1]);
         });
 
