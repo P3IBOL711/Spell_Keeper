@@ -28,6 +28,7 @@ import Knife from '../../assets/cSprites/weapons/knife.png'
 
 //Weapon assets
 import dagger from '../../assets/cSprites/weapons/02.png'
+import ChargeSword from '../../assets/cSprites/weapons/ChargeSword.png'
 import Fireball from '../../assets/cSprites/weapons/fireball_spritesheet.png'
 import Lighting from '../../assets/cSprites/weapons/LightingEffect.png'
 import iceEffects from '../../assets/cSprites/weapons/iceEffect.png'
@@ -136,6 +137,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('spear',Spear)
     this.load.image('magicknife',MagicKnife)
     this.load.spritesheet('fireball_spritesheet', Fireball, { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('chargesword',ChargeSword,{frameWidth: 38, frameHeight:16})
     this.load.image('iceStaff', iceStaff);
     this.load.spritesheet('ice_spritesheet', iceEffects, { frameWidth: 32, frameHeight: 32 });
     this.load.spritesheet('puddle_spritesheet', puddleEffects, { frameWidth: 32, frameHeight: 32 });
