@@ -54,7 +54,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
             if (this.anims.getName() === 'die') {
                 this.doSomethingVerySpecificBecauseYoureMyBelovedChild()
                 this.scene.enemies.remove(this);
-                this.destroy();
+                this.destroyEnemy();
             }
         });
 
@@ -69,6 +69,10 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         this.scene.physics.add.collider(this, this.scene.enemies, () => {
         });
 
+    }
+
+    destroyEnemy(){
+        this.destroy();
     }
 
     doSomethingVerySpecificBecauseYoureMyBelovedChild() {

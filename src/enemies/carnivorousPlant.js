@@ -64,7 +64,6 @@ export default class CarnivorousPlant extends Enemy {
 
         this.meleeTimerAttack.paused = true;
 
-        // SE PODRIA MEJORAR CON this.on(animationstart) PERO NO SABEMOS HACERLO
         this.on(Phaser.Animations.Events.ANIMATION_START, () => {
             if (this.life > 0){
                 if (this.anims.getName() === 'attack1'){
