@@ -21,7 +21,7 @@ export default class Button extends Phaser.GameObjects.Zone {
         this.jug = player
         this.onTimer = false;
 
-
+        this.sfx = this.scene.sound.add('buttonsfx')
         // console.log(`Soy el ${index}, en la posicion ${x} ${y}`)
         this.scene.physics.add.overlap(this, player, (player) => {
 
@@ -32,6 +32,7 @@ export default class Button extends Phaser.GameObjects.Zone {
                 })
                 this.jug.isFPressed = false
                 this.onTimer = true
+                this.sfx.play()
                 trigger.buttonUsed(index)
 
             }

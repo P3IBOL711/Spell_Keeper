@@ -4,6 +4,7 @@ import Phaser from "phaser";
 import arma from "./arma";
 import IronBullet from '../projectiles/ironBullet.js';
 
+
 const DAMAGE = 0.5;
 
 export default class Shotgun extends arma {
@@ -21,6 +22,10 @@ export default class Shotgun extends arma {
         this.delay = 250;
         this.x = x;
         this.y = y;
+
+
+
+        this.attackSfx = this.scene.sound.add('shotgunsfx')
 
         this.anims.create({
             key: 'normal',
@@ -51,6 +56,7 @@ export default class Shotgun extends arma {
     attack( target) {
         if (this.x != 0 && this.y != 0) {
             this.anims.play('shooting')
+            this.playAttackSfx()
             let bulletsToFire = 15; // Number of bullets to fire
             for (let i = 0; i < bulletsToFire; i++) {
                 let bullet = new IronBullet(this.scene, this.x-(((bulletsToFire/2)+i)*0.1) , this.y , target, true, this.damage);
@@ -74,7 +80,11 @@ export default class Shotgun extends arma {
         }
     }
 
+    playAttackSfx(){
+        this.attackSfx.play()
+    }
+
     manaCost() {
-        return 5;
+        return 25;
     }
 }

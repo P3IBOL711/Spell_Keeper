@@ -22,6 +22,8 @@ import font from 'url:../../assets/fonts/VT323Regular.ttf'
 import SecretTrigger from '../secretTrigger.js'
 import Button from '../button.js'
 import Jukebox from '../jukebox.js'
+import Shotgun from '../armas/shotgun.js'
+import Thompson from '../armas/thompson.js'
 
 
 
@@ -74,7 +76,7 @@ export default class Room extends Phaser.Scene {
                 moveSpeed: 0,        // Player movement speed
                 lck: 0,              // Player luck stat
                 MeleeWeaponArray: [new basicMelee(this, 0, 0, 1)], // Array to store melee weapons
-                RangedWeaponArray: [new FireStaff(this, 0, 0, 1)],// Array to store ranged weapons
+                RangedWeaponArray: [new Thompson(this, 0, 0, 1)],// Array to store ranged weapons
                 ActMelIndex: 0,      // Index of the currently active melee weapon
                 ActRangIndex: 0,     // Index of the currently active ranged weapon
                 lastWeaponUsed: null, // Last weapon used (can be set to the name or ID of the weapon)
@@ -171,9 +173,6 @@ export default class Room extends Phaser.Scene {
 
     create() {
 
-        //Audio
-
-        this.jukebox.create()
 
 
         if (this.dungeon[this.y][this.x].visited === false)
