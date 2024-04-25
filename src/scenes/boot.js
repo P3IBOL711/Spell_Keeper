@@ -46,6 +46,7 @@ import magicBullet from '../../assets/cSprites/weapons/magicBullet_effects.png'
 import DrainSword from '../../assets/cSprites/weapons/DrainSword.png'
 import PoisonDagger from '../../assets/cSprites/weapons/PoisonDagger.png'
 import ultimateWeapon from '../../assets/cSprites/weapons/UltimateHoe.png'
+import espadaPocha from '../../assets/cSprites/weapons/espadaPocha.png'
 
 //Item assets
 import healingHeart from '../../assets/cSprites/items/healingHeart.png'
@@ -153,6 +154,7 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('knife',Knife,{ frameWidth: 12, frameHeight: 5 });
     this.load.image('poisondagger',PoisonDagger);
     this.load.image('magicSword', MagicSword);
+    this.load.image('espadaNormalucha', espadaPocha);
 
     //Items
     this.load.spritesheet('chest',chest,{frameWidth: 32, frameHeight:32});
