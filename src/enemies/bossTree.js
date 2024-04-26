@@ -19,23 +19,68 @@ export default class BossTree extends Enemy {
         
         this.anims.create({
             key: 'spawn',
-            frames: this.anims.generateFrameNumbers('bossTreeSpritesheet', { start: 0, end: 5 }),
-            frameRate: 10,
+            frames: this.anims.generateFrameNumbers('bossTreeSpritesheet', { start: 0, end: 30 }),
+            frameRate: 6,
             repeat: 0
         });
 
         this.anims.create({
-            key: 'idle',
-            frames: this.anims.generateFrameNumbers('bossTreeSpritesheet', { start: 6, end: 11 }),
+            key: 'walking',
+            frames: this.anims.generateFrameNumbers('bossTreeSpritesheet', { start: 31 , end: 38 }),
             frameRate: 5,
-            repeat: -1
+            repeat: 0
         });
 
-        this.play('idle');
+        this.anims.create({
+            key: 'attack',
+            frames: this.anims.generateFrameNumbers('bossTreeSpritesheet', { start: 31 , end: 42 }),
+            frameRate: 5,
+            repeat: 0
+        });
 
-        new MovingRoot(scene, this.x, this.y + 10, target, false, 1);
+        this.anims.create({
+            key: 'redAttack',
+            frames: this.anims.generateFrameNumbers('bossTreeSpritesheet', { start: 41 , end: 42 }),
+            frameRate: 1,
+            repeat: 100
+        });
 
-        new SurpriseRoot(scene, target.x - 20, target.y, target, false, 1);
+        this.anims.create({
+            key: 'die',
+            frames: this.anims.generateFrameNumbers('bossTreeSpritesheet', { start: 62 , end: 75 }),
+            frameRate: 5,
+            repeat: 0
+        });
+
+        this.setScale(1.25);
+
+        this.speed = 0;
+
+        this.body.setSize(this.width, this.height, true);
+        this.body.setOffset(this.width * 0.13, this.height * 0.14);
+
+        this.play('spawn', true);
+
+        this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
+            if(this.life > 0){
+                if (this.anims.getName() === 'attack') {
+                    this.play("redAttack", true);
+                }
+                else if (this.anims.getName() === 'redAttack') {
+                    this.play("walking", true);
+                    this.attacking = false;
+                }
+            }
+        });
+
+        //new MovingRoot(scene, this.x, this.y + 10, target, false, 1);
+
+        //new SurpriseRoot(scene, target.x - 20, target.y, target, false, 1);
+    }
+
+    onTimerAttack(){
+        this.attacking = true;
+        this.play("attack", true);
     }
 
     doSomethingVerySpecificBecauseYoureMyBelovedChild() {

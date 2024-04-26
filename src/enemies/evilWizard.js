@@ -64,7 +64,7 @@ export default class EvilWizard extends Enemy {
         this.distanceAttack = 200;
 
         this.body.setSize(this.width * 1.5, this.height * 1.75, true);
-        this.body.setOffset();
+        this.body.setOffset(this.width * 0.13, this.height * 0.14);
 
         this.play('spawn', true);
 
@@ -122,9 +122,6 @@ export default class EvilWizard extends Enemy {
         // IMPORTANTE: Si no ponemos esta instrucción y el sprite está animado
         // no se podrá ejecutar la animación del sprite. 
         super.preUpdate(t, dt);
-        if (this.life > 0) {
-            this.body.setOffset(this.width * (this.flipX ? 0.13 : 0.13), this.height * 0.14);
-        }
     }
 
     flipEnemy(){}
