@@ -465,7 +465,7 @@ export default class Dungeongen {
         let state = null;
         for (let i = 0; i < n; i++) {
             SSM[i] = [];
-            for (let j = 0; j < m; j++) {
+            for (let j = 0; j < m; j++) { 
                 SSM[i][j] = state
             }
         }
