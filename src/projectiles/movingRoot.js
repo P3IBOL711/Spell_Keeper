@@ -13,7 +13,7 @@ export default class MovingRoot extends Projectile {
      * @param {number} y Coordenada Y
     */
 
-    constructor(scene, x, y, target, targetEnemy, damage) {
+    constructor(scene, x, y, targetEnemy, damage) {
         super(scene, x, y, 'movingRoot', targetEnemy, damage);
 
         //this.setScale(2.5);
