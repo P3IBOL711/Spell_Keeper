@@ -1,6 +1,8 @@
 
 import Phaser from 'phaser'
-import Enemy from './enemy'
+import Enemy from '../enemy'
+import HitBox from '../../hitbox';
+import Attack1Effect from './attack1_effect';
 /**
  * Clase que representa un enemigo del juego.
  */
@@ -15,6 +17,8 @@ export default class EvilWizard extends Enemy {
     constructor(scene, x, y, target) {
         super(scene, x, y, target, 'evilWizard', 5000);
         
+
+        // FILA MAS LARGA DE 47 FRAMES
         this.anims.create({
             key: 'spawn',
             frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 0, end: 19 }),
@@ -31,28 +35,28 @@ export default class EvilWizard extends Enemy {
 
         this.anims.create({
             key: 'attack1',
-            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 26, end: 35 }),
+            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 26, end: 38 }),
             frameRate: 7,
             repeat: 0
         });
 
         this.anims.create({
             key: 'attack2',
-            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 36, end: 43 }),
+            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 39, end: 46 }),
             frameRate: 7,
             repeat: 0
         });
 
         this.anims.create({
             key: 'attack3',
-            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 44, end: 85 }),
+            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 47, end: 88 }),
             frameRate: 7,
             repeat: 0
         });
 
         this.anims.create({
             key: 'die',
-            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 86, end: 96 }),
+            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 89, end: 99 }),
             frameRate: 8,
             repeat: 0
         });
@@ -76,6 +80,8 @@ export default class EvilWizard extends Enemy {
                     this.speed = 50;
                 }
                 else if (this.anims.getName() === 'attack1') {
+                    this.attackZone.destroy(true);
+                    this.attack1effect.destroy(true);
                     this.attacking = false;
                     this.speed = 50;
                 }
@@ -90,6 +96,28 @@ export default class EvilWizard extends Enemy {
             }
         });
 
+        this.on(Phaser.Animations.Events.ANIMATION_START, () => {
+            if(this.life > 0){
+                if (this.anims.getName() === 'attack2') {
+                    // Invulnerable a los ataques a distancia, crea charcos de lava en el suelo que hacen daño al jugador si pasa por encima
+                    this.vulnerable = false;
+                }
+                else if (this.anims.getName() === 'attack3') {
+                    // Crea un ciruclo de fuego alrededor suya que se mueve hacia 
+                }
+            }
+        });
+
+        this.on(Phaser.Animations.Events.ANIMATION_UPDATE, () => {
+            if(this.life > 0){
+                if (this.anims.getName() === 'attack1' && this.anims.currentFrame.index === 7) {
+                    // Carga un puñetazo hacia el jugador
+                    this.attackZone = new HitBox(this.scene, this.x + 20, this.y - 10, 100, 100, this.target, this.damage);
+                    this.attack1effect = new Attack1Effect(this.scene, this.x + 30, this.y + 5);
+                }
+            }
+        });
+
     }
 
     destroyEnemy(){
@@ -99,7 +127,8 @@ export default class EvilWizard extends Enemy {
     onTimerAttack(){
         this.attacking = true;
         let typeAttack = Math.floor(Math.random() * 3);
-        this.play(this.attacks[typeAttack]);
+        //this.play(this.attacks[typeAttack]);
+        this.play('attack1');
         this.speed = 0;
     }
 

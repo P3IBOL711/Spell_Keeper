@@ -34,6 +34,9 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         // is enemy attacking?
         this.attacking = false;
 
+        // is enemy vulnerable?
+        this.vulnerable = true;
+
         // distance from player to start attacking
         this.distanceAttack = 150;
 
@@ -91,30 +94,32 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
 
     receiveDamage(damage) {
-        this.life -= damage;
+        if (this.vulnerable) {
+            this.life -= damage;
 
-        this.scene.tweens.add({
-            targets: this,
-            alpha: 0,
-            ease: Phaser.Math.Easing.Elastic.InOut,
-            duration: 40,
-            repeat: 1,
-            yoyo: true,
-            onStart: () => {
-                this.setTint(0xff0000);
-            },
-            onComplete: () => {
-                this.clearTint();
-                this.setAlpha(1);
+            this.scene.tweens.add({
+                targets: this,
+                alpha: 0,
+                ease: Phaser.Math.Easing.Elastic.InOut,
+                duration: 40,
+                repeat: 1,
+                yoyo: true,
+                onStart: () => {
+                    this.setTint(0xff0000);
+                },
+                onComplete: () => {
+                    this.clearTint();
+                    this.setAlpha(1);
+                }
+            })
+
+            if (this.life <= 0) {
+                this.body.setVelocity(0);
+                this.body.enable = false;
+                this.scene.enemyHasDied();
+                this.stop();
+                this.play('die', true);
             }
-        })
-
-        if (this.life <= 0) {
-            this.body.setVelocity(0);
-            this.body.enable = false;
-            this.scene.enemyHasDied();
-            this.stop();
-            this.play('die', true);
         }
     }
 
