@@ -568,7 +568,7 @@ export default class Dungeongen {
         //Ponemos la entrada
 
 
-        dungeon[this.entranceY][this.entranceX] = e1
+        dungeon[this.entranceY][this.entranceX] = this.e1
         //Asignamos la entrada
         console.log(`Entrada generada en la casilla: ${this.entranceY}, ${this.entranceX}`);
 
