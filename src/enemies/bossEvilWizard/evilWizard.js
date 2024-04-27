@@ -28,35 +28,35 @@ export default class EvilWizard extends Enemy {
 
         this.anims.create({
             key: 'walking',
-            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 20, end: 25 }),
+            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 47, end: 52 }),
             frameRate: 10,
             repeat: -1
         });
 
         this.anims.create({
             key: 'attack1',
-            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 26, end: 38 }),
+            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 95, end: 107 }),
             frameRate: 7,
             repeat: 0
         });
 
         this.anims.create({
             key: 'attack2',
-            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 39, end: 46 }),
+            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 142, end: 161 }),
             frameRate: 7,
             repeat: 0
         });
 
         this.anims.create({
             key: 'attack3',
-            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 47, end: 88 }),
+            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 189, end: 235 }),
             frameRate: 7,
             repeat: 0
         });
 
         this.anims.create({
             key: 'die',
-            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 89, end: 99 }),
+            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 236, end: 246 }),
             frameRate: 8,
             repeat: 0
         });
