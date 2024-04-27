@@ -39,6 +39,8 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
         this.nextPosition = null;
 
+        this.spawning = false;
+
         this.timerAttack = this.scene.time.addEvent({
             delay: attackDelay,
             callback: this.onTimerAttack,
@@ -128,7 +130,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         // IMPORTANTE: Si no ponemos esta instrucción y el sprite está animado
         // no se podrá ejecutar la animación del sprite. 
         super.preUpdate(t, dt);
-        if (this.life > 0) {
+        if (this.life > 0 && !this.spawning) {
             this.flipEnemy()
 
             if (this.nextPosition) {
@@ -148,7 +150,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
                 this.timerAttack.paused = true;
             }
             else {
-                this.timerAttack.paused = false;
+                this.timerAttack.paused = this.attacking;
             }
         }
     }

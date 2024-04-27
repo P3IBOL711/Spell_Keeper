@@ -22,52 +22,52 @@ export default class BossTree extends Enemy {
             frames: this.anims.generateFrameNumbers('bossTreeSpritesheet', { start: 0, end: 30 }),
             frameRate: 6,
             repeat: 0
-        });
+        }); 
 
         this.anims.create({
             key: 'walking',
-            frames: this.anims.generateFrameNumbers('bossTreeSpritesheet', { start: 31 , end: 38 }),
+            frames: this.anims.generateFrameNumbers('bossTreeMovementsSpritesheet', { start: 0 , end: 7 }),
             frameRate: 5,
             repeat: 0
         });
 
         this.anims.create({
             key: 'attack',
-            frames: this.anims.generateFrameNumbers('bossTreeSpritesheet', { start: 31 , end: 42 }),
+            frames: this.anims.generateFrameNumbers('bossTreeMovementsSpritesheet', { start: 8 , end: 11 }),
             frameRate: 5,
-            repeat: 0
-        });
-
-        this.anims.create({
-            key: 'redAttack',
-            frames: this.anims.generateFrameNumbers('bossTreeSpritesheet', { start: 41 , end: 42 }),
-            frameRate: 1,
-            repeat: 100
+            repeat: 10
         });
 
         this.anims.create({
             key: 'die',
-            frames: this.anims.generateFrameNumbers('bossTreeSpritesheet', { start: 62 , end: 75 }),
+            frames: this.anims.generateFrameNumbers('bossTreeMovementsSpritesheet', { start: 12 , end: 25 }),
             frameRate: 5,
             repeat: 0
         });
 
-        this.setScale(1.25);
+        this.setScale(2);
+        this.disableInteractive();
 
         this.speed = 0;
 
-        this.body.setSize(this.width, this.height, true);
-        this.body.setOffset(this.width * 0.13, this.height * 0.14);
+        this.distanceAttack = 500;
+
+        this.spawning = true;
+        this.body.enable = false;
 
         this.play('spawn', true);
 
         this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
             if(this.life > 0){
-                if (this.anims.getName() === 'attack') {
-                    this.play("redAttack", true);
+                if(this.anims.getName() === 'spawn'){
+                    this.spawning = false;
+                    this.body.setSize(this.width * 0.35, this.height * 0.85, true);
+                    this.body.setOffset(this.width * 0.07, this.height * 0.14);
+                    this.body.enable = true;
+                    this.play('walking', true);
                 }
-                else if (this.anims.getName() === 'redAttack') {
-                    this.play("walking", true);
+                else if (this.anims.getName() === 'attack') {
+                    //this.play("redAttack", true);
                     this.attacking = false;
                 }
             }

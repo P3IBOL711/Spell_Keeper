@@ -43,6 +43,7 @@ import TitleDecoration from  '../../assets/mainTitle.png'
 // Bosses
 // Tree
 import BossTree from '../../assets/bosses/tree/boss_tree_spritesheet.png'
+import BossTreeMovements from '../../assets/bosses/tree/boss_tree_walk_&_die.png'
 import SurpriseRoot from '../../assets/bosses/tree/Atk2.png'
 import MovingRoot from '../../assets/bosses/tree/Atk1.png'
 import Acorn from '../../assets/bosses/tree/Bellota.png'
@@ -114,6 +115,7 @@ export default class Boot extends Phaser.Scene {
     // Bosses
     // Tree
     this.load.spritesheet('bossTreeSpritesheet', BossTree, { frameWidth: 128, frameHeight: 64 });
+    this.load.spritesheet('bossTreeMovementsSpritesheet', BossTreeMovements, { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('movingRootSpritesheet', MovingRoot, {frameWidth: 32, frameHeight: 32});
     this.load.spritesheet('surpriseRootSpritesheet', SurpriseRoot, {frameWidth: 32, frameHeight: 32});
     // Evil Wizard
