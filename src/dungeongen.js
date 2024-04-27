@@ -1,32 +1,3 @@
-import e1 from './rooms/e1.js'
-import r1 from './rooms/r1.js'
-import r2 from './rooms/r2.js';
-import r3 from './rooms/r3.js';
-import r4 from './rooms/r4.js';
-import r5 from './rooms/r5.js';
-import r6 from './rooms/r6.js';
-import r7 from './rooms/r7.js';
-import r8 from './rooms/r8.js';
-import r9 from './rooms/r9.js';
-import r10 from './rooms/r10.js';
-import r11 from './rooms/r11.js';
-import r12 from './rooms/r12.js';
-import r13 from './rooms/r13.js';
-import r14 from './rooms/r14.js';
-import r15 from './rooms/r15.js';
-import sh1 from './rooms/sh1.js';
-import sh2 from './rooms/sh2.js';
-import sh3 from './rooms/sh3.js';
-import sh4 from './rooms/sh4.js';
-import sh5 from './rooms/sh5.js';
-import sh6 from './rooms/sh6.js';
-import sh7 from './rooms/sh7.js';
-import sh8 from './rooms/sh8.js';
-import x1 from './rooms/x1.js';
-import x2 from './rooms/x2.js';
-import x3 from './rooms/x3.js';
-import x4 from './rooms/x4.js';
-
 
 const N = 7; //Numero de filas
 const M = 7; //Numero de columnas
@@ -52,6 +23,429 @@ class RoomInfo {
     }
 };
 
+e1 = {
+
+    name: "E1",
+
+    level: "armory",
+
+    path: "../../assets/armory/e1.tmx",
+
+    entrance: true,
+    exit: false,
+    empty: false, //Habitacion vacia
+    deadend: false,//para saber que solo tiene una salida
+    shop: false,
+    visited: false,
+
+    door_north: true,
+    door_south: true,
+    door_east: true,
+    door_west: true
+
+};
+
+r1 = {
+
+    name: "R1",
+
+    level: "armory",
+
+    path: "../../assets/armory/r1.tmx",
+
+    entrance: false,
+    exit: false,
+    empty: false, //Habitacion vacia
+    deadend: false,//para saber que solo tiene una salida
+    shop: false,
+    visited: false,
+
+    door_north: true,
+    door_south: true,
+    door_east: true,
+    door_west: true
+
+};
+
+r2 = {
+
+    name: "R2",
+
+    level: "armory",
+
+    path: "../../assets/armory/r2.tmx",
+
+    entrance: false,
+    exit: false,
+    empty: false, //Habitacion vacia
+    deadend: false,//para saber que solo tiene una salida
+    shop: false,
+    visited: false,
+
+    door_north: true,
+    door_south: true,
+    door_east: false,
+    door_west: false
+
+};
+
+r3 = {
+
+    name: "R3",
+
+    level: "armory",
+
+    path: "../../assets/armory/r3.tmx",
+
+    entrance: false,
+    exit: false,
+    empty: false, //Habitacion vacia
+    deadend: true,//para saber que solo tiene una salida
+    shop: false,
+    visited: false,
+
+    door_north: false,
+    door_south: true,
+    door_east: false,
+    door_west: false
+
+};
+
+r4 = {
+
+    name: "R4",
+
+    level: "armory",
+
+    path: "../../assets/armory/r4.tmx",
+
+    entrance: false,
+    exit: false,
+    empty: false, //Habitacion vacia
+    deadend: false,//para saber que solo tiene una salida
+    shop: false,
+    visited: false,
+
+    door_north: false,
+    door_south: false,
+    door_east: true,
+    door_west: true
+
+};
+
+r5 = {
+
+    name: "R5",
+
+    level: "armory",
+
+    path: "../../assets/armory/r5.tmx",
+
+    entrance: false,
+    exit: false,
+    empty: false, //Habitacion vacia
+    deadend: true,//para saber que solo tiene una salida
+    shop: false,
+
+    door_north: true,
+    door_south: false,
+    door_east: false,
+    door_west: false
+
+};
+
+r6 = {
+
+    name: "R6",
+
+    level: "armory",
+
+    path: "../../assets/armory/r6.tmx",
+
+    entrance: false,
+    exit: false,
+    empty: false, //Habitacion vacia
+    deadend: true,//para saber que solo tiene una salida
+    shop: false,
+
+    door_north: false,
+    door_south: false,
+    door_east: true,
+    door_west: false
+
+};
+
+r7 = {
+
+    name: 'R7',
+
+    level: "armory",
+
+    path: "../../assets/armory/r7.tmx",
+
+    entrance: false,
+    exit: false,
+    empty: false, //Habitacion vacia
+    deadend: true,//para saber que solo tiene una salida
+    shop: false,
+
+    door_north: false,
+    door_south: false,
+    door_east: false,
+    door_west: true
+
+};
+r8 = {
+
+    name: "R8",
+
+    level: "armory",
+
+    path: "../../assets/armory/r8.tmx",
+
+    entrance: false,
+    exit: false,
+    empty: false, //Habitacion vacia
+    deadend: false,//para saber que solo tiene una salida
+    shop: false,
+
+    door_north: false,
+    door_south: true,
+    door_east: false,
+    door_west: true
+
+};
+
+r9 = {
+
+    name: "R9",
+
+    level: "armory",
+
+    path: "../../assets/armory/r9.tmx",
+
+    entrance: false,
+    exit: false,
+    empty: false, //Habitacion vacia
+    deadend: false,//para saber que solo tiene una salida
+    shop: false,
+
+    door_north: false,
+    door_south: true,
+    door_east: true,
+    door_west: false
+
+};
+
+r10 = {
+
+    name: "R10",
+
+    level: "armory",
+
+    path: "../../assets/armory/r10.tmx",
+
+    entrance: false,
+    exit: false,
+    empty: false, //Habitacion vacia
+    deadend: false,//para saber que solo tiene una salida
+    shop: false,
+
+    door_north: false,
+    door_south: true,
+    door_east: true,
+    door_west: true
+
+};
+
+r11 = {
+
+    name: "R11",
+
+    level: "armory",
+
+    path: "../../assets/armory/r11.tmx",
+
+    entrance: false,
+    exit: false,
+    empty: false, //Habitacion vacia
+    deadend: false,//para saber que solo tiene una salida
+    shop: false,
+
+    door_north: true,
+    door_south: false,
+    door_east: true,
+    door_west: false
+
+};
+
+r12 = {
+
+    name: "R12",
+
+    level: "armory",
+
+    path: "../../assets/armory/r12.tmx",
+
+    entrance: false,
+    exit: false,
+    empty: false, //Habitacion vacia
+    deadend: false,//para saber que solo tiene una salida
+    shop: false,
+
+    door_north: true,
+    door_south: false,
+    door_east: false,
+    door_west: true
+
+};
+
+r13 = {
+
+    name: "R13",
+
+    level: "armory",
+
+    path: "../../assets/armory/r13.tmx",
+
+    entrance: false,
+    exit: false,
+    empty: false, //Habitacion vacia
+    deadend: false,//para saber que solo tiene una salida
+    shop: false,
+
+    door_north: true,
+    door_south: false,
+    door_east: true,
+    door_west: true
+
+};
+
+r14 = {
+
+    name: "R14",
+
+    level: "armory",
+
+    path: "../../assets/armory/r14.tmx",
+
+    entrance: false,
+    exit: false,
+    empty: false, //Habitacion vacia
+    deadend: false,//para saber que solo tiene una salida
+    shop: false,
+
+    door_north: true,
+    door_south: true,
+    door_east: true,
+    door_west: false
+
+};
+
+r15 = {
+
+    name: "R15",
+
+    level: "armory",
+
+    path: "../../assets/armory/r15.tmx",
+
+    entrance: false,
+    exit: false,
+    empty: false, //Habitacion vacia
+    deadend: false,//para saber que solo tiene una salida
+    shop: false,
+
+    door_north: true,
+    door_south: true,
+    door_east: false,
+    door_west: true
+
+};
+
+x1 = {
+
+    name: "X1",
+
+    level: "armory",
+
+    path: "../../assets/armory/x1.tmx",
+
+    entrance: false,
+    exit: true,
+    empty: false, //Habitacion vacia
+    deadend: true,//para saber que solo tiene una salida
+    shop: false,
+
+    door_north: false,
+    door_south: true,
+    door_east: false,
+    door_west: false
+
+};
+
+x2 = {
+
+    name: "X2",
+
+    level: "armory",
+
+    path: "../../assets/armory/x2.tmx",
+
+    entrance: false,
+    exit: true,
+    empty: false, //Habitacion vacia
+    deadend: true,//para saber que solo tiene una salida
+    shop: false,
+
+    door_north: true,
+    door_south: false,
+    door_east: false,
+    door_west: false
+
+};
+
+x3 = {
+
+    name: "X3",
+
+    level: "armory",
+
+    path: "../../assets/armory/x3.tmx",
+
+    entrance: false,
+    exit: true,
+    empty: false, //Habitacion vacia
+    deadend: true,//para saber que solo tiene una salida
+    shop: false,
+
+    door_north: false,
+    door_south: false,
+    door_east: true,
+    door_west: false
+
+};
+
+x4 = {
+
+    name: "X4",
+
+    level: "armory",
+
+    path: "../../assets/armory/x4.tmx",
+
+    entrance: false,
+    exit: true,
+    empty: false, //Habitacion vacia
+    deadend: true,//para saber que solo tiene una salida
+    shop: false,
+
+    door_north: false,
+    door_south: false,
+    door_east: false,
+    door_west: true
+
+};
 
 
 export default class Dungeongen {
@@ -62,11 +456,11 @@ export default class Dungeongen {
         this.entranceX = 0
         this.entranceY = 0
         this.thereIsExit = false;
-        this.thereIsShop  = false
+        this.thereIsShop = false
         this.init();
     }
 
-    generateSaveStateMatrix(n,m){
+    generateSaveStateMatrix(n, m) {
         let SSM = [];
         let state = null;
         for (let i = 0; i < n; i++) {
@@ -79,16 +473,16 @@ export default class Dungeongen {
         return SSM
     }
 
-    getN(){
+    getN() {
         return N;
     }
 
-    getM(){
+    getM() {
         return M;
     }
 
     //Genera la mazmorra del tutorial (siempre la misma)
-    tutorial(){
+    tutorial() {
         //Inicializacion
         let dungeon = [];
 
@@ -98,7 +492,7 @@ export default class Dungeongen {
             for (let j = 0; j < 1; j++) {
                 dungeon[i][j] = {
 
-                    name: "em_r",
+                    name: "EM",
 
                     level: "all",
 
@@ -114,6 +508,7 @@ export default class Dungeongen {
                     door_south: false,
                     door_east: false,
                     door_west: false
+
                 };
             }
         }
@@ -138,7 +533,7 @@ export default class Dungeongen {
             for (let j = 0; j < M; j++) {
                 dungeon[i][j] = {
 
-                    name: "em_r",
+                    name: "EM",
 
                     level: "all",
 
@@ -168,10 +563,10 @@ export default class Dungeongen {
         this.entranceY = Math.floor(Math.random() * (M - 2)) + 1;
 
         //Ponemos la entrada
-        
+
 
         dungeon[this.entranceY][this.entranceX] = e1
-         //Asignamos la entrada
+        //Asignamos la entrada
         console.log(`Entrada generada en la casilla: ${this.entranceY}, ${this.entranceX}`);
 
         this.thereIsExit = false;
@@ -221,15 +616,15 @@ export default class Dungeongen {
         return candidateDungeon;
     }
 
-    getEntranceX(){
+    getEntranceX() {
         return this.entranceX;
     }
 
-    getEntranceY(){
+    getEntranceY() {
         return this.entranceY;
     }
 
-    
+
 
     /*
     // dada una matrix, deuelve true si esto funcionaría y está terminada
@@ -283,7 +678,7 @@ export default class Dungeongen {
                 for (let room of validRoomArray) {
                     if (room.exit === true)
                         if (this.thereIsExit === false) {
-                            newDungeon[y][x] = room; 
+                            newDungeon[y][x] = room;
                             let distanceX = Math.abs(x - this.entranceX);
                             let distanceY = Math.abs(y - this.entranceY);
                             if (this.checkIfRoomConnects(x, y, newDungeon) && distanceX >= maxSteps * 0.05 && distanceY >= maxSteps * 0.05) {
@@ -294,7 +689,7 @@ export default class Dungeongen {
                         }
                     if (room.shop === true)
                         if (this.thereIsShop === false) {
-                            newDungeon[y][x] = room; 
+                            newDungeon[y][x] = room;
                             if (this.checkIfRoomConnects(x, y, newDungeon)) {
                                 console.log("Generando tienda");
                                 this.thereIsShop = true;
@@ -302,7 +697,7 @@ export default class Dungeongen {
                             }
                         }
                     if (!room.shop && !room.exit) {
-                        newDungeon[y][x] = room; 
+                        newDungeon[y][x] = room;
                         if (this.checkIfRoomConnects(x, y, newDungeon))
                             return newDungeon;
                     }
@@ -645,14 +1040,14 @@ export default class Dungeongen {
             this.specialRoomArray.push(x2);
             this.specialRoomArray.push(x3);
             this.specialRoomArray.push(x4);
-           /* this.specialRoomArray.push(sh1);
-            this.specialRoomArray.push(sh2);
-            this.specialRoomArray.push(sh3);
-            this.specialRoomArray.push(sh4);
-            this.specialRoomArray.push(sh5);
-            this.specialRoomArray.push(sh6);
-            this.specialRoomArray.push(sh7);
-            this.specialRoomArray.push(sh8);*/
+            /* this.specialRoomArray.push(sh1);
+             this.specialRoomArray.push(sh2);
+             this.specialRoomArray.push(sh3);
+             this.specialRoomArray.push(sh4);
+             this.specialRoomArray.push(sh5);
+             this.specialRoomArray.push(sh6);
+             this.specialRoomArray.push(sh7);
+             this.specialRoomArray.push(sh8);*/
         }
     }
 
