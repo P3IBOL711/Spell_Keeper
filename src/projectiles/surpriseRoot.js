@@ -21,7 +21,13 @@ export default class SurpriseRoot extends Projectile {
             key: 'normal',
             frames: this.anims.generateFrameNumbers('surpriseRootSpritesheet', { start: 0, end: 15 }),
             frameRate: 7,
-            repeat: -1
+            repeat: 5
+        });
+
+        this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
+            if(this.anims.getName() === 'normal'){
+                this.destroy();
+            }
         });
 
         this.speed = 0;

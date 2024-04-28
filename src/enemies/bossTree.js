@@ -15,7 +15,7 @@ export default class BossTree extends Enemy {
      * @param {number} y Coordenada Y
      */
     constructor(scene, x, y, target) {
-        super(scene, x, y, target, 'bossTree', 3000);
+        super(scene, x, y, target, 'bossTree', 10000);
         
         this.anims.create({
             key: 'spawn',
@@ -69,13 +69,23 @@ export default class BossTree extends Enemy {
                 else if (this.anims.getName() === 'attack') {
                     //this.play("redAttack", true);
                     this.attacking = false;
+                    this.rootTimer.paused = true;
                 }
             }
         });
 
-        
+        this.rootTimer = this.scene.time.addEvent({
+            delay: 1000,
+            callback: this.onRootAttack, 
+            callbackScope: this,
+            loop: true
+        });
 
-        
+        this.rootTimer.paused = true;
+    }
+
+    onRootAttack(){
+        new SurpriseRoot(this.scene, this.target.x, this.target.y + 20, false, 1);
     }
 
     onTimerAttack(){
@@ -85,7 +95,8 @@ export default class BossTree extends Enemy {
             new MovingRoot(this.scene, this.x, this.y + 10, false, 1);
         }
         else{
-            new SurpriseRoot(this.scene, this.target.x - 20, this.target.y, false, 1);
+            new SurpriseRoot(this.scene, this.target.x, this.target.y + 20, false, 1);
+            this.rootTimer.paused = false;
         }
         this.play("attack", true);
     }
