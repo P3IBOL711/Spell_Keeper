@@ -255,10 +255,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
                 this.lastClick = 'left';
             }
         });
-
-        this.scene.input.on('pointerdown', pointer => {
-            
-        });
         
         this.scene.input.on('pointermove', () => {
             this.reticle.x = this.scene.input.activePointer.worldX;

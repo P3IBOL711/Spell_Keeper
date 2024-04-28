@@ -52,12 +52,10 @@ export default class GUI extends Phaser.Scene {
                     this.playerKeysInfo = new keysDisplay(this, obj.x + 70, obj.y, 'key', this.keys);
                     break;
                 case 'Shield':
-                    //No tienes activo al principio
-                    this.playerShieldInfo = new shieldDisplay(this, obj.x + 30, obj.y, 'ready_ui_shield', 'cd_ui_shield');
+                    this.playerShieldInfo = new shieldDisplay(this, obj.x + 35, obj.y - 18, 'ready_ui_shield', 'cd_ui_shield');
                     break;
                 case 'ArmaEquipada':
-                    //Arma inicial: basicMelee
-                    this.displayEquipedWeapon = new weaponDisplay(this, obj.x, obj.y, this.weaponEquiped.id);
+                    this.displayEquipedWeapon = new weaponDisplay(this, obj.x, obj.y, obj.width, obj.height, this.weaponEquiped.id);
                     break;
                 default:
                     console.warn('Tipo de objeto no reconocido:', obj.name);
