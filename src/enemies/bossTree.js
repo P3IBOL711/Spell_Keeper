@@ -91,11 +91,13 @@ export default class BossTree extends Enemy {
     onTimerAttack(){
         this.attacking = true;
         let typeAttack = Math.floor(Math.random() * 2);
-        if (typeAttack === 7){
-            new MovingRoot(this.scene, this.x, this.y + 10, false, 1);
+        if (/*typeAttack === 0*/ true){
+            for(let i = 0; i < 5; i++){
+                new MovingRoot(this.scene, this.x, this.y + 2*i, false, 1, this.target);
+            }
+            
         }
-        else{
-            new SurpriseRoot(this.scene, this.target.x, this.target.y, false, 1);
+        else if(typeAttack === 1){
             this.rootTimer.paused = false;
         }
         this.play("attack", true);

@@ -13,7 +13,7 @@ export default class MovingRoot extends Projectile {
      * @param {number} y Coordenada Y
     */
 
-    constructor(scene, x, y, targetEnemy, damage) {
+    constructor(scene, x, y, targetEnemy, damage, target) {
         super(scene, x, y, 'movingRoot', targetEnemy, damage);
 
         //this.setScale(2.5);
@@ -24,21 +24,19 @@ export default class MovingRoot extends Projectile {
             repeat: -1
         });
 
-        this.speed = 50;
+        this.speed = 100;
 
-        this.body.setVelocityY(this.speed);
+        this.rotation = Phaser.Math.Angle.Between(x, y, target.x, target.y);
 
-        // this.on(Phaser.Animations.Events.ANIMATION_UPDATE, () => {
-            
-        //     if (this.anims.getName() === 'normal' && (this.anims.currentFrame.index === 0 || this.anims.currentFrame.index === 1 || this.anims.currentFrame.index === 7 || this.anims.currentFrame.index === 6)){
-        //         this.body.setVelocityY(this.speed - 30);
-        //     }
-        //     else{
-        //         this.body.setVelocityY(this.speed);
-        //     }
-            
-            
-        // })
+        // if (this.angle >= 45 && this.angle <= 135 || this.angle >= -135 && this.angle <= -45) {
+        //     this.body.setSize(this.width * 0.1, this.height * 0.6, true);
+        // }
+        // else{
+        //     this.body.setSize(this.width * 0.6, this.height * 0.1, true);
+        // }
+
+        this.body.setVelocityX(this.speed * Math.cos(this.rotation));
+        this.body.setVelocityY(this.speed * Math.sin(this.rotation));
 
     }
 
