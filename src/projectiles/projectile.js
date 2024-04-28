@@ -12,11 +12,12 @@ export default class Projectile extends Phaser.GameObjects.Sprite {
      * @param {number} y Coordenada Y
     */
 
-    constructor(scene, x, y, image, targetEnemy, damage) {
+    constructor(scene, x, y, image, targetEnemy, damage, spawning = false) {
         super(scene, x, y, image);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.scene.enviromental.add(this)
+        
         this.scene.physics.add.overlap(this, this.scene.enemies, (projectile, enemy) => {
             if (targetEnemy){
                 this.impact(); // impact animation
@@ -36,8 +37,9 @@ export default class Projectile extends Phaser.GameObjects.Sprite {
                 this.destroy();
             }
         });
-        this.setDepth(7);
+        this.setDepth(5);
         this.impacted = false;
+        this.spawning = spawning;
 
         //this.play('normal', true);
     }
@@ -61,10 +63,8 @@ export default class Projectile extends Phaser.GameObjects.Sprite {
         // IMPORTANTE: Si no ponemos esta instrucción y el sprite está animado
         // no se podrá ejecutar la animación del sprite. 
         super.preUpdate(t, dt);
-        if (!this.impacted)
+        if (!this.spawning && !this.impacted)
             this.play('normal', true);
-
-        // on overlap(fn(con quien) { ... })
         
     }
 

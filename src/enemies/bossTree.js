@@ -15,7 +15,7 @@ export default class BossTree extends Enemy {
      * @param {number} y Coordenada Y
      */
     constructor(scene, x, y, target) {
-        super(scene, x, y, target, 'bossTree', 10000);
+        super(scene, x, y, target, 'bossTree', 3000);
         
         this.anims.create({
             key: 'spawn',
@@ -85,17 +85,17 @@ export default class BossTree extends Enemy {
     }
 
     onRootAttack(){
-        new SurpriseRoot(this.scene, this.target.x, this.target.y + 20, false, 1);
+        new SurpriseRoot(this.scene, this.target.x, this.target.y, false, 1);
     }
 
     onTimerAttack(){
         this.attacking = true;
         let typeAttack = Math.floor(Math.random() * 2);
-        if (typeAttack === 0){
+        if (typeAttack === 7){
             new MovingRoot(this.scene, this.x, this.y + 10, false, 1);
         }
         else{
-            new SurpriseRoot(this.scene, this.target.x, this.target.y + 20, false, 1);
+            new SurpriseRoot(this.scene, this.target.x, this.target.y, false, 1);
             this.rootTimer.paused = false;
         }
         this.play("attack", true);

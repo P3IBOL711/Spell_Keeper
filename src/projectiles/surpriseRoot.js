@@ -14,30 +14,60 @@ export default class SurpriseRoot extends Projectile {
     */
 
     constructor(scene, x, y, targetEnemy, damage) {
-        super(scene, x, y, 'surpriseRoot', targetEnemy, damage);
+        super(scene, x, y, 'surpriseRoot', targetEnemy, damage, true);
 
         //this.setScale(2.5);
         this.anims.create({
-            key: 'normal',
-            frames: this.anims.generateFrameNumbers('surpriseRootSpritesheet', { start: 0, end: 15 }),
+            key: 'spawn',
+            frames: this.anims.generateFrameNumbers('surpriseRootSpritesheet', { start: 0, end: 7 }),
             frameRate: 7,
-            repeat: 5
+            repeat: 0
         });
 
-        this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
-            if(this.anims.getName() === 'normal'){
-                this.destroy();
-            }
+        this.anims.create({
+            key: 'normal',
+            frames: this.anims.generateFrameNumbers('surpriseRootSpritesheet', { start: 8, end: 15 }),
+            frameRate: 7,
+            repeat: 4
         });
 
+        this.body.enable = false;
+        this.body.setSize(this.width * 0.35, this.height * 0.85, true);
+        this.body.setOffset(this.width * 0.07, this.height * 0.14);
         this.speed = 0;
 
-        this.body.setVelocityY(this.speed);
+        this.body.setVelocity(this.speed);
+
+        
+
+        this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
+            if(this.anims.getName() === 'spawn'){
+                this.spawning = false;
+                this.body.enable = true;
+            }
+            else if(this.anims.getName() === 'normal'){
+                this.impacted = true;
+                this.destroy();
+            }
+
+        });
+
+        this.on(Phaser.Animations.Events.ANIMATION_STOP, () => {
+            if(this.anims.getName() === 'normal'){
+                this.impacted = true;
+                this.destroy();
+            }
+
+        });
+
+        this.play('spawn', true);
+        
+
     }
 
     impact(){
         super.impact();
-        this.destroy();
+        this.stop();
     }
 
     /**
