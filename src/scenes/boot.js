@@ -118,7 +118,7 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('movingRootSpritesheet', MovingRoot, {frameWidth: 32, frameHeight: 32});
     this.load.spritesheet('surpriseRootSpritesheet', SurpriseRoot, {frameWidth: 32, frameHeight: 32});
     // Evil Wizard
-    this.load.spritesheet('evilWizardSpritesheet', EvilWizard, { frameWidth: 64, frameHeight: 64 });
+    this.load.spritesheet('evilWizardSpritesheet', EvilWizard, { frameWidth: 64, frameHeight: 80 });
     this.load.spritesheet('attack1effect', Attack1Effect, { frameWidth: 32, frameHeight: 32 });
 
    // Background
