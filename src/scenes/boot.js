@@ -48,7 +48,7 @@ import MovingRoot from '../../assets/bosses/tree/Atk1.png'
 import Acorn from '../../assets/bosses/tree/Bellota.png'
 // Evil Wizard
 import EvilWizard from '../../assets/bosses/evilWizard/Diablo.png'
-import Attack1Effect from '../../assets/bosses/evilWizard/attack1_effect.png'
+import LavaPuddle from '../../assets/bosses/evilWizard/lava_puddle.png'
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
  * Esta escena se puede mejorar añadiendo una imagen del juego y una 
@@ -119,7 +119,7 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('surpriseRootSpritesheet', SurpriseRoot, {frameWidth: 32, frameHeight: 32});
     // Evil Wizard
     this.load.spritesheet('evilWizardSpritesheet', EvilWizard, { frameWidth: 64, frameHeight: 80 });
-    this.load.spritesheet('attack1effect', Attack1Effect, { frameWidth: 32, frameHeight: 32 });
+    this.load.image('lavaPuddle', LavaPuddle);
 
    // Background
     let background = this.add.graphics();

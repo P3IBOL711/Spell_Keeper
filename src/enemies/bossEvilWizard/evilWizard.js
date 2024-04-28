@@ -2,7 +2,7 @@
 import Phaser from 'phaser'
 import Enemy from '../enemy'
 import HitBox from '../../hitbox';
-import Attack1Effect from './attack1_effect';
+import LavaPuddle from './lava_puddle';
 /**
  * Clase que representa un enemigo del juego.
  */
@@ -42,7 +42,7 @@ export default class EvilWizard extends Enemy {
 
         this.anims.create({
             key: 'attack2',
-            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 142, end: 161 }),
+            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 142, end: 160 }),
             frameRate: 7,
             repeat: 0
         });
@@ -81,11 +81,11 @@ export default class EvilWizard extends Enemy {
                 }
                 else if (this.anims.getName() === 'attack1') {
                     this.attackZone.destroy(true);
-                    this.attack1effect.destroy(true);
                     this.attacking = false;
                     this.speed = 50;
                 }
                 else if (this.anims.getName() === 'attack2') {
+                    this.vulnerable = true;
                     this.attacking = false;
                     this.speed = 50;
                 }
@@ -101,6 +101,11 @@ export default class EvilWizard extends Enemy {
                 if (this.anims.getName() === 'attack2') {
                     // Invulnerable a los ataques a distancia, crea charcos de lava en el suelo que hacen daño al jugador si pasa por encima
                     this.vulnerable = false;
+                    for (let i = 0; i < 2; i++) {
+                        let lavaX = Phaser.Math.Between(250, 650);
+                        let lavaY = Phaser.Math.Between(125, 400);
+                        new LavaPuddle(this.scene, lavaX, lavaY);
+                    }
                 }
                 else if (this.anims.getName() === 'attack3') {
                     // Crea un ciruclo de fuego alrededor suya que se mueve hacia 
@@ -113,7 +118,6 @@ export default class EvilWizard extends Enemy {
                 if (this.anims.getName() === 'attack1' && this.anims.currentFrame.index === 7) {
                     // Carga un puñetazo hacia el jugador
                     this.attackZone = new HitBox(this.scene, this.x + 20, this.y - 10, 100, 100, this.target, this.damage);
-                    this.attack1effect = new Attack1Effect(this.scene, this.x + 30, this.y + 5);
                 }
             }
         });
@@ -128,7 +132,7 @@ export default class EvilWizard extends Enemy {
         this.attacking = true;
         let typeAttack = Math.floor(Math.random() * 3);
         //this.play(this.attacks[typeAttack]);
-        this.play('attack1');
+        this.play('attack2');
         this.speed = 0;
     }
 
