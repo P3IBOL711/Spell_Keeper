@@ -54,7 +54,8 @@ export default class Acorn extends Projectile {
         this.body.setSize(this.width * 0.6, this.height * 0.6, true);
         this.body.setOffset(this.width * 0.20, this.height * 0.25);
         // Velocity
-        this.body.setVelocityY(this.speed);
+        //this.body.setVelocityY(this.speed);
+        this.body.setAccelerationY(this.speed);
 
     }
 

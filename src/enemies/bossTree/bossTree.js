@@ -133,14 +133,16 @@ export default class BossTree extends Enemy {
     onTimerAttack(){
         this.attacking = true;
         let typeAttack = Math.floor(Math.random() * 3);
-        if (typeAttack === 0){
+        if (false){//typeAttack === 0){
             this.followingRootTimer.paused = false;
         }
-        else if(typeAttack === 1){
+        else if(false){//typeAttack === 1){
             this.surpriseRootTimer.paused = false;
         }
-        else if(typeAttack === 2){
-            this.acornTimer.paused = false;
+        else if(true){//typeAttack === 2){
+            //this.acornTimer.paused = false;
+            let acornShadow = new AcornShadow(this.scene, this.target.x, this.target.y + 20);
+            new Acorn(this.scene, this.target.x, 0, false, 1, acornShadow);
         }
         this.play("attack", true);
     }
