@@ -24,18 +24,24 @@ El castillo de Onin es un lugar mágico y misterioso, compuesto por 4 plantas di
 Además, el mercader tratará de ayudarle vendiéndole objetos mágicos y armas que le puedan ser de ayuda a lo largo de las diferentes salas.
 
 ## MECÁNICAS DEL JUGADOR
-- **Moverse** en 8 direcciones con las teclas correspondientes.
+- **Moverse** en 8 direcciones, norte, sur, este, oeste, noreste, noroeste, sureste y suroeste con las teclas WASD.
 - **Recoger** objetos pasando por encima de ellos.
-- **Atacar** cuerpo a cuerpo y a distancia.
-- **Equiparse** objetos.
+- **Atacar** cuerpo a cuerpo y a distancia con el click izquierdo para el ataque cuerpo a cuerpo y con el click derecho para el ataque a distancia. Los ataques a distancia consumen un recurso/estadística del jugador, el mana, este se consume usando ataques a distancia.
+- **Equiparse** armas usando las teclas Q y E para rotar a izquierda o derecha tus armas del tipo que estes atacando en ese momento, es decir, si estabas con un arma cuerpo a cuerpo y pulsas Q y E rotaras sobre las armas cuerpo a cuerpo y lo mismo para cuando ataques a distancia.
+- **Interactuar** con ciertos objetos del entorno mediante la tecla F, estos objetos veras un reborde blanco para poder interactuar con ellos.
+
+DEPRECADO
 - **Comprar** objetos en la tienda.
 - **Robar** en la tienda.
 
-## ESTADÍSTICAS DEL JUGADOR
-- **Vida:** número representado con sprites de corazones.
-- **Maná:** barra que representa la cantidad de maná de la que dispone el jugador para utilizar ataques a distancia.
-- **Velocidad de movimiento:** velocidad a la que se mueve el jugador.
-- **Suerte:** probabilidad que influirá en los objetos y armas que podrá conseguir el jugador.
+## ESTADÍSTICAS Y RECURSOS DEL JUGADOR
+- **Vida:** número que indica la cantidad de golpes que el jugador puede recbir antes de morir en el juego, este número esta capado inferiormente a 2 y superiormente a 20. La vida esta representada con sprites de corazones donde cada corazón representa dos unidades de vida, es decir, si tienes 6 de vida maxima, apareceran 3 corazones.
+- **Maná:** número capado inferiormente a 10 y superiormente a 1000 que indica cuantos ataques a dsitancia puedes realizar segun con que arma, el mana se recupera con los ataques cuerpo a cuerpo. El maná está representado mediante una barra que representa la cantidad de maná y esta barra se va vaciando o rellenando segun lo que cueste/recupere el ataque realizado.
+- **Velocidad de movimiento:** velocidad a la que se mueve el jugador mediante un movimiento rectilineo uniforme, es decir, un cambio a la velocidad es inmediato no va gradual y no hay aceleración. La velocidad de movimiento está capada inferiormente a 30 y superiormente a 200.
+- **Suerte:** probabilidad que influirá en los objetos y armas que podrá conseguir el jugador. Mientras más alta mejores objetos y más botín.
+- **"Inventario":** es un recursos donde le jugador tiene guardadas sus armas, en todo momento tienes todas las armas que has conseguido a tu disposición.
+
+
 
 ## ENEMIGOS
 - ### JARDINES
