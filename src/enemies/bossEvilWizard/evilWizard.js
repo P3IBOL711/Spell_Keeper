@@ -2,7 +2,8 @@
 import Phaser from 'phaser'
 import Enemy from '../enemy'
 import HitBox from '../../hitbox';
-import LavaPuddle from './lava_puddle';
+import LavaPuddle from './lavaPuddle';
+import DevilFire from './devilFire';
 /**
  * Clase que representa un enemigo del juego.
  */
@@ -67,8 +68,8 @@ export default class EvilWizard extends Enemy {
 
         this.distanceAttack = 200;
 
-        this.body.setSize(this.width * 1.5, this.height * 1.75, true);
-        this.body.setOffset(this.width * 0.13, this.height * 0.14);
+        this.body.setSize(this.width * 1.5, this.height * 1.6, true);
+        this.body.setOffset(this.width * 0.13, this.height * 0.9);
 
         this.play('spawn', true);
 
@@ -109,6 +110,7 @@ export default class EvilWizard extends Enemy {
                 }
                 else if (this.anims.getName() === 'attack3') {
                     // Crea un ciruclo de fuego alrededor suya que se mueve hacia 
+                    new DevilFire(this.scene, x, y, target, false, 1);
                 }
             }
         });

@@ -49,6 +49,7 @@ import Acorn from '../../assets/bosses/tree/Bellota.png'
 // Evil Wizard
 import EvilWizard from '../../assets/bosses/evilWizard/Diablo.png'
 import LavaPuddle from '../../assets/bosses/evilWizard/lava_puddle.png'
+import DevilFire from '../../assets/bosses/evilWizard/devil_fire.png'
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
  * Esta escena se puede mejorar añadiendo una imagen del juego y una 
@@ -120,6 +121,7 @@ export default class Boot extends Phaser.Scene {
     // Evil Wizard
     this.load.spritesheet('evilWizardSpritesheet', EvilWizard, { frameWidth: 64, frameHeight: 80 });
     this.load.image('lavaPuddle', LavaPuddle);
+    this.load.spritesheet('devilFire', DevilFire, {frameWidth: 64, frameHeight: 16});
 
    // Background
     let background = this.add.graphics();
