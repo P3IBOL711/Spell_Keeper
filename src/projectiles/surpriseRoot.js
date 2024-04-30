@@ -32,8 +32,8 @@ export default class SurpriseRoot extends Projectile {
         });
 
         this.body.enable = false;
-        this.body.setSize(this.width * 0.35, this.height * 0.85, true);
-        this.body.setOffset(this.width * 0.07, this.height * 0.14);
+        this.body.setSize(this.width * 0.35, this.height * 0.75, true);
+        this.body.setOffset(this.width * 0.3, this.height * 0.05);
         this.speed = 0;
 
         this.body.setVelocity(this.speed);
