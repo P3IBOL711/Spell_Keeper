@@ -1,8 +1,10 @@
 
 import Phaser from 'phaser'
-import Enemy from './enemy'
-import MovingRoot from '../projectiles/movingRoot'
-import SurpriseRoot from '../projectiles/surpriseRoot';
+import Enemy from '../enemy'
+import MovingRoot from './movingRoot'
+import SurpriseRoot from './surpriseRoot';
+import Acorn from './acorn';
+import AcornShadow from './acornShadow';
 /**
  * Clase que representa un enemigo del juego.
  */
@@ -71,6 +73,7 @@ export default class BossTree extends Enemy {
                     this.attacking = false;
                     this.surpriseRootTimer.paused = true;
                     this.followingRootTimer.paused = true;
+                    this.acornTimer.paused = true;
                 }
             }
         });
@@ -83,8 +86,15 @@ export default class BossTree extends Enemy {
         });
 
         this.followingRootTimer = this.scene.time.addEvent({
-            delay: 1000,
+            delay: 2000,
             callback: this.onFollowingRootAttack, 
+            callbackScope: this,
+            loop: true
+        });
+
+        this.acornTimer = this.scene.time.addEvent({
+            delay: 1000,
+            callback: this.onAcornAttack, 
             callbackScope: this,
             loop: true
         });
@@ -92,6 +102,12 @@ export default class BossTree extends Enemy {
 
         this.surpriseRootTimer.paused = true;
         this.followingRootTimer.paused = true;
+        this.acornTimer.paused = true;
+    }
+
+    onAcornAttack(){
+        let acornShadow = new AcornShadow(this.scene, this.target.x, this.target.y + 20);
+        new Acorn(this.scene, this.target.x, 0, false, 1, acornShadow);
     }
 
     onSurpriseRootAttack(){
@@ -103,25 +119,28 @@ export default class BossTree extends Enemy {
         let angle =  (angleRadians * 180) / Math.PI;
         
         if((angle >= 45 && angle <= 135) || (angle >= -135 && angle <= -45)) {
-            new MovingRoot(this.scene, this.x + 30, this.y, false, 1, this.target, angleRadians);
+            new MovingRoot(this.scene, this.x + 40, this.y, false, 1, this.target, angleRadians);
             new MovingRoot(this.scene, this.x, this.y, false, 1, this.target, angleRadians);
-            new MovingRoot(this.scene, this.x - 30, this.y, false, 1, this.target, angleRadians);
+            new MovingRoot(this.scene, this.x - 40, this.y, false, 1, this.target, angleRadians);
         }
         else{
-            new MovingRoot(this.scene, this.x, this.y - 30, false, 1, this.target, angleRadians);
+            new MovingRoot(this.scene, this.x, this.y - 40, false, 1, this.target, angleRadians);
             new MovingRoot(this.scene, this.x, this.y, false, 1, this.target, angleRadians);
-            new MovingRoot(this.scene, this.x, this.y + 30, false, 1, this.target, angleRadians);
+            new MovingRoot(this.scene, this.x, this.y + 40, false, 1, this.target, angleRadians);
         }
     }
 
     onTimerAttack(){
         this.attacking = true;
-        let typeAttack = Math.floor(Math.random() * 2);
-        if (false){//typeAttack === 0){
+        let typeAttack = Math.floor(Math.random() * 3);
+        if (typeAttack === 0){
             this.followingRootTimer.paused = false;
         }
-        else if(true){//typeAttack === 1){
+        else if(typeAttack === 1){
             this.surpriseRootTimer.paused = false;
+        }
+        else if(typeAttack === 2){
+            this.acornTimer.paused = false;
         }
         this.play("attack", true);
     }

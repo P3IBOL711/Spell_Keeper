@@ -1,5 +1,5 @@
 import Phaser from 'phaser'
-import Projectile from './projectile';
+import Projectile from '../../projectiles/projectile';
 
 /**
  * Clase que representa una flecha del juego.
@@ -26,6 +26,10 @@ export default class MovingRoot extends Projectile {
 
         this.speed = 50;
 
+        // Body size
+        this.body.setSize(this.width * 0.3, this.height * 0.3, true);
+        this.body.setOffset(this.width * 0.35, this.height * 0.4);
+        // Velocity
         this.body.setVelocityX(this.speed * Math.cos(angle));
         this.body.setVelocityY(this.speed * Math.sin(angle))
 

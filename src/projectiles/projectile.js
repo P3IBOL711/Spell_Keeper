@@ -33,15 +33,19 @@ export default class Projectile extends Phaser.GameObjects.Sprite {
         });
 
         this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
-            if (this.anims.getName() === 'impact'){
-                this.destroy();
-            }
+            this.destroyProjectile();
         });
         this.setDepth(5);
         this.impacted = false;
         this.spawning = spawning;
 
         //this.play('normal', true);
+    }
+
+    destroyProjectile(){
+        if (this.anims.getName() === 'impact'){
+            this.destroy();
+        }
     }
 
     impact(){

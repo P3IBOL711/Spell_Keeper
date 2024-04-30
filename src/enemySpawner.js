@@ -1,7 +1,7 @@
 import PoisonousGoblin from "./enemies/poisonousGoblin"
 import Knight from "./enemies/knight"
 import Skeleton from "./enemies/archerSkeleton"
-import BossTree from './enemies/bossTree'
+import BossTree from './enemies/bossTree/bossTree'
 import EvilWizard from "./enemies/evilWizard"
 
 export default class EnemySpawner {

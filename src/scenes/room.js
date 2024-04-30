@@ -20,7 +20,7 @@ import Dungeongen from '../dungeongen'
 import EasyStar from 'easystarjs';
 
 //Pruebas
-import BossTree from '../enemies/bossTree.js'
+import BossTree from '../enemies/bossTree/bossTree.js'
 
 
 
