@@ -92,10 +92,21 @@ export default class BossTree extends Enemy {
         this.attacking = true;
         let typeAttack = Math.floor(Math.random() * 2);
         if (/*typeAttack === 0*/ true){
-            for(let i = 0; i < 5; i++){
-                new MovingRoot(this.scene, this.x, this.y + 2*i, false, 1, this.target);
+            let angleRadians = Phaser.Math.Angle.Between(this.x, this.y, this.target.x, this.target.y)
+            let angle =  (angleRadians * 180) / Math.PI;
+            
+            if((angle >= 45 && angle <= 135) || (angle >= -135 && angle <= -45)) {
+                new MovingRoot(this.scene, this.x + 30, this.y, false, 1, this.target, angleRadians);
+                new MovingRoot(this.scene, this.x, this.y, false, 1, this.target, angleRadians);
+                new MovingRoot(this.scene, this.x - 30, this.y, false, 1, this.target, angleRadians);
+            }
+            else{
+                new MovingRoot(this.scene, this.x, this.y - 30, false, 1, this.target, angleRadians);
+                new MovingRoot(this.scene, this.x, this.y, false, 1, this.target, angleRadians);
+                new MovingRoot(this.scene, this.x, this.y + 30, false, 1, this.target, angleRadians);
             }
             
+ 
         }
         else if(typeAttack === 1){
             this.rootTimer.paused = false;
