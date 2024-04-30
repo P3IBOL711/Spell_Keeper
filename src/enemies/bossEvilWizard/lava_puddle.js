@@ -22,20 +22,30 @@ export default class LavaPuddle extends Phaser.GameObjects.Image {
         });
 
         this.scene.time.addEvent({
-            delay: 7000,
+            delay: 10000,
             callback: this.reducePuddle,
             callbackScope: this
         });
 
         this.scene.time.addEvent({
-            delay: 15000,
+            delay: 20000,
+            callback: this.reduceMorePuddle,
+            callbackScope: this
+        });
+
+        this.scene.time.addEvent({
+            delay: 30000,
             callback: this.destroyPuddle,
             callbackScope: this
         });
     }
 
     reducePuddle() {
-        this.setScale(0.5);
+        this.setScale(0.6);
+    }
+
+    reduceMorePuddle(){
+        this.setScale(0.3);
     }
 
     destroyPuddle() {

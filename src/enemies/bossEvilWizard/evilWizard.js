@@ -49,7 +49,7 @@ export default class EvilWizard extends Enemy {
 
         this.anims.create({
             key: 'attack3',
-            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 189, end: 235 }),
+            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 190, end: 237 }),
             frameRate: 7,
             repeat: 0
         });
@@ -132,7 +132,7 @@ export default class EvilWizard extends Enemy {
         this.attacking = true;
         let typeAttack = Math.floor(Math.random() * 3);
         //this.play(this.attacks[typeAttack]);
-        this.play('attack2');
+        this.play('attack3');
         this.speed = 0;
     }
 
