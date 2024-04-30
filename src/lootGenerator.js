@@ -13,13 +13,18 @@ import halfHeart from './objetos/halfHeart';
 import heart from './objetos/heart';
 import manaPotion from './objetos/manaPotion';
 import key from "./objetos/key";
+import FourLeafsClub from "./objetos/4-leafsClub";
+import heartAmulet from "./objetos/heartAmulet";
+import nowYouAreFat from "./objetos/nowYouAreFat";
+import shadowCloak from "./objetos/shadowCloak";
+import broom from "./objetos/broom";
 
-let weaponsPool = [[poisonStaff, iceStaff], [hoe, Shotgun, Thompson], [megaEspadaMortal, DrainSword]];
+let weaponsPool = [[poisonStaff, iceStaff], [FourLeafsClub, heartAmulet, nowYouAreFat, shadowCloak, broom] [hoe, Shotgun, Thompson], [megaEspadaMortal, DrainSword]];
 
 export default class lootGenerator {
     constructor(scene, x, y, luck) {
 
-        this.itemsPool = [halfHeart, heart, manaPotion,key];
+        this.itemsPool = [halfHeart, heart, manaPotion, key];
 
         this.scene = scene;
         this.x = x;
