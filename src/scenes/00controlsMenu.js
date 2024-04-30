@@ -17,20 +17,20 @@ export default class ControlsMenu00 extends Phaser.Scene{
 
         this.add.image(190,5,'titleDecoration').setOrigin(0).setDepth(1).setScale(1.5)//Title decoration
 
-        this.add.image(200, 235, 'wKey').setOrigin(0).setDepth(1).setScale(5)
-        this.add.image(130, 300, 'aKey').setOrigin(0).setDepth(1).setScale(5)
-        this.add.image(200, 300, 'sKey').setOrigin(0).setDepth(1).setScale(5)
-        this.add.image(270, 300, 'dKey').setOrigin(0).setDepth(1).setScale(5)
+        this.add.image(160, 235, 'wKey').setOrigin(0).setDepth(1).setScale(5)
+        this.add.image(90, 300, 'aKey').setOrigin(0).setDepth(1).setScale(5)
+        this.add.image(160, 300, 'sKey').setOrigin(0).setDepth(1).setScale(5)
+        this.add.image(230, 300, 'dKey').setOrigin(0).setDepth(1).setScale(5)
 
-        this.add.image(450, 260, 'leftClick').setOrigin(0).setDepth(1).setScale(6)
-        this.add.image(710, 260, 'rightClick').setOrigin(0).setDepth(1).setScale(6)
+        this.add.image(415, 260, 'leftClick').setOrigin(0).setDepth(1).setScale(6)
+        this.add.image(750, 260, 'rightClick').setOrigin(0).setDepth(1).setScale(6)
 
         this.add.text(400, 28, 'CONTROLS', { fontFamily: 'pixelFont', fontSize: 60, color: '#5e1675ff' , fontStyle: 'bold'}).setDepth(1);
         this.add.text(75, 33, 'BACK', { fontFamily: 'pixelFont', fontSize: 40, color: '#5e1675ff' , fontStyle: 'bold'});
         this.add.text(855, 405, 'NEXT', { fontFamily: 'pixelFont', fontSize: 40, color: '#5e1675ff' , fontStyle: 'bold'});
-        this.add.text(155, 190, 'MOVEMENT', { fontFamily: 'pixelFont', fontSize: 50, color: '#5e1675ff' , fontStyle: 'bold'});
-        this.add.text(445, 190, 'SHOOT', { fontFamily: 'pixelFont', fontSize: 50, color: '#5e1675ff' , fontStyle: 'bold'});
-        this.add.text(650, 190, 'ATTACK MODE', { fontFamily: 'pixelFont', fontSize: 50, color: '#5e1675ff' , fontStyle: 'bold'});
+        this.add.text(115, 190, 'MOVEMENT', { fontFamily: 'pixelFont', fontSize: 50, color: '#5e1675ff' , fontStyle: 'bold'});
+        this.add.text(345, 190, 'MELEE ATTACK', { fontFamily: 'pixelFont', fontSize: 50, color: '#5e1675ff' , fontStyle: 'bold'});
+        this.add.text(665, 190, 'DISTANCE ATTACK', { fontFamily: 'pixelFont', fontSize: 50, color: '#5e1675ff' , fontStyle: 'bold'});
         // Buttons
         this.backButton = this.add.image(18, 30, 'homeButton').setOrigin(0).setDepth(1).setScale(1.5);
 

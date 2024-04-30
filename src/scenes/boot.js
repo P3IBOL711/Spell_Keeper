@@ -20,6 +20,7 @@ import next from '../../assets/controlsMenu/next.png'
 import homeButton from '../../assets/controlsMenu/home.png'
 import leftClick from '../../assets/controlsMenu/leftClick.png'
 import rightClick from '../../assets/controlsMenu/rightClick.png'
+import Shift from '../../assets/controlsMenu/shift.png'
 import TitleDecoration from  '../../assets/mainTitle.png'
 
 /**
@@ -58,6 +59,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('homeButton', homeButton);
     this.load.image('leftClick', leftClick);
     this.load.image('rightClick', rightClick);
+    this.load.image('shift', Shift);
     this.load.image('titleDecoration', TitleDecoration)
 
     this.load.image('arrow', arrow);
