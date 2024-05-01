@@ -76,20 +76,10 @@ export default class BossTree extends Enemy {
                     this.acornTimer.paused = true;
                 }
             }else{
-                console.log('morio')
-                if(this.anims.getName() === 'die'){
-                    this.stop();
-                    this.body.enable = false;
-                    this.setActive(false);
-                }
+                this.setActive(false);                    
+                
             }
         });
-
-        // this.on(Phaser.Animations.Events.ANIMATION_UPDATE, () => {
-        //         if(this.anims.getName() === 'die'){
-        //            console.log("dying");
-        //         }
-        // });
 
         this.surpriseRootTimer = this.scene.time.addEvent({
             delay: 1000,
@@ -160,12 +150,10 @@ export default class BossTree extends Enemy {
         this.play("attack", true);
     }
 
-    doSomethingVerySpecificBecauseYoureMyBelovedChild() {
-        this.scene.time.removeAllEvents();
-    }
-
+    
 
     receiveDamage(damage){
+        this.scene.time.removeAllEvents();
         super.receiveDamage(damage);
     }
     /**
