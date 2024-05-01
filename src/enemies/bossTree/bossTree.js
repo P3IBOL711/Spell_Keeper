@@ -47,6 +47,14 @@ export default class BossTree extends Enemy {
             repeat: 0
         });
 
+        this.anims.create({
+            key: 'idle',
+            frames: this.anims.generateFrameNumbers('bossTreeMovementsSpritesheet', { start: 23 , end: 23 }),
+            frameRate: 1,
+            repeat: -1
+        });
+
+
         this.setScale(2);
         this.disableInteractive();
 
@@ -69,15 +77,11 @@ export default class BossTree extends Enemy {
                     this.play('walking', true);
                 }
                 else if (this.anims.getName() === 'attack') {
-                    //this.play("redAttack", true);
                     this.attacking = false;
                     this.surpriseRootTimer.paused = true;
                     this.followingRootTimer.paused = true;
                     this.acornTimer.paused = true;
                 }
-            }else{
-                this.setActive(false);                    
-                
             }
         });
 
@@ -133,6 +137,8 @@ export default class BossTree extends Enemy {
         }
     }
 
+
+
     onTimerAttack(){
         this.attacking = true;
         let typeAttack = Math.floor(Math.random() * 3);
@@ -148,6 +154,11 @@ export default class BossTree extends Enemy {
             new Acorn(this.scene, this.target.x, 0, false, 1, acornShadow);
         }
         this.play("attack", true);
+    }
+
+    destroyEnemy(){
+        this.stop();
+        this.play('idle', true);
     }
 
     
