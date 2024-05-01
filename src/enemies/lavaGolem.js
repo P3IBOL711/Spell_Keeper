@@ -41,11 +41,11 @@ export default class LavaGolem extends MeleeEnemy {
         this.anims.create({
             key: 'die',
             frames: this.anims.generateFrameNumbers('lavaGolemSpritesheet', { start: 24, end: 29 }),
-            frameRate: 5,
+            frameRate: 8,
             repeat: 0
         });
 
-        this.setScale(1.5);
+        this.setScale(1);
 
         this.speed = 50;
 

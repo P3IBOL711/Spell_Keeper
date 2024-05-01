@@ -316,7 +316,7 @@ export default class Room extends Phaser.Scene {
                 new CollisionHitbox(this, objeto.x + objeto.width / 2, objeto.y + objeto.height / 2, objeto.width, objeto.height)
             } else if (objeto.type === 'EnemySpawn') {
                 if (this.numberOfEnemies !== -1) {
-                    new EnemySpawner(this, objeto.x, objeto.y, this.player)
+                    new EnemySpawner(this, objeto.x, objeto.y, this.player,this.level)
                     this.numberOfEnemies++
                 }
             } else if (objeto.type === 'Fire') {

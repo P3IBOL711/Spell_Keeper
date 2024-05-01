@@ -58,9 +58,9 @@ export default class Slime extends MeleeEnemy {
     receiveDamage(damage){
         super.receiveDamage(damage);
         if (this.life <= 0){
-            new childSlime(this.scene, this.x + 60, this.y, this.target);
-            new childSlime(this.scene, this.x + 30, this.y + 20, this.target);
-            new childSlime(this.scene, this.x - 60, this.y, this.target);
+            new childSlime(this.scene, this.x + 15, this.y, this.target);
+            new childSlime(this.scene, this.x + 15, this.y + 10, this.target);
+            new childSlime(this.scene, this.x - 15, this.y, this.target);
         }
     }
 

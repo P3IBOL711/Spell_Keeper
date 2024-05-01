@@ -36,6 +36,8 @@ export default class lootGenerator {
     generateWeapon() {
         let dataGenerator = new Phaser.Math.RandomDataGenerator();
         let tier = dataGenerator.weightedPick(weaponsPool);
+        if(tier === 'undefined')
+            console.log("Es undefined")
         let newWeapon = Phaser.Math.RND.pick(tier)
 
         // Remove the selected weapon class from the tier array
