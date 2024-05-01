@@ -10,6 +10,7 @@ export default class hoe extends meleeWeapon {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.setOrigin(0,1);
+        this.setDepth(8)
         this.delay = 100;
         this.damage = INIFINITY;
 

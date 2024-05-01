@@ -19,7 +19,7 @@ export default class CarnivorousPlant extends Enemy {
 
     constructor(scene, x, y, target) {
         super(scene, x, y, target, 'carnivorous_plant');
-        
+
         this.anims.create({
             key: 'idle',
             frames: this.anims.generateFrameNumbers('carnivorousPlantSpritesheet', { start: 0, end: 3 }),
@@ -44,7 +44,7 @@ export default class CarnivorousPlant extends Enemy {
         this.anims.create({
             key: 'die',
             frames: this.anims.generateFrameNumbers('carnivorousPlantSpritesheet', { start: 18, end: 23 }),
-            frameRate: 5,
+            frameRate: 7,
             repeat: 0
         });
 
@@ -109,7 +109,7 @@ export default class CarnivorousPlant extends Enemy {
         this.distAttack = false;
         this.distanceTimerAttack.paused = true;
 
-        this.setScale(1);
+        this.setScale(0.6);
 
         this.speed = 0;
 
