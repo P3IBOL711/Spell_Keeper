@@ -19,12 +19,12 @@ export default class Projectile extends Phaser.GameObjects.Sprite {
         this.scene.enviromental.add(this)
         let overlapPlayerDmg = this.scene.physics.add.overlap(this, this.scene.enemies, (projectile, enemy) => {
             if (targetEnemy) {
-                this.scene.physics.world.removeCollider(overlapPlayerDmg);
                 this.impact(); // impact animation
                 if (image !== 'bullet') //Bullet es la bala venenosa
                     enemy.receiveDamage(damage)
                 else
                     enemy.receiveDamageOverTime(damage)
+                this.scene.physics.world.removeCollider(overlapPlayerDmg);
             }
         });
 
@@ -33,6 +33,7 @@ export default class Projectile extends Phaser.GameObjects.Sprite {
                 this.impact(); // impact animation
                 player.receiveDamage(damage)
             }
+            this.scene.physics.world.removeCollider(overlapEnemyDmg);
         });
 
         this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
