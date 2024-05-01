@@ -7,6 +7,13 @@ import hoe from "./armas/HOE";
 import Shotgun from "./armas/shotgun";
 import Thompson from "./armas/thompson";
 import DrainSword from "./armas/drainSword";
+import ChargeSword from "./armas/chargeSword";
+import EspadaChof from "./armas/espadaChof";
+import PoisonDagger from "./armas/poisonDagger";
+import Spear from "./armas/spear";
+import magicSword from "./armas/magicSword";
+import lethalSword from "./armas/lethalSword";
+import MagicKnife from "./armas/magicKnife";
 
 
 import halfHeart from './objetos/halfHeart';
@@ -18,13 +25,6 @@ import heartAmulet from "./objetos/heartAmulet";
 import nowYouAreFat from "./objetos/nowYouAreFat";
 import shadowCloak from "./objetos/shadowCloak";
 import broom from "./objetos/broom";
-import ChargeSword from "./armas/chargeSword";
-import EspadaChof from "./armas/espadaChof";
-import PoisonDagger from "./armas/poisonDagger";
-import Spear from "./armas/spear";
-import magicSword from "./armas/magicSword";
-import lethalSword from "./armas/lethalSword";
-import MagicKnife from "./armas/magicKnife";
 
 let weaponsPool = [[poisonStaff,EspadaChof,Spear], [hoe, iceStaff,Shotgun, Thompson,ChargeSword,PoisonDagger,magicSword,MagicKnife], [megaEspadaMortal, DrainSword,lethalSword]];
 //[FourLeafsClub, heartAmulet, nowYouAreFat, shadowCloak, broom],

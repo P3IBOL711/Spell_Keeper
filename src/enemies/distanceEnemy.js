@@ -36,7 +36,7 @@ export default class DistanceEnemy extends Enemy {
         })
 
         this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
-            if(this.life > 0){
+            if(this.life > 0) {
                 if (this.anims.getName() === 'attack'){
                     this.attacking = false;
                 }
@@ -44,7 +44,7 @@ export default class DistanceEnemy extends Enemy {
         })
 
         this.on(Phaser.Animations.Events.ANIMATION_STOP, () => {
-            if (this.life > 0){
+            if (this.life > 0) {
                 if (this.anims.getName() === 'attack'){
                     this.attacking = false;
                 }
@@ -60,7 +60,7 @@ export default class DistanceEnemy extends Enemy {
 
     receiveDamageOverTime(damage, durationInSeconds) {
         super.receiveDamageOverTime(damage, durationInSeconds);
-        if (this.life <= 0){
+        if (this.life <= 0) {
             this.timerAttack.paused = true;
         }
     }
@@ -68,7 +68,7 @@ export default class DistanceEnemy extends Enemy {
 
     receiveDamage(damage) {
         super.receiveDamage(damage);
-        if (this.life <= 0){
+        if (this.life <= 0) {
             this.timerAttack.paused = true;
         }
     }
