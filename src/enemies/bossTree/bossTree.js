@@ -60,9 +60,10 @@ export default class BossTree extends Enemy {
 
         this.speed = 0;
 
-        this.distanceAttack = 500;
+        this.distanceAttack = 1000;
 
         this.spawning = true;
+        this.vulnerable = false;
         this.body.enable = false;
 
         this.play('spawn', true);
@@ -71,6 +72,7 @@ export default class BossTree extends Enemy {
             if(this.life > 0){
                 if(this.anims.getName() === 'spawn'){
                     this.spawning = false;
+                    this.attacking = true;
                     this.body.setSize(this.width * 0.35, this.height * 0.85, true);
                     this.body.setOffset(this.width * 0.07, this.height * 0.14);
                     this.body.enable = true;
@@ -81,6 +83,7 @@ export default class BossTree extends Enemy {
                     this.surpriseRootTimer.paused = true;
                     this.followingRootTimer.paused = true;
                     this.acornTimer.paused = true;
+                    this.vulnerable = false;
                 }
             }
         });
@@ -141,6 +144,7 @@ export default class BossTree extends Enemy {
 
     onTimerAttack(){
         this.attacking = true;
+        this.vulnerable = true;
         let typeAttack = Math.floor(Math.random() * 3);
         if (typeAttack === 0){
             this.followingRootTimer.paused = false;
