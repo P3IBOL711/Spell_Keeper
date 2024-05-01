@@ -148,16 +148,16 @@ export default class Boot extends Phaser.Scene {
     this.load.image('espadaCheta', espadaMortal);
     this.load.image('hoe', ultimateWeapon);
     this.load.spritesheet('magicBullet_spritesheet', magicBullet, { frameWidth: 32, frameHeight: 32 });
-    this.load.spritesheet('shotgun',Shotgun,{ frameWidth: 32, frameHeight: 32 });
-    this.load.spritesheet('thompson',Thompson,{ frameWidth: 32, frameHeight: 32 });
-    this.load.spritesheet('ironbullet',Bullet,{ frameWidth: 16, frameHeight: 16 });
-    this.load.spritesheet('knife',Knife,{ frameWidth: 12, frameHeight: 5 });
+    this.load.spritesheet('shotgun',Shotgun, { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('thompson',Thompson, { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('ironbullet',Bullet, { frameWidth: 16, frameHeight: 16 });
+    this.load.spritesheet('knife',Knife, { frameWidth: 12, frameHeight: 5 });
     this.load.image('poisondagger',PoisonDagger);
     this.load.image('magicSword', MagicSword);
     this.load.image('espadaNormalucha', espadaPocha);
 
     //Items
-    this.load.spritesheet('chest',chest,{frameWidth: 32, frameHeight:32});
+    this.load.spritesheet('chest',chest, { frameWidth: 32, frameHeight:32 });
     this.load.image('healingHeart', healingHeart);
     this.load.image('halfHealingHeart', halfHealingHeart);
     this.load.image('potionOfMana', manaPotion);
