@@ -24,7 +24,4 @@ export default class item extends Phaser.GameObjects.Sprite {
     }
 
     itemFuction() { }
-    isActive() {
-        return false;
-    }
 }

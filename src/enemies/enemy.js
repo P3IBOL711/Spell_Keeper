@@ -68,13 +68,14 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
             duration: 1000, // Duration of each tick (in milliseconds)
             onUpdate: () => {
                 // Apply damage to the target
-                this.receiveDamage(damagePerTick,'poison')
+                if(this.life > 0)
+                    this.receiveDamage(damagePerTick,'poison')
               //  console.log("Poisoned! Damage taken: " + damagePerTick + ". Remaining health: " + this.life);
     
                 // Check if target is dead
-                if (this.life <= 0 ) {
-
-                    this.tween.stop()
+                else {
+                    this.tween.stop();
+                    this.enemyDied();
                 }
             }
         });
@@ -102,12 +103,15 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
             }
         })
 
-        if (this.life <= 0) {
-            this.body.setVelocity(0);
-            this.body.enable = false;
-            this.stop();
-            this.play('die', true);
-        }
+        if (this.life <= 0) 
+            this.enemyDied();
+    }
+
+    enemyDied() {
+        this.body.setVelocity(0);
+        this.body.enable = false;
+        this.stop();
+        this.play('die', true); 
     }
     /**
      * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.

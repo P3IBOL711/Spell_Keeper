@@ -11,8 +11,8 @@ import MagicSkeleton from '../enemies/magicSkeleton.js';
 import LavaGolem from '../enemies/lavaGolem.js';
 import Book from '../enemies/book.js';
 import Slime from '../enemies/slime.js';
-import basicRanged from '../armas/poisonStaff.js';
-import basicMelee from '../armas/basicMelee.js';
+//import basicRanged from '../armas/poisonStaff.js';
+//import basicMelee from '../armas/basicMelee.js';
 import FireStaff from '../armas/fireStaff.js';
 
 /**

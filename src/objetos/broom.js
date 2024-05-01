@@ -1,20 +1,17 @@
 import Phaser from "phaser";
-
 import item from "./item";
 
-export default class manaPotion extends item {
-
+export default class broom extends item {
     constructor(scene, x, y) {
-        super(scene, x, y, 'potionOfMana');
+        super(scene, x, y, 'broom');
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.manaRegeration = 50;
+        this.flyingSpeed = 1.4;
         this.x = x;
         this.y = y;
-        this.setScale(0.6);
     }
 
     itemFuction() {
-        this.scene.player.recoverMana(this.manaRegeration);
+        this.scene.player.changeMovSpeed(this.flyingSpeed);
     }
 }
