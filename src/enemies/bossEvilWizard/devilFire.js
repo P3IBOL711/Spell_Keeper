@@ -8,7 +8,7 @@ export default class DevilFire extends Projectile {
         * @param {number} x Coordenada X
         * @param {number} y Coordenada Y
         */
-    constructor(scene, x, y, target, targetEnemy, damage) {
+    constructor(scene, x, y, target, targetEnemy, damage, angle, rotation) {
         super(scene, x, y, 'devilFire', targetEnemy, damage);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
@@ -25,22 +25,30 @@ export default class DevilFire extends Projectile {
 
         this.damage = 1;
 
-        this.speed = 10;
+        this.speed = 50;
 
-        this.rotation = Phaser.Math.Angle.Between(x, y, target.x, target.y);
-
-        if (this.angle >= 45 && this.angle <= 135 || this.angle >= -135 && this.angle <= -45) {
-            this.body.setSize(this.width * 0.1, this.height * 0.6, true);
-        }
-        else {
-            this.body.setSize(this.width * 0.6, this.height * 0.1, true);
-        }
-
-        this.body.setVelocityX(this.speed * Math.sin(this.rotation));
-        this.body.setVelocityY(this.speed * Math.cos(this.rotation));
+        this.body.setVelocityX(this.speed * Math.cos(angle));
+        this.body.setVelocityY(this.speed * Math.sin(angle))
 
         this.scene.physics.add.overlap(this, this.scene.player, () => {
             this.scene.player.receiveDamage(this.damage);
         });
+    }
+
+    impact(){
+        super.impact();
+        this.destroy();
+    }
+
+    /**
+     * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
+     * Como se puede ver, no se tratan las colisiones con las estrellas, ya que estas colisiones 
+     * ya son gestionadas por la estrella (no gestionar las colisiones dos veces)
+     * @override
+     */
+    preUpdate(t, dt) {
+        // IMPORTANTE: Si no ponemos esta instrucción y el sprite está animado
+        // no se podrá ejecutar la animación del sprite. 
+        super.preUpdate(t, dt);
     }
 }

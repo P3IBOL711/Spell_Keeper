@@ -69,7 +69,7 @@ export default class EvilWizard extends Enemy {
         this.distanceAttack = 200;
 
         this.body.setSize(this.width * 1.5, this.height * 1.6, true);
-        this.body.setOffset(this.width * 0.13, this.height * 0.9);
+        this.body.setOffset(this.width * 0.5, this.height * 0.85);
 
         this.play('spawn', true);
 
@@ -110,7 +110,10 @@ export default class EvilWizard extends Enemy {
                 }
                 else if (this.anims.getName() === 'attack3') {
                     // Crea un ciruclo de fuego alrededor suya que se mueve hacia 
-                    new DevilFire(this.scene, x, y, target, false, 1);
+                    new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 0);
+                    new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 90 * Math.PI / 180);
+                    new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 180 * Math.PI / 180);
+                    new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 270 * Math.PI / 180);
                 }
             }
         });
@@ -133,8 +136,8 @@ export default class EvilWizard extends Enemy {
     onTimerAttack(){
         this.attacking = true;
         let typeAttack = Math.floor(Math.random() * 3);
-        //this.play(this.attacks[typeAttack]);
-        this.play('attack3');
+        this.play(this.attacks[typeAttack]);
+        //this.play('attack3');
         this.speed = 0;
     }
 
