@@ -13,10 +13,10 @@ export default class MovingRoot extends Projectile {
      * @param {number} y Coordenada Y
     */
 
-    constructor(scene, x, y, targetEnemy, damage, target, angle) {
+    constructor(scene, x, y, targetEnemy, damage, angle) {
         super(scene, x, y, 'movingRoot', targetEnemy, damage);
 
-        //this.setScale(2.5);
+        this.setScale(2);
         this.anims.create({
             key: 'normal',
             frames: this.anims.generateFrameNumbers('movingRootSpritesheet', { start: 0, end: 9 }),
