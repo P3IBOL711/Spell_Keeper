@@ -155,6 +155,10 @@ export default class BossTree extends Enemy {
     }
 
     destroyEnemy(){
+        this.anims.remove('walking');
+        this.anims.remove('attack');
+        this.anims.remove('die');
+        this.anims.remove('spawn');
         this.stop();
         this.play('idle', true);
     }
