@@ -149,9 +149,7 @@ export default class BossTree extends Enemy {
             this.surpriseRootTimer.paused = false;
         }
         else if(typeAttack === 2){
-            //this.acornTimer.paused = false;
-            let acornShadow = new AcornShadow(this.scene, this.target.x, this.target.y + 20);
-            new Acorn(this.scene, this.target.x, 0, false, 1, acornShadow);
+            this.acornTimer.paused = false;
         }
         this.play("attack", true);
     }
