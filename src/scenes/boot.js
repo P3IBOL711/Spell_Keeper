@@ -28,6 +28,7 @@ import Knife from '../../assets/cSprites/weapons/knife.png'
 
 //Weapon assets
 import dagger from '../../assets/cSprites/weapons/02.png'
+import ChargeSword from '../../assets/cSprites/weapons/ChargeSword.png'
 import Fireball from '../../assets/cSprites/weapons/fireball_spritesheet.png'
 import Lighting from '../../assets/cSprites/weapons/LightingEffect.png'
 import iceEffects from '../../assets/cSprites/weapons/iceEffect.png'
@@ -45,26 +46,27 @@ import magicBullet from '../../assets/cSprites/weapons/magicBullet_effects.png'
 import DrainSword from '../../assets/cSprites/weapons/DrainSword.png'
 import PoisonDagger from '../../assets/cSprites/weapons/PoisonDagger.png'
 import ultimateWeapon from '../../assets/cSprites/weapons/UltimateHoe.png'
+import espadaPocha from '../../assets/cSprites/weapons/espadaPocha.png'
 
 //Item assets
 import healingHeart from '../../assets/cSprites/items/healingHeart.png'
 import halfHealingHeart from '../../assets/cSprites/items/halfHealingHeart.png'
 import manaPotion from '../../assets/cSprites/items/PotionBlue.png'
 
-
 //UI assets
-import font from 'url:../../assets/fonts/VT323Regular.ttf'
 import fullHeart from '../../assets/HUD/ui-heart-full.png'
 import halfHeart from '../../assets/HUD/half-ui-heart.png'
 import emptyHeart from '../../assets/HUD/ui-heart-empty.png'
-import Fire from '../../assets/misc/fire.png'
-// prueba
 import manaBar from '../../assets/HUD/manabar.png'
 import mainMana from '../../assets/HUD/main_mana.png'
 import finalMana from '../../assets/HUD/final_mana.png'
-import Uikey from '../../assets/HUD/key_32x32_24f.png';
+import Uikey from '../../assets/HUD/key_32x32_24f.png'
+import shieldReady from '../../assets/HUD/UI_shield_ready.png'
+import shieldCD from '../../assets/HUD/UI_shield_cd.png'
 
 import chest from '../../assets/armory/sprites/chests.png'
+import Fire from '../../assets/misc/fire.png'
+import font from 'url:../../assets/fonts/VT323Regular.ttf'
 
 // Controls Menu
 import ControlsBackground from '../../assets/controlsMenu/background.png'
@@ -116,7 +118,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('escudo', shield);
     this.load.image('sombreroPajero', sombreraco);
     this.load.image('escenaPrueba', room);
-    this.load.image('inv',inv)
+    this.load.image('inv',inv);
+
     // Controls Menu
     this.load.image('controlsBackground', ControlsBackground);
     this.load.image('wKey', wKey);
@@ -136,6 +139,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('spear',Spear)
     this.load.image('magicknife',MagicKnife)
     this.load.spritesheet('fireball_spritesheet', Fireball, { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('chargesword',ChargeSword,{frameWidth: 38, frameHeight:16})
     this.load.image('iceStaff', iceStaff);
     this.load.spritesheet('ice_spritesheet', iceEffects, { frameWidth: 32, frameHeight: 32 });
     this.load.spritesheet('puddle_spritesheet', puddleEffects, { frameWidth: 32, frameHeight: 32 });
@@ -150,6 +154,7 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('knife',Knife,{ frameWidth: 12, frameHeight: 5 });
     this.load.image('poisondagger',PoisonDagger);
     this.load.image('magicSword', MagicSword);
+    this.load.image('espadaNormalucha', espadaPocha);
 
     //Items
     this.load.spritesheet('chest',chest,{frameWidth: 32, frameHeight:32});
@@ -179,7 +184,10 @@ export default class Boot extends Phaser.Scene {
     this.load.image('mainMana', mainMana);
     this.load.image('finalMana', finalMana);
     this.load.spritesheet('key', Uikey, { frameWidth: 32, frameHeight: 32 });
+    this.load.image('ready_ui_shield', shieldReady);
+    this.load.image('cd_ui_shield', shieldCD);
 
+    //Audio
     this.load.audio('tutloop',tutloop)
     this.load.audio('libloop', libLoop)
     this.load.audio('libintro', libIntro)

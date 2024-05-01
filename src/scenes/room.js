@@ -8,7 +8,7 @@ import grw from '../../assets/gardens/tiles/Objects.png'
 import f from '../../assets/misc/fire.png'
 
 import Player from '../player.js'
-import basicMelee from '../armas/basicMelee.js';
+import dagger from '../armas/dagger.js';
 import FireStaff from '../armas/fireStaff.js';
 import Trigger from '../trigger.js';
 import CollisionHitbox from '../collisionHitbox.js';
@@ -18,10 +18,17 @@ import Chest from '../chest.js';
 import LevelTrigger from '../levelTrigger.js'
 import Dungeongen from '../dungeongen'
 
-import font from 'url:../../assets/fonts/VT323Regular.ttf'
+import font from '../../assets/fonts/VT323Regular.ttf'
 import SecretTrigger from '../secretTrigger.js'
 import Button from '../button.js'
 import Jukebox from '../jukebox.js'
+
+
+import hoe from '../armas/HOE'
+import IceStaff from '../armas/iceStaff'
+import PoisonDagger from '../armas/poisonDagger'
+import ChargeSword from '../armas/chargeSword.js';
+import Thompson from '../armas/thompson.js'
 
 
 
@@ -73,8 +80,8 @@ export default class Room extends Phaser.Scene {
                 weaponMult: 1,       // Multiplier for weapon damage
                 moveSpeed: 0,        // Player movement speed
                 lck: 0,              // Player luck stat
-                MeleeWeaponArray: [new basicMelee(this, 0, 0, 1)], // Array to store melee weapons
-                RangedWeaponArray: [new FireStaff(this, 0, 0, 1)],// Array to store ranged weapons
+                MeleeWeaponArray: [new ChargeSword(this, 0, 0, 1)], // Array to store melee weapons
+                RangedWeaponArray: [new Thompson(this, 0, 0, 1)],// Array to store ranged weapons
                 ActMelIndex: 0,      // Index of the currently active melee weapon
                 ActRangIndex: 0,     // Index of the currently active ranged weapon
                 lastWeaponUsed: null, // Last weapon used (can be set to the name or ID of the weapon)
@@ -82,7 +89,6 @@ export default class Room extends Phaser.Scene {
             };
         } else {
             this.globalPlayerStats = obj.playerStat;
-
         }
     }
 

@@ -4,7 +4,7 @@ import Hud from '../../assets/HUD/HUD.json';
 import healthDisplay from "../HUD/healthDisplay";
 import manaDisplay from "../HUD/manaDisplay";
 import keysDisplay from "../HUD/keysDisplay";
-import activeDisplay from "../HUD/activeDisplay";
+import shieldDisplay from "../HUD/shieldDisplay";
 import weaponDisplay from "../HUD/weaponDisplay";
 
 import { eventManager as hudEvents } from "../eventCenter";
@@ -41,23 +41,21 @@ export default class GUI extends Phaser.Scene {
             switch(obj.name) {
                 case 'LifeBar':
                     //Valor inicial de la vida maxima: 10
-                    this.playerLifeBar = new healthDisplay(this, obj.x, obj.y, this.life,this.maxLife);
+                    this.playerLifeBar = new healthDisplay(this, obj.x, obj.y, this.life, this.maxLife);
                     break;
                 case 'Manabar':
                     //Valores inciales del manaInicial y el manaMaximo: 250 y 500
                     this.playerManaBar = new manaDisplay(this, obj.x, obj.y, obj.width, obj.height, this.mana, this.maxMana);
                     break;
                 case 'Keys':
-                    //Valor inicial de las llaves: 0
+                    //Valor inicial de las llaves: 1
                     this.playerKeysInfo = new keysDisplay(this, obj.x + 70, obj.y, 'key', this.keys);
                     break;
-                case 'Active':
-                    //No tienes activo al principio
-                    //this.playerActiveInfo = new activeDisplay();
+                case 'Shield':
+                    this.playerShieldInfo = new shieldDisplay(this, obj.x + 35, obj.y - 18, 'ready_ui_shield', 'cd_ui_shield');
                     break;
                 case 'ArmaEquipada':
-                    //Arma inicial: basicMelee
-                    this.displayEquipedWeapon = new weaponDisplay(this, obj.x, obj.y, this.weaponEquiped.id);
+                    this.displayEquipedWeapon = new weaponDisplay(this, obj.x, obj.y, obj.width, obj.height, this.weaponEquiped.id);
                     break;
                 default:
                     console.warn('Tipo de objeto no reconocido:', obj.name);
@@ -69,7 +67,6 @@ export default class GUI extends Phaser.Scene {
         });
 
         hudEvents.on('updateMana', (playerManaStats) => {
-            //this.playerManaBar.setMana(playerManaStats[0], playerManaStats[1]);
             this.playerManaBar.setMeterPercentageAnimated(playerManaStats[0] / playerManaStats[1]);
         });
 
@@ -85,14 +82,8 @@ export default class GUI extends Phaser.Scene {
             this.playerKeysInfo.updateKeys(keys);
         });
 
-        /**
-         * hudEvents.on('changedActive', () => {
-         * 
-         * });
-         * 
-         * hudEvents.on('useActive', () => {
-          * 
-         * });
-         */
+        hudEvents.on('updateShield', (isItReady) => {
+            this.playerShieldInfo.updateShield(isItReady);
+        });
     }
 }

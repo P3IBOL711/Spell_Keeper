@@ -1,24 +1,31 @@
 import Phaser from "phaser";
 
-import fireStaff from './armas/fireStaff'
+import poisonStaff from './armas/poisonStaff'
 import iceStaff from './armas/iceStaff'
 import megaEspadaMortal from "./armas/megaEspadaMortal";
-
-import halfHeart from './objetos/halfHeart';
-import heart from './objetos/heart';
-import manaPotion from './objetos/manaPotion';
 import hoe from "./armas/HOE";
 import Shotgun from "./armas/shotgun";
 import Thompson from "./armas/thompson";
 import DrainSword from "./armas/drainSword";
-import key from "./objetos/key";
 
-let weaponsPool = [[fireStaff, iceStaff], [hoe, Shotgun, Thompson], [megaEspadaMortal, DrainSword]];
+
+import halfHeart from './objetos/halfHeart';
+import heart from './objetos/heart';
+import manaPotion from './objetos/manaPotion';
+import key from "./objetos/key";
+import FourLeafsClub from "./objetos/4-leafsClub";
+import heartAmulet from "./objetos/heartAmulet";
+import nowYouAreFat from "./objetos/nowYouAreFat";
+import shadowCloak from "./objetos/shadowCloak";
+import broom from "./objetos/broom";
+
+let weaponsPool = [[poisonStaff, iceStaff], [hoe, Shotgun, Thompson], [megaEspadaMortal, DrainSword]];
+//[FourLeafsClub, heartAmulet, nowYouAreFat, shadowCloak, broom],
 
 export default class lootGenerator {
     constructor(scene, x, y, luck) {
 
-        this.itemsPool = [halfHeart, heart, manaPotion,key];
+        this.itemsPool = [halfHeart, heart, manaPotion, key];
 
         this.scene = scene;
         this.x = x;

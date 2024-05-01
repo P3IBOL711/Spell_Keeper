@@ -210,6 +210,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             if (this.shieldCooldown === 0) {
                 this.canBeDamaged = false;
                 this.escudo.setVisible(true);
+                
                 let timer = this.scene.time.addEvent({
                     delay: 3000,
                     callback: this.scene.player.shieldOnCD,
@@ -254,7 +255,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
                 this.lastClick = 'left';
             }
         });
-
         
         this.scene.input.on('pointermove', () => {
             this.reticle.x = this.scene.input.activePointer.worldX;
@@ -408,6 +408,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
                     this.actualLife = 0;
                 else
                     this.actualLife -= damage;
+                
+                if(this.actualLife <= 0)
+                    this.died();
 
                 hudEvents.emit('updateHealth', this.actualLife);
 
@@ -427,15 +430,18 @@ export default class Player extends Phaser.GameObjects.Sprite {
                     }
                 });
 
-                this.playerHitSfx.play()
+                this.playerHitSfx.play();
 
-                if (this.actualLife <= 0) {
-                    this.body.setVelocity(0);
-                    this.stop();
-                    this.play('dying', true);
-                }
             }
         }
+        else if (this.actualLife <= 0)
+            this.died();
+    }
+
+    died() {
+        this.body.setVelocity(0);
+        this.stop();
+        this.play('dying', true);
     }
 
     //Relativo a las armas
@@ -475,6 +481,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.shieldCooldown = 1;
         this.canBeDamaged = true;
         this.escudo.setVisible(false);
+        hudEvents.emit('updateShield', false);
 
         let cdShield = this.scene.time.addEvent({
             delay: 10000,
@@ -485,6 +492,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     shieldOffCD() {
         this.shieldCooldown = 0;
+        hudEvents.emit('updateShield', true);
     }
 
     //Relativo al cambio de estadisticas
