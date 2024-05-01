@@ -2,9 +2,10 @@ import Phaser from "phaser";
 
 import arma from "./arma";
 import PlayerHitBox from "../playerHitbox";
+import meleeWeapon from "./meleeWeapon";
 
 const DAMAGE = 3;
-export default class Spear extends arma {
+export default class Spear extends meleeWeapon {
  /**
      * Constructor del jugador
      * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
