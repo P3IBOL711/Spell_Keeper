@@ -2,7 +2,7 @@ import Phaser from "phaser";
 
 import meleeWeapon from "./meleeWeapon";
 
-export default class EspadaChof extends meleeWeapon {
+export default class ChofSword extends meleeWeapon {
 
     constructor(scene, x, y) {
         super(scene, x, y, 'espadaNormalucha');
@@ -29,6 +29,6 @@ export default class EspadaChof extends meleeWeapon {
     }
 
     manaRegen() {
-        return 10;
+        return 40;
     }
 }

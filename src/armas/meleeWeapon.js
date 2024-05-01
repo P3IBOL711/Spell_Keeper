@@ -18,7 +18,7 @@ export default class meleeWeapon extends arma {
         super.preUpdate(t, dt)
         if(this.hasAttacked) {
             this.timeOnField += dt;
-            if(this.timeOnField >= 150) {
+            if(this.timeOnField >= this.delayAttackAction) {
                 this.hasAttacked = false;
                 this.timeOnField = 0;
                 this.attackFinished();

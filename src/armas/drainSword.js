@@ -34,6 +34,6 @@ export default class DrainSword extends meleeWeapon {
     }
 
     manaRegen() {
-        return 2;
+        return 0;
     }
 }
