@@ -68,8 +68,11 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
             duration: 1000, // Duration of each tick (in milliseconds)
             onUpdate: () => {
                 // Apply damage to the target
-                if(this.life > 0)
-                    this.receiveDamage(damagePerTick,'poison')
+                if(this.life > 0) {
+                    this.receiveDamage(damagePerTick)
+                    if(this.life <= 0)
+                        this.tween.stop();
+                }
               //  console.log("Poisoned! Damage taken: " + damagePerTick + ". Remaining health: " + this.life);
     
                 // Check if target is dead
@@ -83,7 +86,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
  
     
 
-    receiveDamage(damage,effect) {
+    receiveDamage(damage) {
         this.life -= damage;
 
         this.scene.tweens.add({
@@ -94,7 +97,6 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
             repeat: 0,
             yoyo: true,
             onStart: () => {
-                if(effect !== 'poison')
                 this.setTint(0xff0000);
             },
             onComplete: () => {

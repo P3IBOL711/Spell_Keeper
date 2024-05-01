@@ -24,7 +24,7 @@ export default class PlayerHitBox extends Phaser.GameObjects.Zone {
             if (id === 'drainsword')
                 this.scene.player.addHealth(damage / 2);
             else if (id === 'poisondagger') {
-                enemy.receiveDamageOverTime(damage/3, 2)
+                enemy.receiveDamageOverTime(damage, 2)
             }
             else {
                 this.scene.player.regenMana();

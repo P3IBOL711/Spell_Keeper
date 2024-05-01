@@ -3,7 +3,7 @@ import Phaser from "phaser";
 import Bullet from "../projectiles/bullet";
 import arma from "./arma";
     
-const DAMAGE = 1;
+const DAMAGE = 6;
 
 export default class PoisonStaff extends arma {
  /**
@@ -24,7 +24,7 @@ export default class PoisonStaff extends arma {
         this.setActive(true);
         this.setVisible(true);
 
-        this.damage =  DAMAGE ;
+        this.damage =  DAMAGE;
     }
 
     preUpdate(t, dt) {
