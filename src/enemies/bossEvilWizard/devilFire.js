@@ -27,12 +27,24 @@ export default class DevilFire extends Projectile {
 
         this.speed = 50;
 
+        this.rotation = rotation;
+
         this.body.setVelocityX(this.speed * Math.cos(angle));
         this.body.setVelocityY(this.speed * Math.sin(angle))
 
         this.scene.physics.add.overlap(this, this.scene.player, () => {
             this.scene.player.receiveDamage(this.damage);
         });
+
+        if (this.angle == 0 || this.angle == 180) {
+            this.body.setSize(this.width, this.height, true);
+        }
+        else if (this.angle == 90 || this.angle == 270) {
+            this.body.setSize(this.height, this.width, true);
+        }
+        else {
+            this.body.setSize(this.width * 0.4, this.height * 2.75, true);
+        }
     }
 
     impact(){
