@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="25">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="26">
  <editorsettings>
   <export target="../../../Universidad(GII)/Uni- 3ºCurso/DVI/Spell_Keeper/assets/HUD/HUD.json" format="json"/>
  </editorsettings>
@@ -9,5 +9,6 @@
   <object id="12" name="Keys" type="LLaves" x="256" y="96" width="64" height="32"/>
   <object id="13" name="Shield" type="Escudo" x="352" y="96" width="32" height="32"/>
   <object id="15" name="ArmaEquipada" type="ArmaEquipada" x="896" y="384" width="96" height="96"/>
+  <object id="25" x="899" y="34" width="60" height="58"/>
  </objectgroup>
 </map>

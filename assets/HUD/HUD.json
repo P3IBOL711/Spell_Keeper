@@ -61,6 +61,17 @@
                  "width":96,
                  "x":896,
                  "y":384
+                }, 
+                {
+                 "height":32,
+                 "id":26,
+                 "name":"FullScreen",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":960,
+                 "y":32
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -69,7 +80,7 @@
          "y":0
         }],
  "nextlayerid":5,
- "nextobjectid":25,
+ "nextobjectid":27,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
