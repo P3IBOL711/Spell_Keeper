@@ -39,7 +39,7 @@ export default class DevilFire extends Projectile {
         if (this.angle == 0 || this.angle == 180) {
             this.body.setSize(this.width, this.height, true);
         }
-        else if (this.angle == 90 || this.angle == 270) {
+        else if (this.angle == 90 || this.angle == -90) {
             this.body.setSize(this.height, this.width, true);
         }
         else {
