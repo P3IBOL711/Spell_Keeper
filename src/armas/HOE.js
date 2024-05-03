@@ -13,6 +13,7 @@ export default class hoe extends meleeWeapon {
         this.setDepth(8)
         this.delay = 100;
         this.damage = INIFINITY;
+        this.hitboxMultiplier = 0.75;
 
         this.id = 'hoe';
         this.setActive(true);

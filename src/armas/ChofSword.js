@@ -10,6 +10,7 @@ export default class ChofSword extends meleeWeapon {
         this.scene.physics.add.existing(this);
         this.delay = 300;
         this.damage = 1;
+        this.hitboxMultiplier = 3;
 
         this.id = 'espadaNormalucha';
         this.setActive(true);

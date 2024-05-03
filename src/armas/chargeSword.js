@@ -15,7 +15,8 @@ export default class ChargeSword extends meleeWeapon {
         this.scene.physics.add.existing(this);
         this.delay = 500;
         this.damage = 1;
-        this.level = 0
+        this.level = 0;
+        this.hitboxMultiplier = 3;
 
         this.id = 'chargesword';
         this.setActive(true);

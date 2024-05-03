@@ -107,20 +107,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.playerDead = false
 
         this.anims.create({
-            key: 'playerDying',
-            frames: this.anims.generateFrameNumbers('player_dead', { start: 0, end: 2 }),
-            frameRate: 3,
-            repeat: 0
-        });
-
-        this.anims.create({
-            key: 'playerDead',
-            frames: this.anims.generateFrameNumbers('player_dead', { start: 3, end: 3 }),
-            frameRate: 3,
-            repeat: -1
-        });
-
-        this.anims.create({
             key: 'idleDown',
             frames: this.anims.generateFrameNumbers('player_idle', { start: 0, end: 1 }),
             frameRate: 3,
@@ -298,6 +284,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             //MOVIMIENTO DEL JUGADOR
             //Notas: imprimir la fuerza y que animacion se usa va por separado porque si no produce bugs
             let stopped = true;
+            this.body.setVelocity(0);
 
             //Parte de imprimir la fuerza
             if (this.a.isDown) {

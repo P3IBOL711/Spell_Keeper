@@ -4,7 +4,7 @@ import arma from "./arma";
 import PlayerHitBox from "../playerHitbox";
 import meleeWeapon from "./meleeWeapon";
 
-const DAMAGE = 20;
+const DAMAGE = 30;
 export default class BigSword extends meleeWeapon {
  /**
      * Constructor del jugador
@@ -19,6 +19,7 @@ export default class BigSword extends meleeWeapon {
         this.angleOfRotation = 120;
         this.delay = 1000;
         this.damage = DAMAGE;
+        this.hitboxMultiplier = 4.5;
 
         this.id = 'espadaCheta';
         this.setActive(true);

@@ -26,8 +26,8 @@ import nowYouAreFat from "./objetos/nowYouAreFat";
 import shadowCloak from "./objetos/shadowCloak";
 import broom from "./objetos/broom";
 
-let weaponsPool = [[poisonStaff, ChofSword, Spear], [hoe, iceStaff, Shotgun, Thompson,ChargeSword,PoisonDagger,magicSword,MagicKnife], [megaEspadaMortal, DrainSword,lethalSword]];
-//[FourLeafsClub, heartAmulet, nowYouAreFat, shadowCloak, broom],
+let weaponsPool = [[poisonStaff, ChofSword, Spear], [FourLeafsClub, heartAmulet, nowYouAreFat, shadowCloak, broom], [iceStaff, Shotgun, Thompson, ChargeSword, PoisonDagger, magicSword, MagicKnife], [hoe, megaEspadaMortal, DrainSword, lethalSword]];
+
 
 export default class lootGenerator {
     constructor(scene, x, y, luck) {
@@ -55,7 +55,6 @@ export default class lootGenerator {
             weaponsPool.splice(weaponsPool.indexOf(tier), 1);
         }
 
-        console.log(weaponsPool);
         return new newWeapon(this.scene, this.x, this.y);
     }
 

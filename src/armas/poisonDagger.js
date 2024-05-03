@@ -18,6 +18,7 @@ export default class PoisonDagger extends meleeWeapon {
         this.scene.physics.add.existing(this);
         this.delay = 250;
         this.damage = DAMAGE;
+        this.hitboxMultiplier = 2;
 
         this.id = 'poisondagger';
         this.setActive(true);

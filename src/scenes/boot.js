@@ -4,13 +4,12 @@ import room from '../../assets/armory/sprites/Hab_Prueba.png'
 //player assets
 import player from '../../assets/cSprites/characters/Mage_Walking.png'
 import deadPlayer from '../../assets/cSprites/characters/Mage_Dead.png'
+import playerIdle from '../../assets/cSprites/characters/Mage_Idle.png'
 import shield from '../../assets/cSprites/characters/Escudo.png'
 import sombreraco from '../../assets/cSprites/characters/SombreroPajerini.png'
 
 //Enemies assets
 import inv from '../../assets/gardens/sprites/InvernaderoAbierto.png'
-import playerIdle from '../../assets/cSprites/characters/Mage_Idle.png'
-import playerDead from '../../assets/cSprites/characters/Mage_Dead.png'
 import knight from '../../assets/armory/sprites/knight/knight_spritesheet.png'
 import skeleton from '../../assets/armory/sprites/skeleton/skeleton_spritesheet.png'
 import PoisonousGoblin from '../../assets/gardens/sprites/goblin/poisonous_goblin_spritesheet.png'
@@ -53,6 +52,11 @@ import espadaLetal from '../../assets/cSprites/weapons/espadaLetal.png'
 import healingHeart from '../../assets/cSprites/items/healingHeart.png'
 import halfHealingHeart from '../../assets/cSprites/items/halfHealingHeart.png'
 import manaPotion from '../../assets/cSprites/items/PotionBlue.png'
+import escoba from '../../assets/cSprites/items/broom.png'
+import soda from '../../assets/cSprites/items/CocaCona.png'
+import luckyClub from '../../assets/cSprites/items/FourLeafClub.png'
+import crystalHeart from '../../assets/cSprites/items/heartAmulet.png'
+import speedyCloak from '../../assets/cSprites/items/shadowCloak.png'
 
 //UI assets
 import fullHeart from '../../assets/HUD/ui-heart-full.png'
@@ -113,8 +117,7 @@ export default class Boot extends Phaser.Scene {
   preload() {
     //Player
     this.load.spritesheet('player_spritesheet', player, { frameWidth: 32, frameHeight: 32 });
-    this.load.spritesheet('player_idle',playerIdle, { frameWidth: 32, frameHeight: 32 })
-    this.load.spritesheet('player_dead',playerDead, { frameWidth: 32, frameHeight: 32 })
+    this.load.spritesheet('player_idle',playerIdle, { frameWidth: 32, frameHeight: 32 });
     this.load.spritesheet('playerDying_spritesheet', deadPlayer, { frameWidth: 32, frameHeight: 32 });
     this.load.image('escudo', shield);
     this.load.image('sombreroPajero', sombreraco);
@@ -163,6 +166,11 @@ export default class Boot extends Phaser.Scene {
     this.load.image('healingHeart', healingHeart);
     this.load.image('halfHealingHeart', halfHealingHeart);
     this.load.image('potionOfMana', manaPotion);
+    this.load.image('broom', escoba);
+    this.load.image('nowYouAreFat', soda);
+    this.load.image('4-leafsClub', luckyClub);
+    this.load.image('heartAmulet', crystalHeart);
+    this.load.image('shadowCloak', speedyCloak);
 
     //Enemies
     this.load.spritesheet('arrow', arrow, { frameWidth: 32, frameHeight: 32 });

@@ -10,6 +10,7 @@ export default class meleeWeapon extends arma {
         this.hasAttacked = false;
         this.timeOnField = 0;
         this.angleOfRotation = 60;
+        this.hitboxMultiplier = 4;
         this.x = x;
         this.y = y;
     }
@@ -98,12 +99,12 @@ export default class meleeWeapon extends arma {
         let hitboxHeight
         if (Math.abs(Math.cos(angle)) > 0.6) {
             // El arma mira hacia la derecha o hacia la izquierda
-            hitboxWidth = this.width * 4;
-            hitboxHeight = this.height * 4;
+            hitboxWidth = this.width * this.hitboxMultiplier;
+            hitboxHeight = this.height * this.hitboxMultiplier;
         } else {
             // El arma mira hacia arriba o hacia abajo
-            hitboxWidth = this.height * 4;
-            hitboxHeight = this.width * 4;
+            hitboxWidth = this.height * this.hitboxMultiplier;
+            hitboxHeight = this.width * this.hitboxMultiplier;
         }
 
 
