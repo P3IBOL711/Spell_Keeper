@@ -36,7 +36,7 @@ export default class DevilFire extends Projectile {
             this.scene.player.receiveDamage(this.damage);
         });
 
-        if (this.angle == 0 || this.angle == 180) {
+        if (rotation == Math.PI || this.angle == 0) {
             this.body.setSize(this.width, this.height, true);
         }
         else if (this.angle == 90 || this.angle == -90) {

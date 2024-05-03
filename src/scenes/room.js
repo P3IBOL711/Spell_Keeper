@@ -17,8 +17,6 @@ import Chest from '../chest.js';
 import LevelTrigger from '../levelTrigger.js'
 import Dungeongen from '../dungeongen'
 
-import EasyStar from 'easystarjs';
-
 //Pruebas
 import BossTree from '../enemies/bossTree.js'
 

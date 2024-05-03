@@ -146,8 +146,7 @@ export default class EvilWizard extends Enemy {
     onTimerAttack(){
         this.attacking = true;
         let typeAttack = Math.floor(Math.random() * 3);
-        //this.play(this.attacks[typeAttack]);
-        this.play('attack3');
+        this.play(this.attacks[typeAttack]);
         this.speed = 0;
     }
 
