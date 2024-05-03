@@ -85,8 +85,8 @@ export default class MainMenu extends Phaser.Scene {
          this.scene.start('controlsMenu');
        })
 
-        let fullscreen = this.add.image(990, 35, 'fullScreenButton').setDepth(10).setScale(2);
-        let normalscreen = this.add.image(990, 35, 'normalScreenButton').setDepth(10).setScale(1.5).setVisible(false);
+        let fullscreen = this.add.image(991, 32, 'fullScreenButton').setDepth(10).setScale(2);
+        let normalscreen = this.add.image(991, 32, 'normalScreenButton').setDepth(10).setScale(1.5).setVisible(false);
         
         fullscreen.setInteractive();
         fullscreen.on("pointerover", ()=>{

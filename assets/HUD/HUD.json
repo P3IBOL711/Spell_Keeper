@@ -70,7 +70,7 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":960,
+                 "x":991,
                  "y":32
                 }],
          "opacity":1,
@@ -80,7 +80,7 @@
          "y":0
         }],
  "nextlayerid":5,
- "nextobjectid":27,
+ "nextobjectid":28,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",

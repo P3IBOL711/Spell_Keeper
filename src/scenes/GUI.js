@@ -28,6 +28,7 @@ export default class GUI extends Phaser.Scene {
         this.maxMana = obj.maxMana;
         this.weaponEquiped = obj.equipedWeapon;
         this.keys = obj.keys
+        this.fullScreen = obj.fullScreen;
     }
 
     create() {
@@ -59,7 +60,7 @@ export default class GUI extends Phaser.Scene {
                     this.displayEquipedWeapon = new weaponDisplay(this, obj.x, obj.y, obj.width, obj.height, this.weaponEquiped.id);
                     break;
                 case 'FullScreen':
-                    this.fullScreenButton = new FullScreenButton(this, obj.x, obj.y, 'fullScreenButton');
+                    this.fullScreenButton = new FullScreenButton(this, obj.x, obj.y, 'fullScreenButton', this.fullScreen);
                     break;
                 default:
                     console.warn('Tipo de objeto no reconocido:', obj.name);
