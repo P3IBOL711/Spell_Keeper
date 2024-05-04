@@ -14,6 +14,6 @@ export default class nowYouAreFat extends item {
 
     itemFuction() {
         this.scene.player.decreaseMovSpeed(this.movSpeedDecreased);
-        this.scene.player.ncreaseHealth(this.increasedHealth);
+        this.scene.player.increaseHealth(this.increasedHealth);
     }
 }
