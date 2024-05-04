@@ -118,10 +118,10 @@
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 162, 0, 0, 0, 145, 164, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 179, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 178, 161, 0, 0, 0, 162, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 146, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 161, 0, 0, 0, 144, 163, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 178, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 177, 160, 0, 0, 0, 161, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 145, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -143,13 +143,13 @@
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 202, 0, 203, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 201, 0, 202, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 181, 142, 181, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 180, 141, 180, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 103, 0, 87, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 102, 0, 86, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -200,13 +200,6 @@
                  "height":32,
                  "id":2,
                  "name":"",
-                 "properties":[
-                        {
-                         "name":"Dir",
-                         "propertytype":"Direction",
-                         "type":"string",
-                         "value":"n"
-                        }],
                  "rotation":0,
                  "type":"Trigger",
                  "visible":true,
@@ -221,7 +214,6 @@
                  "properties":[
                         {
                          "name":"Dir",
-                         "propertytype":"Direction",
                          "type":"string",
                          "value":"w"
                         }],
@@ -239,7 +231,6 @@
                  "properties":[
                         {
                          "name":"Dir",
-                         "propertytype":"Direction",
                          "type":"string",
                          "value":"s"
                         }],
@@ -251,36 +242,36 @@
                  "y":416
                 }, 
                 {
-                 "gid":337,
+                 "gid":336,
                  "height":32,
                  "id":6,
                  "name":"",
                  "rotation":90,
-                 "type":"Fire",
+                 "type":"",
                  "visible":true,
                  "width":32,
                  "x":320,
                  "y":256
                 }, 
                 {
-                 "gid":337,
+                 "gid":336,
                  "height":32,
                  "id":7,
                  "name":"",
                  "rotation":0,
-                 "type":"Fire",
+                 "type":"",
                  "visible":true,
                  "width":32,
                  "x":480,
                  "y":416
                 }, 
                 {
-                 "gid":337,
+                 "gid":336,
                  "height":32,
                  "id":8,
                  "name":"",
                  "rotation":0,
-                 "type":"Fire",
+                 "type":"",
                  "visible":true,
                  "width":32,
                  "x":480,
@@ -294,7 +285,6 @@
                  "properties":[
                         {
                          "name":"Dir",
-                         "propertytype":"Direction",
                          "type":"string",
                          "value":"w"
                         }],
@@ -310,13 +300,6 @@
                  "id":11,
                  "name":"",
                  "point":true,
-                 "properties":[
-                        {
-                         "name":"Dir",
-                         "propertytype":"Direction",
-                         "type":"string",
-                         "value":"n"
-                        }],
                  "rotation":0,
                  "type":"PlayerSpawn",
                  "visible":true,
@@ -332,7 +315,6 @@
                  "properties":[
                         {
                          "name":"Dir",
-                         "propertytype":"Direction",
                          "type":"string",
                          "value":"s"
                         }],
@@ -423,26 +405,48 @@
                  "y":256
                 }, 
                 {
-                 "height":27.0909090909091,
+                 "height":27.0909,
                  "id":21,
                  "name":"",
                  "rotation":0,
                  "type":"Hitbox",
                  "visible":true,
-                 "width":12.1818181818182,
-                 "x":457.818181818182,
-                 "y":356.727272727273
+                 "width":12.1818,
+                 "x":457.818,
+                 "y":356.727
                 }, 
                 {
-                 "height":26.9090909090909,
+                 "height":26.9091,
                  "id":22,
                  "name":"",
                  "rotation":0,
                  "type":"Hitbox",
                  "visible":true,
-                 "width":12.5454545454545,
+                 "width":12.5455,
                  "x":522,
-                 "y":356.727272727273
+                 "y":356.727
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":9,
+         "name":"navmesh",
+         "objects":[
+                {
+                 "height":440,
+                 "id":23,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":688,
+                 "x":176,
+                 "y":16
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -450,8 +454,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":9,
- "nextobjectid":23,
+ "nextlayerid":10,
+ "nextobjectid":24,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
@@ -460,13 +464,13 @@
         {
          "columns":10,
          "firstgid":1,
-         "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/Garden_Tileset.png",
+         "image":"..\/..\/Pixel Art PNGs\/Garden_Tileset.png",
          "imageheight":256,
          "imagewidth":320,
          "margin":0,
          "name":"Base",
          "spacing":0,
-         "tilecount":80,
+         "tilecount":51,
          "tileheight":32,
          "tiles":[
                 {
@@ -933,14 +937,14 @@
         }, 
         {
          "columns":16,
-         "firstgid":81,
-         "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/Garden_Decoration.png",
+         "firstgid":80,
+         "image":"..\/..\/Pixel Art PNGs\/Garden_Decoration.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
          "name":"Objects",
          "spacing":0,
-         "tilecount":256,
+         "tilecount":128,
          "tileheight":32,
          "tiles":[
                 {
@@ -2102,45 +2106,24 @@
         }, 
         {
          "columns":0,
-         "firstgid":337,
-         "grid":
-            {
-             "height":1,
-             "orientation":"orthogonal",
-             "width":1
-            },
+         "firstgid":336,
          "margin":0,
-         "name":"Flames",
+         "name":"Flames2",
          "spacing":0,
-         "tilecount":2,
+         "tilecount":0,
          "tileheight":32,
-         "tiles":[
-                {
-                 "id":0,
-                 "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/LlamaArriba.png",
-                 "imageheight":32,
-                 "imagewidth":32,
-                 "type":"Fire"
-                }, 
-                {
-                 "id":2,
-                 "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/Chest.png",
-                 "imageheight":32,
-                 "imagewidth":32,
-                 "type":"Chest"
-                }],
          "tilewidth":32
         }, 
         {
          "columns":5,
-         "firstgid":340,
-         "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/Armory_Tileset.png",
+         "firstgid":339,
+         "image":"..\/..\/Pixel Art PNGs\/Armory_Tileset.png",
          "imageheight":128,
          "imagewidth":160,
          "margin":0,
          "name":"Invernadero",
          "spacing":0,
-         "tilecount":20,
+         "tilecount":0,
          "tileheight":32,
          "tilewidth":32
         }],

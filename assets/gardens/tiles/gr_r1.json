@@ -353,7 +353,7 @@
                  "y":224
                 }, 
                 {
-                 "gid":316,
+                 "gid":336,
                  "height":32,
                  "id":21,
                  "name":"",
@@ -365,7 +365,7 @@
                  "y":416
                 }, 
                 {
-                 "gid":316,
+                 "gid":336,
                  "height":32,
                  "id":22,
                  "name":"",
@@ -377,7 +377,7 @@
                  "y":416
                 }, 
                 {
-                 "gid":316,
+                 "gid":336,
                  "height":32,
                  "id":23,
                  "name":"",
@@ -389,7 +389,7 @@
                  "y":416
                 }, 
                 {
-                 "gid":316,
+                 "gid":336,
                  "height":32,
                  "id":24,
                  "name":"",
@@ -401,7 +401,7 @@
                  "y":128
                 }, 
                 {
-                 "gid":316,
+                 "gid":336,
                  "height":32,
                  "id":25,
                  "name":"",
@@ -413,7 +413,7 @@
                  "y":128
                 }, 
                 {
-                 "gid":316,
+                 "gid":336,
                  "height":32,
                  "id":26,
                  "name":"",
@@ -425,7 +425,7 @@
                  "y":128
                 }, 
                 {
-                 "gid":316,
+                 "gid":336,
                  "height":32,
                  "id":28,
                  "name":"",
@@ -437,7 +437,7 @@
                  "y":256
                 }, 
                 {
-                 "gid":316,
+                 "gid":336,
                  "height":32,
                  "id":29,
                  "name":"",
@@ -449,7 +449,7 @@
                  "y":224
                 }, 
                 {
-                 "gid":316,
+                 "gid":336,
                  "height":32,
                  "id":31,
                  "name":"",
@@ -461,7 +461,7 @@
                  "y":256
                 }, 
                 {
-                 "gid":316,
+                 "gid":336,
                  "height":32,
                  "id":32,
                  "name":"",
@@ -585,9 +585,31 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":9,
+         "name":"navmesh",
+         "objects":[
+                {
+                 "height":504,
+                 "id":42,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":688,
+                 "x":200,
+                 "y":8
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":9,
- "nextobjectid":42,
+ "nextlayerid":10,
+ "nextobjectid":43,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
@@ -2238,7 +2260,7 @@
         }, 
         {
          "columns":0,
-         "firstgid":316,
+         "firstgid":336,
          "margin":0,
          "name":"Flames2",
          "spacing":0,

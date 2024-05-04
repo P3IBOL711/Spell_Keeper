@@ -203,7 +203,6 @@
                  "properties":[
                         {
                          "name":"Dir",
-                         "propertytype":"Direction",
                          "type":"string",
                          "value":"n"
                         }],
@@ -215,36 +214,36 @@
                  "y":448
                 }, 
                 {
-                 "gid":337,
+                 "gid":336,
                  "height":32,
                  "id":2,
                  "name":"",
                  "rotation":0,
-                 "type":"Fire",
+                 "type":"",
                  "visible":true,
                  "width":32,
                  "x":448,
                  "y":448
                 }, 
                 {
-                 "gid":337,
+                 "gid":336,
                  "height":32,
                  "id":3,
                  "name":"",
                  "rotation":0,
-                 "type":"Fire",
+                 "type":"",
                  "visible":true,
                  "width":32,
                  "x":480,
                  "y":448
                 }, 
                 {
-                 "gid":337,
+                 "gid":336,
                  "height":32,
                  "id":4,
                  "name":"",
                  "rotation":0,
-                 "type":"Fire",
+                 "type":"",
                  "visible":true,
                  "width":32,
                  "x":512,
@@ -258,7 +257,6 @@
                  "properties":[
                         {
                          "name":"Dir",
-                         "propertytype":"Direction",
                          "type":"string",
                          "value":"n"
                         }],
@@ -282,36 +280,36 @@
                  "y":144
                 }, 
                 {
-                 "gid":337,
+                 "gid":336,
                  "height":32,
                  "id":7,
                  "name":"",
                  "rotation":0,
-                 "type":"Fire",
+                 "type":"",
                  "visible":true,
                  "width":32,
                  "x":480,
                  "y":64
                 }, 
                 {
-                 "gid":337,
+                 "gid":336,
                  "height":32,
                  "id":8,
                  "name":"",
                  "rotation":0,
-                 "type":"Fire",
+                 "type":"",
                  "visible":true,
                  "width":32,
                  "x":448,
                  "y":64
                 }, 
                 {
-                 "gid":337,
+                 "gid":336,
                  "height":32,
                  "id":9,
                  "name":"",
                  "rotation":0,
-                 "type":"Fire",
+                 "type":"",
                  "visible":true,
                  "width":32,
                  "x":512,
@@ -321,13 +319,6 @@
                  "height":32,
                  "id":10,
                  "name":"",
-                 "properties":[
-                        {
-                         "name":"Level",
-                         "propertytype":"Level",
-                         "type":"string",
-                         "value":"lb"
-                        }],
                  "rotation":0,
                  "type":"SpecialTrigger",
                  "visible":true,
@@ -340,9 +331,31 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":9,
+         "name":"navmesh",
+         "objects":[
+                {
+                 "height":504,
+                 "id":12,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":664,
+                 "x":184,
+                 "y":-8
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":9,
- "nextobjectid":12,
+ "nextlayerid":10,
+ "nextobjectid":13,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
@@ -351,13 +364,13 @@
         {
          "columns":10,
          "firstgid":1,
-         "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/Garden_Tileset.png",
+         "image":"..\/..\/Pixel Art PNGs\/Garden_Tileset.png",
          "imageheight":256,
          "imagewidth":320,
          "margin":0,
          "name":"Base",
          "spacing":0,
-         "tilecount":80,
+         "tilecount":51,
          "tileheight":32,
          "tiles":[
                 {
@@ -824,14 +837,14 @@
         }, 
         {
          "columns":16,
-         "firstgid":81,
-         "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/Garden_Decoration.png",
+         "firstgid":80,
+         "image":"..\/..\/Pixel Art PNGs\/Garden_Decoration.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
          "name":"Objects",
          "spacing":0,
-         "tilecount":256,
+         "tilecount":128,
          "tileheight":32,
          "tiles":[
                 {
@@ -1993,33 +2006,12 @@
         }, 
         {
          "columns":0,
-         "firstgid":337,
-         "grid":
-            {
-             "height":1,
-             "orientation":"orthogonal",
-             "width":1
-            },
+         "firstgid":336,
          "margin":0,
-         "name":"Flames",
+         "name":"Flames2",
          "spacing":0,
-         "tilecount":2,
+         "tilecount":0,
          "tileheight":32,
-         "tiles":[
-                {
-                 "id":0,
-                 "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/LlamaArriba.png",
-                 "imageheight":32,
-                 "imagewidth":32,
-                 "type":"Fire"
-                }, 
-                {
-                 "id":2,
-                 "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/Chest.png",
-                 "imageheight":32,
-                 "imagewidth":32,
-                 "type":"Chest"
-                }],
          "tilewidth":32
         }],
  "tilewidth":32,

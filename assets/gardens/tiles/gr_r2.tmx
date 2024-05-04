@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="15">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="16">
  <editorsettings>
   <export target="../../Proyecto/Proyecto_DVI/assets/gardens/tiles/gr_r2.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="80" source="Objects.tsx"/>
- <tileset firstgid="316" source="Flames2.tsx"/>
+ <tileset firstgid="336" source="Flames2.tsx"/>
  <layer id="1" name="Fondo" width="32" height="16">
   <data encoding="csv">
 19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,
@@ -163,8 +163,8 @@
     <property name="Dir" value="n"/>
    </properties>
   </object>
-  <object id="9" gid="316" x="512" y="96" width="32" height="32"/>
-  <object id="10" gid="316" x="512" y="448" width="32" height="32"/>
+  <object id="9" gid="336" x="512" y="96" width="32" height="32"/>
+  <object id="10" gid="336" x="512" y="448" width="32" height="32"/>
   <object id="11" type="PlayerSpawn" x="527.5" y="110">
    <properties>
     <property name="Dir" value="n"/>
@@ -183,5 +183,8 @@
    </properties>
    <point/>
   </object>
+ </objectgroup>
+ <objectgroup id="9" name="navmesh">
+  <object id="15" x="240" y="0" width="584" height="520"/>
  </objectgroup>
 </map>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="20">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="21">
  <editorsettings>
   <export target="../../Proyecto/Proyecto_DVI/assets/gardens/tiles/gr_e1.json" format="json"/>
  </editorsettings>
@@ -201,5 +201,8 @@
   <object id="17" type="Hitbox" x="642.364" y="163.091" width="27.4545" height="15.0909"/>
   <object id="18" type="Hitbox" x="609.273" y="298.727" width="30" height="15.4545"/>
   <object id="19" type="Hitbox" x="610.909" y="288.545" width="26.5455" height="9.09091"/>
+ </objectgroup>
+ <objectgroup id="9" name="navmesh">
+  <object id="20" x="168" y="24" width="664" height="456"/>
  </objectgroup>
 </map>

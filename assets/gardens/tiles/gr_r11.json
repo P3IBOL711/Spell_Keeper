@@ -197,7 +197,7 @@
          "name":"Cosas",
          "objects":[
                 {
-                 "gid":316,
+                 "gid":336,
                  "height":32,
                  "id":1,
                  "name":"",
@@ -209,7 +209,7 @@
                  "y":256
                 }, 
                 {
-                 "gid":316,
+                 "gid":336,
                  "height":32,
                  "id":2,
                  "name":"",
@@ -221,7 +221,7 @@
                  "y":288
                 }, 
                 {
-                 "gid":316,
+                 "gid":336,
                  "height":32,
                  "id":3,
                  "name":"",
@@ -233,7 +233,7 @@
                  "y":320
                 }, 
                 {
-                 "gid":316,
+                 "gid":336,
                  "height":32,
                  "id":4,
                  "name":"",
@@ -245,7 +245,7 @@
                  "y":64
                 }, 
                 {
-                 "gid":316,
+                 "gid":336,
                  "height":32,
                  "id":5,
                  "name":"",
@@ -257,7 +257,7 @@
                  "y":64
                 }, 
                 {
-                 "gid":316,
+                 "gid":336,
                  "height":32,
                  "id":6,
                  "name":"",
@@ -433,9 +433,31 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":9,
+         "name":"navmesh",
+         "objects":[
+                {
+                 "height":536,
+                 "id":20,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":776,
+                 "x":152,
+                 "y":0
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":9,
- "nextobjectid":19,
+ "nextlayerid":10,
+ "nextobjectid":21,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
@@ -2086,7 +2108,7 @@
         }, 
         {
          "columns":0,
-         "firstgid":316,
+         "firstgid":336,
          "margin":0,
          "name":"Flames2",
          "spacing":0,
