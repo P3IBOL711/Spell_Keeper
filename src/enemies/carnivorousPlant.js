@@ -18,8 +18,8 @@ export default class CarnivorousPlant extends Enemy {
     */
 
     constructor(scene, x, y, target) {
-        super(scene, x, y, target, 'carnivorous_plant');
-
+        super(scene, x, y, target, 'carnivorous_plant', 10000);
+        
         this.anims.create({
             key: 'idle',
             frames: this.anims.generateFrameNumbers('carnivorousPlantSpritesheet', { start: 0, end: 3 }),
@@ -64,7 +64,6 @@ export default class CarnivorousPlant extends Enemy {
 
         this.meleeTimerAttack.paused = true;
 
-        // SE PODRIA MEJORAR CON this.on(animationstart) PERO NO SABEMOS HACERLO
         this.on(Phaser.Animations.Events.ANIMATION_START, () => {
             if (this.life > 0){
                 if (this.anims.getName() === 'attack1'){

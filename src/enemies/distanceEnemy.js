@@ -14,16 +14,9 @@ export default class DistanceEnemy extends Enemy {
      * @param {number} y Coordenada Y
      */
     constructor(scene, x, y, target, image, attackDelay) {
-        super(scene, x, y, target, image);
+        super(scene, x, y, target, image, attackDelay);
 
-        this.timerAttack = this.scene.time.addEvent({
-            delay: attackDelay,
-            callback: this.onTimerAttack,
-            callbackScope: this,
-            loop: true
-        });
-
-        this.timerAttack.paused = true;
+        this.distanceAttack = 300;
 
         this.on(Phaser.Animations.Events.ANIMATION_START, () => {
             if(this.life > 0){
@@ -87,16 +80,6 @@ export default class DistanceEnemy extends Enemy {
         // IMPORTANTE: Si no ponemos esta instrucción y el sprite está animado
         // no se podrá ejecutar la animación del sprite. 
         super.preUpdate(t, dt);
-        if (this.life > 0){
-            this.scene.physics.moveToObject(this, this.target, this.attacking ? 0 : this.speed);
-            this.playAfterRepeat('walking');
-            if (Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y) > 300){
-                this.timerAttack.paused = true;
-            }
-            else {  
-                this.timerAttack.paused = false;
-            }       
-        }
     }
 
 }

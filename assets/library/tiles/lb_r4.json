@@ -166,6 +166,83 @@
         }, 
         {
          "draworder":"topdown",
+         "id":9,
+         "name":"navmesh",
+         "objects":[
+                {
+                 "height":72,
+                 "id":32,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":240,
+                 "x":440,
+                 "y":136
+                }, 
+                {
+                 "height":56,
+                 "id":34,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":240,
+                 "x":440,
+                 "y":272
+                }, 
+                {
+                 "height":64,
+                 "id":35,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":112,
+                 "x":416,
+                 "y":208
+                }, 
+                {
+                 "height":64,
+                 "id":36,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":88,
+                 "x":592,
+                 "y":208
+                }, 
+                {
+                 "height":40,
+                 "id":37,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":680,
+                 "y":224
+                }, 
+                {
+                 "height":16,
+                 "id":39,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":680,
+                 "y":208
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":7,
          "name":"Cosas",
          "objects":[
@@ -308,8 +385,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":9,
- "nextobjectid":25,
+ "nextlayerid":10,
+ "nextobjectid":40,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
@@ -318,7 +395,7 @@
         {
          "columns":10,
          "firstgid":1,
-         "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/Library_Tileset .png",
+         "image":"Base.png",
          "imageheight":256,
          "imagewidth":320,
          "margin":0,
@@ -345,16 +422,12 @@
          "tiles":[
                 {
                  "id":0,
-                 "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/LlamaArriba.png",
-                 "imageheight":32,
-                 "imagewidth":32,
+                 "image":"..\/..\/Pixel Art PNGs\/LlamaArriba.png",
                  "type":"Fire"
                 }, 
                 {
                  "id":2,
-                 "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/Chest.png",
-                 "imageheight":32,
-                 "imagewidth":32,
+                 "image":"..\/..\/Pixel Art PNGs\/Chest.png",
                  "type":"Chest"
                 }],
          "tilewidth":32
@@ -362,7 +435,7 @@
         {
          "columns":16,
          "firstgid":84,
-         "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/Library_Objects.png",
+         "image":"Objects.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,

@@ -51,6 +51,8 @@ import GRX4 from './scenes/garden/grX4.js';
 import Controls from './scenes/controlsMenu.js';
 import End from './scenes/end.js'
 
+import { PhaserNavMeshPlugin } from "phaser-navmesh";
+
 
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos
@@ -66,6 +68,16 @@ let config = {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
     pixelArt: true,
+    plugins: {
+        scene: [
+          {
+            key: "PhaserNavMeshPlugin", // Key to store the plugin class under in cache
+            plugin: PhaserNavMeshPlugin, // Class that constructs plugins
+            mapping: "navMeshPlugin", // Property mapping to use for the scene, e.g. this.navMeshPlugin
+            start: true
+          }
+        ]
+    },
     scene: [Boot, MainMenu, Controls, ArmeriaPrueba,ARR1,ARR2,ARR3,ARX1,LBE1,LBR1,LBR2,LBR3,LBR4,LBR5,LBR6,LBR7,LBR8,LBR9,LBR10,LBR11,LBR12,LBR13,LBR14,LBR15,LBX1,LBX2,LBX3,LBX4,GRE1,GRR1,GRR2,GRR3,GRR4,GRR5,GRR6,GRR7,GRR8,GRR9,GRR10,GRR11,GRR12,GRR13,GRR14,GRR15,GRR16,GRX1,GRX2,GRX3,GRX4, GUI, End],
     physics: {
         default: 'arcade',

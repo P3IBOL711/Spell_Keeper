@@ -166,6 +166,28 @@
         }, 
         {
          "draworder":"topdown",
+         "id":8,
+         "name":"navmesh",
+         "objects":[
+                {
+                 "height":220,
+                 "id":53,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":283.333333333333,
+                 "x":246,
+                 "y":143.333333333333
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":7,
          "name":"Cosas",
          "objects":[
@@ -214,7 +236,6 @@
                  "properties":[
                         {
                          "name":"Dir",
-                         "propertytype":"Direction",
                          "type":"string",
                          "value":"c"
                         }],
@@ -253,17 +274,17 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":8,
- "nextobjectid":8,
+ "nextlayerid":9,
+ "nextobjectid":54,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.10.2",
+ "tiledversion":"1.10.1",
  "tileheight":32,
  "tilesets":[
         {
          "columns":5,
          "firstgid":1,
-         "image":"..\/..\/..\/Pixel Art PNGs\/Armory_Tileset.png",
+         "image":"Base.png",
          "imageheight":128,
          "imagewidth":160,
          "margin":0,
@@ -271,12 +292,130 @@
          "spacing":0,
          "tilecount":20,
          "tileheight":32,
+         "tiles":[
+                {
+                 "id":5,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":6,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":7,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":8,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":9,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":10,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":11,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":12,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":13,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":14,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":15,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":16,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":17,
+                 "properties":[
+                        {
+                         "name":"Walkable",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }],
          "tilewidth":32
         }, 
         {
          "columns":16,
          "firstgid":21,
-         "image":"..\/..\/..\/Pixel Art PNGs\/Weapons.png",
+         "image":"Weapons.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
