@@ -32,3 +32,45 @@
   font-size: 50px;
   font-weight: bold; /* Add bold style */
 }
+
+body, h1, h2, p, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #5e1675ff; /* Updated background color */
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  font-family: 'Pixel Font', sans-serif; /* Use the pixel font */
+}
+
+nav ul {
+  list-style-type: none;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li:last-child {
+  margin-right: 0;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+.logo img {
+  height: 40px; /* Adjust the height of the logo as needed */
+  margin-left: auto; /* Push the logo to the right */
+}
