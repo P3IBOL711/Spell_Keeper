@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="13">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="14">
  <editorsettings>
-  <export target="../../Proyecto/Proyecto_DVI/assets/gardens/tiles/gr_x2.json" format="json"/>
+  <export target="gr_x2.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="80" source="Objects.tsx"/>
@@ -170,6 +170,6 @@
   <object id="10" type="SpecialTrigger" x="448" y="0" width="96" height="32"/>
  </objectgroup>
  <objectgroup id="9" name="navmesh">
-  <object id="12" x="184" y="-8" width="664" height="504"/>
+  <object id="13" x="248" y="24" width="560" height="448"/>
  </objectgroup>
 </map>

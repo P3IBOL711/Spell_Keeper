@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="16">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="18">
  <editorsettings>
   <export target="../../Proyecto/Proyecto_DVI/assets/gardens/tiles/gr_r2.json" format="json"/>
  </editorsettings>
@@ -185,6 +185,6 @@
   </object>
  </objectgroup>
  <objectgroup id="9" name="navmesh">
-  <object id="15" x="240" y="0" width="584" height="520"/>
+  <object id="17" x="320" y="16" width="408" height="480"/>
  </objectgroup>
 </map>

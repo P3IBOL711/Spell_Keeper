@@ -724,15 +724,15 @@
          "name":"navmesh",
          "objects":[
                 {
-                 "height":512,
-                 "id":45,
+                 "height":480,
+                 "id":46,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":784,
-                 "x":96,
-                 "y":-8
+                 "width":696,
+                 "x":192,
+                 "y":8
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -741,7 +741,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":46,
+ "nextobjectid":47,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",

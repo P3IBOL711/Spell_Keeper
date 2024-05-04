@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="12">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="13">
+ <editorsettings>
+  <export target="gr_x3.json" format="json"/>
+ </editorsettings>
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="80" source="Objects.tsx"/>
  <tileset firstgid="336" source="Flames2.tsx"/>
@@ -167,6 +170,6 @@
   <object id="10" type="SpecialTrigger" x="448" y="0" width="96" height="32"/>
  </objectgroup>
  <objectgroup id="9" name="navmesh">
-  <object id="11" x="176" y="0" width="640" height="520"/>
+  <object id="12" x="280" y="32" width="496" height="432"/>
  </objectgroup>
 </map>

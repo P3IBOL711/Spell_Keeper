@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="14">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="15">
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="80" source="Objects.tsx"/>
  <tileset firstgid="336" source="Flames2.tsx"/>
@@ -164,6 +164,6 @@
   </object>
  </objectgroup>
  <objectgroup id="9" name="navmesh">
-  <object id="13" x="248" y="-16" width="544" height="528"/>
+  <object id="14" x="256" y="24" width="488" height="464"/>
  </objectgroup>
 </map>

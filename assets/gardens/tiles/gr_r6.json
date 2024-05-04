@@ -241,7 +241,7 @@
                  "y":131.375
                 }, 
                 {
-                 "gid":338,
+                 "gid":251,
                  "height":32,
                  "id":13,
                  "name":"",
@@ -321,15 +321,15 @@
          "name":"navmesh",
          "objects":[
                 {
-                 "height":512,
-                 "id":19,
+                 "height":464,
+                 "id":20,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":632,
-                 "x":224,
-                 "y":8
+                 "width":568,
+                 "x":240,
+                 "y":24
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -338,7 +338,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":20,
+ "nextobjectid":21,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
@@ -1989,7 +1989,7 @@
         }, 
         {
          "columns":0,
-         "firstgid":336,
+         "firstgid":249,
          "margin":0,
          "name":"Flames2",
          "spacing":0,
