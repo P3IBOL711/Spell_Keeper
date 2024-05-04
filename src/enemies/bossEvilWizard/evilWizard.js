@@ -57,9 +57,16 @@ export default class EvilWizard extends Enemy {
 
         this.anims.create({
             key: 'die',
-            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 236, end: 246 }),
+            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 238, end: 240 }),
             frameRate: 8,
             repeat: 0
+        });
+
+        this.anims.create({
+            key: 'stayDead',
+            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 240, end: 240 }),
+            frameRate: 1,
+            repeat: -1
         });
 
         this.setScale(1.25);
@@ -111,10 +118,7 @@ export default class EvilWizard extends Enemy {
                 }
                 else if (this.anims.getName() === 'attack3') {
                     // Crea un ciruclo de fuego alrededor suya que se mueve hacia 
-                    new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 0, 90 * Math.PI / 180);
-                    new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 90 * Math.PI / 180, 180 * Math.PI / 180);
-                    new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 180 * Math.PI / 180, 270 * Math.PI / 180);
-                    new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 270 * Math.PI / 180, 0);
+                    this.firstFireDirection = true;
                     this.timerAttack3.paused = false;
                 }
             }
@@ -130,7 +134,7 @@ export default class EvilWizard extends Enemy {
         });
 
         this.timerAttack3 = this.scene.time.addEvent({
-            delay: 1500,
+            delay: 1000,
             callback: this.onTimerAttack3,
             callbackScope: this,
             loop: true
@@ -140,21 +144,39 @@ export default class EvilWizard extends Enemy {
     }
 
     destroyEnemy(){
-
+        this.anims.remove('spawn');
+        this.anims.remove('walking');
+        this.anims.remove('attack1');
+        this.anims.remove('attack2');
+        this.anims.remove('attack3');
+        this.anims.remove('die');
+        this.stop();
+        this.play('stayDead', true);
     }
 
     onTimerAttack(){
         this.attacking = true;
         let typeAttack = Math.floor(Math.random() * 3);
-        this.play(this.attacks[typeAttack]);
+        //this.play(this.attacks[typeAttack]);
+        this.play("attack3", true);
         this.speed = 0;
     }
 
     onTimerAttack3(){
-        new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 45 * Math.PI / 180, 135 * Math.PI / 180);
-        new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 135 * Math.PI / 180, 225 * Math.PI / 180);
-        new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 225 * Math.PI / 180, 315 * Math.PI / 180);
-        new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 315 * Math.PI / 180, 45 * Math.PI / 180);
+        if (this.firstFireDirection) {
+            new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 0, 90 * Math.PI / 180);
+            new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 90 * Math.PI / 180, 180 * Math.PI / 180);
+            new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 180 * Math.PI / 180, 270 * Math.PI / 180);
+            new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 270 * Math.PI / 180, 0);
+            this.firstFireDirection = false;
+        }
+        else{
+            new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 45 * Math.PI / 180, 135 * Math.PI / 180);
+            new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 135 * Math.PI / 180, 225 * Math.PI / 180);
+            new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 225 * Math.PI / 180, 315 * Math.PI / 180);
+            new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 315 * Math.PI / 180, 45 * Math.PI / 180);
+            this.firstFireDirection = true;
+        }             
     }
 
     doSomethingVerySpecificBecauseYoureMyBelovedChild() {

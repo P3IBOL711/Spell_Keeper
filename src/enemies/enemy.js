@@ -153,7 +153,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
                 this.timerAttack.paused = true;
             }
             else {
-                this.timerAttack.paused = false;
+                this.timerAttack.paused = this.attacking;
             }
         }
     }
