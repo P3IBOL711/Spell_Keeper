@@ -26,6 +26,7 @@
         "util": "^0.12.5"
     },
     "dependencies": {
-        "phaser": "^3.70.0"
+        "phaser": "^3.70.0",
+        "phaser-navmesh": "^2.3.1"
     }
 }
