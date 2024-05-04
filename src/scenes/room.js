@@ -211,7 +211,6 @@ export default class Room extends Phaser.Scene {
         if (this.level === 'gr') {
             let arbol = this.map.createLayer('Arbol', [objects]).setDepth(15)
         }
-        let extra = this.map.createLayer('Extra', [objects]).setDepth(5);
         const objectLayer = this.map.getObjectLayer("navmesh");
         this.navMesh = this.navMeshPlugin.buildMeshFromTiled("mesh1", objectLayer, 1);
 
