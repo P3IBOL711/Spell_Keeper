@@ -283,6 +283,12 @@
                  "height":32,
                  "id":8,
                  "name":"",
+                 "properties":[
+                        {
+                         "name":"Dir",
+                         "type":"string",
+                         "value":"n"
+                        }],
                  "rotation":0,
                  "type":"Trigger",
                  "visible":true,
@@ -291,7 +297,7 @@
                  "y":32
                 }, 
                 {
-                 "gid":336,
+                 "gid":316,
                  "height":32,
                  "id":9,
                  "name":"",
@@ -303,7 +309,7 @@
                  "y":96
                 }, 
                 {
-                 "gid":336,
+                 "gid":316,
                  "height":32,
                  "id":10,
                  "name":"",
@@ -319,6 +325,12 @@
                  "id":11,
                  "name":"",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Dir",
+                         "type":"string",
+                         "value":"n"
+                        }],
                  "rotation":0,
                  "type":"PlayerSpawn",
                  "visible":true,
@@ -373,31 +385,9 @@
          "visible":true,
          "x":0,
          "y":0
-        }, 
-        {
-         "draworder":"topdown",
-         "id":9,
-         "name":"navmesh",
-         "objects":[
-                {
-                 "height":504,
-                 "id":18,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":720,
-                 "x":184,
-                 "y":8
-                }],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":true,
-         "x":0,
-         "y":0
         }],
- "nextlayerid":10,
- "nextobjectid":19,
+ "nextlayerid":9,
+ "nextobjectid":15,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
@@ -2048,7 +2038,7 @@
         }, 
         {
          "columns":0,
-         "firstgid":336,
+         "firstgid":316,
          "margin":0,
          "name":"Flames2",
          "spacing":0,

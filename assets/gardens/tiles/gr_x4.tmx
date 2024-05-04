@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="12">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="11">
  <editorsettings>
   <export target="../../Proyecto/Proyecto_DVI/assets/gardens/tiles/gr_x4.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" source="Base.tsx"/>
- <tileset firstgid="80" source="Objects.tsx"/>
- <tileset firstgid="336" source="Flames2.tsx"/>
+ <tileset firstgid="81" source="Objects.tsx"/>
+ <tileset firstgid="337" source="Flames2.tsx"/>
  <layer id="1" name="Fondo" width="32" height="16">
   <data encoding="csv">
 19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,
@@ -149,27 +149,24 @@
  <objectgroup id="7" name="Cosas">
   <object id="1" type="Trigger" x="448" y="448" width="96" height="32">
    <properties>
-    <property name="Dir" value="w"/>
+    <property name="Dir" propertytype="Direction" value="w"/>
    </properties>
   </object>
-  <object id="2" gid="336" x="448" y="448" width="32" height="32"/>
-  <object id="3" gid="336" x="480" y="448" width="32" height="32"/>
-  <object id="4" gid="336" x="512" y="448" width="32" height="32"/>
+  <object id="2" gid="337" x="448" y="448" width="32" height="32"/>
+  <object id="3" gid="337" x="480" y="448" width="32" height="32"/>
+  <object id="4" gid="337" x="512" y="448" width="32" height="32"/>
   <object id="5" type="PlayerSpawn" x="494" y="416">
    <properties>
-    <property name="Dir" value="w"/>
+    <property name="Dir" propertytype="Direction" value="w"/>
    </properties>
    <point/>
   </object>
   <object id="6" type="EnemySpawn" x="493.333" y="158.667">
    <point/>
   </object>
-  <object id="7" gid="336" x="448" y="64" width="32" height="32"/>
-  <object id="8" gid="336" x="512" y="64" width="32" height="32"/>
-  <object id="9" gid="336" x="480" y="64" width="32" height="32"/>
+  <object id="7" gid="337" x="448" y="64" width="32" height="32"/>
+  <object id="8" gid="337" x="512" y="64" width="32" height="32"/>
+  <object id="9" gid="337" x="480" y="64" width="32" height="32"/>
   <object id="10" type="SpecialTrigger" x="448" y="0" width="96" height="32"/>
- </objectgroup>
- <objectgroup id="9" name="navmesh">
-  <object id="11" x="216" y="0" width="608" height="520"/>
  </objectgroup>
 </map>

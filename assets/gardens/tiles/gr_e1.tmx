@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="23">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="20">
  <editorsettings>
   <export target="../../Proyecto/Proyecto_DVI/assets/gardens/tiles/gr_e1.json" format="json"/>
  </editorsettings>
@@ -114,7 +114,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,185,0,0,202,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,125,0,125,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,97,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,146,147,0,0,0,0,113,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -152,7 +152,11 @@
    </properties>
    <point/>
   </object>
-  <object id="3" type="Trigger" x="512" y="96" width="32" height="32"/>
+  <object id="3" type="Trigger" x="512" y="96" width="32" height="32">
+   <properties>
+    <property name="Dir" value="n"/>
+   </properties>
+  </object>
   <object id="4" type="Trigger" x="320" y="224" width="32" height="64">
    <properties>
     <property name="Dir" value="w"/>
@@ -187,6 +191,9 @@
    <point/>
   </object>
   <object id="11" type="PlayerSpawn" x="527" y="145.5">
+   <properties>
+    <property name="Dir" value="n"/>
+   </properties>
    <point/>
   </object>
   <object id="14" type="Hitbox" x="419.818" y="289.818" width="47.2727" height="30"/>
@@ -194,8 +201,5 @@
   <object id="17" type="Hitbox" x="642.364" y="163.091" width="27.4545" height="15.0909"/>
   <object id="18" type="Hitbox" x="609.273" y="298.727" width="30" height="15.4545"/>
   <object id="19" type="Hitbox" x="610.909" y="288.545" width="26.5455" height="9.09091"/>
- </objectgroup>
- <objectgroup id="9" name="navmesh">
-  <object id="22" x="280" y="64" width="488" height="368"/>
  </objectgroup>
 </map>

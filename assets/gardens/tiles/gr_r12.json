@@ -251,6 +251,12 @@
                  "height":32,
                  "id":15,
                  "name":"",
+                 "properties":[
+                        {
+                         "name":"Dir",
+                         "type":"string",
+                         "value":"n"
+                        }],
                  "rotation":0,
                  "type":"Trigger",
                  "visible":true,
@@ -259,7 +265,7 @@
                  "y":128
                 }, 
                 {
-                 "gid":336,
+                 "gid":261,
                  "height":32,
                  "id":16,
                  "name":"",
@@ -271,7 +277,7 @@
                  "y":192
                 }, 
                 {
-                 "gid":336,
+                 "gid":261,
                  "height":32,
                  "id":17,
                  "name":"",
@@ -283,7 +289,7 @@
                  "y":192
                 }, 
                 {
-                 "gid":336,
+                 "gid":261,
                  "height":32,
                  "id":18,
                  "name":"",
@@ -317,6 +323,12 @@
                  "id":20,
                  "name":"",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Dir",
+                         "type":"string",
+                         "value":"n"
+                        }],
                  "rotation":0,
                  "type":"PlayerSpawn",
                  "visible":true,
@@ -353,31 +365,9 @@
          "visible":true,
          "x":0,
          "y":0
-        }, 
-        {
-         "draworder":"topdown",
-         "id":9,
-         "name":"navmesh",
-         "objects":[
-                {
-                 "height":512,
-                 "id":26,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":704,
-                 "x":152,
-                 "y":0
-                }],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":true,
-         "x":0,
-         "y":0
         }],
- "nextlayerid":10,
- "nextobjectid":27,
+ "nextlayerid":9,
+ "nextobjectid":26,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
@@ -2028,7 +2018,7 @@
         }, 
         {
          "columns":0,
-         "firstgid":336,
+         "firstgid":261,
          "margin":0,
          "name":"Flames2",
          "spacing":0,

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="20">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="19">
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="80" source="Objects.tsx"/>
- <tileset firstgid="336" source="Flames2.tsx"/>
+ <tileset firstgid="316" source="Flames2.tsx"/>
  <layer id="1" name="Fondo" width="32" height="16">
   <data encoding="csv">
 19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,
@@ -144,13 +144,17 @@
 </data>
  </layer>
  <objectgroup id="7" name="Cosas">
-  <object id="1" gid="336" x="736" y="256" width="32" height="32" rotation="270"/>
-  <object id="2" gid="336" x="736" y="288" width="32" height="32" rotation="270"/>
-  <object id="3" gid="336" x="736" y="320" width="32" height="32" rotation="270"/>
-  <object id="4" gid="336" x="448" y="64" width="32" height="32"/>
-  <object id="5" gid="336" x="480" y="64" width="32" height="32"/>
-  <object id="6" gid="336" x="512" y="64" width="32" height="32"/>
-  <object id="7" type="Trigger" x="448" y="0" width="96" height="32"/>
+  <object id="1" gid="316" x="736" y="256" width="32" height="32" rotation="270"/>
+  <object id="2" gid="316" x="736" y="288" width="32" height="32" rotation="270"/>
+  <object id="3" gid="316" x="736" y="320" width="32" height="32" rotation="270"/>
+  <object id="4" gid="316" x="448" y="64" width="32" height="32"/>
+  <object id="5" gid="316" x="480" y="64" width="32" height="32"/>
+  <object id="6" gid="316" x="512" y="64" width="32" height="32"/>
+  <object id="7" type="Trigger" x="448" y="0" width="96" height="32">
+   <properties>
+    <property name="Dir" value="n"/>
+   </properties>
+  </object>
   <object id="8" type="Trigger" x="736" y="224" width="32" height="96">
    <properties>
     <property name="Dir" value="e"/>
@@ -163,6 +167,9 @@
    <point/>
   </object>
   <object id="10" type="PlayerSpawn" x="495.667" y="80.3333">
+   <properties>
+    <property name="Dir" value="n"/>
+   </properties>
    <point/>
   </object>
   <object id="11" type="EnemySpawn" x="495" y="226">
@@ -177,8 +184,5 @@
   <object id="16" type="Hitbox" x="418.364" y="195.091" width="26.9091" height="14.9091"/>
   <object id="17" type="Hitbox" x="417.636" y="336.364" width="28.3636" height="14.7273"/>
   <object id="18" type="Hitbox" x="546.182" y="335.818" width="27.4545" height="15.0909"/>
- </objectgroup>
- <objectgroup id="9" name="navmesh">
-  <object id="19" x="152" y="0" width="760" height="512"/>
  </objectgroup>
 </map>

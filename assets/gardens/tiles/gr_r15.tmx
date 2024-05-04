@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="24">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="23">
  <editorsettings>
   <export target="../../Proyecto/Proyecto_DVI/assets/gardens/tiles/gr_r15.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" source="Base.tsx"/>
- <tileset firstgid="80" source="Objects.tsx"/>
- <tileset firstgid="336" source="Flames2.tsx"/>
- <tileset firstgid="339" source="Invernadero.tsx"/>
+ <tileset firstgid="81" source="Objects.tsx"/>
+ <tileset firstgid="337" source="Flames2.tsx"/>
+ <tileset firstgid="340" source="Invernadero.tsx"/>
  <layer id="1" name="Fondo" width="32" height="16">
   <data encoding="csv">
 19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,
@@ -96,10 +96,10 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,161,0,0,0,144,163,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,178,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,177,160,0,0,0,161,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,145,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,162,0,0,0,145,164,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,179,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,178,161,0,0,0,162,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,146,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -114,13 +114,13 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,201,0,202,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,202,0,203,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,180,141,180,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,181,142,181,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,102,0,86,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,103,0,87,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -151,20 +151,20 @@
   <object id="2" type="Trigger" x="480" y="96" width="32" height="32"/>
   <object id="3" type="Trigger" x="288" y="256" width="32" height="32">
    <properties>
-    <property name="Dir" value="w"/>
+    <property name="Dir" propertytype="Direction" value="w"/>
    </properties>
   </object>
   <object id="5" type="Trigger" x="480" y="416" width="32" height="32">
    <properties>
-    <property name="Dir" value="s"/>
+    <property name="Dir" propertytype="Direction" value="s"/>
    </properties>
   </object>
-  <object id="6" gid="336" x="320" y="256" width="32" height="32" rotation="90"/>
-  <object id="7" gid="336" x="480" y="416" width="32" height="32"/>
-  <object id="8" gid="336" x="480" y="160" width="32" height="32"/>
+  <object id="6" gid="337" x="320" y="256" width="32" height="32" rotation="90"/>
+  <object id="7" gid="337" x="480" y="416" width="32" height="32"/>
+  <object id="8" gid="337" x="480" y="160" width="32" height="32"/>
   <object id="9" type="PlayerSpawn" x="342.333" y="272">
    <properties>
-    <property name="Dir" value="w"/>
+    <property name="Dir" propertytype="Direction" value="w"/>
    </properties>
    <point/>
   </object>
@@ -173,7 +173,7 @@
   </object>
   <object id="12" type="PlayerSpawn" x="495.667" y="391">
    <properties>
-    <property name="Dir" value="s"/>
+    <property name="Dir" propertytype="Direction" value="s"/>
    </properties>
    <point/>
   </object>
@@ -190,8 +190,5 @@
   <object id="20" type="Hitbox" x="480" y="256" width="32" height="32"/>
   <object id="21" type="Hitbox" x="457.818" y="356.727" width="12.1818" height="27.0909"/>
   <object id="22" type="Hitbox" x="522" y="356.727" width="12.5455" height="26.9091"/>
- </objectgroup>
- <objectgroup id="9" name="navmesh">
-  <object id="23" x="168" y="0" width="696" height="512"/>
  </objectgroup>
 </map>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="27">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="26">
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="80" source="Objects.tsx"/>
- <tileset firstgid="336" source="Flames2.tsx"/>
+ <tileset firstgid="261" source="Flames2.tsx"/>
  <layer id="1" name="Fondo" width="32" height="16">
   <data encoding="csv">
 19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,
@@ -154,10 +154,14 @@
     <property name="Dir" value="w"/>
    </properties>
   </object>
-  <object id="15" type="Trigger" x="448" y="128" width="64" height="32"/>
-  <object id="16" gid="336" x="448" y="192" width="32" height="32"/>
-  <object id="17" gid="336" x="480" y="192" width="32" height="32"/>
-  <object id="18" gid="336" x="320" y="320" width="32" height="32" rotation="90"/>
+  <object id="15" type="Trigger" x="448" y="128" width="64" height="32">
+   <properties>
+    <property name="Dir" value="n"/>
+   </properties>
+  </object>
+  <object id="16" gid="261" x="448" y="192" width="32" height="32"/>
+  <object id="17" gid="261" x="480" y="192" width="32" height="32"/>
+  <object id="18" gid="261" x="320" y="320" width="32" height="32" rotation="90"/>
   <object id="19" type="PlayerSpawn" x="345.333" y="335.333">
    <properties>
     <property name="Dir" value="w"/>
@@ -165,6 +169,9 @@
    <point/>
   </object>
   <object id="20" type="PlayerSpawn" x="480.333" y="201.667">
+   <properties>
+    <property name="Dir" value="n"/>
+   </properties>
    <point/>
   </object>
   <object id="24" type="EnemySpawn" x="479" y="385.667">
@@ -173,8 +180,5 @@
   <object id="25" type="EnemySpawn" x="530.333" y="329.667">
    <point/>
   </object>
- </objectgroup>
- <objectgroup id="9" name="navmesh">
-  <object id="26" x="152" y="0" width="704" height="512"/>
  </objectgroup>
 </map>

@@ -288,6 +288,12 @@
                  "height":32,
                  "id":16,
                  "name":"",
+                 "properties":[
+                        {
+                         "name":"Dir",
+                         "type":"string",
+                         "value":"n"
+                        }],
                  "rotation":0,
                  "type":"Trigger",
                  "visible":true,
@@ -347,7 +353,7 @@
                  "y":224
                 }, 
                 {
-                 "gid":208,
+                 "gid":316,
                  "height":32,
                  "id":21,
                  "name":"",
@@ -359,7 +365,7 @@
                  "y":416
                 }, 
                 {
-                 "gid":208,
+                 "gid":316,
                  "height":32,
                  "id":22,
                  "name":"",
@@ -371,7 +377,7 @@
                  "y":416
                 }, 
                 {
-                 "gid":208,
+                 "gid":316,
                  "height":32,
                  "id":23,
                  "name":"",
@@ -383,7 +389,7 @@
                  "y":416
                 }, 
                 {
-                 "gid":208,
+                 "gid":316,
                  "height":32,
                  "id":24,
                  "name":"",
@@ -395,7 +401,7 @@
                  "y":128
                 }, 
                 {
-                 "gid":208,
+                 "gid":316,
                  "height":32,
                  "id":25,
                  "name":"",
@@ -407,7 +413,7 @@
                  "y":128
                 }, 
                 {
-                 "gid":208,
+                 "gid":316,
                  "height":32,
                  "id":26,
                  "name":"",
@@ -419,7 +425,7 @@
                  "y":128
                 }, 
                 {
-                 "gid":208,
+                 "gid":316,
                  "height":32,
                  "id":28,
                  "name":"",
@@ -431,7 +437,7 @@
                  "y":256
                 }, 
                 {
-                 "gid":208,
+                 "gid":316,
                  "height":32,
                  "id":29,
                  "name":"",
@@ -443,7 +449,7 @@
                  "y":224
                 }, 
                 {
-                 "gid":208,
+                 "gid":316,
                  "height":32,
                  "id":31,
                  "name":"",
@@ -455,7 +461,7 @@
                  "y":256
                 }, 
                 {
-                 "gid":208,
+                 "gid":316,
                  "height":32,
                  "id":32,
                  "name":"",
@@ -489,6 +495,12 @@
                  "id":35,
                  "name":"",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Dir",
+                         "type":"string",
+                         "value":"n"
+                        }],
                  "rotation":0,
                  "type":"PlayerSpawn",
                  "visible":true,
@@ -525,7 +537,7 @@
                          "type":"string",
                          "value":"e"
                         }],
-                 "rotation":0,
+                 "rotation":-90,
                  "type":"PlayerSpawn",
                  "visible":true,
                  "width":0,
@@ -573,31 +585,9 @@
          "visible":true,
          "x":0,
          "y":0
-        }, 
-        {
-         "draworder":"topdown",
-         "id":9,
-         "name":"navmesh",
-         "objects":[
-                {
-                 "height":432,
-                 "id":42,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":600,
-                 "x":224,
-                 "y":48
-                }],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":true,
-         "x":0,
-         "y":0
         }],
- "nextlayerid":10,
- "nextobjectid":43,
+ "nextlayerid":9,
+ "nextobjectid":42,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
@@ -2248,7 +2238,7 @@
         }, 
         {
          "columns":0,
-         "firstgid":208,
+         "firstgid":316,
          "margin":0,
          "name":"Flames2",
          "spacing":0,
