@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="37">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="93">
+ <editorsettings>
+  <export target="lb_r13.json" format="json"/>
+ </editorsettings>
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="81" source="Flames2.tsx"/>
  <tileset firstgid="84" source="Objects.tsx"/>
@@ -123,6 +126,32 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="9" name="navmesh">
+  <object id="66" x="192" y="264" width="680" height="56"/>
+  <object id="69" x="256" y="320" width="104" height="104"/>
+  <object id="70" x="216" y="352" width="40" height="72"/>
+  <object id="71" x="216" y="168" width="144" height="56"/>
+  <object id="72" x="216" y="224" width="40" height="40"/>
+  <object id="73" x="288" y="224" width="72" height="40"/>
+  <object id="74" x="256" y="256" width="32" height="8"/>
+  <object id="75" x="360" y="320" width="80" height="8"/>
+  <object id="76" x="440" y="320" width="8" height="104"/>
+  <object id="77" x="448" y="320" width="136" height="32"/>
+  <object id="78" x="448" y="384" width="136" height="40"/>
+  <object id="79" x="480" y="352" width="104" height="32"/>
+  <object id="80" x="440" y="200" width="40" height="64"/>
+  <object id="81" x="480" y="256" width="32" height="8"/>
+  <object id="82" x="480" y="160" width="64" height="64"/>
+  <object id="83" x="512" y="224" width="32" height="32"/>
+  <object id="84" x="544" y="200" width="40" height="64"/>
+  <object id="85" x="664" y="168" width="40" height="96"/>
+  <object id="86" x="704" y="168" width="104" height="56"/>
+  <object id="87" x="736" y="224" width="72" height="40"/>
+  <object id="88" x="704" y="256" width="32" height="8"/>
+  <object id="90" x="664" y="320" width="72" height="104"/>
+  <object id="91" x="736" y="352" width="72" height="72"/>
+  <object id="92" x="768" y="320" width="40" height="32"/>
+ </objectgroup>
  <objectgroup id="7" name="Cosas">
   <object id="17" type="Trigger" x="480" y="96" width="64" height="32"/>
   <object id="18" type="Trigger" x="128" y="288" width="32" height="32">

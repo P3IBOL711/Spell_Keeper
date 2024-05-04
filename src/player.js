@@ -59,7 +59,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.lifeInferiorCap = 1;
         this.lifeSuperiorCap = 20;
         this.maxLife = (maximumLife === 0) ? 10 : maximumLife;
-        this.actualLife = (life === 0) ? 10 : life;
+        this.actualLife = (life === 0) ? 10000 : life;
 
         //CAPADO inferiormente a 10 y superiormente a 1000
         //Cuando no se tiene mana suficiente para hacer el ataque, se hace igual con una potencia proporcional al mana gastado de lo que cuesta el ataque

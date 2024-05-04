@@ -23,6 +23,10 @@ import SecretTrigger from '../secretTrigger.js'
 import Button from '../button.js'
 import Jukebox from '../jukebox.js'
 
+//Pruebas
+import BossTree from '../enemies/bossTree/bossTree.js'
+
+
 
 export default class Room extends Phaser.Scene {
 
@@ -207,6 +211,11 @@ export default class Room extends Phaser.Scene {
         if (this.level === 'gr') {
             let arbol = this.map.createLayer('Arbol', [objects]).setDepth(15)
         }
+        let extra = this.map.createLayer('Extra', [objects]).setDepth(5);
+        const objectLayer = this.map.getObjectLayer("navmesh");
+        this.navMesh = this.navMeshPlugin.buildMeshFromTiled("mesh1", objectLayer, 1);
+
+
 
         //DETERMINE PLAYER SPAWN
         let playerX = 300;
@@ -231,6 +240,7 @@ export default class Room extends Phaser.Scene {
                 playerX = this.cSpawn.x; playerY = this.cSpawn.y;
                 break;
         }
+
 
         this.enviromental = this.add.group()
 
@@ -263,17 +273,17 @@ export default class Room extends Phaser.Scene {
 
 
 
+
         let haveGUI = this.scene.launch('gui', {life: this.player.actualLife, maxLife: this.player.maxLife, mana: this.player.actualMana, maxMana:  this.player.maxMana,keys: this.player.key, equipedWeapon: this.player.equipedWeapon});
 
-        this.enemies = this.add.group()
+        this.enemies = this.add.group();
 
         //TRIGGERS AND STUFF
         this.loadObjects();
 
-
         this.cameras.main.setZoom(3);
-        this.cameras.main.setBounds(0, 0, 1024, 512)
-        this.cameras.main.startFollow(this.player)
+        this.cameras.main.setBounds(0, 0, 1024, 512);
+        this.cameras.main.startFollow(this.player);
     }
 
     loadObjects() {

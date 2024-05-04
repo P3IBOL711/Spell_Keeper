@@ -74,8 +74,4 @@ export default class LavaGolem extends MeleeEnemy {
             this.body.setOffset(this.width * (this.flipX ? 0.3 : 0.25), this.height * 0.08);
         }
     }
-
-    flipEnemy(){
-        this.setFlipX(this.body.velocity.x > 0 || this.target.x > this.x);
-    }
 }

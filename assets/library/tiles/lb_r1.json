@@ -166,6 +166,160 @@
         }, 
         {
          "draworder":"topdown",
+         "id":13,
+         "name":"navmesh",
+         "objects":[
+                {
+                 "height":56,
+                 "id":126,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":200,
+                 "x":536,
+                 "y":104
+                }, 
+                {
+                 "height":128,
+                 "id":127,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":72,
+                 "x":536,
+                 "y":160
+                }, 
+                {
+                 "height":96,
+                 "id":129,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":128,
+                 "x":608,
+                 "y":192
+                }, 
+                {
+                 "height":32,
+                 "id":130,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":232,
+                 "x":640,
+                 "y":160
+                }, 
+                {
+                 "height":16,
+                 "id":131,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":736,
+                 "y":144
+                }, 
+                {
+                 "height":40,
+                 "id":132,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":768,
+                 "y":104
+                }, 
+                {
+                 "height":160,
+                 "id":133,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":72,
+                 "x":800,
+                 "y":192
+                }, 
+                {
+                 "height":72,
+                 "id":134,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":40,
+                 "x":832,
+                 "y":352
+                }, 
+                {
+                 "height":200,
+                 "id":135,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":736,
+                 "y":224
+                }, 
+                {
+                 "height":40,
+                 "id":136,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":800,
+                 "y":384
+                }, 
+                {
+                 "height":136,
+                 "id":137,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":40,
+                 "x":536,
+                 "y":288
+                }, 
+                {
+                 "height":104,
+                 "id":138,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":160,
+                 "x":576,
+                 "y":320
+                }, 
+                {
+                 "height":32,
+                 "id":139,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":704,
+                 "y":288
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":4,
          "name":"Cosas",
          "objects":[
@@ -466,8 +620,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":13,
- "nextobjectid":76,
+ "nextlayerid":14,
+ "nextobjectid":140,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
@@ -490,9 +644,7 @@
          "tiles":[
                 {
                  "id":0,
-                 "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/LlamaArriba.png",
-                 "imageheight":32,
-                 "imagewidth":32,
+                 "image":"..\/..\/Pixel Art PNGs\/LlamaArriba.png",
                  "type":"Fire"
                 }],
          "tilewidth":32
@@ -500,7 +652,7 @@
         {
          "columns":10,
          "firstgid":2,
-         "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/Library_Tileset .png",
+         "image":"Base.png",
          "imageheight":256,
          "imagewidth":320,
          "margin":0,
@@ -513,7 +665,7 @@
         {
          "columns":16,
          "firstgid":82,
-         "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/Library_Objects.png",
+         "image":"Objects.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,

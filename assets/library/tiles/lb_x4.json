@@ -166,6 +166,28 @@
         }, 
         {
          "draworder":"topdown",
+         "id":9,
+         "name":"navmesh",
+         "objects":[
+                {
+                 "height":352,
+                 "id":23,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":464,
+                 "x":216,
+                 "y":72
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":7,
          "name":"Cosas",
          "objects":[
@@ -248,8 +270,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":9,
- "nextobjectid":22,
+ "nextlayerid":10,
+ "nextobjectid":24,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
@@ -258,7 +280,7 @@
         {
          "columns":10,
          "firstgid":1,
-         "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/Library_Tileset .png",
+         "image":"Base.png",
          "imageheight":256,
          "imagewidth":320,
          "margin":0,
@@ -285,16 +307,12 @@
          "tiles":[
                 {
                  "id":0,
-                 "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/LlamaArriba.png",
-                 "imageheight":32,
-                 "imagewidth":32,
+                 "image":"..\/..\/Pixel Art PNGs\/LlamaArriba.png",
                  "type":"Fire"
                 }, 
                 {
                  "id":2,
-                 "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/Chest.png",
-                 "imageheight":32,
-                 "imagewidth":32,
+                 "image":"..\/..\/Pixel Art PNGs\/Chest.png",
                  "type":"Chest"
                 }],
          "tilewidth":32
@@ -302,7 +320,7 @@
         {
          "columns":16,
          "firstgid":84,
-         "image":"..\/..\/..\/..\/..\/Pixel Art PNGs\/Library_Objects.png",
+         "image":"Objects.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,

@@ -94,7 +94,16 @@ import tutloop from 'url:../../assets/sound/music/tutloop.wav'
 //Sfx
 import playerhit from 'url:../../assets/sound/effects/playerhit.wav'
 
-
+// Bosses
+// Tree
+import BossTree from '../../assets/bosses/tree/boss_tree_spritesheet.png'
+import BossTreeMovements from '../../assets/bosses/tree/boss_tree_walk_&_die.png'
+import SurpriseRoot from '../../assets/bosses/tree/Atk2.png'
+import MovingRoot from '../../assets/bosses/tree/Atk1.png'
+import Acorn from '../../assets/bosses/tree/Bellota.png'
+import AcornShadow from '../../assets/bosses/tree/BellotaSombra.png'
+// Evil Wizard
+import EvilWizard from '../../assets/bosses/evilWizard/Diablo.png'
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
  * Esta escena se puede mejorar añadiendo una imagen del juego y una 
@@ -207,12 +216,26 @@ export default class Boot extends Phaser.Scene {
    
 
     // Background
+
+    // Bosses
+    // Tree
+    this.load.spritesheet('bossTreeSpritesheet', BossTree, { frameWidth: 128, frameHeight: 64 });
+    this.load.spritesheet('bossTreeMovementsSpritesheet', BossTreeMovements, { frameWidth: 64, frameHeight: 64 });
+    this.load.spritesheet('movingRootSpritesheet', MovingRoot, {frameWidth: 32, frameHeight: 32});
+    this.load.spritesheet('surpriseRootSpritesheet', SurpriseRoot, {frameWidth: 32, frameHeight: 32});
+    this.load.spritesheet('acornSpritesheet', Acorn, {frameWidth: 32, frameHeight: 32});
+    this.load.spritesheet('acornShadowSpritesheet', AcornShadow, {frameWidth: 32, frameHeight: 32});
+
+    // Evil Wizard
+    this.load.spritesheet('evilWizardSpritesheet', EvilWizard, { frameWidth: 64, frameHeight: 64 });
+
+   // Background
     let background = this.add.graphics();
     background.fillStyle(0xad88c6, 1);
-    // 363062
+    363062
     background.fillRect(0, 0, 1000, 600);
     
-    // Loading bar 
+    //Loading bar 
     let progressBar = this.add.graphics();
     let progressBox = this.add.graphics();
     progressBox.fillStyle(0x8f3ea9, 0.8);
@@ -236,7 +259,7 @@ export default class Boot extends Phaser.Scene {
       percentText.destroy();
     });
 
-    // Loading bar text
+    //Loading bar text
     this.loadFont('pixelFont', font);
     let loadingText = this.add.text(420, 215, 'Loading...', { fontFamily: 'pixelFont', fontSize: 40, color: '#5e1675ff'});
 
