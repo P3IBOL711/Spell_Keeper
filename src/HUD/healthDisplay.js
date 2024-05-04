@@ -53,14 +53,17 @@ export default class HealthDisplay extends Phaser.GameObjects.Group {
                     heart.setTexture('half-ui-heart');
                 else
                     heart.setTexture('ui-heart-empty');
+                heart.setScale(2);
             }
             else { //No estan activos
                 if(this.currentHealth >= (i + 1) * 2) {
                     heart.setActive(true).setVisible(true);
+                    heart.setScale(2);
                 }
                 else if(this.currentHealth === ((i + 1) * 2) - 1) {
                     heart.setActive(true).setVisible(true);
                     heart.setTexture('half-ui-heart');
+                    heart.setScale(2);
                 }
                 else {
                     heart.setActive(false).setVisible(false);
