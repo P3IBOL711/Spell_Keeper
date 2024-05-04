@@ -6,7 +6,7 @@ import Projectile from '../../projectiles/projectile';
  */
 export default class Acorn extends Projectile {
 
-    constructor(scene, x, y, targetEnemy, damage, myShadow) {
+    constructor(scene, x, y, targetEnemy, damage, myShadow, enemySpawner) {
         super(scene, x, y, 'acorn', targetEnemy, damage);
         this.scene.enviromental.remove(this)
         this.anims.create({
@@ -40,10 +40,14 @@ export default class Acorn extends Projectile {
             
         });
 
+        this.enemySpawner = enemySpawner;
         this.myShadow = myShadow
 
         this.scene.physics.add.overlap(this, this.myShadow, (projectile, shadow) => {
             this.impact();
+            let spawnEnemy = Math.floor(Math.random() * 3);
+            if(spawnEnemy === 1)
+                this.enemySpawner.spawnEnemy(this.x, this.y);
             shadow.destroyShadow();
         });
 

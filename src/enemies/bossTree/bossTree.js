@@ -1,5 +1,7 @@
 
 import Phaser from 'phaser'
+//Enemy Spawner
+import EnemySpawnerBoss from './enemySpawnerBoss';
 import Enemy from '../enemy'
 import MovingRoot from './movingRoot'
 import SurpriseRoot from './surpriseRoot';
@@ -57,6 +59,8 @@ export default class BossTree extends Enemy {
 
         this.setScale(2);
         this.disableInteractive();
+
+        this.enemySpawner = new EnemySpawnerBoss(scene, target);
 
         this.speed = 0;
 
@@ -116,7 +120,7 @@ export default class BossTree extends Enemy {
 
     onAcornAttack(){
         let acornShadow = new AcornShadow(this.scene, this.target.x, this.target.y + 20);
-        new Acorn(this.scene, this.target.x, 0, false, 1, acornShadow);
+        new Acorn(this.scene, this.target.x, 0, false, 1, acornShadow, this.enemySpawner);
     }
 
     onSurpriseRootAttack(){
@@ -145,13 +149,13 @@ export default class BossTree extends Enemy {
         this.attacking = true;
         this.vulnerable = true;
         let typeAttack = Math.floor(Math.random() * 3);
-        if (typeAttack === 0){
+        if (false){//typeAttack === 0){
             this.followingRootTimer.paused = false;
         }
-        else if(typeAttack === 1){
+        else if(false){//typeAttack === 1){
             this.surpriseRootTimer.paused = false;
         }
-        else if(typeAttack === 2){
+        else if(true){//typeAttack === 2){
             this.acornTimer.paused = false;
         }
         this.play("attack", true);
