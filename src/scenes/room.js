@@ -135,8 +135,6 @@ export default class Room extends Phaser.Scene {
         this.map.destroy()
 
         this.unloadScene(this.key)
-        if(this.haveGUI)
-            this.scene.remove('gui');
         this.scene.start(level + dungeon[y][x].name, { X: x, Y: y, dg: dungeon, dir: direction, SSM: this.saveStateMatrix, playerStat: this.globalPlayerStats,jukebox: this.jukebox });
         this.unloadScene(this.key)
 

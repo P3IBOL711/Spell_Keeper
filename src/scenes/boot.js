@@ -167,9 +167,9 @@ export default class Boot extends Phaser.Scene {
     this.load.image('halfHealingHeart', halfHealingHeart);
     this.load.image('potionOfMana', manaPotion);
     this.load.image('broom', escoba);
-    this.load.image('nowYouAreFat', soda);
-    this.load.image('4-leafsClub', luckyClub);
-    this.load.image('heartAmulet', crystalHeart);
+    this.load.image('fat', soda);
+    this.load.image('FourLeafsClub', luckyClub);
+    this.load.image('healingAmulet', crystalHeart);
     this.load.image('shadowCloak', speedyCloak);
 
     //Enemies
