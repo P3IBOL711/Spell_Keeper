@@ -12,6 +12,6 @@ export default class broom extends item {
     }
 
     itemFuction() {
-        this.scene.player.changeMovSpeed(this.flyingSpeed);
+        this.scene.player.increaseMovSpeed(this.flyingSpeed);
     }
 }
