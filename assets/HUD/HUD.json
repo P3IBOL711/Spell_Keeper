@@ -61,7 +61,17 @@
                  "width":96,
                  "x":896,
                  "y":384
-                }],
+                },{
+                     "height":32,
+                     "id":9,
+                     "name":"BossBar",
+                     "rotation":0,
+                     "type":"BossBar",
+                     "visible":true,
+                     "width":320,
+                     "x":50,
+                     "y":400
+                    }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,

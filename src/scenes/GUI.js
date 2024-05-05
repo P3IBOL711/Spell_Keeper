@@ -8,12 +8,13 @@ import shieldDisplay from "../HUD/shieldDisplay";
 import weaponDisplay from "../HUD/weaponDisplay";
 
 import { eventManager as hudEvents } from "../eventCenter";
+import BossDisplay from "../HUD/bossDisplay";
 
 export default class GUI extends Phaser.Scene {
 
     constructor() {
         super({ key: 'gui' });
-        
+
     }
 
     preload() {
@@ -30,15 +31,15 @@ export default class GUI extends Phaser.Scene {
     }
 
     create() {
-        this.map = this.make.tilemap({ 
-            key: 'hud', 
-            tileWidth: 32, 
-            tileHeight: 32 
+        this.map = this.make.tilemap({
+            key: 'hud',
+            tileWidth: 32,
+            tileHeight: 32
         });
-        
+
         let objectLayer = this.map.getObjectLayer('HUD');
         objectLayer.objects.forEach(obj => {
-            switch(obj.name) {
+            switch (obj.name) {
                 case 'LifeBar':
                     //Valor inicial de la vida maxima: 10
                     this.playerLifeBar = new healthDisplay(this, obj.x, obj.y, this.life, this.maxLife);
@@ -57,6 +58,8 @@ export default class GUI extends Phaser.Scene {
                 case 'ArmaEquipada':
                     this.displayEquipedWeapon = new weaponDisplay(this, obj.x, obj.y, obj.width, obj.height, this.weaponEquiped.id);
                     break;
+                case 'BossBar':
+                    this.bossBar = new BossDisplay(this, obj.x, obj.y, 1, 1, 150, 150)
                 default:
                     console.warn('Tipo de objeto no reconocido:', obj.name);
             }
@@ -84,6 +87,12 @@ export default class GUI extends Phaser.Scene {
 
         hudEvents.on('updateShield', (isItReady) => {
             this.playerShieldInfo.updateShield(isItReady);
+        });
+
+        hudEvents.on('boss', (bossLife) => {
+            this.bossBar.setMeterPercentageAnimated(bossLife);
+            this.bossBar.visible();
+            this.bossBar.setActive(true);
         });
     }
 }

@@ -1,5 +1,6 @@
 
 import Phaser from 'phaser'
+import { eventManager as hudEvents } from "../../eventCenter";
 //Enemy Spawner
 import EnemySpawnerBoss from './enemySpawnerBoss';
 import Enemy from '../enemy'
@@ -7,6 +8,7 @@ import MovingRoot from './movingRoot'
 import SurpriseRoot from './surpriseRoot';
 import Acorn from './acorn';
 import AcornShadow from './acornShadow';
+import BossDisplay from '../../HUD/bossDisplay';
 /**
  * Clase que representa un enemigo del juego.
  */
@@ -57,13 +59,13 @@ export default class BossTree extends Enemy {
         });
 
 
-        this.setScale(2);
+        this.setScale(1.5);
         this.disableInteractive();
 
         this.enemySpawner = new EnemySpawnerBoss(scene, target);
 
         this.speed = 0;
-
+        this.life = 150
         this.distanceAttack = 1000;
 
         this.spawning = true;
@@ -80,6 +82,8 @@ export default class BossTree extends Enemy {
                     this.body.setOffset(this.width * 0.07, this.height * 0.14);
                     this.body.enable = true;
                     this.play('walking', true);
+                    hudEvents.emit('boss',this.life);
+                 
                 }
                 else if (this.anims.getName() === 'attack') {
                     this.attacking = false;
@@ -92,7 +96,7 @@ export default class BossTree extends Enemy {
         });
 
         this.surpriseRootTimer = this.scene.time.addEvent({
-            delay: 1000,
+            delay: 700,
             callback: this.onSurpriseRootAttack, 
             callbackScope: this,
             loop: true
@@ -132,14 +136,20 @@ export default class BossTree extends Enemy {
         let angle =  (angleRadians * 180) / Math.PI;
         
         if((angle >= 45 && angle <= 135) || (angle >= -135 && angle <= -45)) {
-            new MovingRoot(this.scene, this.x + 40, this.y, false, 1, angleRadians);
-            new MovingRoot(this.scene, this.x, this.y, false, 1, angleRadians);
-            new MovingRoot(this.scene, this.x - 40, this.y, false, 1, angleRadians);
+            for(let i = 0 ; i < 41 ; i++){
+                new MovingRoot(this.scene,this.x-200+(i*10),this.y,false,1,angleRadians)
+            }
+            //(new MovingRoot(this.scene, this.x + 40, this.y, false, 1, angleRadians);
+           // new MovingRoot(this.scene, this.x, this.y, false, 1, angleRadians);
+            //new MovingRoot(this.scene, this.x - 40, this.y, false, 1, angleRadians);
         }
         else{
-            new MovingRoot(this.scene, this.x, this.y - 40, false, 1, angleRadians);
+            for(let i = 0 ; i < 41 ; i++){
+                new MovingRoot(this.scene,this.x,this.y-200+(i*10),false,1,angleRadians)
+            }
+            /*new MovingRoot(this.scene, this.x, this.y - 40, false, 1, angleRadians);
             new MovingRoot(this.scene, this.x, this.y, false, 1, angleRadians);
-            new MovingRoot(this.scene, this.x, this.y + 40, false, 1, angleRadians);
+            new MovingRoot(this.scene, this.x, this.y + 40, false, 1, angleRadians);*/
         }
     }
 
@@ -149,13 +159,13 @@ export default class BossTree extends Enemy {
         this.attacking = true;
         this.vulnerable = true;
         let typeAttack = Math.floor(Math.random() * 3);
-        if (false){//typeAttack === 0){
+        if (typeAttack === 0){//typeAttack === 0){
             this.followingRootTimer.paused = false;
         }
-        else if(false){//typeAttack === 1){
+        else if(typeAttack === 1){//typeAttack === 1){
             this.surpriseRootTimer.paused = false;
         }
-        else if(true){//typeAttack === 2){
+        else if(typeAttack === 2){//typeAttack === 2){
             this.acornTimer.paused = false;
         }
         this.play("attack", true);
@@ -174,8 +184,11 @@ export default class BossTree extends Enemy {
 
     receiveDamage(damage){
         if(this.vulnerable){
-            this.scene.time.removeAllEvents();
+
+            hudEvents.emit('boss',this.life);
             super.receiveDamage(damage);
+            if(tthis.life <= 0)
+                this.scene.time.removeAllEvents();
         }
     }
     /**

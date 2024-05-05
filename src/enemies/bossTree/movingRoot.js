@@ -16,7 +16,8 @@ export default class MovingRoot extends Projectile {
     constructor(scene, x, y, targetEnemy, damage, angle) {
         super(scene, x, y, 'movingRoot', targetEnemy, damage);
 
-        this.setScale(2);
+        this.setScale(1.5);
+        this.setDepth(7)
         this.anims.create({
             key: 'normal',
             frames: this.anims.generateFrameNumbers('movingRootSpritesheet', { start: 0, end: 9 }),
@@ -24,7 +25,7 @@ export default class MovingRoot extends Projectile {
             repeat: -1
         });
 
-        this.speed = 50;
+        this.speed = 45;
 
         // Body size
         this.body.setSize(this.width * 0.3, this.height * 0.3, true);

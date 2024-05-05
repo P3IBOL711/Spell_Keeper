@@ -127,7 +127,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
                 // Check if target is dead
                 else {
                     this.tween.stop();
-                    this.enemyHasDied();
+                  //  this.scene.enemyHasDied();
                 }
             }
         });
@@ -158,7 +158,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
             if (this.life <= 0){
                 this.body.setVelocity(0);
                 this.body.enable = false;
-                this.scene.enemyHasDied();
+               // this.scene.enemyHasDied();
                 this.stop();
                 this.play('die', true);
             }

@@ -19,14 +19,14 @@ export default class CarnivorousPlant extends Enemy {
 
     constructor(scene, x, y, target) {
         super(scene, x, y, target, 'carnivorous_plant', 10000);
-        
+
         this.anims.create({
             key: 'idle',
             frames: this.anims.generateFrameNumbers('carnivorousPlantSpritesheet', { start: 0, end: 3 }),
             frameRate: 7,
             repeat: -1
         });
-        
+
         this.anims.create({
             key: 'walking',
             frames: this.anims.generateFrameNumbers('carnivorousPlantSpritesheet', { start: 0, end: 3 }),
@@ -72,44 +72,44 @@ export default class CarnivorousPlant extends Enemy {
         this.meleeTimerAttack.paused = true;
 
         this.on(Phaser.Animations.Events.ANIMATION_START, () => {
-            if (this.life > 0){
-                if (this.anims.getName() === 'attack1'){
+            if (this.life > 0) {
+                if (this.anims.getName() === 'attack1') {
                     this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -75 : 75), this.y - 60, 60, 60, this.target, this.damage);
                 }
             }
-            
+
         })
 
         this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
-            if (this.life > 0){
-                if (this.anims.getName() === 'attack1'){
+            if (this.life > 0) {
+                if (this.anims.getName() === 'attack1') {
                     this.attackZone.destroy(true);
                     this.play('idle', true);
                 }
-                if (this.anims.getName() === 'attack2'){
+                if (this.anims.getName() === 'attack2') {
                     this.play('idle', true);
                 }
             }
-            
+
         })
 
         this.on(Phaser.Animations.Events.ANIMATION_STOP, () => {
-            if (this.life > 0){
-                if (this.anims.getName() === 'attack1'){
+            if (this.life > 0) {
+                if (this.anims.getName() === 'attack1') {
                     this.attackZone.destroy(true);
                 }
             }
-            
+
         })
 
         this.on(Phaser.Animations.Events.ANIMATION_UPDATE, () => {
-            if (this.life > 0){
-                if (this.anims.getName() === 'attack2' && this.anims.currentFrame.index === 3 && !this.distAttack){
+            if (this.life > 0) {
+                if (this.anims.getName() === 'attack2' && this.anims.currentFrame.index === 3 && !this.distAttack) {
                     new GreenPoisonBall(this.scene, this.x + (this.flipX ? -30 : 30), this.y - 80, this.target);
                     this.distAttack = true;
                 }
             }
-            
+
         })
 
         this.distAttack = false;
@@ -125,25 +125,28 @@ export default class CarnivorousPlant extends Enemy {
     }
 
     doSomethingVerySpecificBecauseYoureMyBelovedChild() {
-        this.scene.time.removeEvent(this.distanceTimerAttack);
-        this.scene.time.removeEvent(this.meleeTimerAttack);
+        this.scene.time.removeAllEvents();
     }
 
-    receiveDamage(damage){
+    receiveDamage(damage) {
         super.receiveDamage(damage);
-        if (this.life <= 0){
+        if (this.life <= 0) {
             this.distanceTimerAttack.paused = true;
             this.meleeTimerAttack.paused = true;
         }
     }
 
-    onTimerAttack () {
-        this.distAttack = false;
-        this.play('attack2');
+    onTimerAttack() {
+        if (this !== undefined) {
+            this.distAttack = false;
+            this.play('attack2');
+        }
     }
 
-    onMeleeTimerAttack () {
+    onMeleeTimerAttack() {
+        if (this !== undefined) {
         this.play('attack1');
+        }
     }
 
     /**
@@ -156,26 +159,26 @@ export default class CarnivorousPlant extends Enemy {
         // IMPORTANTE: Si no ponemos esta instrucción y el sprite está animado
         // no se podrá ejecutar la animación del sprite. 
         super.preUpdate(t, dt);
-        if (this.life > 0){
+        if (this.life > 0) {
             this.setFlipX(this.body.velocity.x < 0 || this.target.x < this.x);
             // Preguntar si podría ser mas eficiente
             this.body.setOffset(this.width * (this.flipX ? 0.39 : 0.44), this.height * 0.255)
 
             let dist = Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y);
 
-            if (dist > 500){
+            if (dist > 500) {
                 this.distanceTimerAttack.paused = true;
                 this.meleeTimerAttack.paused = true;
                 this.playAfterRepeat('idle');
             }
-            else if (dist > 120 && dist <= 500){
+            else if (dist > 120 && dist <= 500) {
                 this.meleeTimerAttack.paused = true;
                 this.distanceTimerAttack.paused = false;
             }
             else {
                 this.distanceTimerAttack.paused = true;
                 this.meleeTimerAttack.paused = false;
-                
+
             }
         }
     }
