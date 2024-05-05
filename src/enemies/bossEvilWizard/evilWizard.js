@@ -4,6 +4,7 @@ import Enemy from '../enemy'
 import HitBox from '../../hitbox';
 import LavaPuddle from './lavaPuddle';
 import DevilFire from './devilFire';
+import EnemySpawnerEvilWizard from './enemySpawnerEvilWizard';
 /**
  * Clase que representa un enemigo del juego.
  */
@@ -71,6 +72,8 @@ export default class EvilWizard extends Enemy {
 
         this.setScale(1.25);
 
+        this.enemySpawner = new EnemySpawnerEvilWizard(scene, target);
+
         this.speed = 0;
 
         this.distanceAttack = 200;
@@ -107,7 +110,14 @@ export default class EvilWizard extends Enemy {
 
         this.on(Phaser.Animations.Events.ANIMATION_START, () => {
             if(this.life > 0){
-                if (this.anims.getName() === 'attack2') {
+                if (this.anims.getName() === 'attack1') {
+                    for (let i = 0; i < 2; i++){
+                        let randomPositionX = Phaser.Math.Between(-100, 100);
+                        let randomPositionY = Phaser.Math.Between(-100, 100);
+                        this.enemySpawner.spawnEnemy(this.x + randomPositionX, this.y + randomPositionY);
+                    }
+                }
+                else if (this.anims.getName() === 'attack2') {
                     // Invulnerable a los ataques a distancia, crea charcos de lava en el suelo que hacen daño al jugador si pasa por encima
                     this.vulnerable = false;
                     for (let i = 0; i < 2; i++) {
