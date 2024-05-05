@@ -2070,16 +2070,6 @@
                         }]
                 }],
          "tilewidth":32
-        }, 
-        {
-         "columns":0,
-         "firstgid":336,
-         "margin":0,
-         "name":"Flames2",
-         "spacing":0,
-         "tilecount":0,
-         "tileheight":32,
-         "tilewidth":32
         }],
  "tilewidth":32,
  "type":"map",

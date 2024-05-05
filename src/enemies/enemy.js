@@ -127,7 +127,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
                 // Check if target is dead
                 else {
                     this.tween.stop();
-                    this.enemyDied();
+                    this.enemyHasDied();
                 }
             }
         });
