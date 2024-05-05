@@ -30,8 +30,11 @@ export default class MainMenu extends Phaser.Scene{
     }
 
     create(){
-        this.add.image(0,0,'title_bg').setOrigin(0).setDepth(0); //Background
-        this.add.text(170, 70, 'SPELL KEEPER',{ fontFamily: 'pixelFont', fontSize: 80, color: '#000000', fontStyle: 'bold'}); 
+        let bg = this.add.image(0,0,'title_bg').setOrigin(0).setDepth(0); //Background
+        bg.setDisplaySize(this.sys.game.canvas.width, this.sys.game.canvas.height);
+        let text = this.add.text(170, 70, 'SPELL KEEPER',{ fontFamily: 'pixelFont', fontSize: 80, color: '#000000', fontStyle: 'bold'}); 
+        text.setX(this.sys.game.canvas.width/2 - text.width/2);
+        text.setY(this.sys.game.canvas.height/2 - text.height/2 - 100);
         // let playButton = this.add.image(470,150,'play').setOrigin(0).setDepth(1).setScale(0.35); 
         // let playSelectedButton = this.add.image(470,150,'play_sel').setOrigin(0).setDepth(1).setScale(0.35).setVisible(false); 
 

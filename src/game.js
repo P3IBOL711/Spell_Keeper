@@ -10,12 +10,13 @@ import End from './scenes/end.js'
  */
 let config = {
     type: Phaser.AUTO,
-    width: 1000,
-    height: 500,
+    parent: 'juego',
+    width: 606,
+    height: 400,
     scale: {
         mode: Phaser.Scale.FIT,  
-        //autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
-        autoCenter: Phaser.Scale.CENTER_BOTH
+        autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
+        //autoCenter: Phaser.Scale.CENTER_BOTH
     },
     pixelArt: true,
     scene: [Boot, MainMenu, ArmeriaPrueba, End],
