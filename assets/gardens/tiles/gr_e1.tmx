@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="21">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="20">
  <editorsettings>
   <export target="../../Proyecto/Proyecto_DVI/assets/gardens/tiles/gr_e1.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" source="Base.tsx"/>
- <tileset firstgid="80" source="Objects.tsx"/>
+ <tileset firstgid="81" source="Objects.tsx"/>
  <layer id="1" name="Fondo" width="32" height="16">
   <data encoding="csv">
 19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,
@@ -72,8 +72,8 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,119,120,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,135,136,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,120,121,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,136,137,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -92,7 +92,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,162,163,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,163,164,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -112,11 +112,11 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,185,0,0,202,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,186,0,0,203,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,97,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,146,147,0,0,0,0,113,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,147,148,0,0,0,0,114,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -135,7 +135,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,97,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -148,52 +148,45 @@
  <objectgroup id="7" name="Cosas">
   <object id="2" type="PlayerSpawn" x="456.25" y="240">
    <properties>
-    <property name="Dir" value="c"/>
+    <property name="Dir" propertytype="Direction" value="c"/>
    </properties>
    <point/>
   </object>
-  <object id="3" type="Trigger" x="512" y="96" width="32" height="32">
-   <properties>
-    <property name="Dir" value="n"/>
-   </properties>
-  </object>
+  <object id="3" type="Trigger" x="512" y="96" width="32" height="32"/>
   <object id="4" type="Trigger" x="320" y="224" width="32" height="64">
    <properties>
-    <property name="Dir" value="w"/>
+    <property name="Dir" propertytype="Direction" value="w"/>
    </properties>
   </object>
   <object id="5" type="Trigger" x="512" y="384" width="32" height="32">
    <properties>
-    <property name="Dir" value="s"/>
+    <property name="Dir" propertytype="Direction" value="s"/>
    </properties>
   </object>
   <object id="6" type="Trigger" x="704" y="224" width="32" height="64">
    <properties>
-    <property name="Dir" value="e"/>
+    <property name="Dir" propertytype="Direction" value="e"/>
    </properties>
   </object>
   <object id="7" type="PlayerSpawn" x="367.25" y="255.25">
    <properties>
-    <property name="Dir" value="w"/>
+    <property name="Dir" propertytype="Direction" value="w"/>
    </properties>
    <point/>
   </object>
   <object id="8" type="PlayerSpawn" x="689.5" y="255.25">
    <properties>
-    <property name="Dir" value="e"/>
+    <property name="Dir" propertytype="Direction" value="e"/>
    </properties>
    <point/>
   </object>
   <object id="9" type="PlayerSpawn" x="527.5" y="362.5">
    <properties>
-    <property name="Dir" value="s"/>
+    <property name="Dir" propertytype="Direction" value="s"/>
    </properties>
    <point/>
   </object>
   <object id="11" type="PlayerSpawn" x="527" y="145.5">
-   <properties>
-    <property name="Dir" value="n"/>
-   </properties>
    <point/>
   </object>
   <object id="14" type="Hitbox" x="419.818" y="289.818" width="47.2727" height="30"/>
@@ -201,8 +194,5 @@
   <object id="17" type="Hitbox" x="642.364" y="163.091" width="27.4545" height="15.0909"/>
   <object id="18" type="Hitbox" x="609.273" y="298.727" width="30" height="15.4545"/>
   <object id="19" type="Hitbox" x="610.909" y="288.545" width="26.5455" height="9.09091"/>
- </objectgroup>
- <objectgroup id="9" name="navmesh">
-  <object id="20" x="168" y="24" width="664" height="456"/>
  </objectgroup>
 </map>
