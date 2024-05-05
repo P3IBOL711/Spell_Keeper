@@ -21,6 +21,8 @@ export default class Thompson extends arma {
         this.x = x;
         this.y = y;
 
+        this.attackSfx = this.scene.sound.add('thompsonsfx')
+
         this.anims.create({
             key: 'normal',
             frames: this.anims.generateFrameNumbers('thompson', { start: 0, end: 0 }),
@@ -47,9 +49,15 @@ export default class Thompson extends arma {
         super.preUpdate(t, dt);
     }
 
+    
+    playAttackSfx(){
+        this.attackSfx.play()
+    }
+
     attack(target) {
         if (this.x != 0 && this.y != 0) {
             this.anims.play('shooting')
+            this.playAttackSfx()
 
             new IronBullet(this.scene, this.x , this.y , target, true, this.damage);
             this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {

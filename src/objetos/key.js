@@ -11,6 +11,8 @@ export default class key extends item {
         this.x = x;
         this.y = y;
 
+        this.sfx = this.scene.sound.add('keysfx')
+
         this.anims.create({
             key: 'idle_key',
             frames: scene.anims.generateFrameNumbers('key', { start: 0, end: 23 }),
@@ -24,6 +26,7 @@ export default class key extends item {
     
 
     itemFuction() {
+        this.sfx.play()
         this.scene.player.addKey()
     }
 }

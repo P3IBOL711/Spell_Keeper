@@ -262,6 +262,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
         } else {
             this.meeleWeapons[this.meleeIndex].setVisible(false)
         }
+
+        //SONIDO
+        this.nomanaSfx = this.scene.sound.add('nomana')
     }
 
     /**
@@ -366,8 +369,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
             if (!this.meleeMode) {
                 if (this.actualMana - this.equipedWeapon.manaCost() >= 0) {
                     this.actualMana -= this.equipedWeapon.manaCost();
-                }else
+                }else{
+                    this.nomanaSfx.play()
                     return;
+                }
 
             }
             this.equipedWeapon.attack(this.reticle);

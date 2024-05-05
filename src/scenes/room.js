@@ -22,6 +22,8 @@ import font from '../../assets/fonts/VT323Regular.ttf'
 import SecretTrigger from '../secretTrigger.js'
 import Button from '../button.js'
 import Jukebox from '../jukebox.js'
+import Shotgun from '../armas/shotgun.js'
+import Thompson from '../armas/thompson.js'
 
 //Pruebas
 import BossTree from '../enemies/bossTree/bossTree.js'
@@ -170,9 +172,6 @@ export default class Room extends Phaser.Scene {
 
     create() {
 
-        //Audio
-
-        this.jukebox.create()
 
 
         if (this.dungeon[this.y][this.x].visited === false)

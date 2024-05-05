@@ -90,10 +90,17 @@ import normalScreenButton from '../../assets/main_menu/normal_screen_icon.png'
 import libLoop from 'url:../../assets/sound/music/libloop.wav'
 import libIntro from 'url:../../assets/sound/music/libintro.wav'
 import tutloop from 'url:../../assets/sound/music/tutloop.wav'
+import gardintro from 'url:../../assets/sound/music/gardintro.wav'
+import gardloop from 'url:../../assets/sound/music/gardloop.wav'
 
 //Sfx
 import playerhit from 'url:../../assets/sound/effects/playerhit.wav'
-
+import nomana from 'url:../../assets/sound/effects/nomana.wav'
+import ShotgunSFX from 'url:../../assets/sound/effects/weapons/shotgun.wav'
+import ThompsonSFX from 'url:../../assets/sound/effects/weapons/thompson.wav'
+import DaggerSFX from 'url:../../assets/sound/effects/weapons/dagger.wav'
+import ButtonSFX from 'url:../../assets/sound/effects/button.wav'
+import KeySFX from 'url:../../assets/sound/effects/key.wav'
 // Bosses
 // Tree
 import BossTree from '../../assets/bosses/tree/boss_tree_spritesheet.png'
@@ -206,13 +213,22 @@ export default class Boot extends Phaser.Scene {
     this.load.image('ready_ui_shield', shieldReady);
     this.load.image('cd_ui_shield', shieldCD);
 
+
+
     //Audio
     this.load.audio('tutloop',tutloop)
     this.load.audio('libloop', libLoop)
     this.load.audio('libintro', libIntro)
+    this.load.audio('gardintro', gardintro)
+    this.load.audio('gardloop', gardloop)
 
     this.load.audio('playerhit',playerhit)
-
+    this.load.audio('nomana',nomana)
+    this.load.audio('shotgunsfx',ShotgunSFX)
+    this.load.audio('thompsonsfx',ThompsonSFX)
+    this.load.audio('daggersfx',DaggerSFX)
+    this.load.audio('buttonsfx',ButtonSFX)
+    this.load.audio('keysfx',KeySFX)
    
 
     // Background

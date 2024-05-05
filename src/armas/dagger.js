@@ -18,7 +18,7 @@ export default class dagger extends meleeWeapon {
         this.scene.physics.add.existing(this);
         this.delay = 250;
         this.damage = 1;
-
+        this.attackSfx = this.scene.sound.add('daggersfx')
         this.id = 'dagger';
         this.setActive(true);
         this.setVisible(true);
@@ -33,8 +33,14 @@ export default class dagger extends meleeWeapon {
     }
 
     attack(target) {
+        this.playAttackSfx()
         super.attack(target);
     }
+
+    playAttackSfx(){
+        this.attackSfx.play()
+    }
+
 
     manaRegen() {
         return 20;
