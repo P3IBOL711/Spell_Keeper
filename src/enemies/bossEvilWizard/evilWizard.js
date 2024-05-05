@@ -36,35 +36,35 @@ export default class EvilWizard extends Enemy {
 
         this.anims.create({
             key: 'attack1',
-            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 95, end: 107 }),
+            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 94, end: 107 }),
             frameRate: 7,
             repeat: 0
         });
 
         this.anims.create({
             key: 'attack2',
-            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 142, end: 160 }),
+            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 141, end: 160 }),
             frameRate: 7,
             repeat: 0
         });
 
         this.anims.create({
             key: 'attack3',
-            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 190, end: 237 }),
+            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 189, end: 235 }),
             frameRate: 7,
             repeat: 0
         });
 
         this.anims.create({
             key: 'die',
-            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 238, end: 240 }),
+            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 236, end: 245 }),
             frameRate: 8,
             repeat: 0
         });
 
         this.anims.create({
             key: 'stayDead',
-            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 240, end: 240 }),
+            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 245, end: 245 }),
             frameRate: 1,
             repeat: -1
         });
@@ -150,6 +150,8 @@ export default class EvilWizard extends Enemy {
         this.anims.remove('attack2');
         this.anims.remove('attack3');
         this.anims.remove('die');
+        this.timerAttack.paused = true;
+        this.timerAttack3.paused = true;
         this.stop();
         this.play('stayDead', true);
     }
@@ -157,8 +159,7 @@ export default class EvilWizard extends Enemy {
     onTimerAttack(){
         this.attacking = true;
         let typeAttack = Math.floor(Math.random() * 3);
-        //this.play(this.attacks[typeAttack]);
-        this.play("attack3", true);
+        this.play(this.attacks[typeAttack]);
         this.speed = 0;
     }
 
