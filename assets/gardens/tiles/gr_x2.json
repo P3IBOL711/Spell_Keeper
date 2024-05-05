@@ -214,36 +214,36 @@
                  "y":448
                 }, 
                 {
-                 "gid":336,
+                 "gid":209,
                  "height":32,
                  "id":2,
                  "name":"",
                  "rotation":0,
-                 "type":"",
+                 "type":"Fire",
                  "visible":true,
                  "width":32,
                  "x":448,
                  "y":448
                 }, 
                 {
-                 "gid":336,
+                 "gid":209,
                  "height":32,
                  "id":3,
                  "name":"",
                  "rotation":0,
-                 "type":"",
+                 "type":"Fire",
                  "visible":true,
                  "width":32,
                  "x":480,
                  "y":448
                 }, 
                 {
-                 "gid":336,
+                 "gid":209,
                  "height":32,
                  "id":4,
                  "name":"",
                  "rotation":0,
-                 "type":"",
+                 "type":"Fire",
                  "visible":true,
                  "width":32,
                  "x":512,
@@ -280,36 +280,36 @@
                  "y":144
                 }, 
                 {
-                 "gid":336,
+                 "gid":209,
                  "height":32,
                  "id":7,
                  "name":"",
                  "rotation":0,
-                 "type":"",
+                 "type":"Fire",
                  "visible":true,
                  "width":32,
                  "x":480,
                  "y":64
                 }, 
                 {
-                 "gid":336,
+                 "gid":209,
                  "height":32,
                  "id":8,
                  "name":"",
                  "rotation":0,
-                 "type":"",
+                 "type":"Fire",
                  "visible":true,
                  "width":32,
                  "x":448,
                  "y":64
                 }, 
                 {
-                 "gid":336,
+                 "gid":209,
                  "height":32,
                  "id":9,
                  "name":"",
                  "rotation":0,
-                 "type":"",
+                 "type":"Fire",
                  "visible":true,
                  "width":32,
                  "x":512,
@@ -319,6 +319,12 @@
                  "height":32,
                  "id":10,
                  "name":"",
+                 "properties":[
+                        {
+                         "name":"Level",
+                         "type":"string",
+                         "value":"lb"
+                        }],
                  "rotation":0,
                  "type":"SpecialTrigger",
                  "visible":true,
@@ -338,15 +344,15 @@
          "name":"navmesh",
          "objects":[
                 {
-                 "height":448,
-                 "id":13,
+                 "height":376,
+                 "id":12,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":560,
-                 "x":248,
-                 "y":24
+                 "x":216,
+                 "y":48
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -355,7 +361,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":14,
+ "nextobjectid":13,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
@@ -364,13 +370,13 @@
         {
          "columns":10,
          "firstgid":1,
-         "image":"..\/..\/Pixel Art PNGs\/Garden_Tileset.png",
+         "image":"Base.png",
          "imageheight":256,
          "imagewidth":320,
          "margin":0,
          "name":"Base",
          "spacing":0,
-         "tilecount":51,
+         "tilecount":80,
          "tileheight":32,
          "tiles":[
                 {
@@ -837,8 +843,8 @@
         }, 
         {
          "columns":16,
-         "firstgid":80,
-         "image":"..\/..\/Pixel Art PNGs\/Garden_Decoration.png",
+         "firstgid":81,
+         "image":"..\/Pixel Art PNGs\/Garden_Decoration.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -2001,6 +2007,33 @@
                          "type":"bool",
                          "value":false
                         }]
+                }],
+         "tilewidth":32
+        }, 
+        {
+         "columns":0,
+         "firstgid":209,
+         "grid":
+            {
+             "height":1,
+             "orientation":"orthogonal",
+             "width":1
+            },
+         "margin":0,
+         "name":"Flames",
+         "spacing":0,
+         "tilecount":2,
+         "tileheight":32,
+         "tiles":[
+                {
+                 "id":0,
+                 "image":"..\/Pixel Art PNGs\/LlamaArriba.png",
+                 "type":"Fire"
+                }, 
+                {
+                 "id":2,
+                 "image":"..\/Pixel Art PNGs\/Chest.png",
+                 "type":"Chest"
                 }],
          "tilewidth":32
         }],

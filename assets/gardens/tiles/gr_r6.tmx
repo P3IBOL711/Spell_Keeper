@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="19">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="24">
  <tileset firstgid="1" name="Base" tilewidth="32" tileheight="32" tilecount="80" columns="10">
-  <image source="../Pixel Art PNGs/Garden_Tileset.png" width="320" height="256"/>
+  <image source="Base.png" width="320" height="256"/>
   <tile id="0">
    <properties>
     <property name="Walkable" type="bool" value="false"/>
@@ -259,7 +259,7 @@
   </tile>
  </tileset>
  <tileset firstgid="81" name="Objects" tilewidth="32" tileheight="32" tilecount="256" columns="16">
-  <image source="../Pixel Art PNGs/Garden_Decoration.png" width="512" height="512"/>
+  <image source="Objects.png" width="512" height="512"/>
   <tile id="0">
    <properties>
     <property name="Walkable" type="bool" value="false"/>
@@ -904,10 +904,10 @@
  <tileset firstgid="337" name="Flames" tilewidth="32" tileheight="32" tilecount="2" columns="0">
   <grid orientation="orthogonal" width="1" height="1"/>
   <tile id="0" type="Fire">
-   <image width="32" height="32" source="../Pixel Art PNGs/LlamaArriba.png"/>
+   <image source="../Pixel Art PNGs/LlamaArriba.png"/>
   </tile>
   <tile id="2" type="Chest">
-   <image width="32" height="32" source="../Pixel Art PNGs/Chest.png"/>
+   <image source="../Pixel Art PNGs/Chest.png"/>
   </tile>
  </tileset>
  <layer id="1" name="Fondo" width="32" height="16">
@@ -1060,14 +1060,17 @@
   <object id="16" type="Hitbox" x="436.25" y="159.875" width="60.375" height="15.75"/>
   <object id="17" type="Trigger" x="608" y="192" width="32" height="32">
    <properties>
-    <property name="Dir" propertytype="Direction" value="e"/>
+    <property name="Dir" value="e"/>
    </properties>
   </object>
   <object id="18" type="PlayerSpawn" x="589.667" y="207.667">
    <properties>
-    <property name="Dir" propertytype="Direction" value="e"/>
+    <property name="Dir" value="e"/>
    </properties>
    <point/>
   </object>
+ </objectgroup>
+ <objectgroup id="9" name="navmesh">
+  <object id="23" x="344" y="104" width="240" height="192"/>
  </objectgroup>
 </map>

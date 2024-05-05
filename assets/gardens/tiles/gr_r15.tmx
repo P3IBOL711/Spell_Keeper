@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="23">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="35">
  <tileset firstgid="1" name="Base" tilewidth="32" tileheight="32" tilecount="80" columns="10">
-  <image source="../Pixel Art PNGs/Garden_Tileset.png" width="320" height="256"/>
+  <image source="Base.png" width="320" height="256"/>
   <tile id="0">
    <properties>
     <property name="Walkable" type="bool" value="false"/>
@@ -259,7 +259,7 @@
   </tile>
  </tileset>
  <tileset firstgid="81" name="Objects" tilewidth="32" tileheight="32" tilecount="256" columns="16">
-  <image source="../Pixel Art PNGs/Garden_Decoration.png" width="512" height="512"/>
+  <image source="Objects.png" width="512" height="512"/>
   <tile id="0">
    <properties>
     <property name="Walkable" type="bool" value="false"/>
@@ -904,13 +904,13 @@
  <tileset firstgid="337" name="Flames" tilewidth="32" tileheight="32" tilecount="2" columns="0">
   <grid orientation="orthogonal" width="1" height="1"/>
   <tile id="0" type="Fire">
-   <image width="32" height="32" source="../Pixel Art PNGs/LlamaArriba.png"/>
+   <image source="../Pixel Art PNGs/LlamaArriba.png"/>
   </tile>
   <tile id="2" type="Chest">
-   <image width="32" height="32" source="../Pixel Art PNGs/Chest.png"/>
+   <image source="../Pixel Art PNGs/Chest.png"/>
   </tile>
  </tileset>
- <tileset firstgid="340" name="Invernadero" tilewidth="32" tileheight="32" tilecount="20" columns="5">
+ <tileset firstgid="340" name="Invernadero" tilewidth="32" tileheight="32" tilecount="0" columns="5">
   <image source="../Pixel Art PNGs/Armory_Tileset.png" width="160" height="128"/>
  </tileset>
  <layer id="1" name="Fondo" width="32" height="16">
@@ -1056,17 +1056,17 @@
  <objectgroup id="7" name="Cosas">
   <object id="2" type="Trigger" x="480" y="96" width="32" height="32">
    <properties>
-    <property name="Dir" propertytype="Direction" value="n"/>
+    <property name="Dir" value="n"/>
    </properties>
   </object>
   <object id="3" type="Trigger" x="288" y="256" width="32" height="32">
    <properties>
-    <property name="Dir" propertytype="Direction" value="w"/>
+    <property name="Dir" value="w"/>
    </properties>
   </object>
   <object id="5" type="Trigger" x="480" y="416" width="32" height="32">
    <properties>
-    <property name="Dir" propertytype="Direction" value="s"/>
+    <property name="Dir" value="s"/>
    </properties>
   </object>
   <object id="6" type="Fire" gid="337" x="320" y="256" width="32" height="32" rotation="90"/>
@@ -1074,19 +1074,19 @@
   <object id="8" type="Fire" gid="337" x="480" y="160" width="32" height="32"/>
   <object id="9" type="PlayerSpawn" x="342.333" y="272">
    <properties>
-    <property name="Dir" propertytype="Direction" value="w"/>
+    <property name="Dir" value="w"/>
    </properties>
    <point/>
   </object>
   <object id="11" type="PlayerSpawn" x="495" y="177">
    <properties>
-    <property name="Dir" propertytype="Direction" value="n"/>
+    <property name="Dir" value="n"/>
    </properties>
    <point/>
   </object>
   <object id="12" type="PlayerSpawn" x="495.667" y="391">
    <properties>
-    <property name="Dir" propertytype="Direction" value="s"/>
+    <property name="Dir" value="s"/>
    </properties>
    <point/>
   </object>
@@ -1103,5 +1103,18 @@
   <object id="20" type="Hitbox" x="480" y="256" width="32" height="32"/>
   <object id="21" type="Hitbox" x="457.818" y="356.727" width="12.1818" height="27.0909"/>
   <object id="22" type="Hitbox" x="522" y="356.727" width="12.5455" height="26.9091"/>
+ </objectgroup>
+ <objectgroup id="9" name="navmesh">
+  <object id="23" x="440" y="176" width="112" height="80"/>
+  <object id="25" x="552" y="208" width="32" height="120"/>
+  <object id="26" x="376" y="296" width="176" height="32"/>
+  <object id="27" x="440" y="328" width="112" height="24"/>
+  <object id="28" x="472" y="352" width="48" height="40"/>
+  <object id="29" x="352" y="232" width="88" height="64"/>
+  <object id="30" x="376" y="200" width="64" height="32"/>
+  <object id="31" x="440" y="256" width="40" height="16"/>
+  <object id="32" x="440" y="272" width="16" height="24"/>
+  <object id="33" x="512" y="256" width="40" height="16"/>
+  <object id="34" x="536" y="272" width="16" height="24"/>
  </objectgroup>
 </map>

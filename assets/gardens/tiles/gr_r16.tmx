@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="30">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="31">
  <tileset firstgid="1" name="Base" tilewidth="32" tileheight="32" tilecount="80" columns="10">
-  <image source="../Pixel Art PNGs/Garden_Tileset.png" width="320" height="256"/>
+  <image source="Base.png" width="320" height="256"/>
   <tile id="0">
    <properties>
     <property name="Walkable" type="bool" value="false"/>
@@ -259,7 +259,7 @@
   </tile>
  </tileset>
  <tileset firstgid="81" name="Objects" tilewidth="32" tileheight="32" tilecount="256" columns="16">
-  <image source="../Pixel Art PNGs/Garden_Decoration.png" width="512" height="512"/>
+  <image source="Objects.png" width="512" height="512"/>
   <tile id="0">
    <properties>
     <property name="Walkable" type="bool" value="false"/>
@@ -902,15 +902,15 @@
   </tile>
  </tileset>
  <tileset firstgid="337" name="Invernadero" tilewidth="32" tileheight="32" tilecount="20" columns="5">
-  <image source="../Pixel Art PNGs/Armory_Tileset.png" width="160" height="128"/>
+  <image source="../../armory/tiles/Base.png" width="160" height="128"/>
  </tileset>
  <tileset firstgid="357" name="Flames" tilewidth="32" tileheight="32" tilecount="2" columns="0">
   <grid orientation="orthogonal" width="1" height="1"/>
   <tile id="0" type="Fire">
-   <image width="32" height="32" source="../Pixel Art PNGs/LlamaArriba.png"/>
+   <image source="../Pixel Art PNGs/LlamaArriba.png"/>
   </tile>
   <tile id="2" type="Chest">
-   <image width="32" height="32" source="../Pixel Art PNGs/Chest.png"/>
+   <image source="../Pixel Art PNGs/Chest.png"/>
   </tile>
  </tileset>
  <layer id="1" name="Fondo" width="32" height="16">
@@ -1073,17 +1073,20 @@
   <object id="17" type="Hitbox" x="454.545" y="305.273" width="47.0909" height="13.2727"/>
   <object id="18" type="Trigger" x="384" y="416" width="64" height="32">
    <properties>
-    <property name="Dir" propertytype="Direction" value="c"/>
+    <property name="Dir" value="c"/>
    </properties>
   </object>
   <object id="19" type="PlayerSpawn" x="415.333" y="400">
    <properties>
-    <property name="Dir" propertytype="Direction" value="c"/>
+    <property name="Dir" value="c"/>
    </properties>
    <point/>
   </object>
   <object id="27" type="Chest" gid="359" x="400" y="256.333" width="32" height="32"/>
   <object id="28" type="Chest" gid="359" x="349" y="253.5" width="32" height="32"/>
   <object id="29" type="Chest" gid="359" x="446.75" y="253.25" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup id="9" name="navmesh">
+  <object id="30" x="232" y="112" width="360" height="272"/>
  </objectgroup>
 </map>
