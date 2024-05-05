@@ -7,17 +7,21 @@ import Slime from "./enemies/slime"
 import CarnivorousPlant from "./enemies/carnivorousPlant"
 import Book from "./enemies/book"
 import LavaGolem from "./enemies/lavaGolem"
+import BossTree from "./enemies/bossTree/bossTree"
 
 export default class EnemySpawner {
 
     constructor(scene, x, y, target, level) {
         if (level === 'lb')
-            this.enemyPool = [MagicSkeleton, Knight, StandardSkeleton, Skeleton,Book]
+            this.enemyPool = [MagicSkeleton, Knight, StandardSkeleton, Skeleton, Book]
         else if (level === 'gr')
-            this.enemyPool = [PoisonousGoblin,Slime,CarnivorousPlant,LavaGolem]
-        else 
-            this.enemyPool = [Skeleton,Knight,PoisonousGoblin]
-            this.scene = scene
+            if (scene.key !== 'grX1' && scene.key !== 'grX2' && scene.key !== 'grX3' && scene.key !== 'grX4')
+                this.enemyPool = [PoisonousGoblin, Slime, CarnivorousPlant, LavaGolem]
+            else
+                this.enemyPool = [BossTree]
+        else
+            this.enemyPool = [Skeleton, Knight, PoisonousGoblin]
+        this.scene = scene
         this.x = x
         this.y = y
         this.target = target
