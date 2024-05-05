@@ -149,7 +149,11 @@
     <property name="Dir" value="s"/>
    </properties>
   </object>
-  <object id="2" type="Trigger" x="448" y="0" width="96" height="32"/>
+  <object id="2" type="Trigger" x="448" y="0" width="96" height="32">
+   <properties>
+    <property name="Dir" value="n"/>
+   </properties>
+  </object>
   <object id="3" type="Trigger" x="768" y="224" width="32" height="32">
    <properties>
     <property name="Dir" value="e"/>
@@ -172,6 +176,9 @@
    <point/>
   </object>
   <object id="17" type="PlayerSpawn" x="491.667" y="74">
+   <properties>
+    <property name="Dir" value="n"/>
+   </properties>
    <point/>
   </object>
   <object id="18" type="PlayerSpawn" x="738" y="239.333">

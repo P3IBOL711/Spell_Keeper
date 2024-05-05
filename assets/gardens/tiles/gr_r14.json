@@ -217,6 +217,12 @@
                  "height":32,
                  "id":2,
                  "name":"",
+                 "properties":[
+                        {
+                         "name":"Dir",
+                         "type":"string",
+                         "value":"n"
+                        }],
                  "rotation":0,
                  "type":"Trigger",
                  "visible":true,
@@ -381,6 +387,12 @@
                  "id":17,
                  "name":"",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"Dir",
+                         "type":"string",
+                         "value":"n"
+                        }],
                  "rotation":0,
                  "type":"PlayerSpawn",
                  "visible":true,
@@ -2118,6 +2130,16 @@
                          "value":false
                         }]
                 }],
+         "tilewidth":32
+        }, 
+        {
+         "columns":0,
+         "firstgid":336,
+         "margin":0,
+         "name":"Flames2",
+         "spacing":0,
+         "tilecount":0,
+         "tileheight":32,
          "tilewidth":32
         }],
  "tilewidth":32,

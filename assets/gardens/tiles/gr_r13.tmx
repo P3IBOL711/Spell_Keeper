@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="28">
+ <editorsettings>
+  <export target="gr_r13.json" format="json"/>
+ </editorsettings>
  <tileset firstgid="1" source="Base.tsx"/>
  <tileset firstgid="80" source="Objects.tsx"/>
  <tileset firstgid="336" source="Flames2.tsx"/>
@@ -153,7 +156,11 @@
     <property name="Dir" value="w"/>
    </properties>
   </object>
-  <object id="14" type="Trigger" x="704" y="64" width="32" height="32"/>
+  <object id="14" type="Trigger" x="704" y="64" width="32" height="32">
+   <properties>
+    <property name="Dir" value="n"/>
+   </properties>
+  </object>
   <object id="15" type="Trigger" x="896" y="224" width="32" height="32">
    <properties>
     <property name="Dir" value="e"/>
@@ -169,6 +176,9 @@
    <point/>
   </object>
   <object id="20" type="PlayerSpawn" x="718.667" y="145.333">
+   <properties>
+    <property name="Dir" value="n"/>
+   </properties>
    <point/>
   </object>
   <object id="22" type="PlayerSpawn" x="864" y="240">
