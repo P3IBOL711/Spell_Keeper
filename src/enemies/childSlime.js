@@ -43,7 +43,7 @@ export default class childSlime extends MeleeEnemy {
 
         this.speed = 50;
 
-        this.life = 5;
+        this.life = 2;
 
         this.damage = 1;
 

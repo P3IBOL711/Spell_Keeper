@@ -16,8 +16,6 @@ export default class MeleeEnemy extends Enemy {
     constructor(scene, x, y, target, image, attackDelay) {
         super(scene, x, y, target, image, attackDelay);
 
-        
-
         this.distanceAttack = 150;
 
         // SE PODRIA MEJORAR CON this.on(animationstart) PERO NO SABEMOS HACERLO

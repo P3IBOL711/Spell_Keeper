@@ -50,7 +50,7 @@ export default class PoisonousGoblin extends DistanceEnemy {
 
         this.speed = 30;
 
-        this.life = 2;
+        this.life = 10;
 
         this.body.setSize(this.width * 0.45, this.height * 0.85, true);
 

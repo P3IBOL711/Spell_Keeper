@@ -3,7 +3,7 @@ import Phaser from "phaser";
 import arma from "./arma";
 import Knife from "../projectiles/knife";
 
-const DAMAGE = 0.4;
+const DAMAGE = 2;
 
 export default class MagicKnife extends arma {
     /**
@@ -41,6 +41,6 @@ export default class MagicKnife extends arma {
     }
 
     manaCost() {
-        return 50;
+        return 75;
     }
 }

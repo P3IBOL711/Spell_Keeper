@@ -38,6 +38,6 @@ export default class IceStaff extends arma {
     }
 
     manaCost() {
-        return 50;
+        return 100;
     }
 }

@@ -9,7 +9,7 @@ export default class lethalSword extends meleeWeapon {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.delay = 200;
-        this.damage = 50;
+        this.damage = 30;
         this.hitboxMultiplier = 3;
 
         this.id = 'lethalSword';

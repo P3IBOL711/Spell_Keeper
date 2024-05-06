@@ -4,7 +4,7 @@ import Phaser from "phaser";
 import arma from "./arma";
 import IronBullet from '../projectiles/ironBullet.js';
 
-const DAMAGE = 1;
+const DAMAGE = 2;
 
 export default class Thompson extends arma {
     /**
@@ -67,6 +67,6 @@ export default class Thompson extends arma {
     }
 
     manaCost() {
-        return 5;
+        return 12;
     }
 }

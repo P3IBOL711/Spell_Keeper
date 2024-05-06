@@ -26,7 +26,7 @@ import nowYouAreFat from "./objetos/nowYouAreFat";
 import shadowCloak from "./objetos/shadowCloak";
 import broom from "./objetos/broom";
 
-let weaponsPool = [[poisonStaff, ChofSword, Spear], [FourLeafsClub, heartAmulet, nowYouAreFat, shadowCloak, broom], [iceStaff, Shotgun, Thompson, ChargeSword, PoisonDagger, magicSword, MagicKnife], [hoe, megaEspadaMortal, DrainSword, lethalSword]];
+let weaponsPool = [[poisonStaff, ChofSword, Spear], [FourLeafsClub, heartAmulet, nowYouAreFat, shadowCloak, broom], [iceStaff, Thompson, ChargeSword, PoisonDagger, magicSword, MagicKnife], [hoe, megaEspadaMortal, DrainSword, lethalSword, Shotgun]];
 
 
 export default class lootGenerator {

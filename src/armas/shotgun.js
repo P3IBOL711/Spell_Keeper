@@ -5,7 +5,7 @@ import arma from "./arma";
 import IronBullet from '../projectiles/ironBullet.js';
 
 
-const DAMAGE = 0.5;
+const DAMAGE = 4;
 
 export default class Shotgun extends arma {
     /**
@@ -22,8 +22,6 @@ export default class Shotgun extends arma {
         this.delay = 250;
         this.x = x;
         this.y = y;
-
-
 
         this.attackSfx = this.scene.sound.add('shotgunsfx')
 
@@ -85,6 +83,6 @@ export default class Shotgun extends arma {
     }
 
     manaCost() {
-        return 25;
+        return 70;
     }
 }

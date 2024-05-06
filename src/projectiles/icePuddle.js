@@ -38,11 +38,11 @@ export default class icePuddle extends Phaser.GameObjects.Sprite {
 
         this.scene.physics.add.overlap(this.scene.enemies, this, (enemy) => {
             if (this.targets) {
-                enemy.receiveDamageOverTime(damage);
+                enemy.receiveDamageOverTime(damage, 1);
             }
         });
 
-        this.scene.time.delayedCall(2500, () => {
+        this.scene.time.delayedCall(5000, () => {
             this.destroy()
         });
     }

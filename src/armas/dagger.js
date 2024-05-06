@@ -43,6 +43,6 @@ export default class dagger extends meleeWeapon {
 
 
     manaRegen() {
-        return 20;
+        return 15;
     }
 }

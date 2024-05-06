@@ -10,7 +10,7 @@ export default class magicSword extends meleeWeapon {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.delay = 300;
-        this.damage = 15;
+        this.damage = 10;
 
         this.id = 'magicSword';
         this.setActive(true);
@@ -34,6 +34,6 @@ export default class magicSword extends meleeWeapon {
     }
 
     manaRegen() {
-        return 5;
+        return 12;
     }
 }

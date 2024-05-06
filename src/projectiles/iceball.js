@@ -63,7 +63,7 @@ export default class iceball extends Projectile {
     impact(){
         super.impact();
         this.play('impact', true);
-        new IcePuddle(this.scene, this.x, this.y, this.objective, this.proyectileDamage/10);
+        new IcePuddle(this.scene, this.x, this.y, this.objective, this.proyectileDamage/5);
     }
 
     preUpdate(t, dt) {

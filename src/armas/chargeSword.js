@@ -14,7 +14,7 @@ export default class ChargeSword extends meleeWeapon {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.delay = 500;
-        this.damage = 1;
+        this.damage = 4;
         this.level = 0;
         this.hitboxMultiplier = 3;
 
@@ -76,15 +76,15 @@ export default class ChargeSword extends meleeWeapon {
     attack(target) {
         this.level++;
         if(this.level === 3)
-            this.damage = this.damage * 3
+            this.damage = this.damage * 4
         if (this.level > 3){
             this.level = 0
-            this.damage = this.damage / 3
+            this.damage = this.damage / 4
         }
         super.attack(target);
     }
 
     manaRegen() {
-        return 2;
+        return 20;
     }
 }

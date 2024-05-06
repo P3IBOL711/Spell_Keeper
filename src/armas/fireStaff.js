@@ -3,7 +3,7 @@ import Phaser from "phaser";
 import Fireball from "../projectiles/fireball";
 import arma from "./arma";
 
-const DAMAGE = 5;
+const DAMAGE = 2;
 
 export default class FireStaff extends arma {
  /**
@@ -39,6 +39,6 @@ export default class FireStaff extends arma {
     }
 
     manaCost() {
-        return 5;
+        return 25;
     }
 }
