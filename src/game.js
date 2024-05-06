@@ -61,12 +61,15 @@ import { PhaserNavMeshPlugin } from "phaser-navmesh";
  */
 let config = {
     type: Phaser.AUTO,
+    parent: 'juego',
     width: 1024,
     height: 512,
+
+
     scale: {
         mode: Phaser.Scale.FIT,  
-        //autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
-        autoCenter: Phaser.Scale.CENTER_BOTH
+        autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
+        //autoCenter: Phaser.Scale.CENTER_BOTH
     },
     pixelArt: true,
     plugins: {

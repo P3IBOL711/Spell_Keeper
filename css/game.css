@@ -3,38 +3,84 @@
   src: url('../assets/fonts/VT323Regular.ttf');
 }
 
-.image-container {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: auto;
-  margin-right: auto;
+.bg-image {
+   /* Full height */
+   height: 100%; 
+  
+   /* Center and scale the image nicely */
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
 }
 
-.image-container img {
-  display: block;
-  width: 30%; /* Adjust the width as per your requirement */
-  height: auto;
+.img1 {
+  background-image: url("../assets/prueba3.jpg");
 }
 
-.overlay-text {
+.img2 {
+  background: linear-gradient(to bottom, #8A4DCF, #9773BF);
+  background-color: #8A4DCF;
+  height: 1150px;
+}
+
+.img3{
+  background-color: #9773BF;
+}
+
+h1 {
   position: absolute;
-  top: 40%; 
+  top: 30%; 
   left: 50%; 
   transform: translate(-50%, -50%); 
   background-color: #ffffff00;
   padding: 10px 20px; 
   font-size: 20px; 
   text-align: center;
-  color:#5e1675ff;
+  color:rgb(255, 255, 255);
   font-family: 'pixelFont';
-  font-size: 50px;
+  font-size: 150px;
   font-weight: bold; /* Add bold style */
 }
 
-.overlay-text {
-  font-size: clamp(10px, 3.5vw, 50px);
+h1 span {
+  display: block;
+  font-size: 150px;
 }
 
-body{background-color: #FFE6E6;}
+
+.subtitle{
+  position: relative;
+  background-color: #ffffff00;
+  text-align: center;
+  color:rgb(255, 255, 255);
+  font-family: 'pixelFont';
+  font-size: 75px;
+  font-weight: bold; /* Add bold style */
+}
+
+.subtitle span{
+  display: block;
+  position: relative;
+  background-color: #ffffff00;
+  text-align: center;
+  color:rgb(255, 255, 255);
+  font-family: 'pixelFont';
+  font-size: 40px;
+  font-weight: bold; /* Add bold style */
+  margin-bottom: 20px;
+}
+
+/*Parte del juego*/
+
+.subtitle span{
+  display: block;
+  position: relative;
+  background-color: #ffffff00;
+  text-align: center;
+  color:rgb(255, 255, 255);
+  font-family: 'pixelFont';
+  font-size: 40px;
+  font-weight: bold; /* Add bold style */
+  margin-bottom: 20px;
+}
+

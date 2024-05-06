@@ -31,14 +31,14 @@ export default class MainMenu extends Phaser.Scene {
         //this.load.bitmapFont('customFont','../../assets/font/spellkeeper.png','../../assets/font/spellkeeper.xml')
         //this.load.bitmapFont('pixelfont','../../assets/font/pixelfont.png','../../assets/font/Pixeled.xml')
     }
-    init(obj) {
-        this.jukeboxStarted = obj.jk
-    }
 
-    create() {
-        this.scene.stop('gui');
-        this.add.image(0, 0, 'title_bg').setOrigin(0).setDepth(0).setScale(1.05); //Background
-        this.add.text(100, 50, 'SPELL KEEPER', { fontFamily: 'pixelFont', fontSize: 80, color: '#000000', fontStyle: 'bold' });
+    create(){
+        let bg = this.add.image(0,0,'title_bg').setOrigin(0).setDepth(0); //Background
+        bg.setDisplaySize(this.sys.game.canvas.width, this.sys.game.canvas.height);
+        let text = this.add.text(0, 0, 'SPELL KEEPER',{ fontFamily: 'pixelFont', fontSize: 80, color: '#000000', fontStyle: 'bold'}); 
+        text.setY(this.sys.game.canvas.height/2 - text.height - 100);
+        text.setX(this.sys.game.canvas.width/2 - text.width);
+
         // let playButton = this.add.image(470,150,'play').setOrigin(0).setDepth(1).setScale(0.35); 
         // let playSelectedButton = this.add.image(470,150,'play_sel').setOrigin(0).setDepth(1).setScale(0.35).setVisible(false); 
 
@@ -53,6 +53,9 @@ export default class MainMenu extends Phaser.Scene {
 
         this.controlsButton = this.add.text(180, 230, '> CONTROLS', { fontFamily: 'pixelFont', fontSize: 60, color: '#000000', fontStyle: 'bold' });
 
+        this.playButton = this.add.text(0, 0, '> PLAY', { fontFamily: 'pixelFont', fontSize: 60, color: '#000000' , fontStyle: 'bold'});
+        this.playButton.setX(this.sys.game.canvas.width/2 - text.width + 30);
+        this.playButton.setY(this.sys.game.canvas.height/2 - text.height - 5);
         /*let nuevoTexto = 
         this.add.text(390, 70, 
             'Spell Keeper', 
