@@ -36,6 +36,9 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         // is enemy attacking?
         this.attacking = false;
 
+        // is enemy vulnerable?
+        this.vulnerable = true;
+
         // distance from player to start attacking
         this.distanceAttack = 150;
 
@@ -194,6 +197,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
                 this.timerAttack.paused = true;
             }
             else {
+                this.timerAttack.paused = this.attacking;
                 this.timerAttack.paused = this.attacking;
             }
         }
