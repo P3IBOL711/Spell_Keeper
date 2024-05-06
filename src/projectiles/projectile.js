@@ -17,7 +17,7 @@ export default class Projectile extends Phaser.GameObjects.Sprite {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         if(this.scene.enviromental !== undefined)
-        this.scene.enviromental.add(this)
+            this.scene.enviromental.add(this)
         let overlapPlayerDmg = this.scene.physics.add.overlap(this, this.scene.enemies, (projectile, enemy) => {
             if (targetEnemy) {
                 this.impact(); // impact animation
@@ -32,14 +32,15 @@ export default class Projectile extends Phaser.GameObjects.Sprite {
         let overlapEnemyDmg = this.scene.physics.add.overlap(this, this.scene.player, (projectile, player) => {
             if (!targetEnemy) {
                 this.impact(); // impact animation
-                player.receiveDamage(damage)
+                player.receiveDamage(damage);
+                this.scene.physics.world.removeCollider(overlapEnemyDmg);
             }
-            //this.scene.physics.world.removeCollider(overlapEnemyDmg);
         });
 
         this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
             this.destroyProjectile();
         });
+
         this.setDepth(5);
         this.impacted = false;
         this.spawning = spawning;
@@ -47,14 +48,8 @@ export default class Projectile extends Phaser.GameObjects.Sprite {
         //this.play('normal', true);
     }
 
-    destroyProjectile(){
-        if (this.anims.getName() === 'impact'){
-            this.destroy();
-        }
-    }
-
-    destroyProjectile(){
-        if (this.anims.getName() === 'impact'){
+    destroyProjectile() {
+        if (this.anims.getName() === 'impact') {
             this.destroy();
         }
     }

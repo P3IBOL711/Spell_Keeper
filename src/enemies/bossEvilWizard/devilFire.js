@@ -20,6 +20,13 @@ export default class DevilFire extends Projectile {
             repeat: 0
         });
 
+        this.anims.create({
+            key: 'impact',
+            frames: this.anims.generateFrameNumbers('devilFire', { start: 0, end: 0 }),
+            frameRate: 64,
+            repeat: 0
+        });
+
         this.setDepth(5);
         this.setScale(0.75);
 
@@ -31,10 +38,6 @@ export default class DevilFire extends Projectile {
 
         this.body.setVelocityX(this.speed * Math.cos(angle));
         this.body.setVelocityY(this.speed * Math.sin(angle))
-
-        this.scene.physics.add.overlap(this, this.scene.player, () => {
-            this.scene.player.receiveDamage(this.damage);
-        });
 
         if (rotation == Math.PI || this.angle == 0) {
             this.body.setSize(this.width, this.height, true);
@@ -49,7 +52,7 @@ export default class DevilFire extends Projectile {
 
     impact(){
         super.impact();
-        this.destroy();
+        this.play('impact', true);  
     }
 
     /**

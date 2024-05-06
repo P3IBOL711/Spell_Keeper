@@ -162,7 +162,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
         //Interaccion de la animacion de muerte
         this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
             if (this.anims.getName() === 'dying') {
-                this.body.enable = false;
                 this.active = false;
                 this.scene.scene.start('end',{jk:this.scene.jukebox});
             }
@@ -398,41 +397,43 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     /**Funcion que se llama cuando el jugador recibe daño */
     receiveDamage(damage) {
-        if (this.actualLife > 0) {
-            if (this.active === false) { return; }
-            if (this.canBeDamaged) {
-                if (this.equipedWeapon.isLethalForYouCarefull())
-                    this.actualLife = 0;
-                else
-                    this.actualLife -= damage;
-
-                if (this.actualLife <= 0)
-                    this.died();
-
-                hudEvents.emit('updateHealth', this.actualLife);
-
-                this.scene.tweens.add({
-                    targets: this,
-                    alpha: 0,
-                    ease: Phaser.Math.Easing.Elastic.InOut,
-                    duration: 40,
-                    repeat: 1,
-                    yoyo: true,
-                    onStart: () => {
-                        this.setTint(0xff0000);
-                    },
-                    onComplete: () => {
-                        this.clearTint();
-                        this.setAlpha(1);
-                    }
-                });
-
-                this.playerHitSfx.play();
-
+        if(this.playerDead === false) {
+            if (this.actualLife > 0) {
+                if (this.active === false) { return; }
+                if (this.canBeDamaged) {
+                    if (this.equipedWeapon.isLethalForYouCarefull())
+                        this.actualLife = 0;
+                    else
+                        this.actualLife -= damage;
+    
+                    if (this.actualLife <= 0)
+                        this.died();
+    
+                    hudEvents.emit('updateHealth', this.actualLife);
+    
+                    this.scene.tweens.add({
+                        targets: this,
+                        alpha: 0,
+                        ease: Phaser.Math.Easing.Elastic.InOut,
+                        duration: 40,
+                        repeat: 1,
+                        yoyo: true,
+                        onStart: () => {
+                            this.setTint(0xff0000);
+                        },
+                        onComplete: () => {
+                            this.clearTint();
+                            this.setAlpha(1);
+                        }
+                    });
+    
+                    this.playerHitSfx.play();
+    
+                }
             }
+            else if (this.actualLife <= 0)
+                this.died();
         }
-        else if (this.actualLife <= 0)
-            this.died();
     }
 
     died() {
@@ -440,10 +441,16 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.scene.input.keyboard.removeKey(this.a, true);
         this.scene.input.keyboard.removeKey(this.s, true);
         this.scene.input.keyboard.removeKey(this.d, true);
-
         this.playerDead = true;
         this.body.setVelocity(0);
+        this.body.enable = false;
         this.stop();
+        this.anims.remove('idleDown');
+        this.anims.remove('idleRight');
+        this.anims.remove('idleUp');
+        this.anims.remove('walkDown');
+        this.anims.remove('walkRight');
+        this.anims.remove('walkUp');
         this.play('dying', true);
     }
 

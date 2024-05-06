@@ -14,7 +14,7 @@ export default class GreenPoisonBall extends Projectile {
     */
 
     constructor(scene, x, y, target, targetEnemy, damage) {
-        super(scene, x, y, 'grennPoisonBall', targetEnemy, damage);
+        super(scene, x, y, 'greenPoisonBall', targetEnemy, damage);
 
         this.anims.create({
             key: 'normal',
@@ -62,17 +62,10 @@ export default class GreenPoisonBall extends Projectile {
         this.play('impact', true);       
     }
 
-    /**
-     * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
-     * Como se puede ver, no se tratan las colisiones con las estrellas, ya que estas colisiones 
-     * ya son gestionadas por la estrella (no gestionar las colisiones dos veces)
-     * @override
-     */
     preUpdate(t, dt) {
-        // IMPORTANTE: Si no ponemos esta instrucción y el sprite está animado
-        // no se podrá ejecutar la animación del sprite. 
         super.preUpdate(t, dt);
-        
+        if (!this.impacted)
+            this.play('normal', true);
     }
 
 }
