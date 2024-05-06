@@ -220,6 +220,7 @@ export default class BossTree extends Enemy {
             if (this.life <= 0) {
                 this.body.enable = true;
                 this.dieSFX.play()
+                this.scene.bossHasDied()
                 this.scene.time.removeAllEvents();
             }
         }

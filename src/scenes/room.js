@@ -27,6 +27,7 @@ import Thompson from '../armas/thompson.js'
 
 //Pruebas
 import BossTree from '../enemies/bossTree/bossTree.js'
+import BossSpawner from '../bossSpawner.js'
 
 
 
@@ -61,6 +62,7 @@ export default class Room extends Phaser.Scene {
         this.dungeon = obj.dg;
         this.direction = obj.dir;
         this.numberOfEnemies = 0;
+        this.boss = 0;
         this.chestOpened = false;
         this.loadScene = this.loadScene.bind(this);
         this.loadLevel = this.loadLevel.bind(this);
@@ -290,7 +292,7 @@ export default class Room extends Phaser.Scene {
     cutsceneStarted(x, y) {
         this.cameras.main.stopFollow(this.player);
         this.cameras.main.setZoom(3);
-        this.cameras.main.centerOn(x, y+50)
+        this.cameras.main.centerOn(x, y + 50)
         this.cutScenePlaying = true
     }
 
@@ -351,14 +353,40 @@ export default class Room extends Phaser.Scene {
             } else if (objeto.type === 'Button') {
                 new Button(this, objeto.x + 19, objeto.y + 8, objeto.width, objeto.height, this.player, this.cont, this.secretTrigger)
                 this.cont++
+            } else if (objeto.type === 'BossSpawn') {
+                if(this.boss !== -1){
+                    new BossSpawner(this, objeto.x, objeto.y, this.player, this.level)
+                    this.boss++
+                }
+
+            } else if (objeto.type === 'BossFire') {
+                if (this.boss !== -1)
+                    if (objeto.rotation === 270)
+                        this.fireArray.push(new Fire(this, objeto.x - objeto.width / 2, (objeto.y + objeto.height / 2) - 40, objeto.width, objeto.height, objeto.rotation))
+                    else if (objeto.rotation === 90)
+                        this.fireArray.push(new Fire(this, objeto.x + objeto.width / 2, (objeto.y + objeto.height / 2) - 8, objeto.width, objeto.height, objeto.rotation))
+                    else
+                        this.fireArray.push(new Fire(this, (objeto.x - objeto.width / 2) + 32, (objeto.y + objeto.height / 2) - 40, objeto.width, objeto.height, objeto.rotation))
             }
         }
     }
 
     enemyHasDied() {
         this.numberOfEnemies--;
-        if (this.numberOfEnemies <= 0) {
+        if (this.numberOfEnemies <= 0 && this.boss <= 0) {
             this.numberOfEnemies = -1; //Habitacion limpia
+
+            for (let fire of this.fireArray) {
+                fire.destroySprite();
+                fire.destroy();
+            }
+        }
+    }
+
+    bossHasDied(){
+        this.boss--;
+        if (this.boss <= 0) {
+            this.boss = -1; //Habitacion limpia
 
             for (let fire of this.fireArray) {
                 fire.destroySprite();
@@ -402,7 +430,8 @@ export default class Room extends Phaser.Scene {
             // Save relevant scene state here
             // For example:
             numberOfEnemies: this.numberOfEnemies,
-            chestOpened: this.chestOpened
+            chestOpened: this.chestOpened,
+            boss: this.boss
         };
 
         this.saveStateMatrix[this.y][this.x] = savedSceneState
@@ -413,6 +442,7 @@ export default class Room extends Phaser.Scene {
         if (savedSceneState) {
             this.numberOfEnemies = savedSceneState.numberOfEnemies
             this.chestOpened = savedSceneState.chestOpened
+            this.boss = savedSceneState.boss
         }
     }
 
