@@ -80,7 +80,7 @@ export default class BossTree extends Enemy {
         this.enemySpawner = new EnemySpawnerBoss(scene, target);
 
         this.speed = 0;
-        this.life = 5;
+        this.life = 200;
         this.distanceAttack = 1000;
 
         this.spawning = true;

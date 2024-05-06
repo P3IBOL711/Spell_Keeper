@@ -67,6 +67,6 @@ export default class Thompson extends arma {
     }
 
     manaCost() {
-        return 12;
+        return 5;
     }
 }

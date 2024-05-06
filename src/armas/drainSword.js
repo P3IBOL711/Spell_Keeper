@@ -14,7 +14,7 @@ export default class DrainSword extends meleeWeapon {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.delay = 500;
-        this.damage = 1;
+        this.damage = 4;
 
         this.id = 'drainsword';
         this.setActive(true);

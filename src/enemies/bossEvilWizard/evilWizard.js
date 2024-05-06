@@ -18,13 +18,15 @@ export default class EvilWizard extends Enemy {
      */
     constructor(scene, x, y, target) {
         super(scene, x, y, target, 'evilWizard', 5000);
-        
+
 
         // FILA MAS LARGA DE 47 FRAMES
+
+
         this.anims.create({
             key: 'spawn',
-            frames: this.anims.generateFrameNumbers('evilWizardSpritesheet', { start: 0, end: 19 }),
-            frameRate: 6,
+            frames: this.anims.generateFrameNumbers('prespawn', { start: 50, end: 108 }),
+            frameRate: 7,
             repeat: 0
         });
 
@@ -75,9 +77,12 @@ export default class EvilWizard extends Enemy {
         this.enemySpawner = new EnemySpawnerEvilWizard(scene, target);
 
         this.speed = 0;
-        this.life = 150
+        this.life = 300;
 
         this.distanceAttack = 200;
+
+        this.laughSFX = this.scene.sound.add('magelaugh')
+        this.spawnSFX = this.scene.sound.add('demonspawn')
 
         this.scene.jukebox.stopAllMusic()
         this.scene.jukebox.playEvil()
@@ -86,6 +91,7 @@ export default class EvilWizard extends Enemy {
         this.body.setOffset(this.width * 0.5, this.height * 0.85);
 
         this.play('spawn', true);
+        this.laughSFX.play()
 
         this.attacks = ['attack1', 'attack2', 'attack3'];
 
@@ -93,9 +99,10 @@ export default class EvilWizard extends Enemy {
         this.scene.player.setActive(false)
 
         this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
-            if(this.life > 0){
-                if(this.anims.getName() === 'spawn'){
+            if (this.life > 0) {
+                if (this.anims.getName() === 'spawn') {
                     this.speed = 50;
+                    this.spawnSFX.play()
                     this.scene.cutsceneStopped()
                     this.scene.player.setActive(true)
                 }
@@ -103,7 +110,7 @@ export default class EvilWizard extends Enemy {
                     this.attackZone.destroy(true);
                     this.attacking = false;
                     this.speed = 50;
-                    
+
                     this.body.setImmovable(false);
                 }
                 else if (this.anims.getName() === 'attack2') {
@@ -116,16 +123,16 @@ export default class EvilWizard extends Enemy {
                     this.attacking = false;
                     this.speed = 50;
                     this.timerAttack3.paused = true;
-        
+
                     this.body.setImmovable(false);
                 }
             }
         });
 
         this.on(Phaser.Animations.Events.ANIMATION_START, () => {
-            if(this.life > 0){
+            if (this.life > 0) {
                 if (this.anims.getName() === 'attack1') {
-                    for (let i = 0; i < 2; i++){
+                    for (let i = 0; i < 2; i++) {
                         let randomPositionX = Phaser.Math.Between(-100, 100);
                         let randomPositionY = Phaser.Math.Between(-100, 100);
                         this.enemySpawner.spawnEnemy(this.x + randomPositionX, this.y + randomPositionY);
@@ -149,7 +156,7 @@ export default class EvilWizard extends Enemy {
         });
 
         this.on(Phaser.Animations.Events.ANIMATION_UPDATE, () => {
-            if(this.life > 0){
+            if (this.life > 0) {
                 if (this.anims.getName() === 'attack1' && this.anims.currentFrame.index === 7) {
                     // Carga un puñetazo hacia el jugador
                     this.attackZone = new HitBox(this.scene, this.x + 20, this.y - 10, 100, 100, this.target, this.damage);
@@ -167,8 +174,9 @@ export default class EvilWizard extends Enemy {
         this.timerAttack3.paused = true;
     }
 
-    destroyEnemy(){
+    destroyEnemy() {
         this.anims.remove('spawn');
+        this.anims.remove('prespawn');
         this.anims.remove('walking');
         this.anims.remove('attack1');
         this.anims.remove('attack2');
@@ -177,7 +185,7 @@ export default class EvilWizard extends Enemy {
         this.stop();
         this.play('stayDead', true);
     }
-    onTimerAttack(){
+    onTimerAttack() {
         this.body.setImmovable(true);
         this.attacking = true;
         let typeAttack = Math.floor(Math.random() * 3);
@@ -185,7 +193,7 @@ export default class EvilWizard extends Enemy {
         this.speed = 0;
     }
 
-    onTimerAttack3(){
+    onTimerAttack3() {
         if (this.firstFireDirection) {
             new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 0, 90 * Math.PI / 180);
             new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 90 * Math.PI / 180, 180 * Math.PI / 180);
@@ -193,13 +201,13 @@ export default class EvilWizard extends Enemy {
             new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 270 * Math.PI / 180, 0);
             this.firstFireDirection = false;
         }
-        else{
+        else {
             new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 45 * Math.PI / 180, 135 * Math.PI / 180);
             new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 135 * Math.PI / 180, 225 * Math.PI / 180);
             new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 225 * Math.PI / 180, 315 * Math.PI / 180);
             new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 315 * Math.PI / 180, 45 * Math.PI / 180);
             this.firstFireDirection = true;
-        }             
+        }
     }
 
     doSomethingVerySpecificBecauseYoureMyBelovedChild() {
@@ -208,14 +216,14 @@ export default class EvilWizard extends Enemy {
     }
 
 
-    receiveDamage(damage){
-        if(this.vulnerable && this.life > 0) {
+    receiveDamage(damage) {
+        if (this.vulnerable && this.life > 0) {
             super.receiveDamage(damage);
 
-            if(this.life <= 0){
+            if (this.life <= 0) {
                 this.body.enable = true;
                 this.body.setImmovable(true);
-                
+
                 this.scene.time.removeAllEvents();
                 // Para que los enemigos no se solapen uno encima de otro
                 this.scene.physics.add.collider(this, this.target, () => {
@@ -235,9 +243,9 @@ export default class EvilWizard extends Enemy {
         super.preUpdate(t, dt);
     }
 
-    flipEnemy(){}
+    flipEnemy() { }
 
-    isProjectile(){
+    isProjectile() {
         return false;
     }
 }

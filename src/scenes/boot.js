@@ -59,9 +59,12 @@ import crystalHeart from '../../assets/cSprites/items/heartAmulet.png'
 import speedyCloak from '../../assets/cSprites/items/shadowCloak.png'
 
 //UI assets
-import fullHeart from '../../assets/HUD/ui-heart-full.png'
-import halfHeart from '../../assets/HUD/half-ui-heart.png'
-import emptyHeart from '../../assets/HUD/ui-heart-empty.png'
+// import fullHeart from '../../assets/HUD/ui-heart-full.png'
+// import halfHeart from '../../assets/HUD/half-ui-heart.png'
+// import emptyHeart from '../../assets/HUD/ui-heart-empty.png'
+import fullHeart from '../../assets/HUD/_ui_heart_full.png'
+import halfHeart from '../../assets/HUD/_ui_heart_half.png'
+import emptyHeart from '../../assets/HUD/_ui_heart_empty.png'
 import manaBar from '../../assets/HUD/mana_bar.png'
 import mainMana from '../../assets/HUD/main_mana.png'
 import BossBar from '../../assets/HUD/boss_bar.png'
@@ -109,6 +112,8 @@ import KeySFX from 'url:../../assets/sound/effects/key.wav'
 import TreeSpawn from 'url:../../assets/sound/effects/treespawn.wav'
 import TreeDie from 'url:../../assets/sound/effects/treedie.wav'
 import ErrorPuzzle from 'url:../../assets/sound/effects/error.wav'
+import MageLaugh from 'url:../../assets/sound/effects/magelaugh.wav'
+import DemonSpawn from 'url:../../assets/sound/effects/demonspawn.wav'
 // Bosses
 // Tree
 import ArbolTrans from '../../assets/bosses/tree/Arbol_Trans.png'
@@ -123,6 +128,7 @@ import AcornShadow from '../../assets/bosses/tree/BellotaSombra.png'
 import EvilWizard from '../../assets/bosses/evilWizard/Diablo.png'
 import LavaPuddle from '../../assets/bosses/evilWizard/lava_puddle.png'
 import DevilFire from '../../assets/bosses/evilWizard/devil_fire.png'
+import PreSpawn from '../../assets/bosses/evilWizard/prespawn.png'
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
  * Esta escena se puede mejorar añadiendo una imagen del juego y una 
@@ -250,6 +256,8 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('treespawn',TreeSpawn)
     this.load.audio('treedie',TreeDie)
     this.load.audio('errorpuzzle', ErrorPuzzle)
+    this.load.audio('demonspawn',DemonSpawn)
+    this.load.audio('magelaugh',MageLaugh)
 
     // Background
 
@@ -268,6 +276,7 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('evilWizardSpritesheet', EvilWizard, { frameWidth: 80, frameHeight: 80 });
     this.load.image('lavaPuddle', LavaPuddle);
     this.load.spritesheet('devilFire', DevilFire, {frameWidth: 64, frameHeight: 16});
+    this.load.spritesheet('prespawn',PreSpawn, {frameWidth: 80, frameHeight: 80})
 
    // Background
     let background = this.add.graphics();
