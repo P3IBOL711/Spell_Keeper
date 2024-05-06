@@ -90,7 +90,7 @@ export default class MainMenu extends Phaser.Scene {
         })
 
         this.controlsButton.on("pointerup", () => {
-            this.scene.start('controlsMenu');
+            this.scene.start('controlsMenu00');
         })
 
         let fullscreen = this.add.image(990, 35, 'fullScreenButton').setDepth(10).setScale(2);

@@ -86,9 +86,13 @@ import wKey from '../../assets/controlsMenu/w.png'
 import aKey from '../../assets/controlsMenu/a.png'
 import sKey from '../../assets/controlsMenu/s.png'
 import dKey from '../../assets/controlsMenu/d.png'
+import qKey from '../../assets/controlsMenu/q.png'
+import fKey from '../../assets/controlsMenu/f.png'
+import next from '../../assets/controlsMenu/next.png'
 import homeButton from '../../assets/controlsMenu/home.png'
 import leftClick from '../../assets/controlsMenu/leftClick.png'
 import rightClick from '../../assets/controlsMenu/rightClick.png'
+import Shift from '../../assets/controlsMenu/shift.png'
 import TitleDecoration from  '../../assets/mainTitle.png'
 import fullScreenButton from '../../assets/main_menu/full_screen_icon.png'
 import normalScreenButton from '../../assets/main_menu/normal_screen_icon.png'
@@ -166,9 +170,13 @@ export default class Boot extends Phaser.Scene {
     this.load.image('aKey', aKey);
     this.load.image('sKey', sKey);
     this.load.image('dKey', dKey);
+    this.load.image('qKey', qKey);
+    this.load.image('fKey', fKey);
+    this.load.image('nextButton', next);
     this.load.image('homeButton', homeButton);
     this.load.image('leftClick', leftClick);
     this.load.image('rightClick', rightClick);
+    this.load.image('shift', Shift);
     this.load.image('titleDecoration', TitleDecoration)
     this.load.spritesheet('fire',Fire,{ frameWidth: 32, frameHeight: 32 })
 
