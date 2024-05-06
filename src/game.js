@@ -11,8 +11,8 @@ import End from './scenes/end.js'
 let config = {
     type: Phaser.AUTO,
     parent: 'juego',
-    width: 606,
-    height: 400,
+    width: 1000,
+    height: 500,
     scale: {
         mode: Phaser.Scale.FIT,  
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
