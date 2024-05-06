@@ -108,6 +108,7 @@ import ButtonSFX from 'url:../../assets/sound/effects/button.wav'
 import KeySFX from 'url:../../assets/sound/effects/key.wav'
 import TreeSpawn from 'url:../../assets/sound/effects/treespawn.wav'
 import TreeDie from 'url:../../assets/sound/effects/treedie.wav'
+import ErrorPuzzle from 'url:../../assets/sound/effects/error.wav'
 // Bosses
 // Tree
 import ArbolTrans from '../../assets/bosses/tree/Arbol_Trans.png'
@@ -246,6 +247,7 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('keysfx',KeySFX)
     this.load.audio('treespawn',TreeSpawn)
     this.load.audio('treedie',TreeDie)
+    this.load.audio('errorpuzzle', ErrorPuzzle)
 
     // Background
 
@@ -266,7 +268,6 @@ export default class Boot extends Phaser.Scene {
    // Background
     let background = this.add.graphics();
     background.fillStyle(0xad88c6, 1);
-    363062
     background.fillRect(0, 0, 1000, 600);
     
     //Loading bar 

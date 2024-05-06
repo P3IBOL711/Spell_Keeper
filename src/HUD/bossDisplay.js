@@ -16,7 +16,7 @@ export default class BossDisplay extends Phaser.GameObjects.Graphics {
         this.y = y;
         this.x = x;
         
-        
+        this.text = this.scene.add.text(x + 20, y - 30,"" , { fontFamily: 'pixelFont', fontSize: 30, color: '#ffffffff' });
         this.bossBar = this.scene.add.image(this.x, this.y, 'bossBar').setOrigin(0).setDepth(100)//.setDisplaySize(720, 64).setDepth(1000).setVisible(false); //Aqui iria height y width
 
         this.life = this.scene.add.image(this.x + 9, this.y + 36, 'bossLife').setOrigin(0).setDepth(99);
@@ -30,6 +30,7 @@ export default class BossDisplay extends Phaser.GameObjects.Graphics {
     }
 
     setMeterPercentageAnimated(percent = 1, duration = 1000) {
+       
         let width = this.maxLife * percent;
         this.scene.tweens.add({
             targets: this.life,
@@ -41,5 +42,9 @@ export default class BossDisplay extends Phaser.GameObjects.Graphics {
                 this.life.visible = this.life.displayWidth > 0
             }
         });
+    }
+    
+    placeName(name){
+        this.text.setText(name);
     }
 }
