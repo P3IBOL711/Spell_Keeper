@@ -69,7 +69,7 @@ export default class meleeWeapon extends arma {
                 targets: this,
                 x: finalX,
                 y: finalY,
-                duration: this.delayAttackAction,
+                duration: 100,
                 onComplete: () => {
                     this.completePuncture(initialX, initialY);
                 }
@@ -83,7 +83,7 @@ export default class meleeWeapon extends arma {
             targets: this,
             x: goToX,
             y: goToY,
-            duration: this.delayAttackAction
+            duration: 100
         });
     }
 

@@ -23,7 +23,7 @@ export default class SecretTrigger extends Phaser.GameObjects.Zone {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.numButtonsUsed = 0;
-        this.sfx = thos.scene.sound.add('errorpuzzle')
+        this.sfx = this.scene.sound.add('errorpuzzle')
 
         this.sprite = this.scene.add.image(x + 1, y - 5.75, 'inv').setDepth(20)
         this.sprite.setVisible(false)

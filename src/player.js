@@ -223,26 +223,26 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.scene.input.mouse.disableContextMenu();
         this.scene.input.on('pointerup', pointer => {
             if (pointer.rightButtonReleased()) {
-                this.meleeMode = false;
-                this.updatedWeapon(this.rangedIndex);
-                if (this.lastClick !== 'left') {
-                    if (this.canAttack) {
+                if (this.canAttack) {
+                    this.meleeMode = false;
+                    this.updatedWeapon(this.rangedIndex);
+                    if (this.lastClick !== 'left') {
                         this.playerAttacks();
                     }
+    
+                    this.lastClick = 'right';
                 }
-
-                this.lastClick = 'right';
             }
             else if (pointer.leftButtonReleased()) {
-                this.meleeMode = true;
-                this.updatedWeapon(this.meleeIndex);
-                if (this.lastClick !== 'right') {
-                    if (this.canAttack) {
+                if (this.canAttack) {
+                    this.meleeMode = true;
+                    this.updatedWeapon(this.meleeIndex);
+                    if (this.lastClick !== 'right') {
                         this.playerAttacks();
                     }
+    
+                    this.lastClick = 'left';
                 }
-
-                this.lastClick = 'left';
             }
         });
 
@@ -279,91 +279,90 @@ export default class Player extends Phaser.GameObjects.Sprite {
      */
     preUpdate(t, dt) {
         //Si no está muerto
-        if (this.playerDead === false) {
-            super.preUpdate(t, dt);
-            if (!this.cutscenePlaying) {
+        super.preUpdate(t, dt);
+        if (this.playerDead === false && this.actualLife > 0) {
+            if(!this.canAttack) {
                 this.weaponDelay += dt;
                 if (this.weaponDelay >= this.equipedWeapon.delay) {
                     this.weaponDelay = 0;
                     this.canAttack = true;
                 }
+            }
 
-                //MOVIMIENTO DEL JUGADOR
-                //Notas: imprimir la fuerza y que animacion se usa va por separado porque si no produce bugs
-                let stopped = true;
-                this.body.setVelocity(0);
+            //MOVIMIENTO DEL JUGADOR
+            //Notas: imprimir la fuerza y que animacion se usa va por separado porque si no produce bugs
+            let stopped = true;
+            this.body.setVelocity(0);
 
-                //Parte de imprimir la fuerza
-                if (this.a.isDown) {
-                    this.direction = 'left';
-                    stopped = false;
-                    this.body.setVelocityX(-this.movSpeed);
-                }
-                else if (this.d.isDown) {
-                    this.direction = 'right';
-                    stopped = false;
-                    this.body.setVelocityX(this.movSpeed);
-                }
+            //Parte de imprimir la fuerza
+            if (this.a.isDown) {
+                this.direction = 'left';
+                stopped = false;
+                this.body.setVelocityX(-this.movSpeed);
+            }
+            else if (this.d.isDown) {
+                this.direction = 'right';
+                stopped = false;
+                this.body.setVelocityX(this.movSpeed);
+            }
 
-                if (this.w.isDown) {
-                    this.direction = 'up';
-                    stopped = false;
-                    this.body.setVelocityY(-this.movSpeed);
-                }
-                else if (this.s.isDown) {
-                    this.direction = 'down';
-                    stopped = false;
-                    this.body.setVelocityY(this.movSpeed);
-                }
+            if (this.w.isDown) {
+                this.direction = 'up';
+                stopped = false;
+                this.body.setVelocityY(-this.movSpeed);
+            }
+            else if (this.s.isDown) {
+                this.direction = 'down';
+                stopped = false;
+                this.body.setVelocityY(this.movSpeed);
+            }
 
 
-                //Parte de la animacion
-                if (this.a.isDown || (this.a.isDown && this.w.isDown) || (this.a.isDown && this.s.isDown)) {
-                    this.setFlipX(true);
-                    this.play('walkRight', true);
-                }
-                else if (this.d.isDown || (this.d.isDown && this.w.isDown) || (this.d.isDown && this.s.isDown)) {
+            //Parte de la animacion
+            if (this.a.isDown || (this.a.isDown && this.w.isDown) || (this.a.isDown && this.s.isDown)) {
+                this.setFlipX(true);
+                this.play('walkRight', true);
+            }
+            else if (this.d.isDown || (this.d.isDown && this.w.isDown) || (this.d.isDown && this.s.isDown)) {
+                this.setFlipX(false);
+                this.play('walkRight', true);
+            }
+
+            if (this.w.isDown && !(this.a.isDown || this.d.isDown)) {
+                this.play('walkUp', true);
+            }
+            else if (this.s.isDown && !(this.a.isDown || this.d.isDown)) {
+                this.play('walkDown', true);
+            }
+
+            if (stopped && this.actualLife > 0) {
+                if (this.direction === 'up')
+                    this.play('idleUp', true);
+                else if (this.direction === 'down')
+                    this.play('idleDown', true);
+                else if (this.direction === 'right') {
                     this.setFlipX(false);
-                    this.play('walkRight', true);
+                    this.play('idleRight', true);
                 }
-
-                if (this.w.isDown && !(this.a.isDown || this.d.isDown)) {
-                    this.play('walkUp', true);
+                else {
+                    this.setFlipX(true);
+                    this.play('idleRight', true);
                 }
-                else if (this.s.isDown && !(this.a.isDown || this.d.isDown)) {
-                    this.play('walkDown', true);
-                }
+                this.body.setVelocity(0);
+            }
 
-                if (stopped && this.actualLife > 0) {
-                    if (this.direction === 'up')
-                        this.play('idleUp', true);
-                    else if (this.direction === 'down')
-                        this.play('idleDown', true);
-                    else if (this.direction === 'right') {
-                        this.setFlipX(false);
-                        this.play('idleRight', true);
-                    }
-                    else {
-                        this.setFlipX(true);
-                        this.play('idleRight', true);
-                    }
-                    this.body.setVelocity(0);
-                }
+            let angleToReticle = Phaser.Math.Angle.Between(this.x, this.y, this.reticle.x, this.reticle.y);
+            let maxRange = 20;
+            let offsetX = Math.cos(angleToReticle) * maxRange;
+            let offsetY = Math.sin(angleToReticle) * maxRange;
+            let newWepX = this.x + offsetX;
+            let newWepY = this.y + offsetY;
 
-                let angleToReticle = Phaser.Math.Angle.Between(this.x, this.y, this.reticle.x, this.reticle.y);
-                let maxRange = 25;
-                let offsetX = Math.cos(angleToReticle) * maxRange;
-                let offsetY = Math.sin(angleToReticle) * maxRange;
-                let newWepX = this.x + offsetX;
-                let newWepY = this.y + offsetY;
+            this.equipedWeapon.updatePosition(newWepX, newWepY);
+            this.equipedWeapon.updateAngle(Phaser.Math.RadToDeg(angleToReticle), angleToReticle);
 
-                this.equipedWeapon.updatePosition(newWepX, newWepY);
-                this.equipedWeapon.updateAngle(Phaser.Math.RadToDeg(angleToReticle), angleToReticle);
-
-                this.escudo.copyPosition(this);
-                this.sombrerinni.copyPosition(this);
-            } else
-                this.body.setVelocity(0)
+            this.escudo.copyPosition(this);
+            this.sombrerinni.copyPosition(this);
         } else
             this.body.setVelocity(0)
     }

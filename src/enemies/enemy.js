@@ -36,9 +36,6 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         // is enemy attacking?
         this.attacking = false;
 
-        // is enemy vulnerable?
-        this.vulnerable = true;
-
         // distance from player to start attacking
         this.distanceAttack = 150;
 
@@ -106,34 +103,35 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
     
     receiveDamageOverTime(damage, durationInSeconds) {
-        const totalTicks = durationInSeconds * 60; // Assuming 60 ticks per second
+        if(this.life > 0) {
+            const totalTicks = durationInSeconds * 60; // Assuming 60 ticks per second
     
-        // Calculate the damage per tick
-        const damagePerTick = damage / totalTicks;
-    
-        // Create a tween for the poison effect
-        this.tween = this.scene.tweens.add({
-            targets: this,
-            repeat: totalTicks - 1, // Repeat for 'totalTicks' times
-            alpha: 0.5, // Example: Lower alpha to visualize poison effect
-            ease: 'Linear',
-            duration: 1000, // Duration of each tick (in milliseconds)
-            onUpdate: () => {
-                // Apply damage to the target
-                if (this.life > 0) {
-                    this.receiveDamage(damagePerTick)
-                    if (this.life <= 0)
+            // Calculate the damage per tick
+            const damagePerTick = damage / totalTicks;
+        
+            // Create a tween for the poison effect
+            this.tween = this.scene.tweens.add({
+                targets: this,
+                repeat: totalTicks - 1, // Repeat for 'totalTicks' times
+                alpha: 0.5, // Example: Lower alpha to visualize poison effect
+                ease: 'Linear',
+                duration: 1000, // Duration of each tick (in milliseconds)
+                onUpdate: () => {
+                    // Apply damage to the target
+                    if (this.life > 0) {
+                        this.receiveDamage(damagePerTick)
+                        if (this.life <= 0)
+                            this.tween.stop();
+                    }
+        
+                    // Check if target is dead
+                    else {
                         this.tween.stop();
+                      //  this.scene.enemyHasDied();
+                    }
                 }
-              //  console.log("Poisoned! Damage taken: " + damagePerTick + ". Remaining health: " + this.life);
-    
-                // Check if target is dead
-                else {
-                    this.tween.stop();
-                  //  this.scene.enemyHasDied();
-                }
-            }
-        });
+            });
+        }
     }
  
     
@@ -197,7 +195,6 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
                 this.timerAttack.paused = true;
             }
             else {
-                this.timerAttack.paused = this.attacking;
                 this.timerAttack.paused = this.attacking;
             }
         }
