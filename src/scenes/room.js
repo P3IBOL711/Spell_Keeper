@@ -18,7 +18,7 @@ import Chest from '../chest.js';
 import LevelTrigger from '../levelTrigger.js'
 import Dungeongen from '../dungeongen'
 
-import font from '../../assets/fonts/VT323Regular.ttf'
+import font from 'url:../../assets/fonts/VT323Regular.ttf'
 import SecretTrigger from '../secretTrigger.js'
 import Button from '../button.js'
 import Jukebox from '../jukebox.js'
