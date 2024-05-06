@@ -11,6 +11,7 @@ import AcornShadow from './acornShadow';
 import BossDisplay from '../../HUD/bossDisplay';
 import BlackMage from '../blackMage';
 import lootGenerator from '../../lootGenerator';
+import BossChest from '../../bossChest';
 /**
  * Clase que representa un enemigo del juego.
  */
@@ -224,7 +225,7 @@ export default class BossTree extends Enemy {
                 this.dieSFX.play()
                 this.scene.bossHasDied()
                 this.scene.time.removeAllEvents();
-                new lootGenerator(this.scene,this.x,this.y+50,this.scene.player.luck)
+                new BossChest(this.scene,this.x,this.y+70,32,32,this.scene.player,false)
             }
         }
     }

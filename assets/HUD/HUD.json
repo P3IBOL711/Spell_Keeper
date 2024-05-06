@@ -70,7 +70,7 @@
                  "type":"BossBar",
                  "visible":true,
                  "width":960,
-                 "x":32,
+                 "x":24,
                  "y":424
                 }],
          "opacity":1,
