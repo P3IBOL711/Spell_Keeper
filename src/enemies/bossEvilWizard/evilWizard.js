@@ -5,6 +5,7 @@ import HitBox from '../../hitbox';
 import LavaPuddle from './lavaPuddle';
 import DevilFire from './devilFire';
 import EnemySpawnerEvilWizard from './enemySpawnerEvilWizard';
+import { eventManager as hudEvents } from "../../eventCenter";
 /**
  * Clase que representa un enemigo del juego.
  */
@@ -105,6 +106,7 @@ export default class EvilWizard extends Enemy {
                     this.spawnSFX.play()
                     this.scene.cutsceneStopped()
                     this.scene.player.setActive(true)
+                    hudEvents.emit('boss', {bossLife: this.life,name:"Dahto, el mago negro"});
                 }
                 else if (this.anims.getName() === 'attack1') {
                     this.attackZone.destroy(true);
