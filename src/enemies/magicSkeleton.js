@@ -50,7 +50,7 @@ export default class MagicSkeleton extends DistanceEnemy {
 
         this.speed = 20;
         
-        this.life = 5;
+        this.life = 15;
 
         this.body.setSize(this.width * 0.45, this.height * 0.85, true);
 

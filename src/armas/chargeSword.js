@@ -52,6 +52,7 @@ export default class ChargeSword extends meleeWeapon {
     }
 
     preUpdate(t, dt) {
+        super.preUpdate(t, dt);
         switch (this.level) {
             case 0:
                 this.anims.play('level0')
@@ -66,7 +67,6 @@ export default class ChargeSword extends meleeWeapon {
                 this.anims.play('level3')
                 break;
         }
-        super.preUpdate(t, dt);
     }
 
     haveSlash() {

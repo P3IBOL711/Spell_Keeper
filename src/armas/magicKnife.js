@@ -41,6 +41,6 @@ export default class MagicKnife extends arma {
     }
 
     manaCost() {
-        return 75;
+        return 50;
     }
 }

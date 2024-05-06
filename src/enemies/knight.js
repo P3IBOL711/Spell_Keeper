@@ -43,7 +43,7 @@ export default class Knight extends MeleeEnemy {
 
         this.speed = 40;
 
-        this.life = 5;
+        this.life = 20;
 
         this.damage = 1;
 

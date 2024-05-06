@@ -44,7 +44,7 @@ export default class Slime extends MeleeEnemy {
 
         this.speed = 30;
 
-        this.life = 5;
+        this.life = 10;
 
         this.damage = 1;
 

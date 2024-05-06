@@ -49,7 +49,7 @@ export default class LavaGolem extends MeleeEnemy {
 
         this.speed = 50;
 
-        this.life = 5;
+        this.life = 12;
 
         this.damage = 1;
 

@@ -83,6 +83,6 @@ export default class Shotgun extends arma {
     }
 
     manaCost() {
-        return 70;
+        return 35;
     }
 }

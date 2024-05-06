@@ -75,7 +75,7 @@ export default class EvilWizard extends Enemy {
         this.enemySpawner = new EnemySpawnerEvilWizard(scene, target);
 
         this.speed = 0;
-        this.life = 150
+        this.life = 300;
 
         this.distanceAttack = 200;
 

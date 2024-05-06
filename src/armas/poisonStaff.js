@@ -37,6 +37,6 @@ export default class PoisonStaff extends arma {
     }
 
     manaCost() {
-        return 10;
+        return 20;
     }
 }

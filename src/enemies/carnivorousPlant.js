@@ -119,6 +119,8 @@ export default class CarnivorousPlant extends Enemy {
 
         this.speed = 0;
 
+        this.life = 30;
+
         this.body.setSize(this.width * 0.7, this.height * 1.1, true);
 
         this.play('idle', true);
