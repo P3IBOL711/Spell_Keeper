@@ -48,7 +48,8 @@ import GRX1 from './scenes/garden/grX1.js';
 import GRX2 from './scenes/garden/grX2.js';
 import GRX3 from './scenes/garden/grX3.js';
 import GRX4 from './scenes/garden/grX4.js';
-import Controls from './scenes/controlsMenu.js';
+import Controls00 from './scenes/00controlsMenu.js';
+import Controls01 from './scenes/01controlsMenu.js';
 import End from './scenes/end.js'
 import Credits from './scenes/credits.js';
 
@@ -82,7 +83,7 @@ let config = {
           }
         ]
     },
-    scene: [Boot, MainMenu, Controls, ArmeriaPrueba,ARR1,ARR2,ARR3,ARX1,LBE1,LBR1,LBR2,LBR3,LBR4,LBR5,LBR6,LBR7,LBR8,LBR9,LBR10,LBR11,LBR12,LBR13,LBR14,LBR15,LBX1,LBX2,LBX3,LBX4,GRE1,GRR1,GRR2,GRR3,GRR4,GRR5,GRR6,GRR7,GRR8,GRR9,GRR10,GRR11,GRR12,GRR13,GRR14,GRR15,GRR16,GRX1,GRX2,GRX3,GRX4, GUI, End,Credits],
+    scene: [Boot, MainMenu, Controls00, Controls01, ArmeriaPrueba,ARR1,ARR2,ARR3,ARX1,LBE1,LBR1,LBR2,LBR3,LBR4,LBR5,LBR6,LBR7,LBR8,LBR9,LBR10,LBR11,LBR12,LBR13,LBR14,LBR15,LBX1,LBX2,LBX3,LBX4,GRE1,GRR1,GRR2,GRR3,GRR4,GRR5,GRR6,GRR7,GRR8,GRR9,GRR10,GRR11,GRR12,GRR13,GRR14,GRR15,GRR16,GRX1,GRX2,GRX3,GRX4, GUI, End,Credits],
     physics: {
         default: 'arcade',
         arcade: {

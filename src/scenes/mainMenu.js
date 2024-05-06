@@ -40,9 +40,7 @@ export default class MainMenu extends Phaser.Scene {
         text.setX(this.sys.game.canvas.width/2 - text.width);
 
         // let playButton = this.add.image(470,150,'play').setOrigin(0).setDepth(1).setScale(0.35); 
-        // let playSelectedButton = this.add.image(470,150,'play_sel').setOrigin(0).setDepth(1).setScale(0.35).setVisible(false); 
-
-        this.playButton = this.add.text(180, 160, '> PLAY', { fontFamily: 'pixelFont', fontSize: 60, color: '#000000', fontStyle: 'bold' });
+        // let playSelectedButton = this.add.image(470,150,'play_sel').setOrigin(0).setDepth(1).setScale(0.35).setVisible(false);
 
         let dungeonGenerator = new Dungeongen();
         if (!this.jukeboxStarted) {
@@ -92,12 +90,12 @@ export default class MainMenu extends Phaser.Scene {
         })
 
         this.controlsButton.on("pointerup", () => {
-            this.scene.start('controlsMenu');
+            this.scene.start('controlsMenu00');
         })
 
-        let fullscreen = this.add.image(990, 35, 'fullScreenButton').setDepth(10).setScale(2);
-        let normalscreen = this.add.image(990, 35, 'normalScreenButton').setDepth(10).setScale(1.5).setVisible(false);
-
+        let fullscreen = this.add.image(991, 32, 'fullScreenButton').setDepth(10).setScale(2);
+        let normalscreen = this.add.image(991, 32, 'normalScreenButton').setDepth(10).setScale(1.5).setVisible(false);
+        
         fullscreen.setInteractive();
         fullscreen.on("pointerover", () => {
             fullscreen.setScale(2.1)
