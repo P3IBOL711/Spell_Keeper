@@ -67,6 +67,7 @@ export default class SurpriseRoot extends Projectile {
     }
 
     impact(){
+        this.body.enable = false;
         super.impact();
         this.stop();
     }
