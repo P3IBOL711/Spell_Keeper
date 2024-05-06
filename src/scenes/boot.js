@@ -65,6 +65,8 @@ import emptyHeart from '../../assets/HUD/ui-heart-empty.png'
 import manaBar from '../../assets/HUD/manabar.png'
 import mainMana from '../../assets/HUD/main_mana.png'
 import finalMana from '../../assets/HUD/final_mana.png'
+import BossBar from '../../assets/HUD/boss_bar.png'
+import BossLife from '../../assets/HUD/boss_life.png'
 import Uikey from '../../assets/HUD/key_32x32_24f.png'
 import shieldReady from '../../assets/HUD/UI_shield_ready.png'
 import shieldCD from '../../assets/HUD/UI_shield_cd.png'
@@ -209,6 +211,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('manaBar', manaBar);
     this.load.image('mainMana', mainMana);
     this.load.image('finalMana', finalMana);
+    this.load.image('bossBar', BossBar);
+    this.load.image('bossLife', BossLife);
     this.load.spritesheet('key', Uikey, { frameWidth: 32, frameHeight: 32 });
     this.load.image('ready_ui_shield', shieldReady);
     this.load.image('cd_ui_shield', shieldCD);

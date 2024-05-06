@@ -60,6 +60,7 @@ export default class GUI extends Phaser.Scene {
                     break;
                 case 'BossBar':
                     this.bossBar = new BossDisplay(this, obj.x, obj.y, 1, 1, 150, 150)
+                    break;
                 default:
                     console.warn('Tipo de objeto no reconocido:', obj.name);
             }
@@ -90,7 +91,7 @@ export default class GUI extends Phaser.Scene {
         });
 
         hudEvents.on('boss', (bossLife) => {
-            this.bossBar.setMeterPercentageAnimated(bossLife);
+            this.bossBar.setMeterPercentageAnimated(bossLife / 5);
             this.bossBar.visible();
             this.bossBar.setActive(true);
         });

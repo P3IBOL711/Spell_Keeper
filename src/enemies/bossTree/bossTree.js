@@ -190,8 +190,9 @@ export default class BossTree extends Enemy {
     receiveDamage(damage){
         if(this.vulnerable && this.life > 0){
 
-            hudEvents.emit('boss',this.life);
+            
             super.receiveDamage(damage);
+            hudEvents.emit('boss',this.life);
             if(this.life <= 0){
                 this.body.enable = true;
                 this.scene.time.removeAllEvents();

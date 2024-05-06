@@ -61,17 +61,18 @@
                  "width":96,
                  "x":896,
                  "y":384
-                },{
-                     "height":32,
-                     "id":9,
-                     "name":"BossBar",
-                     "rotation":0,
-                     "type":"BossBar",
-                     "visible":true,
-                     "width":320,
-                     "x":50,
-                     "y":450
-                    }],
+                }, 
+                {
+                 "height":64,
+                 "id":25,
+                 "name":"BossBar",
+                 "rotation":0,
+                 "type":"BossBar",
+                 "visible":true,
+                 "width":960,
+                 "x":32,
+                 "y":424
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -79,7 +80,7 @@
          "y":0
         }],
  "nextlayerid":5,
- "nextobjectid":25,
+ "nextobjectid":26,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",

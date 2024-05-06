@@ -10,48 +10,35 @@ export default class BossDisplay extends Phaser.GameObjects.Graphics {
     constructor(scene, x, y, width, height, initialLife, maxLife) {
         super(scene);
 
-        this.maxLife = maxLife;
+        
         this.setDepth(1000)
       
         this.y = y;
         this.x = x;
         
         
-        this.background = this.scene.add.image(this.x - 32, this.y - 20, 'manaBar').setOrigin(0, 0.5).setDisplaySize(300, 80).setDepth(1000).setTint(0xff0000).setVisible(false); //Aqui iria height y width
+        this.bossBar = this.scene.add.image(this.x, this.y, 'bossBar').setOrigin(0).setDepth(100)//.setDisplaySize(720, 64).setDepth(1000).setVisible(false); //Aqui iria height y width
 
-        this.mainMana = this.scene.add.image((this.x + 18) - 32, this.y - 20, 'mainMana').setOrigin(0, 0.5).setScale(5).setDepth(999).setTint(0xff0000).setVisible(false);
-
-	    this.finalMana = this.scene.add.image((this.mainMana.x + this.mainMana.displayWidth) - 32, this.y - 20, 'finalMana').setOrigin(0, 0.5).setScale(5).setDepth(999).setTint(0xff0000).setVisible(false);
-
-	    this.setMeterPercentage(initialLife / maxLife);
-    }
-
-    setMeterPercentage(percent = 0.5) {
-        let width = this.maxLife * percent;
-
-        this.mainMana.displayWidth = width;
-        this.finalMana.x = this.mainMana.x + this.mainMana.displayWidth;
+        this.life = this.scene.add.image(this.x + 9, this.y + 36, 'bossLife').setOrigin(0).setDepth(99);
+        this.maxLife = this.bossBar.displayWidth - 12;
+        this.life.displayWidth = this.maxLife;
     }
     
     visible(){
-        this.background.setVisible(true)
-        this.mainMana.setVisible(true)
-        this.finalMana.setVisible(true)
+        this.bossBar.setVisible(true)
+        this.life.setVisible(true)
     }
 
     setMeterPercentageAnimated(percent = 1, duration = 1000) {
         let width = this.maxLife * percent;
-
         this.scene.tweens.add({
-            targets: this.mainMana,
+            targets: this.life,
             displayWidth: width,
             duration: duration,
             ease: Phaser.Math.Easing.Sine.Out,
             onUpdate: () => {
-                this.finalMana.x = this.mainMana.x + this.mainMana.displayWidth;
 
-                this.mainMana.visible = this.mainMana.displayWidth > 0
-                this.finalMana.visible = this.mainMana.displayWidth > 0
+                this.life.visible = this.life.displayWidth > 0
             }
         });
     }
