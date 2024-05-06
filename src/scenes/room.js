@@ -278,7 +278,7 @@ export default class Room extends Phaser.Scene {
 
 
 
-        let haveGUI = this.scene.launch('gui', { life: this.player.actualLife, maxLife: this.player.maxLife, mana: this.player.actualMana, maxMana: this.player.maxMana, keys: this.player.key, equipedWeapon: this.player.equipedWeapon });
+        let haveGUI = this.scene.launch('gui', { life: this.player.actualLife, maxLife: this.player.maxLife, mana: this.player.actualMana, maxMana: this.player.maxMana, keys: this.player.key, equipedWeapon: this.player.equipedWeapon , fullScreen: this.scale.isFullscreen});
 
         this.enemies = this.add.group();
 

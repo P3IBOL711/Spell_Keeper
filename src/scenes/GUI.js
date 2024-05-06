@@ -6,6 +6,7 @@ import manaDisplay from "../HUD/manaDisplay";
 import keysDisplay from "../HUD/keysDisplay";
 import shieldDisplay from "../HUD/shieldDisplay";
 import weaponDisplay from "../HUD/weaponDisplay";
+import FullScreenButton from "../HUD/fullScreenButton";
 
 import { eventManager as hudEvents } from "../eventCenter";
 import BossDisplay from "../HUD/bossDisplay";
@@ -28,6 +29,7 @@ export default class GUI extends Phaser.Scene {
         this.maxMana = obj.maxMana;
         this.weaponEquiped = obj.equipedWeapon;
         this.keys = obj.keys
+        this.fullScreen = obj.fullScreen;
     }
 
     create() {
@@ -60,6 +62,9 @@ export default class GUI extends Phaser.Scene {
                     break;
                 case 'BossBar':
                     this.bossBar = new BossDisplay(this, obj.x, obj.y, 1, 1, 150, 150)
+                    break;
+                case 'FullScreen':
+                    this.fullScreenButton = new FullScreenButton(this, obj.x, obj.y, 'fullScreenButton', this.fullScreen);
                     break;
                 default:
                     console.warn('Tipo de objeto no reconocido:', obj.name);
