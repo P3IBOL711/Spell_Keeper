@@ -27,6 +27,7 @@ import Thompson from '../armas/thompson.js'
 
 //Pruebas
 import BossTree from '../enemies/bossTree/bossTree.js'
+import BossSpawner from '../bossSpawner.js'
 
 
 
@@ -45,6 +46,8 @@ export default class Room extends Phaser.Scene {
         this.eSpawn = { x: 0, y: 0 };
         this.wSpawn = { x: 0, y: 0 };
         this.cSpawn = { x: 0, y: 0 };
+
+        this.cutScenePlaying = false
         // this.level = obj.level
         this.dungeonGenerator = new Dungeongen();
 
@@ -59,6 +62,7 @@ export default class Room extends Phaser.Scene {
         this.dungeon = obj.dg;
         this.direction = obj.dir;
         this.numberOfEnemies = 0;
+        this.boss = 0;
         this.chestOpened = false;
         this.loadScene = this.loadScene.bind(this);
         this.loadLevel = this.loadLevel.bind(this);
@@ -141,7 +145,7 @@ export default class Room extends Phaser.Scene {
         this.map.destroy()
 
         this.unloadScene(this.key)
-        this.scene.start(level + dungeon[y][x].name, { X: x, Y: y, dg: dungeon, dir: direction, SSM: this.saveStateMatrix, playerStat: this.globalPlayerStats,jukebox: this.jukebox });
+        this.scene.start(level + dungeon[y][x].name, { X: x, Y: y, dg: dungeon, dir: direction, SSM: this.saveStateMatrix, playerStat: this.globalPlayerStats, jukebox: this.jukebox });
         this.unloadScene(this.key)
 
     }
@@ -151,7 +155,7 @@ export default class Room extends Phaser.Scene {
         this.map.destroy()
 
         this.unloadScene(this.key)
-        this.scene.start('grR16', { X: x, Y: y, dg: dungeon, dir: 'c', SSM: this.saveStateMatrix, playerStat: this.globalPlayerStats,jukebox: this.jukebox });
+        this.scene.start('grR16', { X: x, Y: y, dg: dungeon, dir: 'c', SSM: this.saveStateMatrix, playerStat: this.globalPlayerStats, jukebox: this.jukebox });
     }
 
     loadLevel(level) {
@@ -161,10 +165,10 @@ export default class Room extends Phaser.Scene {
         this.unloadScene(this.key)
         this.loadingBar()
 
-        
+
         this.jukebox.stopAllMusic()
         this.jukebox.playIntro(level)
-        this.scene.start(`${level}E1`, { dg: this.dungeonGenerator.init(), X: this.dungeonGenerator.getEntranceX(), Y: this.dungeonGenerator.getEntranceY(), dir: 'c', SSM: this.dungeonGenerator.generateSaveStateMatrix(this.dungeonGenerator.getN(), this.dungeonGenerator.getM()), playerStat: this.globalPlayerStats,jukebox: this.jukebox })
+        this.scene.start(`${level}E1`, { dg: this.dungeonGenerator.init(), X: this.dungeonGenerator.getEntranceX(), Y: this.dungeonGenerator.getEntranceY(), dir: 'c', SSM: this.dungeonGenerator.generateSaveStateMatrix(this.dungeonGenerator.getN(), this.dungeonGenerator.getM()), playerStat: this.globalPlayerStats, jukebox: this.jukebox })
 
     }
 
@@ -210,6 +214,7 @@ export default class Room extends Phaser.Scene {
         if (this.level === 'gr') {
             let arbol = this.map.createLayer('Arbol', [objects]).setDepth(15)
         }
+
         const objectLayer = this.map.getObjectLayer("navmesh");
         this.navMesh = this.navMeshPlugin.buildMeshFromTiled("mesh1", objectLayer, 1);
 
@@ -258,7 +263,7 @@ export default class Room extends Phaser.Scene {
         this.globalPlayerStats.RangedWeaponArray = newRangedArray;
 
 
-        this.player = new Player(this, playerX, playerY, this.globalPlayerStats.life, this.globalPlayerStats.maximumLife, this.globalPlayerStats.mana, this.globalPlayerStats.maximumMana, this.globalPlayerStats.weaponMult, this.globalPlayerStats.moveSpeed, this.globalPlayerStats.lck, this.globalPlayerStats.MeleeWeaponArray, this.globalPlayerStats.RangedWeaponArray, this.globalPlayerStats.ActMelIndex, this.globalPlayerStats.ActRangIndex, this.globalPlayerStats.lastWeaponUsed,this.globalPlayerStats.keys);
+        this.player = new Player(this, playerX, playerY, this.globalPlayerStats.life, this.globalPlayerStats.maximumLife, this.globalPlayerStats.mana, this.globalPlayerStats.maximumMana, this.globalPlayerStats.weaponMult, this.globalPlayerStats.moveSpeed, this.globalPlayerStats.lck, this.globalPlayerStats.MeleeWeaponArray, this.globalPlayerStats.RangedWeaponArray, this.globalPlayerStats.ActMelIndex, this.globalPlayerStats.ActRangIndex, this.globalPlayerStats.lastWeaponUsed, this.globalPlayerStats.keys);
         this.physics.add.collider(this.enviromental, walls, (obj) => {
             if (obj.isProjectile())
                 obj.destroy();
@@ -272,16 +277,31 @@ export default class Room extends Phaser.Scene {
 
 
 
-        let haveGUI = this.scene.launch('gui', {life: this.player.actualLife, maxLife: this.player.maxLife, mana: this.player.actualMana, maxMana:  this.player.maxMana,keys: this.player.key, equipedWeapon: this.player.equipedWeapon});
+        let haveGUI = this.scene.launch('gui', { life: this.player.actualLife, maxLife: this.player.maxLife, mana: this.player.actualMana, maxMana: this.player.maxMana, keys: this.player.key, equipedWeapon: this.player.equipedWeapon });
 
         this.enemies = this.add.group();
 
         //TRIGGERS AND STUFF
         this.loadObjects();
+        if (!this.cutScenePlaying) {
+            this.cameras.main.setZoom(3);
+            this.cameras.main.setBounds(0, 0, 1024, 512);
+            this.cameras.main.startFollow(this.player);
+        }
+    }
 
+    cutsceneStarted(x, y) {
+        this.cameras.main.stopFollow(this.player);
+        this.cameras.main.setZoom(3);
+        this.cameras.main.centerOn(x, y + 50)
+        this.cutScenePlaying = true
+    }
+
+    cutsceneStopped() {
         this.cameras.main.setZoom(3);
         this.cameras.main.setBounds(0, 0, 1024, 512);
         this.cameras.main.startFollow(this.player);
+        this.cutScenePlaying = false
     }
 
     loadObjects() {
@@ -313,7 +333,7 @@ export default class Room extends Phaser.Scene {
                 new CollisionHitbox(this, objeto.x + objeto.width / 2, objeto.y + objeto.height / 2, objeto.width, objeto.height)
             } else if (objeto.type === 'EnemySpawn') {
                 if (this.numberOfEnemies !== -1) {
-                    new EnemySpawner(this, objeto.x, objeto.y, this.player,this.level)
+                    new EnemySpawner(this, objeto.x, objeto.y, this.player, this.level)
                     this.numberOfEnemies++
                 }
             } else if (objeto.type === 'Fire') {
@@ -334,14 +354,40 @@ export default class Room extends Phaser.Scene {
             } else if (objeto.type === 'Button') {
                 new Button(this, objeto.x + 19, objeto.y + 8, objeto.width, objeto.height, this.player, this.cont, this.secretTrigger)
                 this.cont++
+            } else if (objeto.type === 'BossSpawn') {
+                if(this.boss !== -1){
+                    new BossSpawner(this, objeto.x, objeto.y, this.player, this.level)
+                    this.boss++
+                }
+
+            } else if (objeto.type === 'BossFire') {
+                if (this.boss !== -1)
+                    if (objeto.rotation === 270)
+                        this.fireArray.push(new Fire(this, objeto.x - objeto.width / 2, (objeto.y + objeto.height / 2) - 40, objeto.width, objeto.height, objeto.rotation))
+                    else if (objeto.rotation === 90)
+                        this.fireArray.push(new Fire(this, objeto.x + objeto.width / 2, (objeto.y + objeto.height / 2) - 8, objeto.width, objeto.height, objeto.rotation))
+                    else
+                        this.fireArray.push(new Fire(this, (objeto.x - objeto.width / 2) + 32, (objeto.y + objeto.height / 2) - 40, objeto.width, objeto.height, objeto.rotation))
             }
         }
     }
 
     enemyHasDied() {
         this.numberOfEnemies--;
-        if (this.numberOfEnemies <= 0) {
+        if (this.numberOfEnemies <= 0 && this.boss <= 0) {
             this.numberOfEnemies = -1; //Habitacion limpia
+
+            for (let fire of this.fireArray) {
+                fire.destroySprite();
+                fire.destroy();
+            }
+        }
+    }
+
+    bossHasDied(){
+        this.boss--;
+        if (this.boss <= 0) {
+            this.boss = -1; //Habitacion limpia
 
             for (let fire of this.fireArray) {
                 fire.destroySprite();
@@ -385,7 +431,8 @@ export default class Room extends Phaser.Scene {
             // Save relevant scene state here
             // For example:
             numberOfEnemies: this.numberOfEnemies,
-            chestOpened: this.chestOpened
+            chestOpened: this.chestOpened,
+            boss: this.boss
         };
 
         this.saveStateMatrix[this.y][this.x] = savedSceneState
@@ -396,6 +443,7 @@ export default class Room extends Phaser.Scene {
         if (savedSceneState) {
             this.numberOfEnemies = savedSceneState.numberOfEnemies
             this.chestOpened = savedSceneState.chestOpened
+            this.boss = savedSceneState.boss
         }
     }
 

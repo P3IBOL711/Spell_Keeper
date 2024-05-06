@@ -219,7 +219,7 @@
                  "id":2,
                  "name":"",
                  "rotation":0,
-                 "type":"Fire",
+                 "type":"BossFire",
                  "visible":true,
                  "width":32,
                  "x":448,
@@ -231,7 +231,7 @@
                  "id":3,
                  "name":"",
                  "rotation":0,
-                 "type":"Fire",
+                 "type":"BossFire",
                  "visible":true,
                  "width":32,
                  "x":480,
@@ -243,7 +243,7 @@
                  "id":4,
                  "name":"",
                  "rotation":0,
-                 "type":"Fire",
+                 "type":"BossFire",
                  "visible":true,
                  "width":32,
                  "x":512,
@@ -273,11 +273,11 @@
                  "name":"",
                  "point":true,
                  "rotation":0,
-                 "type":"EnemySpawn",
+                 "type":"BossSpawn",
                  "visible":true,
                  "width":0,
-                 "x":494.164,
-                 "y":160.603
+                 "x":496,
+                 "y":145.333
                 }, 
                 {
                  "gid":209,
@@ -285,7 +285,7 @@
                  "id":7,
                  "name":"",
                  "rotation":0,
-                 "type":"Fire",
+                 "type":"BossFire",
                  "visible":true,
                  "width":32,
                  "x":448,
@@ -297,7 +297,7 @@
                  "id":8,
                  "name":"",
                  "rotation":0,
-                 "type":"Fire",
+                 "type":"BossFire",
                  "visible":true,
                  "width":32,
                  "x":480,
@@ -309,7 +309,7 @@
                  "id":9,
                  "name":"",
                  "rotation":0,
-                 "type":"Fire",
+                 "type":"BossFire",
                  "visible":true,
                  "width":32,
                  "x":512,
@@ -2017,7 +2017,7 @@
                 {
                  "id":0,
                  "image":"..\/Pixel Art PNGs\/LlamaArriba.png",
-                 "type":"Fire"
+                 "type":"BossFire"
                 }, 
                 {
                  "id":2,
