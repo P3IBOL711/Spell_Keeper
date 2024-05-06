@@ -45,6 +45,8 @@ export default class Room extends Phaser.Scene {
         this.eSpawn = { x: 0, y: 0 };
         this.wSpawn = { x: 0, y: 0 };
         this.cSpawn = { x: 0, y: 0 };
+
+        this.cutScenePlaying = false
         // this.level = obj.level
         this.dungeonGenerator = new Dungeongen();
 
@@ -141,7 +143,7 @@ export default class Room extends Phaser.Scene {
         this.map.destroy()
 
         this.unloadScene(this.key)
-        this.scene.start(level + dungeon[y][x].name, { X: x, Y: y, dg: dungeon, dir: direction, SSM: this.saveStateMatrix, playerStat: this.globalPlayerStats,jukebox: this.jukebox });
+        this.scene.start(level + dungeon[y][x].name, { X: x, Y: y, dg: dungeon, dir: direction, SSM: this.saveStateMatrix, playerStat: this.globalPlayerStats, jukebox: this.jukebox });
         this.unloadScene(this.key)
 
     }
@@ -151,7 +153,7 @@ export default class Room extends Phaser.Scene {
         this.map.destroy()
 
         this.unloadScene(this.key)
-        this.scene.start('grR16', { X: x, Y: y, dg: dungeon, dir: 'c', SSM: this.saveStateMatrix, playerStat: this.globalPlayerStats,jukebox: this.jukebox });
+        this.scene.start('grR16', { X: x, Y: y, dg: dungeon, dir: 'c', SSM: this.saveStateMatrix, playerStat: this.globalPlayerStats, jukebox: this.jukebox });
     }
 
     loadLevel(level) {
@@ -161,10 +163,10 @@ export default class Room extends Phaser.Scene {
         this.unloadScene(this.key)
         this.loadingBar()
 
-        
+
         this.jukebox.stopAllMusic()
         this.jukebox.playIntro(level)
-        this.scene.start(`${level}E1`, { dg: this.dungeonGenerator.init(), X: this.dungeonGenerator.getEntranceX(), Y: this.dungeonGenerator.getEntranceY(), dir: 'c', SSM: this.dungeonGenerator.generateSaveStateMatrix(this.dungeonGenerator.getN(), this.dungeonGenerator.getM()), playerStat: this.globalPlayerStats,jukebox: this.jukebox })
+        this.scene.start(`${level}E1`, { dg: this.dungeonGenerator.init(), X: this.dungeonGenerator.getEntranceX(), Y: this.dungeonGenerator.getEntranceY(), dir: 'c', SSM: this.dungeonGenerator.generateSaveStateMatrix(this.dungeonGenerator.getN(), this.dungeonGenerator.getM()), playerStat: this.globalPlayerStats, jukebox: this.jukebox })
 
     }
 
@@ -258,7 +260,7 @@ export default class Room extends Phaser.Scene {
         this.globalPlayerStats.RangedWeaponArray = newRangedArray;
 
 
-        this.player = new Player(this, playerX, playerY, this.globalPlayerStats.life, this.globalPlayerStats.maximumLife, this.globalPlayerStats.mana, this.globalPlayerStats.maximumMana, this.globalPlayerStats.weaponMult, this.globalPlayerStats.moveSpeed, this.globalPlayerStats.lck, this.globalPlayerStats.MeleeWeaponArray, this.globalPlayerStats.RangedWeaponArray, this.globalPlayerStats.ActMelIndex, this.globalPlayerStats.ActRangIndex, this.globalPlayerStats.lastWeaponUsed,this.globalPlayerStats.keys);
+        this.player = new Player(this, playerX, playerY, this.globalPlayerStats.life, this.globalPlayerStats.maximumLife, this.globalPlayerStats.mana, this.globalPlayerStats.maximumMana, this.globalPlayerStats.weaponMult, this.globalPlayerStats.moveSpeed, this.globalPlayerStats.lck, this.globalPlayerStats.MeleeWeaponArray, this.globalPlayerStats.RangedWeaponArray, this.globalPlayerStats.ActMelIndex, this.globalPlayerStats.ActRangIndex, this.globalPlayerStats.lastWeaponUsed, this.globalPlayerStats.keys);
         this.physics.add.collider(this.enviromental, walls, (obj) => {
             if (obj.isProjectile())
                 obj.destroy();
@@ -272,16 +274,31 @@ export default class Room extends Phaser.Scene {
 
 
 
-        let haveGUI = this.scene.launch('gui', {life: this.player.actualLife, maxLife: this.player.maxLife, mana: this.player.actualMana, maxMana:  this.player.maxMana,keys: this.player.key, equipedWeapon: this.player.equipedWeapon});
+        let haveGUI = this.scene.launch('gui', { life: this.player.actualLife, maxLife: this.player.maxLife, mana: this.player.actualMana, maxMana: this.player.maxMana, keys: this.player.key, equipedWeapon: this.player.equipedWeapon });
 
         this.enemies = this.add.group();
 
         //TRIGGERS AND STUFF
         this.loadObjects();
+        if (!this.cutScenePlaying) {
+            this.cameras.main.setZoom(3);
+            this.cameras.main.setBounds(0, 0, 1024, 512);
+            this.cameras.main.startFollow(this.player);
+        }
+    }
 
+    cutsceneStarted(x, y) {
+        this.cameras.main.stopFollow(this.player);
+        this.cameras.main.setZoom(3);
+        this.cameras.main.centerOn(x, y+50)
+        this.cutScenePlaying = true
+    }
+
+    cutsceneStopped() {
         this.cameras.main.setZoom(3);
         this.cameras.main.setBounds(0, 0, 1024, 512);
         this.cameras.main.startFollow(this.player);
+        this.cutScenePlaying = false
     }
 
     loadObjects() {
@@ -313,7 +330,7 @@ export default class Room extends Phaser.Scene {
                 new CollisionHitbox(this, objeto.x + objeto.width / 2, objeto.y + objeto.height / 2, objeto.width, objeto.height)
             } else if (objeto.type === 'EnemySpawn') {
                 if (this.numberOfEnemies !== -1) {
-                    new EnemySpawner(this, objeto.x, objeto.y, this.player,this.level)
+                    new EnemySpawner(this, objeto.x, objeto.y, this.player, this.level)
                     this.numberOfEnemies++
                 }
             } else if (objeto.type === 'Fire') {

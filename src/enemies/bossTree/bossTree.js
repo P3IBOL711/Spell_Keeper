@@ -9,6 +9,7 @@ import SurpriseRoot from './surpriseRoot';
 import Acorn from './acorn';
 import AcornShadow from './acornShadow';
 import BossDisplay from '../../HUD/bossDisplay';
+import BlackMage from '../blackMage';
 /**
  * Clase que representa un enemigo del juego.
  */
@@ -22,10 +23,20 @@ export default class BossTree extends Enemy {
      */
     constructor(scene, x, y, target) {
         super(scene, x, y, target, 'bossTree', 3000);
+
+       this.spawnSFX=  this.scene.sound.add('treespawn');
+       this.dieSFX = this.scene.sound.add('treedie')
+
+        this.anims.create({
+            key: 'prespawn',
+            frames: this.anims.generateFrameNumbers('arbolSpawn', { start: 0, end: 0 }),
+            frameRate: 6,
+            repeat: 10
+        }); 
         
         this.anims.create({
             key: 'spawn',
-            frames: this.anims.generateFrameNumbers('bossTreeSpritesheet', { start: 0, end: 30 }),
+            frames: this.anims.generateFrameNumbers('arbolSpawn', { start: 0, end: 19 }),
             frameRate: 6,
             repeat: 0
         }); 
@@ -72,7 +83,13 @@ export default class BossTree extends Enemy {
         this.vulnerable = false;
         this.body.enable = false;
 
-        this.play('spawn', true);
+        this.play('prespawn', true);
+
+        this.scene.jukebox.stopAllMusic()
+        this.scene.jukebox.playTree()
+
+        this.scene.cutsceneStarted(x,y)
+        this.scene.player.setActive(false)
 
         this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
             if(this.life > 0){
@@ -81,16 +98,23 @@ export default class BossTree extends Enemy {
                     this.body.setSize(this.width * 0.35, this.height * 0.85, true);
                     this.body.setOffset(this.width * 0.07, this.height * 0.14);
                     this.body.enable = true;
+                    this.scene.cutsceneStopped()
+                    this.scene.player.setActive(true)
+                    this.spawnSFX.play()
                     this.play('walking', true);
                     hudEvents.emit('boss',this.life);
                  
                 }
                 else if (this.anims.getName() === 'attack') {
                     this.attacking = false;
+
                     this.surpriseRootTimer.paused = true;
                     this.followingRootTimer.paused = true;
                     this.acornTimer.paused = true;
                     this.vulnerable = false;
+                }else if(this.anims.getName() === 'prespawn'){
+                    this.play('spawn',true)
+                    new BlackMage(scene,x+50, y+20,'magoarbol',"arbol")
                 }
             }
         });
@@ -156,6 +180,7 @@ export default class BossTree extends Enemy {
 
 
     onTimerAttack(){
+        this.spawnSFX.play()
         this.attacking = true;
         this.vulnerable = true;
         let typeAttack = Math.floor(Math.random() * 3);
@@ -187,8 +212,10 @@ export default class BossTree extends Enemy {
 
             hudEvents.emit('boss',this.life);
             super.receiveDamage(damage);
-            if(tthis.life <= 0)
+            if(this.life <= 0){
+                this.dieSFX.play()
                 this.scene.time.removeAllEvents();
+            }
         }
     }
     /**

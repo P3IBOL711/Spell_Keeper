@@ -87,11 +87,13 @@ import fullScreenButton from '../../assets/main_menu/full_screen_icon.png'
 import normalScreenButton from '../../assets/main_menu/normal_screen_icon.png'
 
 //Music
+import mainTitle from 'url:../../assets/sound/music/main.wav'
 import libLoop from 'url:../../assets/sound/music/libloop.wav'
 import libIntro from 'url:../../assets/sound/music/libintro.wav'
 import tutloop from 'url:../../assets/sound/music/tutloop.wav'
 import gardintro from 'url:../../assets/sound/music/gardintro.wav'
 import gardloop from 'url:../../assets/sound/music/gardloop.wav'
+import treeloop from 'url:../../assets/sound/music/treeloop.wav'
 
 //Sfx
 import playerhit from 'url:../../assets/sound/effects/playerhit.wav'
@@ -101,8 +103,12 @@ import ThompsonSFX from 'url:../../assets/sound/effects/weapons/thompson.wav'
 import DaggerSFX from 'url:../../assets/sound/effects/weapons/dagger.wav'
 import ButtonSFX from 'url:../../assets/sound/effects/button.wav'
 import KeySFX from 'url:../../assets/sound/effects/key.wav'
+import TreeSpawn from 'url:../../assets/sound/effects/treespawn.wav'
+import TreeDie from 'url:../../assets/sound/effects/treedie.wav'
 // Bosses
 // Tree
+import ArbolTrans from '../../assets/bosses/tree/Arbol_Trans.png'
+import MageTree from '../../assets/bosses/tree/mago_Arbol_Trans.png'
 import BossTree from '../../assets/bosses/tree/boss_tree_spritesheet.png'
 import BossTreeMovements from '../../assets/bosses/tree/boss_tree_walk_&_die.png'
 import SurpriseRoot from '../../assets/bosses/tree/Atk2.png'
@@ -221,6 +227,9 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('libintro', libIntro)
     this.load.audio('gardintro', gardintro)
     this.load.audio('gardloop', gardloop)
+    this.load.audio('maintitle',mainTitle)
+    this.load.audio('treeloop',treeloop)
+
 
     this.load.audio('playerhit',playerhit)
     this.load.audio('nomana',nomana)
@@ -229,18 +238,21 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('daggersfx',DaggerSFX)
     this.load.audio('buttonsfx',ButtonSFX)
     this.load.audio('keysfx',KeySFX)
-   
+    this.load.audio('treespawn',TreeSpawn)
+    this.load.audio('treedie',TreeDie)
 
     // Background
 
     // Bosses
     // Tree
     this.load.spritesheet('bossTreeSpritesheet', BossTree, { frameWidth: 128, frameHeight: 64 });
+    this.load.spritesheet('magoarbol',MageTree,{frameWidth:32,frameHeight:32})
     this.load.spritesheet('bossTreeMovementsSpritesheet', BossTreeMovements, { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('movingRootSpritesheet', MovingRoot, {frameWidth: 32, frameHeight: 32});
     this.load.spritesheet('surpriseRootSpritesheet', SurpriseRoot, {frameWidth: 32, frameHeight: 32});
     this.load.spritesheet('acornSpritesheet', Acorn, {frameWidth: 32, frameHeight: 32});
     this.load.spritesheet('acornShadowSpritesheet', AcornShadow, {frameWidth: 32, frameHeight: 32});
+    this.load.spritesheet('arbolSpawn',ArbolTrans, { frameWidth: 128, frameHeight: 64 })
 
     // Evil Wizard
     this.load.spritesheet('evilWizardSpritesheet', EvilWizard, { frameWidth: 64, frameHeight: 64 });

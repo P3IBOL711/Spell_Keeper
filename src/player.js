@@ -16,7 +16,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
      * @param {number} y Coordenada Y
      */
 
-    constructor(scene, x, y, life, maximumLife, mana, maximumMana, weaponMult, moveSpeed, lck, MeleeWeaponArray, RangedWeaponArray, ActMelIndex, ActRangIndex, lastWeaponUsed,keys) {
+    constructor(scene, x, y, life, maximumLife, mana, maximumMana, weaponMult, moveSpeed, lck, MeleeWeaponArray, RangedWeaponArray, ActMelIndex, ActRangIndex, lastWeaponUsed, keys) {
         super(scene, x, y, 'player');
 
         if (lastWeaponUsed === null)//Primera vez
@@ -81,6 +81,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.reticle = new Reticle(this.scene, x, y - 30);
 
         this.key = keys;
+
+        //CINEMATICA
+        this.cutscenePlaying = false;
 
         /**CONTROLES**/
         //Direcciones
@@ -160,7 +163,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             if (this.anims.getName() === 'dying') {
                 this.body.enable = false;
                 this.active = false;
-                this.scene.scene.start('end');
+                this.scene.scene.start('end',{jk:this.scene.jukebox});
             }
         });
 
@@ -196,7 +199,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             if (this.shieldCooldown === 0) {
                 this.canBeDamaged = false;
                 this.escudo.setVisible(true);
-                
+
                 let timer = this.scene.time.addEvent({
                     delay: 3000,
                     callback: this.scene.player.shieldOnCD,
@@ -221,7 +224,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             if (pointer.rightButtonReleased()) {
                 this.meleeMode = false;
                 this.updatedWeapon(this.rangedIndex);
-                if(this.lastClick !== 'left'){
+                if (this.lastClick !== 'left') {
                     if (this.canAttack) {
                         this.playerAttacks();
                     }
@@ -232,7 +235,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             else if (pointer.leftButtonReleased()) {
                 this.meleeMode = true;
                 this.updatedWeapon(this.meleeIndex);
-                if(this.lastClick !== 'right') {
+                if (this.lastClick !== 'right') {
                     if (this.canAttack) {
                         this.playerAttacks();
                     }
@@ -241,7 +244,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
                 this.lastClick = 'left';
             }
         });
-        
+
         this.scene.input.on('pointermove', () => {
             this.reticle.x = this.scene.input.activePointer.worldX;
             this.reticle.y = this.scene.input.activePointer.worldY;
@@ -277,87 +280,89 @@ export default class Player extends Phaser.GameObjects.Sprite {
         //Si no está muerto
         if (this.playerDead === false) {
             super.preUpdate(t, dt);
-
-            this.weaponDelay += dt;
-            if (this.weaponDelay >= this.equipedWeapon.delay) {
-                this.weaponDelay = 0;
-                this.canAttack = true;
-            }
-
-            //MOVIMIENTO DEL JUGADOR
-            //Notas: imprimir la fuerza y que animacion se usa va por separado porque si no produce bugs
-            let stopped = true;
-            this.body.setVelocity(0);
-
-            //Parte de imprimir la fuerza
-            if (this.a.isDown) {
-                this.direction = 'left';
-                stopped = false;
-                this.body.setVelocityX(-this.movSpeed);
-            }
-            else if (this.d.isDown) {
-                this.direction = 'right';
-                stopped = false;
-                this.body.setVelocityX(this.movSpeed);
-            }
-
-            if (this.w.isDown) {
-                this.direction = 'up';
-                stopped = false;
-                this.body.setVelocityY(-this.movSpeed);
-            }
-            else if (this.s.isDown) {
-                this.direction = 'down';
-                stopped = false;
-                this.body.setVelocityY(this.movSpeed);
-            }
-
-
-            //Parte de la animacion
-            if (this.a.isDown || (this.a.isDown && this.w.isDown) || (this.a.isDown && this.s.isDown)) {
-                this.setFlipX(true);
-                this.play('walkRight', true);
-            }
-            else if (this.d.isDown || (this.d.isDown && this.w.isDown) || (this.d.isDown && this.s.isDown)) {
-                this.setFlipX(false);
-                this.play('walkRight', true);
-            }
-
-            if (this.w.isDown && !(this.a.isDown || this.d.isDown)) {
-                this.play('walkUp', true);
-            }
-            else if (this.s.isDown && !(this.a.isDown || this.d.isDown)) {
-                this.play('walkDown', true);
-            }
-
-            if  (stopped && this.actualLife > 0) {
-                if (this.direction === 'up')
-                    this.play('idleUp', true);
-                else if (this.direction === 'down')
-                    this.play('idleDown', true);
-                else if (this.direction === 'right') {
-                    this.setFlipX(false);
-                    this.play('idleRight', true);
+            if (!this.cutscenePlaying) {
+                this.weaponDelay += dt;
+                if (this.weaponDelay >= this.equipedWeapon.delay) {
+                    this.weaponDelay = 0;
+                    this.canAttack = true;
                 }
-                else {
-                    this.setFlipX(true);
-                    this.play('idleRight', true);
-                }
+
+                //MOVIMIENTO DEL JUGADOR
+                //Notas: imprimir la fuerza y que animacion se usa va por separado porque si no produce bugs
+                let stopped = true;
                 this.body.setVelocity(0);
-            }
 
-            let angleToReticle = Phaser.Math.Angle.Between(this.x, this.y, this.reticle.x, this.reticle.y);
-            let maxRange = 25;
-            let offsetX = Math.cos(angleToReticle) * maxRange;
-            let offsetY = Math.sin(angleToReticle) * maxRange;
-            let newWepX = this.x + offsetX;
-            let newWepY = this.y + offsetY;
+                //Parte de imprimir la fuerza
+                if (this.a.isDown) {
+                    this.direction = 'left';
+                    stopped = false;
+                    this.body.setVelocityX(-this.movSpeed);
+                }
+                else if (this.d.isDown) {
+                    this.direction = 'right';
+                    stopped = false;
+                    this.body.setVelocityX(this.movSpeed);
+                }
 
-            this.equipedWeapon.updatePosition(newWepX, newWepY);
-            this.equipedWeapon.updateAngle(Phaser.Math.RadToDeg(angleToReticle), angleToReticle);
+                if (this.w.isDown) {
+                    this.direction = 'up';
+                    stopped = false;
+                    this.body.setVelocityY(-this.movSpeed);
+                }
+                else if (this.s.isDown) {
+                    this.direction = 'down';
+                    stopped = false;
+                    this.body.setVelocityY(this.movSpeed);
+                }
 
-            this.escudo.copyPosition(this);
-            this.sombrerinni.copyPosition(this);
+
+                //Parte de la animacion
+                if (this.a.isDown || (this.a.isDown && this.w.isDown) || (this.a.isDown && this.s.isDown)) {
+                    this.setFlipX(true);
+                    this.play('walkRight', true);
+                }
+                else if (this.d.isDown || (this.d.isDown && this.w.isDown) || (this.d.isDown && this.s.isDown)) {
+                    this.setFlipX(false);
+                    this.play('walkRight', true);
+                }
+
+                if (this.w.isDown && !(this.a.isDown || this.d.isDown)) {
+                    this.play('walkUp', true);
+                }
+                else if (this.s.isDown && !(this.a.isDown || this.d.isDown)) {
+                    this.play('walkDown', true);
+                }
+
+                if (stopped && this.actualLife > 0) {
+                    if (this.direction === 'up')
+                        this.play('idleUp', true);
+                    else if (this.direction === 'down')
+                        this.play('idleDown', true);
+                    else if (this.direction === 'right') {
+                        this.setFlipX(false);
+                        this.play('idleRight', true);
+                    }
+                    else {
+                        this.setFlipX(true);
+                        this.play('idleRight', true);
+                    }
+                    this.body.setVelocity(0);
+                }
+
+                let angleToReticle = Phaser.Math.Angle.Between(this.x, this.y, this.reticle.x, this.reticle.y);
+                let maxRange = 25;
+                let offsetX = Math.cos(angleToReticle) * maxRange;
+                let offsetY = Math.sin(angleToReticle) * maxRange;
+                let newWepX = this.x + offsetX;
+                let newWepY = this.y + offsetY;
+
+                this.equipedWeapon.updatePosition(newWepX, newWepY);
+                this.equipedWeapon.updateAngle(Phaser.Math.RadToDeg(angleToReticle), angleToReticle);
+
+                this.escudo.copyPosition(this);
+                this.sombrerinni.copyPosition(this);
+            } else
+                this.body.setVelocity(0)
         } else
             this.body.setVelocity(0)
     }
@@ -369,7 +374,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             if (!this.meleeMode) {
                 if (this.actualMana - this.equipedWeapon.manaCost() >= 0) {
                     this.actualMana -= this.equipedWeapon.manaCost();
-                }else{
+                } else {
                     this.nomanaSfx.play()
                     return;
                 }
@@ -396,12 +401,12 @@ export default class Player extends Phaser.GameObjects.Sprite {
         if (this.actualLife > 0) {
             if (this.active === false) { return; }
             if (this.canBeDamaged) {
-                if(this.equipedWeapon.isLethalForYouCarefull())
+                if (this.equipedWeapon.isLethalForYouCarefull())
                     this.actualLife = 0;
                 else
                     this.actualLife -= damage;
-                
-                if(this.actualLife <= 0)
+
+                if (this.actualLife <= 0)
                     this.died();
 
                 hudEvents.emit('updateHealth', this.actualLife);
@@ -533,19 +538,19 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     //Llaves
-    addKey(){
+    addKey() {
         this.key++;
 
-        hudEvents.emit('updateKeys',this.key)
+        hudEvents.emit('updateKeys', this.key)
     }
 
-    decreaseKey(){
+    decreaseKey() {
         this.key--;
 
-        hudEvents.emit('updateKeys',this.key)
+        hudEvents.emit('updateKeys', this.key)
     }
 
-    getNumberOfKeys(){
+    getNumberOfKeys() {
         return this.key;
     }
 
@@ -640,7 +645,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.movSpeed = this.movSpeedSuperiorCap;
     }
 
-    initAudio(){
+    initAudio() {
         this.playerHitSfx = this.scene.sound.add('playerhit')
     }
 

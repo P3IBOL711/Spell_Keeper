@@ -13,6 +13,10 @@ export default class End extends Phaser.Scene {
     super({ key: 'end' });
   }
 
+  init(obj){
+    obj.jk.stopAllMusic()
+  }
+
   /**
    * Creación de la escena. Tan solo contiene el texto que indica que el juego se ha acabado
    */
