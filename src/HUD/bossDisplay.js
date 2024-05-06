@@ -33,7 +33,7 @@ export default class BossDisplay extends Phaser.GameObjects.Graphics {
         this.bossBar.setActive(true);
         this.life.setVisible(true);
         this.life.setActive(true);
-        this.setVisible(true)
+        this.text.setVisible(true);
     }
 
     setMeterPercentageAnimated(percent = 1, duration = 1000) {
