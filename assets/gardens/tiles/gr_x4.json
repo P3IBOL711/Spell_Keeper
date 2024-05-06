@@ -219,7 +219,7 @@
                  "id":2,
                  "name":"",
                  "rotation":0,
-                 "type":"BossFire",
+                 "type":"Fire",
                  "visible":true,
                  "width":32,
                  "x":448,
@@ -231,7 +231,7 @@
                  "id":3,
                  "name":"",
                  "rotation":0,
-                 "type":"BossFire",
+                 "type":"Fire",
                  "visible":true,
                  "width":32,
                  "x":480,
@@ -243,7 +243,7 @@
                  "id":4,
                  "name":"",
                  "rotation":0,
-                 "type":"BossFire",
+                 "type":"Fire",
                  "visible":true,
                  "width":32,
                  "x":512,
@@ -273,11 +273,11 @@
                  "name":"",
                  "point":true,
                  "rotation":0,
-                 "type":"BossSpawn",
+                 "type":"EnemySpawn",
                  "visible":true,
                  "width":0,
-                 "x":496,
-                 "y":145.333
+                 "x":493.333,
+                 "y":158.667
                 }, 
                 {
                  "gid":209,
@@ -285,7 +285,7 @@
                  "id":7,
                  "name":"",
                  "rotation":0,
-                 "type":"BossFire",
+                 "type":"Fire",
                  "visible":true,
                  "width":32,
                  "x":448,
@@ -297,7 +297,7 @@
                  "id":8,
                  "name":"",
                  "rotation":0,
-                 "type":"BossFire",
+                 "type":"Fire",
                  "visible":true,
                  "width":32,
                  "x":512,
@@ -309,7 +309,7 @@
                  "id":9,
                  "name":"",
                  "rotation":0,
-                 "type":"BossFire",
+                 "type":"Fire",
                  "visible":true,
                  "width":32,
                  "x":480,
@@ -331,17 +331,61 @@
                  "width":96,
                  "x":448,
                  "y":0
-                }, 
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":9,
+         "name":"navmesh",
+         "objects":[
                 {
-                 "height":384,
-                 "id":12,
+                 "height":376,
+                 "id":13,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":560,
+                 "width":248,
                  "x":216,
-                 "y":40
+                 "y":48
+                }, 
+                {
+                 "height":240,
+                 "id":14,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":312,
+                 "x":464,
+                 "y":184
+                }, 
+                {
+                 "height":48,
+                 "id":15,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":312,
+                 "x":464,
+                 "y":48
+                }, 
+                {
+                 "height":88,
+                 "id":16,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":240,
+                 "x":536,
+                 "y":96
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -349,8 +393,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":9,
- "nextobjectid":13,
+ "nextlayerid":10,
+ "nextobjectid":17,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
@@ -2017,7 +2061,7 @@
                 {
                  "id":0,
                  "image":"..\/Pixel Art PNGs\/LlamaArriba.png",
-                 "type":"BossFire"
+                 "type":"Fire"
                 }, 
                 {
                  "id":2,
