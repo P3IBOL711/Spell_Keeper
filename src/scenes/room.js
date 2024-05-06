@@ -473,41 +473,44 @@ export default class Room extends Phaser.Scene {
 
     loadingBar() {
         // Background
-        let background = this.add.graphics();
-        background.fillStyle(0xad88c6, 1);
-        // 363062
-        background.fillRect(0, 0, 1000, 600);
+    let background = this.add.graphics();
+    background.fillStyle(0xad88c6, 1);
+    background.fillRect(0, 0, this.sys.canvas.width, this.sys.canvas.height);
+    
+    //Loading bar 
+    let progressBar = this.add.graphics();
+    let progressBox = this.add.graphics();
+    progressBox.fillStyle(0x8f3ea9, 0.8);
+    progressBox.fillRect(this.sys.canvas.width / 2 - 160, this.sys.canvas.height / 2, 320, 50);
 
-        // Loading bar 
-        let progressBar = this.add.graphics();
-        let progressBox = this.add.graphics();
-        progressBox.fillStyle(0x8f3ea9, 0.8);
-        progressBox.fillRect(340, 270, 320, 50);
+    let canvasWidth = this.sys.canvas.width;
+    let canvasHeight = this.sys.canvas.height;
 
-        this.load.on('progress', function (value) {
-            progressBar.clear();
-            progressBar.fillStyle(0x8f3ea9, 1);
-            progressBar.fillRect(350, 280, 300 * value, 30);
-            percentText.setText(parseInt(value * 100) + '%');
-        });
+    this.load.on('progress', function (value) {
+      progressBar.clear();
+      progressBar.fillStyle(0x8f3ea9, 1);
+      progressBar.fillRect(canvasWidth / 2 - 150, canvasHeight / 2 + 10, 300 * value, 30);
+      percentText.setText(parseInt(value * 100) + '%');
+    });
+                
+    this.load.on('fileprogress', function (file) {
+      console.log(file.src);
+    });
+    this.load.on('complete', function () {
+      console.log('complete');
+      progressBar.destroy();
+      progressBox.destroy();
+      loadingText.destroy();
+      percentText.destroy();
+    });
 
-        this.load.on('fileprogress', function (file) {
-            console.log(file.src);
-        });
-        this.load.on('complete', function () {
-            console.log('complete');
-            progressBar.destroy();
-            progressBox.destroy();
-            loadingText.destroy();
-            percentText.destroy();
-        });
+    //Loading bar text
+    this.loadFont('pixelFont', font);
+    let loadingText = this.add.text(this.sys.canvas.width / 2, this.sys.canvas.height / 2 - 30, 'Loading...', { fontFamily: 'pixelFont', fontSize: 40, color: '#5e1675ff'}).setOrigin(0.5, 0.5);
 
-        // Loading bar text
-        this.loadFont('pixelFont', font);
-        let loadingText = this.add.text(420, 215, 'Loading...', { fontFamily: 'pixelFont', fontSize: 40, color: '#5e1675ff' });
+    // Percent bar text
+    let percentText = this.add.text(this.sys.canvas.width / 2, this.sys.canvas.height / 2 + 70, '0%', { fontFamily: 'pixelFont', fontSize: 24, color: '#5e1675ff'}).setOrigin(0.5, 0.5);
 
-        // Percent bar text
-        let percentText = this.add.text(485, 320, '0%', { fontFamily: 'pixelFont', fontSize: 24, color: '#5e1675ff' });
     }
 
     loadFont(name, url) {
