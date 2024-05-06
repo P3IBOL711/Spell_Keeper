@@ -42,7 +42,7 @@ export default class icePuddle extends Phaser.GameObjects.Sprite {
             }
         });
 
-        this.scene.time.delayedCall(5000, () =>{
+        this.scene.time.delayedCall(2500, () => {
             this.destroy()
         });
     }
