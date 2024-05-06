@@ -75,8 +75,12 @@ export default class EvilWizard extends Enemy {
         this.enemySpawner = new EnemySpawnerEvilWizard(scene, target);
 
         this.speed = 0;
+        this.life = 150
 
         this.distanceAttack = 200;
+
+        this.scene.jukebox.stopAllMusic()
+        this.scene.jukebox.playEvil()
 
         this.body.setSize(this.width * 1.5, this.height * 1.6, true);
         this.body.setOffset(this.width * 0.5, this.height * 0.85);
@@ -85,10 +89,15 @@ export default class EvilWizard extends Enemy {
 
         this.attacks = ['attack1', 'attack2', 'attack3'];
 
+        this.scene.cutsceneStarted(x, y)
+        this.scene.player.setActive(false)
+
         this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
             if(this.life > 0){
                 if(this.anims.getName() === 'spawn'){
                     this.speed = 50;
+                    this.scene.cutsceneStopped()
+                    this.scene.player.setActive(true)
                 }
                 else if (this.anims.getName() === 'attack1') {
                     this.attackZone.destroy(true);

@@ -8,12 +8,13 @@ import CarnivorousPlant from "./enemies/carnivorousPlant"
 import Book from "./enemies/book"
 import LavaGolem from "./enemies/lavaGolem"
 import BossTree from "./enemies/bossTree/bossTree"
+import EvilWizard from './enemies/bossEvilWizard/evilWizard'
 
 export default class BossSpawner {
 
     constructor(scene, x, y, target, level) {
         if (level === 'lb')
-            this.enemyPool = [MagicSkeleton, Knight, StandardSkeleton, Skeleton, Book]
+            this.enemyPool = [EvilWizard]
         else if (level === 'gr')
             this.enemyPool = [BossTree]
         this.scene = scene

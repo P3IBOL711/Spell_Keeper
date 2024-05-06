@@ -97,7 +97,8 @@ import tutloop from 'url:../../assets/sound/music/tutloop.wav'
 import gardintro from 'url:../../assets/sound/music/gardintro.wav'
 import gardloop from 'url:../../assets/sound/music/gardloop.wav'
 import treeloop from 'url:../../assets/sound/music/treeloop.wav'
-
+import evilintro from 'url:../../assets/sound/music/evilintro.mp3' 
+import evilloop from 'url:../../assets/sound/music/evilloop.mp3' 
 //Sfx
 import playerhit from 'url:../../assets/sound/effects/playerhit.wav'
 import nomana from 'url:../../assets/sound/effects/nomana.wav'
@@ -238,7 +239,8 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('gardloop', gardloop)
     this.load.audio('maintitle',mainTitle)
     this.load.audio('treeloop',treeloop)
-
+    this.load.audio('evilintro',evilintro)
+    this.load.audio('evilloop',evilloop)
 
     this.load.audio('playerhit',playerhit)
     this.load.audio('nomana',nomana)

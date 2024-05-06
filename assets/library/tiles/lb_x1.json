@@ -258,7 +258,7 @@
                  "name":"",
                  "point":true,
                  "rotation":0,
-                 "type":"EnemySpawn",
+                 "type":"BossSpawn",
                  "visible":true,
                  "width":0,
                  "x":448,
