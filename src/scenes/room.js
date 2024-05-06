@@ -28,6 +28,7 @@ import Thompson from '../armas/thompson.js'
 //Pruebas
 import BossTree from '../enemies/bossTree/bossTree.js'
 import BossSpawner from '../bossSpawner.js'
+import key from '../objetos/key.js'
 
 
 
@@ -346,7 +347,11 @@ export default class Room extends Phaser.Scene {
                         this.fireArray.push(new Fire(this, (objeto.x - objeto.width / 2) + 32, (objeto.y + objeto.height / 2) - 40, objeto.width, objeto.height, objeto.rotation))
                 }
             } else if (objeto.type === 'Chest') {
-                new Chest(this, objeto.x + objeto.width / 2, objeto.y - objeto.height / 2, objeto.width, objeto.height - 8, this.player, this.chestOpened)
+                this.prob = Math.random()
+                if (this.prob <= 0.6)
+                    new Chest(this, objeto.x + objeto.width / 2, objeto.y - objeto.height / 2, objeto.width, objeto.height - 8, this.player, this.chestOpened)
+                else
+                    new key(this,this.x,this.y)
             } else if (objeto.type === 'SpecialTrigger') {
                 new LevelTrigger(this, objeto.x + objeto.width / 2, objeto.y + 16, objeto.width, objeto.height, this.player, this.level, this.loadLevel, objeto.properties[0].value)
             } else if (objeto.type === 'SecretTrigger') {
@@ -355,7 +360,7 @@ export default class Room extends Phaser.Scene {
                 new Button(this, objeto.x + 19, objeto.y + 8, objeto.width, objeto.height, this.player, this.cont, this.secretTrigger)
                 this.cont++
             } else if (objeto.type === 'BossSpawn') {
-                if(this.boss !== -1){
+                if (this.boss !== -1) {
                     new BossSpawner(this, objeto.x, objeto.y, this.player, this.level)
                     this.boss++
                 }
@@ -384,7 +389,7 @@ export default class Room extends Phaser.Scene {
         }
     }
 
-    bossHasDied(){
+    bossHasDied() {
         this.boss--;
         if (this.boss <= 0) {
             this.boss = -1; //Habitacion limpia
