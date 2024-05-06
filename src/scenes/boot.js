@@ -65,9 +65,8 @@ import speedyCloak from '../../assets/cSprites/items/shadowCloak.png'
 import fullHeart from '../../assets/HUD/_ui_heart_full.png'
 import halfHeart from '../../assets/HUD/_ui_heart_half.png'
 import emptyHeart from '../../assets/HUD/_ui_heart_empty.png'
-import manaBar from '../../assets/HUD/manabar.png'
+import manaBar from '../../assets/HUD/mana_bar.png'
 import mainMana from '../../assets/HUD/main_mana.png'
-import finalMana from '../../assets/HUD/final_mana.png'
 import BossBar from '../../assets/HUD/boss_bar.png'
 import BossLife from '../../assets/HUD/boss_life.png'
 import Uikey from '../../assets/HUD/key_32x32_24f.png'
@@ -225,7 +224,6 @@ export default class Boot extends Phaser.Scene {
     this.load.image('ui-heart-empty', emptyHeart);
     this.load.image('manaBar', manaBar);
     this.load.image('mainMana', mainMana);
-    this.load.image('finalMana', finalMana);
     this.load.image('bossBar', BossBar);
     this.load.image('bossLife', BossLife);
     this.load.spritesheet('key', Uikey, { frameWidth: 32, frameHeight: 32 });
