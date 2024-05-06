@@ -20,6 +20,11 @@
 .img2 {
   background: linear-gradient(to bottom, #8A4DCF, #9773BF);
   background-color: #8A4DCF;
+  height: 1150px;
+}
+
+.img3{
+  background-color: #9773BF;
 }
 
 h1 {
@@ -40,6 +45,29 @@ h1 {
 h1 span {
   display: block;
   font-size: 150px;
+}
+
+
+.subtitle{
+  position: relative;
+  background-color: #ffffff00;
+  text-align: center;
+  color:rgb(255, 255, 255);
+  font-family: 'pixelFont';
+  font-size: 75px;
+  font-weight: bold; /* Add bold style */
+}
+
+.subtitle span{
+  display: block;
+  position: relative;
+  background-color: #ffffff00;
+  text-align: center;
+  color:rgb(255, 255, 255);
+  font-family: 'pixelFont';
+  font-size: 40px;
+  font-weight: bold; /* Add bold style */
+  margin-bottom: 20px;
 }
 
 /*Parte del juego*/
