@@ -21,7 +21,9 @@ export default class BossTree extends Enemy {
      * @param {number} y Coordenada Y
      */
     constructor(scene, x, y, target) {
-        super(scene, x, y, target, 'bossTree', 3000);
+        super(scene, x, y, target, 'bossTree', 3000, true);
+
+        this.body.setImmovable(true);
         
         this.anims.create({
             key: 'spawn',
@@ -65,7 +67,7 @@ export default class BossTree extends Enemy {
         this.enemySpawner = new EnemySpawnerBoss(scene, target);
 
         this.speed = 0;
-        this.life = 150
+        this.life = 5;
         this.distanceAttack = 1000;
 
         this.spawning = true;
@@ -114,6 +116,9 @@ export default class BossTree extends Enemy {
             callback: this.onAcornAttack, 
             callbackScope: this,
             loop: true
+        });
+
+        this.scene.physics.add.collider(this, target, () => {
         });
 
 
@@ -183,12 +188,14 @@ export default class BossTree extends Enemy {
     
 
     receiveDamage(damage){
-        if(this.vulnerable){
+        if(this.vulnerable && this.life > 0){
 
             hudEvents.emit('boss',this.life);
             super.receiveDamage(damage);
-            if(tthis.life <= 0)
+            if(this.life <= 0){
+                this.body.enable = true;
                 this.scene.time.removeAllEvents();
+            }
         }
     }
     /**

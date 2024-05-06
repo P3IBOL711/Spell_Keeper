@@ -71,6 +71,7 @@ export default class Acorn extends Projectile {
     }
 
     impact(){
+        this.body.enable = false;
         super.impact();
         this.play('impact', true);
     }
