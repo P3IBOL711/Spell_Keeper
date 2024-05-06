@@ -117,9 +117,9 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
             duration: 1000, // Duration of each tick (in milliseconds)
             onUpdate: () => {
                 // Apply damage to the target
-                if(this.life > 0) {
+                if (this.life > 0) {
                     this.receiveDamage(damagePerTick)
-                    if(this.life <= 0)
+                    if (this.life <= 0)
                         this.tween.stop();
                 }
               //  console.log("Poisoned! Damage taken: " + damagePerTick + ". Remaining health: " + this.life);
