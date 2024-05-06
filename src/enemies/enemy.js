@@ -94,7 +94,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
 
     receiveDamage(damage) {
-        if (this.vulnerable) {
+        if (this.vulnerable && this.life > 0) {
             this.life -= damage;
 
             this.scene.tweens.add({

@@ -94,16 +94,21 @@ export default class EvilWizard extends Enemy {
                     this.attackZone.destroy(true);
                     this.attacking = false;
                     this.speed = 50;
+                    
+                    this.body.setImmovable(false);
                 }
                 else if (this.anims.getName() === 'attack2') {
                     this.vulnerable = true;
                     this.attacking = false;
                     this.speed = 50;
+                    this.body.setImmovable(false);
                 }
                 else if (this.anims.getName() === 'attack3') {
                     this.attacking = false;
                     this.speed = 50;
                     this.timerAttack3.paused = true;
+        
+                    this.body.setImmovable(false);
                 }
             }
         });
@@ -160,13 +165,11 @@ export default class EvilWizard extends Enemy {
         this.anims.remove('attack2');
         this.anims.remove('attack3');
         this.anims.remove('die');
-        this.timerAttack.paused = true;
-        this.timerAttack3.paused = true;
         this.stop();
         this.play('stayDead', true);
     }
-
     onTimerAttack(){
+        this.body.setImmovable(true);
         this.attacking = true;
         let typeAttack = Math.floor(Math.random() * 3);
         this.play(this.attacks[typeAttack]);
@@ -198,6 +201,16 @@ export default class EvilWizard extends Enemy {
 
     receiveDamage(damage){
         super.receiveDamage(damage);
+
+        if(this.life <= 0){
+            this.body.enable = true;
+            this.body.setImmovable(true);
+            
+            this.scene.time.removeAllEvents();
+            // Para que los enemigos no se solapen uno encima de otro
+            this.scene.physics.add.collider(this, this.target, () => {
+            });
+        }
     }
     /**
      * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
