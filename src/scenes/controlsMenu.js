@@ -42,7 +42,7 @@ export default class MainMenu extends Phaser.Scene{
        })
 
        this.backButton.on("pointerup", ()=>{
-            this.scene.start('mainMenu');
+            this.scene.start('mainMenu',{jk: true});
        })
     }
 }
