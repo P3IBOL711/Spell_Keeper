@@ -106,7 +106,7 @@ export default class BossTree extends Enemy {
                     this.scene.player.setActive(true)
                     this.spawnSFX.play()
                     this.play('walking', true);
-                    hudEvents.emit('boss', this.life);
+                    hudEvents.emit('boss', {bossLife: this.life,name:"Bellotini, el árbol malvado"});
 
                 }
                 else if (this.anims.getName() === 'attack') {

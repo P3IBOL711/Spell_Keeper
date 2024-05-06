@@ -16,7 +16,7 @@ export default class BossDisplay extends Phaser.GameObjects.Graphics {
         this.y = y;
         this.x = x;
         
-        this.text = this.scene.add.text(x + 20, y - 30,"" , { fontFamily: 'pixelFont', fontSize: 30, color: '#ffffffff' });
+        this.text = this.scene.add.text(x + 20, y - 30,"" , { fontFamily: 'pixelFont', fontSize: 30, color: '#ffffffff' }).setDepth(100).setVisible(false);
         this.bossBar = this.scene.add.image(this.x, this.y, 'bossBar').setOrigin(0).setDepth(100)//.setDisplaySize(720, 64).setDepth(1000).setVisible(false); //Aqui iria height y width
         this.bossBar.setVisible(false);
         this.bossBar.setActive(false);
@@ -28,11 +28,12 @@ export default class BossDisplay extends Phaser.GameObjects.Graphics {
         this.life.displayWidth = this.maxLife;
     }
     
-    activate() {
+    activates() {
         this.bossBar.setVisible(true);
         this.bossBar.setActive(true);
         this.life.setVisible(true);
         this.life.setActive(true);
+        this.text.setVisible(true);
     }
 
     setMeterPercentageAnimated(percent = 1, duration = 1000) {
