@@ -90,9 +90,10 @@ export default class GUI extends Phaser.Scene {
             this.playerShieldInfo.updateShield(isItReady);
         });
 
-        hudEvents.on('boss', (bossLife) => {
-            this.bossBar.activate();
-            this.bossBar.setMeterPercentageAnimated(bossLife / 5);
+        hudEvents.on('boss', (obj) => {
+            this.bossBar.activates();
+            this.bossBar.setMeterPercentageAnimated(obj.bossLife / 5);
+            this.bossBar.placeName(obj.name)
         });
     }
 }
