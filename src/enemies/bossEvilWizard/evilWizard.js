@@ -200,16 +200,18 @@ export default class EvilWizard extends Enemy {
 
 
     receiveDamage(damage){
-        super.receiveDamage(damage);
+        if(this.vulnerable && this.life > 0) {
+            super.receiveDamage(damage);
 
-        if(this.life <= 0){
-            this.body.enable = true;
-            this.body.setImmovable(true);
-            
-            this.scene.time.removeAllEvents();
-            // Para que los enemigos no se solapen uno encima de otro
-            this.scene.physics.add.collider(this, this.target, () => {
-            });
+            if(this.life <= 0){
+                this.body.enable = true;
+                this.body.setImmovable(true);
+                
+                this.scene.time.removeAllEvents();
+                // Para que los enemigos no se solapen uno encima de otro
+                this.scene.physics.add.collider(this, this.target, () => {
+                });
+            }
         }
     }
     /**
