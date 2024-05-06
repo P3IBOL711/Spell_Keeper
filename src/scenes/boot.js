@@ -59,12 +59,14 @@ import crystalHeart from '../../assets/cSprites/items/heartAmulet.png'
 import speedyCloak from '../../assets/cSprites/items/shadowCloak.png'
 
 //UI assets
-import fullHeart from '../../assets/HUD/ui-heart-full.png'
-import halfHeart from '../../assets/HUD/half-ui-heart.png'
-import emptyHeart from '../../assets/HUD/ui-heart-empty.png'
-import manaBar from '../../assets/HUD/manabar.png'
+// import fullHeart from '../../assets/HUD/ui-heart-full.png'
+// import halfHeart from '../../assets/HUD/half-ui-heart.png'
+// import emptyHeart from '../../assets/HUD/ui-heart-empty.png'
+import fullHeart from '../../assets/HUD/_ui_heart_full.png'
+import halfHeart from '../../assets/HUD/_ui_heart_half.png'
+import emptyHeart from '../../assets/HUD/_ui_heart_empty.png'
+import manaBar from '../../assets/HUD/mana_bar.png'
 import mainMana from '../../assets/HUD/main_mana.png'
-import finalMana from '../../assets/HUD/final_mana.png'
 import BossBar from '../../assets/HUD/boss_bar.png'
 import BossLife from '../../assets/HUD/boss_life.png'
 import Uikey from '../../assets/HUD/key_32x32_24f.png'
@@ -225,7 +227,6 @@ export default class Boot extends Phaser.Scene {
     this.load.image('ui-heart-empty', emptyHeart);
     this.load.image('manaBar', manaBar);
     this.load.image('mainMana', mainMana);
-    this.load.image('finalMana', finalMana);
     this.load.image('bossBar', BossBar);
     this.load.image('bossLife', BossLife);
     this.load.spritesheet('key', Uikey, { frameWidth: 32, frameHeight: 32 });
@@ -280,18 +281,21 @@ export default class Boot extends Phaser.Scene {
    // Background
     let background = this.add.graphics();
     background.fillStyle(0xad88c6, 1);
-    background.fillRect(0, 0, 1000, 600);
+    background.fillRect(0, 0, this.sys.canvas.width, this.sys.canvas.height);
     
     //Loading bar 
     let progressBar = this.add.graphics();
     let progressBox = this.add.graphics();
     progressBox.fillStyle(0x8f3ea9, 0.8);
-    progressBox.fillRect(340, 270, 320, 50);
+    progressBox.fillRect(this.sys.canvas.width / 2 - 160, this.sys.canvas.height / 2, 320, 50);
+
+    let canvasWidth = this.sys.canvas.width;
+    let canvasHeight = this.sys.canvas.height;
 
     this.load.on('progress', function (value) {
       progressBar.clear();
       progressBar.fillStyle(0x8f3ea9, 1);
-      progressBar.fillRect(350, 280, 300 * value, 30);
+      progressBar.fillRect(canvasWidth / 2 - 150, canvasHeight / 2 + 10, 300 * value, 30);
       percentText.setText(parseInt(value * 100) + '%');
     });
                 
@@ -308,10 +312,10 @@ export default class Boot extends Phaser.Scene {
 
     //Loading bar text
     this.loadFont('pixelFont', font);
-    let loadingText = this.add.text(420, 215, 'Loading...', { fontFamily: 'pixelFont', fontSize: 40, color: '#5e1675ff'});
+    let loadingText = this.add.text(this.sys.canvas.width / 2, this.sys.canvas.height / 2 - 30, 'Loading...', { fontFamily: 'pixelFont', fontSize: 40, color: '#5e1675ff'}).setOrigin(0.5, 0.5);
 
     // Percent bar text
-    let percentText = this.add.text(485, 320, '0%', { fontFamily: 'pixelFont', fontSize: 24, color: '#5e1675ff'});
+    let percentText = this.add.text(this.sys.canvas.width / 2, this.sys.canvas.height / 2 + 70, '0%', { fontFamily: 'pixelFont', fontSize: 24, color: '#5e1675ff'}).setOrigin(0.5, 0.5);
 
     // Full screen button
     this.load.image('fullScreenButton', fullScreenButton);
