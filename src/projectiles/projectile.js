@@ -16,6 +16,7 @@ export default class Projectile extends Phaser.GameObjects.Sprite {
         super(scene, x, y, image);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
+        if(this.scene.enviromental !== undefined)
         this.scene.enviromental.add(this)
         let overlapPlayerDmg = this.scene.physics.add.overlap(this, this.scene.enemies, (projectile, enemy) => {
             if (targetEnemy) {

@@ -27,6 +27,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.scene.physics.add.existing(this);
 
         /**RELATIVO A BODY**/
+        if(this.scene.enviromental !== undefined)
         this.scene.enviromental.add(this)
         this.setScale(1);
         this.body.setSize(this.width * 0.4, this.height * 0.65, true);
