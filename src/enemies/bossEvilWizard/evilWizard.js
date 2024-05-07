@@ -108,7 +108,7 @@ export default class EvilWizard extends Enemy {
                     this.spawnSFX.play()
                     this.scene.cutsceneStopped()
                     this.scene.player.setActive(true)
-                    hudEvents.emit('boss', { bossLife: this.life, name: "Dahto, el mago negro" });
+                    hudEvents.emit('boss', { bossLife: this.life, name: "Black mage Dahto" });
                 }
                 else if (this.anims.getName() === 'attack1') {
 

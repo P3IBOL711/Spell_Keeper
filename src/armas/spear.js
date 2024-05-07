@@ -19,7 +19,7 @@ export default class Spear extends meleeWeapon {
         this.delay = 250;
         this.damage = DAMAGE;
         this.hitboxMultiplier = 2;
-
+        this.attackSfx = this.scene.sound.add('daggersfx')
         this.id = 'spear';
         this.setActive(true);
         this.setVisible(true);
@@ -34,6 +34,7 @@ export default class Spear extends meleeWeapon {
     }
 
     attack(target) {
+        this.attackSfx.play()
        super.attack(target);
     }
 

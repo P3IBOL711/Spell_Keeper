@@ -41,7 +41,7 @@ export default class ControlsMenu01 extends Phaser.Scene{
        })
 
        this.backButton.on("pointerup", ()=>{
-            this.scene.start('mainMenu');
+            this.scene.start('mainMenu',{started:false});
        })
 
        this.previousButton = this.add.image(18, this.sys.game.canvas.height - 80, 'nextButton').setFlipX(true).setOrigin(0).setDepth(1).setScale(1.5);

@@ -8,6 +8,7 @@ export default class heart extends item {
         super(scene, x, y, 'healingHeart');
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
+        this.SFX = this.scene.sound.add('lifesfx')
         this.healEffective = 2;
         this.x = x;
         this.y = y;
@@ -15,5 +16,6 @@ export default class heart extends item {
 
     itemFuction() {
         this.scene.player.heal(this.healEffective);
+        this.SFX.play()
     }
 }

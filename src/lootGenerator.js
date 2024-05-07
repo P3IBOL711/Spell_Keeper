@@ -32,7 +32,7 @@ let weaponsPool = [[poisonStaff, ChofSword, Spear], [FourLeafsClub, heartAmulet,
 export default class lootGenerator {
     constructor(scene, x, y, luck) {
 
-        this.itemsPool = [halfHeart, heart, manaPotion, key];
+        this.itemsPool = [halfHeart, heart, manaPotion];
 
         this.scene = scene;
         this.x = x;
@@ -79,5 +79,9 @@ export default class lootGenerator {
         let randomIndex = Math.floor(Math.random() * this.itemsPool.length);
         let loot = this.itemsPool[randomIndex];
         return new loot(this.scene, this.x, this.y);
+    }
+
+    generateKey(){
+        return new key(this.scene,this.x,this.y)
     }
 }

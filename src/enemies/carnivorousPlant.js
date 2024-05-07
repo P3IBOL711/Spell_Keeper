@@ -74,7 +74,7 @@ export default class CarnivorousPlant extends Enemy {
         this.on(Phaser.Animations.Events.ANIMATION_START, () => {
             if (this.life > 0) {
                 if (this.anims.getName() === 'attack1') {
-                    this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -75 : 75), this.y - 60, 60, 60, this.target, this.damage);
+                    this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -35 : 35), this.y, 60, 60, this.target, this.damage);
                 }
             }
 
@@ -105,7 +105,7 @@ export default class CarnivorousPlant extends Enemy {
         this.on(Phaser.Animations.Events.ANIMATION_UPDATE, () => {
             if (this.life > 0) {
                 if (this.anims.getName() === 'attack2' && this.anims.currentFrame.index === 3 && !this.distAttack) {
-                    new GreenPoisonBall(this.scene, this.x + (this.flipX ? -30 : 30), this.y - 80, this.target, false, this.damage);
+                    new GreenPoisonBall(this.scene, this.x , this.y , this.target, false, this.damage);
                     this.distAttack = true;
                 }
             }
@@ -133,6 +133,10 @@ export default class CarnivorousPlant extends Enemy {
     receiveDamage(damage) {
         super.receiveDamage(damage);
         if (this.life <= 0) {
+            this.anims.remove('idle');
+            this.anims.remove('walking');
+            this.anims.remove('attack1');
+            this.anims.remove('attack2');
             this.distanceTimerAttack.paused = true;
             this.meleeTimerAttack.paused = true;
         }
@@ -173,7 +177,7 @@ export default class CarnivorousPlant extends Enemy {
                 this.meleeTimerAttack.paused = true;
                 this.playAfterRepeat('idle');
             }
-            else if (dist > 50 && dist <= 100) {
+            else if (dist > 50) {
                 this.meleeTimerAttack.paused = true;
                 this.distanceTimerAttack.paused = false;
             }

@@ -128,6 +128,7 @@ import swordSFX from 'url:../../assets/sound/effects/weapons/sword.wav'
 import drainswordSFX from 'url:../../assets/sound/effects/weapons/drainsword.wav'
 import firestaffSFX from 'url:../../assets/sound/effects/weapons/firestaff.wav'
 import chestSFX from 'url:../../assets/sound/effects/chest.wav'
+import lifeSFX from 'url:../../assets/sound/effects/life.wav'
 // Bosses
 // Tree
 import ArbolTrans from '../../assets/bosses/tree/Arbol_Trans.png'
@@ -288,6 +289,7 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('demonspawn',DemonSpawn)
     this.load.audio('magelaugh',MageLaugh)
     this.load.audio('demonexplosion',DemonExplosion)
+    this.load.audio('lifesfx',lifeSFX)
 
     // Background
 

@@ -2,6 +2,7 @@ import Phaser from 'phaser'
 import HitBox from '../hitbox';
 import MeleeEnemy from './meleeEnemy';
 import childSlime from './childSlime';
+import lootGenerator from '../lootGenerator';
 
 /**
  * Clase que representa un enemigo del juego.
@@ -51,13 +52,13 @@ export default class Slime extends MeleeEnemy {
         this.body.setSize(this.width * 0.48, this.height * 0.38, true);
     }
 
-    spawnHitbox(){
-        this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -45 : 45), this.y - 10, 30, 30, this.target, this.damage);
+    spawnHitbox() {
+        this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -15 : 15), this.y - 10, 30, 30, this.target, this.damage);
     }
 
-    receiveDamage(damage){
+    receiveDamage(damage) {
         super.receiveDamage(damage);
-        if (this.life <= 0){
+        if (this.life <= 0) {
             new childSlime(this.scene, this.x + 15, this.y, this.target);
             new childSlime(this.scene, this.x + 15, this.y + 10, this.target);
             new childSlime(this.scene, this.x - 15, this.y, this.target);

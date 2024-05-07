@@ -151,7 +151,10 @@ export default class Room extends Phaser.Scene {
         this.map.destroy()
 
         this.unloadScene(this.key)
-        this.scene.start(level + dungeon[y][x].name, { X: x, Y: y, dg: dungeon, dir: direction, SSM: this.saveStateMatrix, playerStat: this.globalPlayerStats, jukebox: this.jukebox });
+        if (dungeon[y][x].name !== "EM")
+            this.scene.start(level + dungeon[y][x].name, { X: x, Y: y, dg: dungeon, dir: direction, SSM: this.saveStateMatrix, playerStat: this.globalPlayerStats, jukebox: this.jukebox });
+        else
+            this.scene.start(level+'X1',{ X: x, Y: y, dg: dungeon, dir: direction, SSM: this.saveStateMatrix, playerStat: this.globalPlayerStats, jukebox: this.jukebox })
         this.unloadScene(this.key)
 
     }
@@ -203,13 +206,14 @@ export default class Room extends Phaser.Scene {
         let objects = this.map.addTilesetImage('Objects');
         let fondo = this.map.createLayer('Fondo', [base]).setDepth(0)
         let walls;
+        let floor;
         if (this.key !== 'grR16') {
-            let floor = this.map.createLayer('Floor', [base]).setDepth(1)
+            floor = this.map.createLayer('Floor', [base]).setDepth(1)
             walls = this.map.createLayer('Walls', [base]).setDepth(2).setCollisionByExclusion(-1)
         }
         else {
             let invernadero = this.map.addTilesetImage('Invernadero');
-            let floor = this.map.createLayer('Floor', [base, invernadero]).setDepth(1)
+            floor = this.map.createLayer('Floor', [base, invernadero]).setDepth(1)
             walls = this.map.createLayer('Walls', [base, invernadero]).setDepth(2).setCollisionByExclusion(-1)
         }
 

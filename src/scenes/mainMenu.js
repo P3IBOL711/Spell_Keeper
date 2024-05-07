@@ -32,6 +32,11 @@ export default class MainMenu extends Phaser.Scene {
         //this.load.bitmapFont('pixelfont','../../assets/font/pixelfont.png','../../assets/font/Pixeled.xml')
     }
 
+    init(obj){
+        if(obj !== undefined)
+            this.playmusic = obj.started
+    }
+
     create() {
         let bg = this.add.image(0, 0, 'title_bg').setOrigin(0).setDepth(0); //Background
         bg.setDisplaySize(this.sys.game.canvas.width, this.sys.game.canvas.height);
@@ -48,7 +53,10 @@ export default class MainMenu extends Phaser.Scene {
             this.jukebox.create()
             this.jukebox.playMainTheme()
             this.jukeboxStarted = true
+            this.playmusic = false
         }
+        if(this.playmusic)
+            this.jukebox.playMainTheme()
 
         this.controlsButton = this.add.text(0, 0, '> CONTROLS', { fontFamily: 'pixelFont', fontSize: 60, color: '#000000', fontStyle: 'bold' });
         this.controlsButton.setX(this.sys.game.canvas.width / 2 - text.width + 30);
