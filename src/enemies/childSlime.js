@@ -17,7 +17,7 @@ export default class childSlime extends MeleeEnemy {
     constructor(scene, x, y, target) {
         super(scene, x, y, target, 'slime', 1500);
 
-
+        this.id = "childSlime"
         this.anims.create({
             key: 'walking',
             frames: this.anims.generateFrameNumbers('slimeSpritesheet', { start: 0, end: 3 }),

@@ -10,7 +10,7 @@ import LavaGolem from "../lavaGolem"
 export default class EnemySpawnerEvilWizard {
 
     constructor(scene,target){
-        this.enemyPool = [PoisonousGoblin,Knight,Skeleton, MagicSkeleton, StandardSkeleton, CarnivorousPlant, Slime, LavaGolem]
+        this.enemyPool = [LavaGolem]
         this.scene = scene
         this.target = target
     }
