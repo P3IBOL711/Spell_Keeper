@@ -26,7 +26,7 @@ import nowYouAreFat from "./objetos/nowYouAreFat";
 import shadowCloak from "./objetos/shadowCloak";
 import broom from "./objetos/broom";
 
-let weaponsPool = [[poisonStaff, ChofSword, Spear], [FourLeafsClub, heartAmulet, nowYouAreFat, shadowCloak, broom], [iceStaff, Thompson, ChargeSword, PoisonDagger, magicSword, MagicKnife], [ megaEspadaMortal, DrainSword, lethalSword, Shotgun]];
+let weaponsPool = [[poisonStaff, ChofSword, Spear], [FourLeafsClub, heartAmulet, nowYouAreFat, shadowCloak, broom], [iceStaff, Thompson, ChargeSword, PoisonDagger, magicSword, MagicKnife], [megaEspadaMortal, DrainSword, lethalSword, Shotgun]];
 
 
 export default class lootGenerator {
@@ -42,16 +42,33 @@ export default class lootGenerator {
 
     generateWeapon() {
         let dataGenerator = new Phaser.Math.RandomDataGenerator();
-        let tier = dataGenerator.weightedPick(weaponsPool);
-        if(tier === 'undefined')
-            console.log("Es undefined")
-        let newWeapon = Phaser.Math.RND.pick(tier)
+        let tier = Math.random();
+        let index = -1;
+        if (weaponsPool.length > 0)
+            do {
+                tier += this.playerLuck/10
+                if (tier >= 0 && tier <= 0.4) {//Tier C
+                    index = 0;
+                } else if (tier > 0.4 && tier <= 0.65) {//Tier B
+                    index = 1;
+                } else if (tier > 0.65 && tier <= 0.9) { //Tier A
+                    index = 2
+                } else { //Tier S
+                    index = 3;
+                }
+                tier = Math.random();
+            } while (weaponsPool[index].length <= 0)
 
+        let newWeapon;
+        if (index !== -1)
+            newWeapon = Phaser.Math.RND.pick(weaponsPool[index])
+        else
+            return;
         // Remove the selected weapon class from the tier array
-        tier.splice(tier.indexOf(newWeapon), 1);
+        weaponsPool[index].splice(weaponsPool[index].indexOf(newWeapon), 1);
 
         // If the tier array becomes empty, remove the entire tier from the weapons pool
-        if (tier.length === 0) {
+        if (weaponsPool[index].length === 0) {
             weaponsPool.splice(weaponsPool.indexOf(tier), 1);
         }
 
