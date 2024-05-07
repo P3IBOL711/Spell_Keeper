@@ -1,12 +1,13 @@
 import Phaser from 'phaser';
 import CollisionHitbox from './collisionHitbox';
 import lootGenerator from './lootGenerator';
+import hoe from './armas/HOE';
 
 
 /**
  * Clase que representa un cofre en el juego.
  */
-export default class BossChest extends Phaser.GameObjects.Sprite {
+export default class HoeChest extends Phaser.GameObjects.Sprite {
     /**
      * Constructor del cofre.
      * @param {Phaser.Scene} scene La escena a la que pertenece el cofre.
@@ -19,7 +20,7 @@ export default class BossChest extends Phaser.GameObjects.Sprite {
      * @param {function} exitCallback La función de devolución de llamada para manejar cuando se detiene la superposición.
      */
     constructor(scene, x, y, width, height, player, opened) {
-        super(scene, x, y, 'bosschest');
+        super(scene, x, y, 'hoechest');
 
         this.SFX = this.scene.sound.add('chestsfx')
 
@@ -42,21 +43,21 @@ export default class BossChest extends Phaser.GameObjects.Sprite {
 
         this.anims.create({
             key: 'idle_chest',
-            frames: scene.anims.generateFrameNumbers('bosschest', { start: 0, end: 0 }),
+            frames: scene.anims.generateFrameNumbers('hoechest', { start: 0, end: 0 }),
             frameRate: 10,
             repeat: 0 // Play the animation only once
         });
 
         this.anims.create({
             key: 'open_chest',
-            frames: scene.anims.generateFrameNumbers('bosschest', { start: 0, end: 3 }),
+            frames: scene.anims.generateFrameNumbers('hoechest', { start: 0, end: 3 }),
             frameRate: 10,
             repeat: 0 // Play the animation only once
         });
 
         this.anims.create({
             key: 'selected_chest',
-            frames: scene.anims.generateFrameNumbers('bosschest', { start: 4, end: 4 }),
+            frames: scene.anims.generateFrameNumbers('hoechest', { start: 4, end: 4 }),
             frameRate: 10,
             repeat: -1 // Play the animation only once
         });
@@ -101,8 +102,7 @@ export default class BossChest extends Phaser.GameObjects.Sprite {
     }
 
     generateLoot() {
-        let generate = new lootGenerator(this.scene, this.x, this.y + 50, this.scene.player.luck);
-        generate.generateWeapon();
+       new hoe(this.scene,this.x,this.y+50)
     }
 
 

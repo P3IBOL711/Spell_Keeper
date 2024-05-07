@@ -198,6 +198,15 @@ export default class EvilWizard extends Enemy {
         this.anims.remove('die');
         this.stop();
         this.play('stayDead', true);
+        this.deadTimer = this.scene.time.addEvent({
+            delay: 2000,
+            callback: this.a,
+            callbackScope: this
+        });
+     
+    }
+
+    a(){
         this.scene.startCredits()
     }
     onTimerAttack() {

@@ -30,6 +30,8 @@ import BossTree from '../enemies/bossTree/bossTree.js'
 import BossSpawner from '../bossSpawner.js'
 import key from '../objetos/key.js'
 import ChargeSword from '../armas/chargeSword.js'
+import BossChest from '../bossChest.js'
+import HoeChest from '../hoechest.js'
 
 
 
@@ -374,6 +376,10 @@ export default class Room extends Phaser.Scene {
                         this.fireArray.push(new Fire(this, objeto.x + objeto.width / 2, (objeto.y + objeto.height / 2) - 8, objeto.width, objeto.height, objeto.rotation))
                     else
                         this.fireArray.push(new Fire(this, (objeto.x - objeto.width / 2) + 32, (objeto.y + objeto.height / 2) - 40, objeto.width, objeto.height, objeto.rotation))
+            }else if(objeto.type === 'BossChest'){
+                new BossChest(this,objeto.x,objeto.y,32,32,this.player,false)
+            }else if(objeto.type === 'HoeChest'){
+                new HoeChest(this,objeto.x,objeto.y,32,32,this.player,false)
             }
         }
     }
