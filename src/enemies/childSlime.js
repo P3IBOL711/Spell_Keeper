@@ -51,7 +51,7 @@ export default class childSlime extends MeleeEnemy {
     }
 
     spawnHitbox(){
-        this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -45 : 45), this.y - 10, 40, 60, this.target, this.damage);
+        this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -45 : 45), this.y - 10, 15, 15, this.target, this.damage);
     }
 
     /**

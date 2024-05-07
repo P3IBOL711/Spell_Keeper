@@ -52,7 +52,7 @@ export default class Slime extends MeleeEnemy {
     }
 
     spawnHitbox(){
-        this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -45 : 45), this.y - 10, 40, 60, this.target, this.damage);
+        this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -45 : 45), this.y - 10, 30, 30, this.target, this.damage);
     }
 
     receiveDamage(damage){
