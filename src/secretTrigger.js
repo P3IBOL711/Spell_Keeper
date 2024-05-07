@@ -41,8 +41,10 @@ export default class SecretTrigger extends Phaser.GameObjects.Zone {
         sol[index] = !sol[index]
         if (!isCompleted)
             this.checkSolution()
-        if (this.numButtonsUsed >= 3 && !isCompleted)
+        if (this.numButtonsUsed >= 3 && !isCompleted){
+            this.numButtonsUsed = 0;
             this.resetSolution();
+        }
     }
 
     resetSolution() {

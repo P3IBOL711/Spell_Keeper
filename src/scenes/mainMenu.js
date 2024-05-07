@@ -47,6 +47,7 @@ export default class MainMenu extends Phaser.Scene {
             this.jukebox = new Jukebox(this)
             this.jukebox.create()
             this.jukebox.playMainTheme()
+            this.jukeboxStarted = true
         }
 
         this.controlsButton = this.add.text(0, 0, '> CONTROLS', { fontFamily: 'pixelFont', fontSize: 60, color: '#000000', fontStyle: 'bold' });
