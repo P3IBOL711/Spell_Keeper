@@ -32,7 +32,7 @@ export default class IceStaff extends arma {
         super.preUpdate(t, dt);
     }
     getText(){
-        return "Cuidado que quema";
+        return "WARNING, it burns";
     }
 
 

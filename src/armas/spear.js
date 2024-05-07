@@ -38,7 +38,7 @@ export default class Spear extends meleeWeapon {
     }
 
     getText(){
-        return "Te pinxo";
+        return "It stings";
     }
 
 
