@@ -43,6 +43,6 @@ export default class hoe extends meleeWeapon {
     }
 
     manaRegen() {
-        return;
+        return this.scene.player.maxMana;
     }
 }
