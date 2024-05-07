@@ -10,8 +10,6 @@ export default class ManaDisplay extends Phaser.GameObjects.Graphics {
     constructor(scene, x, y, width, height, initialMana, maxMana) {
         super(scene);
 
-        // this.maxMana = maxMana;
-
         this.y = y;
         this.x = x;
 
@@ -20,7 +18,14 @@ export default class ManaDisplay extends Phaser.GameObjects.Graphics {
         this.mainMana = this.scene.add.image(this.x + 15, this.y - 24, 'mainMana').setOrigin(0).setDepth(99);
 
         this.maxMana = this.background.displayWidth - 45;
-	    this.mainMana.displayWidth = this.maxMana;
+
+        this.setMeterPercentage(initialMana/ maxMana);
+    }
+
+    setMeterPercentage(percent = 1) {
+        let width = this.maxMana * percent;
+
+        this.mainMana.displayWidth = width;
     }
 
     setMeterPercentageAnimated(percent = 1, duration = 1000) {

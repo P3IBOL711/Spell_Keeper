@@ -39,7 +39,7 @@ export default class Shotgun extends arma {
             repeat: 0
         });
 
-        this.id = 'Shotgun';
+        this.id = 'shotgun';
         this.setActive(true);
         this.setVisible(true);
 

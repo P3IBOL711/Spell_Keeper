@@ -59,9 +59,6 @@ import crystalHeart from '../../assets/cSprites/items/heartAmulet.png'
 import speedyCloak from '../../assets/cSprites/items/shadowCloak.png'
 
 //UI assets
-// import fullHeart from '../../assets/HUD/ui-heart-full.png'
-// import halfHeart from '../../assets/HUD/half-ui-heart.png'
-// import emptyHeart from '../../assets/HUD/ui-heart-empty.png'
 import fullHeart from '../../assets/HUD/_ui_heart_full.png'
 import halfHeart from '../../assets/HUD/_ui_heart_half.png'
 import emptyHeart from '../../assets/HUD/_ui_heart_empty.png'
@@ -70,12 +67,11 @@ import mainMana from '../../assets/HUD/main_mana.png'
 import BossBar from '../../assets/HUD/boss_bar.png'
 import BossLife from '../../assets/HUD/boss_life.png'
 import Uikey from '../../assets/HUD/key_32x32_24f.png'
-// import shieldReady from '../../assets/HUD/UI_shield_ready.png'
-// import shieldCD from '../../assets/HUD/UI_shield_cd.png'
 import shieldReady from '../../assets/HUD/_UI_shield_ready.png'
 import shieldCD from '../../assets/HUD/_UI_shield_cd.png'
 
 import chest from '../../assets/armory/sprites/chests.png'
+import hoechest from '../../assets/misc/hoechest.png'
 import BossChest from '../../assets/misc/bosschest.png'
 import Fire from '../../assets/misc/fire.png'
 import font from 'url:../../assets/fonts/VT323Regular.ttf'
@@ -109,6 +105,7 @@ import treeloop from 'url:../../assets/sound/music/treeloop.wav'
 import evilintro from 'url:../../assets/sound/music/evilintro.mp3' 
 import evilloop from 'url:../../assets/sound/music/evilloop.mp3' 
 //Sfx
+import hoeSFX from 'url:../../assets/sound/effects/weapons/hoe.wav'
 import playerhit from 'url:../../assets/sound/effects/playerhit.wav'
 import nomana from 'url:../../assets/sound/effects/nomana.wav'
 import ShotgunSFX from 'url:../../assets/sound/effects/weapons/shotgun.wav'
@@ -122,6 +119,14 @@ import ErrorPuzzle from 'url:../../assets/sound/effects/error.wav'
 import MageLaugh from 'url:../../assets/sound/effects/magelaugh.wav'
 import DemonSpawn from 'url:../../assets/sound/effects/demonspawn.wav'
 import DemonExplosion from 'url:../../assets/sound/effects/demonexplosion.wav'
+import lavaSfx from 'url:../../assets/sound/effects/lavagolem.wav'
+import chargeswordSFX from 'url:../../assets/sound/effects/weapons/chargedsword.wav'
+import icestaffSFX from 'url:../../assets/sound/effects/weapons/icestaff.wav'
+import chargingswordSFX from 'url:../../assets/sound/effects/weapons/chargingsword.wav'
+import swordSFX from 'url:../../assets/sound/effects/weapons/sword.wav'
+import drainswordSFX from 'url:../../assets/sound/effects/weapons/drainsword.wav'
+import firestaffSFX from 'url:../../assets/sound/effects/weapons/firestaff.wav'
+import chestSFX from 'url:../../assets/sound/effects/chest.wav'
 // Bosses
 // Tree
 import ArbolTrans from '../../assets/bosses/tree/Arbol_Trans.png'
@@ -210,6 +215,7 @@ export default class Boot extends Phaser.Scene {
     //Items
     this.load.spritesheet('chest',chest, { frameWidth: 32, frameHeight:32 });
     this.load.spritesheet('bosschest',BossChest, { frameWidth: 32, frameHeight:32 });
+    this.load.spritesheet('hoechest',hoechest, { frameWidth: 32, frameHeight:32 });
     this.load.image('healingHeart', healingHeart);
     this.load.image('halfHealingHeart', halfHealingHeart);
     this.load.image('potionOfMana', manaPotion);
@@ -248,6 +254,12 @@ export default class Boot extends Phaser.Scene {
 
 
     //Audio
+    this.load.audio('lavagolem',lavaSfx)
+    this.load.audio('chestsfx',chestSFX)
+    this.load.audio('icestaffsfx',icestaffSFX)
+    this.load.audio('hoesfx',hoeSFX)
+    this.load.audio('chargedsword',chargeswordSFX)
+    this.load.audio('chargingsword',chargingswordSFX)
     this.load.audio('tutloop',tutloop)
     this.load.audio('libloop', libLoop)
     this.load.audio('libintro', libIntro)
@@ -258,7 +270,9 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('treeloop',treeloop)
     this.load.audio('evilintro',evilintro)
     this.load.audio('evilloop',evilloop)
-
+    this.load.audio('firestaffsfx',firestaffSFX)
+    this.load.audio('drainswordsfx',drainswordSFX)
+    this.load.audio('swordsfx',swordSFX)
     this.load.audio('playerhit',playerhit)
     this.load.audio('nomana',nomana)
     this.load.audio('shotgunsfx',ShotgunSFX)

@@ -4,7 +4,7 @@
 ***Spell Keeper*** fue concebido el 2 de febrero por el estudio **Spells & Bytes Studios** formado por Gonzalo Bertolín Díez, Sandra Conde González, Pablo Folgueira Galán y Alfonso García-Carrasco Puerta.
 
 ## SINOPSIS
-Onin, el ser más poderoso de Fadaith, ha sido hechizado y despojado de todos sus objetos mágicos por su mayor enemigo, Orkodan, que se ha hecho con el control de su castillo, trayendo con él todo tipo de criaturas que intentarán sembrar el caos. Ahora, sin memoria, debe adentrarse en el para recuperar todo el poder que le arrebataron, y así mantener el mal lejos de Fadaith. En su camino se encontrará con los enemigos que han invadido su hogar, pero también con armas y objetos mágicos que le ayudarán a derrotarlos y a superar los peligros que deberá afrontar para derrotar a Orkodan.
+Red, el ser más poderoso de Fadaith, ha sido hechizado y despojado de todos sus objetos mágicos por su mayor enemigo, Orkodan, que se ha hecho con el control de su castillo, trayendo con él todo tipo de criaturas que intentarán sembrar el caos. Ahora, sin memoria, debe adentrarse en el para recuperar todo el poder que le arrebataron, y así mantener el mal lejos de Fadaith. En su camino se encontrará con los enemigos que han invadido su hogar, pero también con armas y objetos mágicos que le ayudarán a derrotarlos y a superar los peligros que deberá afrontar para derrotar a Orkodan.
 
 ## GÉNERO
 Juego roguelike (basado en salas creadas proceduralmente con enemigos, cuyo objetivo es avanzar y sobrevivir, y donde la muerte implica la pérdida de los objetos obtenidos hasta el momento) con una vista top-down al estilo de ["The binding of Isaac"](https://youtu.be/uV-w-Zf-mc8?si=l2bC0diawGzIUS6-) y ["Enter the gungeon"](https://youtu.be/IEsSICRjPdM?si=V5AlARiZy6Nbnkn1), en los que nos hemos inspirado, entre otros.
@@ -19,8 +19,9 @@ PEGI 12 debido a la violencia gráfica hacia los personajes de fantasía y el le
 Este juego está dirigido principalmente a un público adolescente/joven que busque un desafío, así como para un público más adulto, con mayor experiencia en videojuegos, que quiera poner a prueba sus habilidades.
 
 ## LORE
-El juego tendrá lugar en la guarida de Onin, que se encuentra en Fadaith, un mundo de fantasía en el que la magia es una parte fundamental de la vida de sus habitantes. En él, los magos son los seres más poderosos, capaces de cambiar la realidad a su antojo. Onin es el más poderoso de todos ellos, y ha dedicado su vida a proteger Fadaith de las fuerzas del mal. Sin embargo, Orkodan ha decidido que es hora de que el mal gobierne, y ha hechizado a Onin para hacerse con su poder e invadir su castillo con las criaturas más malignas del reino, desde esqueletos y fantasmas, hasta plantas carnívoras gigantes y dragones. Onin deberá recuperar su poder y derrotar a Orkodan para devolver la paz a Fadaith.
-El castillo de Onin es un lugar mágico y misterioso, compuesto por 4 plantas distintas, cada una de ellas con numerosas salas, llenas de trampas y peligros, pero también de tesoros y objetos mágicos que le ayudarán en su aventura. La primera de ellas es la entrada, que servirá como tutorial, después encontramos **Los Jardines** (colores cálidos), **La Biblioteca** (colores oscuros y temática fantasmagórica o misteriosa), y por último, **La Sala del Trono** (colores grises y rojos, temática solemne). 
+El juego tendrá lugar en la guarida de Red, que se encuentra en Fadaith, un mundo de fantasía en el que la magia es una parte fundamental de la vida de sus habitantes. En él, los magos son los seres más poderosos, capaces de cambiar la realidad a su antojo. Red es el más poderoso de todos ellos, y ha dedicado su vida a proteger Fadaith de las fuerzas del mal. Sin embargo, Orkodan ha decidido que es hora de que el mal gobierne, y ha hechizado a Red para hacerse con su poder e invadir su castillo con las criaturas más malignas del reino, desde esqueletos y fantasmas, hasta plantas carnívoras gigantes y dragones. 
+Red deberá recuperar su poder y derrotar a Orkodan para devolver la paz a Fadaith.
+El castillo de Red es un lugar mágico y misterioso, compuesto por 4 plantas distintas, cada una de ellas con numerosas salas, llenas de trampas y peligros, pero también de tesoros y objetos mágicos que le ayudarán en su aventura. La primera de ellas es la entrada, que servirá como tutorial, después encontramos **Los Jardines** (colores cálidos), **La Biblioteca** (colores oscuros y temática fantasmagórica o misteriosa), y por último, **La Sala del Trono** (colores grises y rojos, temática solemne). 
 Además, el mercader tratará de ayudarle vendiéndole objetos mágicos y armas que le puedan ser de ayuda a lo largo de las diferentes salas.
 
 ## JUGADOR
@@ -28,9 +29,9 @@ Además, el mercader tratará de ayudarle vendiéndole objetos mágicos y armas 
 - **Moverse** en 8 direcciones, norte, sur, este, oeste, noreste, noroeste, sureste y suroeste con las teclas WASD.
 - **Recoger** objetos pasando por encima de ellos.
 - **Atacar** cuerpo a cuerpo y a distancia con el click izquierdo para el ataque cuerpo a cuerpo y con el click derecho para el ataque a distancia. Los ataques a distancia consumen un recurso/estadística del jugador, el mana, este se consume usando ataques a distancia.
-- **Equiparse** armas usando las teclas Q y E para rotar a izquierda o derecha tus armas del tipo que estes atacando en ese momento, es decir, si estabas con un arma cuerpo a cuerpo y pulsas Q y E rotaras sobre las armas cuerpo a cuerpo y lo mismo para cuando ataques a distancia.
-- **Interactuar** con ciertos objetos del entorno mediante la tecla F, estos objetos veras un reborde blanco para poder interactuar con ellos.
-- **Escudarse** del daño presionando la tecla SHIFT, durante 3 segundos eres inmune a todo daño que te venga y cuando acaba esa duración el escudo entra en enfriamiento durante 10 segundo en los cuales no podrás usar esta mecánica.
+- **Equiparse** armas usando las teclas Q y E para rotar a izquierda o derecha tus armas del tipo que estés atacando en ese momento, es decir, si estabas con un arma cuerpo a cuerpo y pulsas Q y E rotaras sobre las armas cuerpo a cuerpo y lo mismo para cuando uses ataques a distancia.
+- **Interactuar** con ciertos objetos del entorno mediante la tecla F, en estos objetos verás un reborde blanco para poder interactuar con ellos (o no, jeje).
+- **Escudarse** del daño presionando la tecla SHIFT, durante 3 segundos eres inmune a todo daño que te venga y cuando acaba esa duración el escudo entra en enfriamiento durante 10 segundos en los cuales no podrás usar esta mecánica.
 
 DEPRECADO
 - **Comprar** objetos en la tienda.
@@ -123,6 +124,37 @@ ARMAS A DISTANCIA:
 - **shotgun**: arma que dispara 15 proyectiles de la manera en la que se dispararian los perdigones de una escopeta (porque es una) haciendo 4 de daño por proyectil con un delay de 250 milisegundos entre ataques, costando cada ataque 35 de mana.
 - **thompson**: arma que dispara proyectiles de manera muy rapida ya que tiene un delay de solo 50 milisegundos haciendo 5 de daño por proyectil, costando cada ataque 5 de mana.
 
+## OBJETOS
+Los objetos son, eso objetos, que no son armas y no puedes usarlos para atacar, tienen efectos pasivos y algunos los suelan los enemigos al morir otros estan en los cofres escondidos.
+## Especificacion de los objetos
+- **4-leafsClub:** objeto que incrementa la suerte del jugador en 10 puntos.
+- **broom:** objeto que te multiplica tu velocidad de movimiento actual por 1.4 veces.
+- **halfHeart:** objeto que al obtenerlo te cura 
+por 1 unidad de vida.
+- **heartAmulet:** objeto que incrementa tu vida maxima en 4 unidades de vida.
+- **key:** objeto que sirve para poder abrir los cofres en el castillo, si ellas no se pueden abrir.
+- **manaPotion:** objeto que al obtenerlo te regenera 50 de mana.
+- **nowYouAreFat:** objeto que te disminuye la velocidad de movimiento en 30, y te aumenta la vida maxima en 4 y el mana maximo en 50.
+- **shadowCloak:** objeto que te aumenta la velocidad de movimiento en 40.
+
 ## BOSSES
+En el juego hay un jefe por zona a excepcion de la zona de la armeria por ser la introductoria, por lo tanto tenemos 2 bosses: **_Bellotini y Dahto_**.
+### BELLOTINI, EL ARBOL MALVADO
+Bellotini antes de nacer era un arbol milenario que protegia la vida de los jardines del castillo de nuestro protagonista, pero nació en el momento en el cual nuestro antagonista le lanzo un hechizo con el cual nació Bellotini listo para acabar con la vida de nuestro protagonista y amenazando la vida de los jardines que una vez protegio.
+El boss cuenta con 3 ataques distintos, no se mueve y tiene 600 de vida.
+Los ataques son estos: 
+- Bellotini lanza sus bellotas contra el jugador haciendole daño de impacto si se da con ellas y destruyendose cuando impactan con el suelo y ademas estas bellotas tienen la probabilidad de tener un enemigo dentro de ellas asi que cuando se destruyen contra el suelo sale el enemigo que habia dentro de la bellota.
+- Bellotini usa sus raices para sorprender al jugador atacandole con estas al jugador, emergiendo de la posicion en la que se encontraba el jugador para atacarle.
+- Bellotini invoca con su poder una hilera de raices que se dirige hacia el jugador en varias oleadas.
+
+### DAHTO, EL MAGO NEGRO
+Nuestro antagonista, en un último intento de defender lo que había robado se corrompe usando su propia magia para ganar más poder, se convierte en Dahto; el mago negro.
+El boss cuenta con 3 ataques distintos, se mueve y tiene 1000 de vida.
+- En este ataque Dahto convoca el poder demoniaco para crear unos charcos de lava que te matan al contacto.
+- Dahto carga energia demoniaca en el brazo izquierdo para embestir al jugador y mientras embiste libera la energia del brazo invocando a sus sudbitos.
+- Dahto muestro su furia golpeando al suelo con sus puños y esos golpes crean pantallas de fuego que se mueven en distintas direcciones intentado dañar al jugador.
+
+Estad atentos a los secretos, nunca se sabe que se puede ocultar a simple vista ;)
+
 
 

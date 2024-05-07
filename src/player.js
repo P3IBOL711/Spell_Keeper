@@ -392,6 +392,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.actualMana = this.maxMana;
         else
             this.actualMana += this.equipedWeapon.manaRegen();
+        hudEvents.emit('updateMana', [this.actualMana, this.maxMana]);
     }
 
 
@@ -428,6 +429,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
                         }
                     });
 
+                    this.startIFrame();
                     this.playerHitSfx.play();
                 }
             }

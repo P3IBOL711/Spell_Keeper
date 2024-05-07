@@ -182,9 +182,9 @@ export default class EvilWizard extends Enemy {
         this.timerAttack3.paused = true;
 
 
-        this.scene.physics.add.overlap(this.scene.player,this, (player)=>{ 
+        this.scene.physics.add.overlap(this.scene.player,this, (player) => { 
             player.receiveDamage(1);
-            player.startIFrame();
+            //player.startIFrame();           
         })
     }
 
@@ -198,7 +198,16 @@ export default class EvilWizard extends Enemy {
         this.anims.remove('die');
         this.stop();
         this.play('stayDead', true);
-        this.scene.start('credits')
+        this.deadTimer = this.scene.time.addEvent({
+            delay: 2000,
+            callback: this.a,
+            callbackScope: this
+        });
+     
+    }
+
+    a(){
+        this.scene.startCredits()
     }
     onTimerAttack() {
         this.body.setImmovable(true);
