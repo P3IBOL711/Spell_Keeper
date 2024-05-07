@@ -32,12 +32,12 @@ export default class MainMenu extends Phaser.Scene {
         //this.load.bitmapFont('pixelfont','../../assets/font/pixelfont.png','../../assets/font/Pixeled.xml')
     }
 
-    create(){
-        let bg = this.add.image(0,0,'title_bg').setOrigin(0).setDepth(0); //Background
+    create() {
+        let bg = this.add.image(0, 0, 'title_bg').setOrigin(0).setDepth(0); //Background
         bg.setDisplaySize(this.sys.game.canvas.width, this.sys.game.canvas.height);
-        let text = this.add.text(0, 0, 'SPELL KEEPER',{ fontFamily: 'pixelFont', fontSize: 80, color: '#000000', fontStyle: 'bold'}); 
-        text.setY(this.sys.game.canvas.height/2 - text.height - 100);
-        text.setX(this.sys.game.canvas.width/2 - text.width);
+        let text = this.add.text(0, 0, 'SPELL KEEPER', { fontFamily: 'pixelFont', fontSize: 80, color: '#000000', fontStyle: 'bold' });
+        text.setY(this.sys.game.canvas.height / 2 - text.height - 100);
+        text.setX(this.sys.game.canvas.width / 2 - text.width);
 
         // let playButton = this.add.image(470,150,'play').setOrigin(0).setDepth(1).setScale(0.35); 
         // let playSelectedButton = this.add.image(470,150,'play_sel').setOrigin(0).setDepth(1).setScale(0.35).setVisible(false);
@@ -51,12 +51,12 @@ export default class MainMenu extends Phaser.Scene {
         }
 
         this.controlsButton = this.add.text(0, 0, '> CONTROLS', { fontFamily: 'pixelFont', fontSize: 60, color: '#000000', fontStyle: 'bold' });
-        this.controlsButton.setX(this.sys.game.canvas.width/2 - text.width + 30);
-        this.controlsButton.setY(this.sys.game.canvas.height/2 - text.height + 60);
+        this.controlsButton.setX(this.sys.game.canvas.width / 2 - text.width + 30);
+        this.controlsButton.setY(this.sys.game.canvas.height / 2 - text.height + 60);
 
-        this.playButton = this.add.text(0, 0, '> PLAY', { fontFamily: 'pixelFont', fontSize: 60, color: '#000000' , fontStyle: 'bold'});
-        this.playButton.setX(this.sys.game.canvas.width/2 - text.width + 30);
-        this.playButton.setY(this.sys.game.canvas.height/2 - text.height - 5);
+        this.playButton = this.add.text(0, 0, '> PLAY', { fontFamily: 'pixelFont', fontSize: 60, color: '#000000', fontStyle: 'bold' });
+        this.playButton.setX(this.sys.game.canvas.width / 2 - text.width + 30);
+        this.playButton.setY(this.sys.game.canvas.height / 2 - text.height - 5);
         /*let nuevoTexto = 
         this.add.text(390, 70, 
             'Spell Keeper', 
@@ -77,10 +77,10 @@ export default class MainMenu extends Phaser.Scene {
         this.playButton.on("pointerup", () => {
             this.jukebox.stopAllMusic()
             this.jukebox.playLoop('ar')
-           this.scene.start('arR1', { X: 0, Y: 3, dg: dungeonGenerator.tutorial(), dir: 'c', SSM: dungeonGenerator.generateSaveStateMatrix(4, 1), playerStat: null, jukebox: this.jukebox });
+            this.scene.start('arR1', { X: 0, Y: 3, dg: dungeonGenerator.tutorial(), dir: 'c', SSM: dungeonGenerator.generateSaveStateMatrix(4, 1), playerStat: null, jukebox: this.jukebox });
             //this.scene.start('grX2',{X: 0, Y: 3, dg:dungeonGenerator.tutorial(),dir:'n', SSM: dungeonGenerator.generateSaveStateMatrix(4,1),playerStat:null});
             //this.scene.start('lbE1',{ dg:dungeonGenerator.init(),X: dungeonGenerator.getEntranceX(), Y: dungeonGenerator.getEntranceY(),dir:'c', SSM: dungeonGenerator.generateSaveStateMatrix(dungeonGenerator.getN(),dungeonGenerator.getM()),playerStat:null});
-          // this.scene.start('grR10',{ dg:dungeonGenerator.init(),X: dungeonGenerator.getEntranceX(), Y: dungeonGenerator.getEntranceY(),dir:'s', SSM: dungeonGenerator.generateSaveStateMatrix(dungeonGenerator.getN(),dungeonGenerator.getM()),playerStat:null,jukebox: this.jukebox});
+            // this.scene.start('grR10',{ dg:dungeonGenerator.init(),X: dungeonGenerator.getEntranceX(), Y: dungeonGenerator.getEntranceY(),dir:'s', SSM: dungeonGenerator.generateSaveStateMatrix(dungeonGenerator.getN(),dungeonGenerator.getM()),playerStat:null,jukebox: this.jukebox});
         })
 
         this.controlsButton.setInteractive();
@@ -98,7 +98,7 @@ export default class MainMenu extends Phaser.Scene {
 
         let fullscreen = this.add.image(991, 32, 'fullScreenButton').setDepth(10).setScale(2);
         let normalscreen = this.add.image(991, 32, 'normalScreenButton').setDepth(10).setScale(1.5).setVisible(false);
-        
+
         fullscreen.setInteractive();
         fullscreen.on("pointerover", () => {
             fullscreen.setScale(2.1)
