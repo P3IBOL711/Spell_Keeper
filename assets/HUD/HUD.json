@@ -70,8 +70,19 @@
                  "type":"BossBar",
                  "visible":true,
                  "width":960,
-                 "x":24,
+                 "x":32,
                  "y":424
+                }, 
+                {
+                 "height":32,
+                 "id":26,
+                 "name":"FullScreen",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":991,
+                 "y":32
                 }],
          "opacity":1,
          "type":"objectgroup",

@@ -15,10 +15,11 @@ export default class ManaDisplay extends Phaser.GameObjects.Graphics {
         this.y = y;
         this.x = x;
 
-        this.background = this.scene.add.image(this.x - 32, this.y - 20, 'manaBar').setOrigin(0); //Aqui iria height y width
+        this.background = this.scene.add.image(this.x - 15, this.y - 35, 'manaBar').setOrigin(0).setDepth(100); //Aqui iria height y width
 
-        this.mainMana = this.scene.add.image((this.x + 18) - 32, this.y - 20, 'mainMana').setOrigin(0);
+        this.mainMana = this.scene.add.image(this.x + 15, this.y - 24, 'mainMana').setOrigin(0).setDepth(99);
 
+        this.maxMana = this.background.displayWidth - 45;
 	    this.mainMana.displayWidth = this.maxMana;
     }
 
