@@ -6,7 +6,7 @@ export default class shadowCloak extends item {
         super(scene, x, y, 'shadowCloak');
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.movSpeedBonus = 10;
+        this.movSpeedBonus = 40;
         this.x = x;
         this.y = y;
     }

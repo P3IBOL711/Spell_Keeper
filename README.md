@@ -123,6 +123,19 @@ ARMAS A DISTANCIA:
 - **shotgun**: arma que dispara 15 proyectiles de la manera en la que se dispararian los perdigones de una escopeta (porque es una) haciendo 4 de daño por proyectil con un delay de 250 milisegundos entre ataques, costando cada ataque 35 de mana.
 - **thompson**: arma que dispara proyectiles de manera muy rapida ya que tiene un delay de solo 50 milisegundos haciendo 5 de daño por proyectil, costando cada ataque 5 de mana.
 
+## OBJETOS
+Los objetos son, eso objetos, que no son armas y no puedes usarlos para atacar, tienen efectos pasivos y algunos los suelan los enemigos al morir otros estan en los cofres escondidos.
+## Especificacion de los objetos
+- **4-leafsClub:** objeto que incrementa la suerte del jugador en 10 puntos.
+- **broom:** objeto que te multiplica tu velocidad de movimiento actual por 1.4 veces.
+- **halfHeart:** objeto que al obtenerlo te cura 
+por 1 unidad de vida.
+- **heartAmulet:** objeto que incrementa tu vida maxima en 4 unidades de vida.
+- **key:** objeto que sirve para poder abrir los cofres en el castillo, si ellas no se pueden abrir.
+- **manaPotion:** objeto que al obtenerlo te regenera 50 de mana.
+- **nowYouAreFat:** objeto que te disminuye la velocidad de movimiento en 30, y te aumenta la vida maxima en 4 y el mana maximo en 50.
+- **shadowCloak:** objeto que te aumenta la velocidad de movimiento en 40.
+
 ## BOSSES
 En el juego hay un jefe por zona a excepcion de la zona de la armeria por ser la introductoria, por lo tanto tenemos 2 bosses: **_Bellotini y Dahto_**.
 ### BELLOTINI, EL ARBOL MALVADO
@@ -139,6 +152,8 @@ El boss cuenta con 3 ataques distintos, se mueve y tiene 1000 de vida.
 - En este ataque Dahto convoca el poder demoniaco para crear unos charcos de lava que te matan al contacto.
 - Dahto carga energia demoniaca en el brazo izquierdo para embestir al jugador y mientras embiste libera la energia del brazo invocando a sus sudbitos.
 - Dahto muestro su furia golpeando al suelo con sus puños y esos golpes crean pantallas de fuego que se mueven en distintas direcciones intentado dañar al jugador.
+
+Estad atentos a los secretos, nunca se sabe que se puede ocultar a simple vista ;)
 
 
 
