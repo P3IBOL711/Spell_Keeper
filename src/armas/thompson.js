@@ -55,7 +55,7 @@ export default class Thompson extends arma {
     }
 
     getText(){
-        return "PRUEBA";
+        return "Si, esto TAMBIÉN es magico";
     }
 
 

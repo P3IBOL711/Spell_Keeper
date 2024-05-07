@@ -79,7 +79,7 @@ export default class Shotgun extends arma {
     }
 
     getText(){
-        return "PRUEBA";
+        return "Si, esto es magico";
     }
 
 

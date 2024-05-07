@@ -26,7 +26,7 @@ export default class magicSword extends meleeWeapon {
         return true;
     }
     getText(){
-        return "PRUEBA";
+        return "Is dangerous to go alone";
     }
 
     attack(target) {
