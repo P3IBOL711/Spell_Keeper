@@ -16,6 +16,7 @@ export default class IceStaff extends arma {
         super(scene, x, y, 'iceStaff')
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
+        this.SFX = this.scene.sound.add('icestaffsfx')
         this.delay = 250;
         this.x = x;
         this.y = y;
@@ -33,8 +34,10 @@ export default class IceStaff extends arma {
 
     attack(target) {
         //super.attackAction();
-        if(this.x != 0 && this.y != 0)
+        if(this.x != 0 && this.y != 0){
+            this.SFX.play()
             new IceBall(this.scene, this.x, this.y, target, true, this.damage);
+        }
     }
 
     manaCost() {

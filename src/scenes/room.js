@@ -460,6 +460,11 @@ export default class Room extends Phaser.Scene {
         this.scene.stop(sceneKey);
     }
 
+    startCredits(){
+        this.scene.stop(this.scene.key)
+        this.scene.start('credits',{jk:this.jukebox})
+    }
+
 
     getPlayerStats() {
         this.globalPlayerStats.life = this.player.actualLife

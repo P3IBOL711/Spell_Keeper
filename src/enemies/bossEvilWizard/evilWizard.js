@@ -78,7 +78,7 @@ export default class EvilWizard extends Enemy {
         this.enemySpawner = new EnemySpawnerEvilWizard(scene, target);
 
         this.speed = 0;
-        this.maxLife = 1000;
+        this.maxLife = 1;
         this.life = this.maxLife;
 
         this.distanceAttack = 200;
@@ -198,7 +198,7 @@ export default class EvilWizard extends Enemy {
         this.anims.remove('die');
         this.stop();
         this.play('stayDead', true);
-        this.scene.start('credits')
+        this.scene.startCredits()
     }
     onTimerAttack() {
         this.body.setImmovable(true);

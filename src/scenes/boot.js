@@ -109,6 +109,7 @@ import treeloop from 'url:../../assets/sound/music/treeloop.wav'
 import evilintro from 'url:../../assets/sound/music/evilintro.mp3' 
 import evilloop from 'url:../../assets/sound/music/evilloop.mp3' 
 //Sfx
+import hoeSFX from 'url:../../assets/sound/effects/weapons/hoe.wav'
 import playerhit from 'url:../../assets/sound/effects/playerhit.wav'
 import nomana from 'url:../../assets/sound/effects/nomana.wav'
 import ShotgunSFX from 'url:../../assets/sound/effects/weapons/shotgun.wav'
@@ -124,6 +125,7 @@ import DemonSpawn from 'url:../../assets/sound/effects/demonspawn.wav'
 import DemonExplosion from 'url:../../assets/sound/effects/demonexplosion.wav'
 import lavaSfx from 'url:../../assets/sound/effects/lavagolem.wav'
 import chargeswordSFX from 'url:../../assets/sound/effects/weapons/chargedsword.wav'
+import icestaffSFX from 'url:../../assets/sound/effects/weapons/icestaff.wav'
 import chargingswordSFX from 'url:../../assets/sound/effects/weapons/chargingsword.wav'
 import swordSFX from 'url:../../assets/sound/effects/weapons/sword.wav'
 import drainswordSFX from 'url:../../assets/sound/effects/weapons/drainsword.wav'
@@ -255,6 +257,8 @@ export default class Boot extends Phaser.Scene {
 
     //Audio
     this.load.audio('lavagolem',lavaSfx)
+    this.load.audio('icestaffsfx',icestaffSFX)
+    this.load.audio('hoesfx',hoeSFX)
     this.load.audio('chargedsword',chargeswordSFX)
     this.load.audio('chargingsword',chargingswordSFX)
     this.load.audio('tutloop',tutloop)

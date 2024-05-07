@@ -9,6 +9,7 @@ export default class hoe extends meleeWeapon {
         super(scene, x, y, 'hoe');
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
+        this.SFX = this.scene.sound.add('hoesfx')
         this.setOrigin(0,1);
         this.setDepth(8)
         this.delay = 100;
@@ -37,6 +38,7 @@ export default class hoe extends meleeWeapon {
     }
 
     attack(target) {
+        this.SFX.play()
         super.attack(target);
     }
 
