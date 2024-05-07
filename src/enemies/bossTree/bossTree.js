@@ -30,6 +30,7 @@ export default class BossTree extends Enemy {
 
         this.spawnSFX = this.scene.sound.add('treespawn').setVolume(1.5).setDetune(50);
         this.dieSFX = this.scene.sound.add('treedie').setVolume(1.5)
+        this.pathFinding.paused = true;
 
         this.anims.create({
             key: 'prespawn',
@@ -168,20 +169,20 @@ export default class BossTree extends Enemy {
         let angle = (angleRadians * 180) / Math.PI;
 
         if ((angle >= 45 && angle <= 135) || (angle >= -135 && angle <= -45)) {
-            for (let i = 0; i < 41; i++) {
-                new MovingRoot(this.scene, this.x - 200 + (i * 10), this.y, false, 1, angleRadians)
+            // for (let i = 0; i < 41; i++) {
+            //     new MovingRoot(this.scene, this.x - 200 + (i * 10), this.y, false, 1, angleRadians)
+            // }
+            for(let i = 0; i < 12; i++){
+                new MovingRoot(this.scene, this.x - 40 + (i * 40), this.y, false, 1, angleRadians);
             }
-            //(new MovingRoot(this.scene, this.x + 40, this.y, false, 1, angleRadians);
-            // new MovingRoot(this.scene, this.x, this.y, false, 1, angleRadians);
-            //new MovingRoot(this.scene, this.x - 40, this.y, false, 1, angleRadians);
         }
         else {
-            for (let i = 0; i < 41; i++) {
-                new MovingRoot(this.scene, this.x, this.y - 200 + (i * 10), false, 1, angleRadians)
+            // for (let i = 0; i < 41; i++) {
+            //     new MovingRoot(this.scene, this.x, this.y - 200 + (i * 10), false, 1, angleRadians)
+            // }
+            for(let i = 0; i < 12; i++){
+                new MovingRoot(this.scene, this.x, this.y - 40 + (i * 40), false, 1, angleRadians);
             }
-            /*new MovingRoot(this.scene, this.x, this.y - 40, false, 1, angleRadians);
-            new MovingRoot(this.scene, this.x, this.y, false, 1, angleRadians);
-            new MovingRoot(this.scene, this.x, this.y + 40, false, 1, angleRadians);*/
         }
     }
 
@@ -192,13 +193,13 @@ export default class BossTree extends Enemy {
         this.attacking = true;
         this.vulnerable = true;
         let typeAttack = Math.floor(Math.random() * 3);
-        if (typeAttack === 0) {//typeAttack === 0){
+        if (typeAttack === 0) {
             this.followingRootTimer.paused = false;
         }
-        else if (typeAttack === 1) {//typeAttack === 1){
+        else if (typeAttack === 1) {
             this.surpriseRootTimer.paused = false;
         }
-        else if (typeAttack === 2) {//typeAttack === 2){
+        else if (typeAttack === 2) {
             this.acornTimer.paused = false;
         }
         this.play("attack", true);

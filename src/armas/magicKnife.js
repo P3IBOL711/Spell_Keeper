@@ -29,7 +29,7 @@ export default class MagicKnife extends arma {
         this.damage = DAMAGE;
     }
     getText(){
-        return "No es una mesa";
+        return "It is not a table";
     }
 
     preUpdate(t, dt) {
