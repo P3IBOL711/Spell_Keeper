@@ -124,5 +124,8 @@ ARMAS A DISTANCIA:
 - **thompson**: arma que dispara proyectiles de manera muy rapida ya que tiene un delay de solo 50 milisegundos haciendo 5 de daño por proyectil, costando cada ataque 5 de mana.
 
 ## BOSSES
-
+En el juego hay un jefe por zona a excepcion de la zona de la armeria por ser la introductoria, por lo tanto tenemos 2 bosses: Bellotini y Dahto.
+### BELLOTINI, EL ARBOL MALVADO
+Bellotini antes de nacer era un arbol milenario que protegia la vida de los jardines del castillo de nuestro protagonista, pero nació en el momento en el cual nuestro antagonista le lanzo un hechizo con el cual nació Bellotini listo para acabar con la vida de neustro protagonista y amenazando la vida de los jardines que una vez protegio.
+El boss cuenta con 3 ataques distintos, no se mueve y tiene 600 de vida
 
