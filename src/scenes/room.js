@@ -281,7 +281,7 @@ export default class Room extends Phaser.Scene {
 
 
 
-        let haveGUI = this.scene.launch('gui', { life: this.player.actualLife, maxLife: this.player.maxLife, mana: this.player.actualMana, maxMana: this.player.maxMana, keys: this.player.key, equipedWeapon: this.player.equipedWeapon , fullScreen: this.scale.isFullscreen});
+        let haveGUI = this.scene.launch('gui', { life: this.player.actualLife, maxLife: this.player.maxLife, mana: this.player.actualMana, maxMana: this.player.maxMana, keys: this.player.key, equipedWeapon: this.player.equipedWeapon, fullScreen: this.scale.isFullscreen });
 
         this.enemies = this.add.group();
 
@@ -350,11 +350,7 @@ export default class Room extends Phaser.Scene {
                         this.fireArray.push(new Fire(this, (objeto.x - objeto.width / 2) + 32, (objeto.y + objeto.height / 2) - 40, objeto.width, objeto.height, objeto.rotation))
                 }
             } else if (objeto.type === 'Chest') {
-                this.prob = Math.random()
-                if (this.prob <= 0.6)
-                    new Chest(this, objeto.x + objeto.width / 2, objeto.y - objeto.height / 2, objeto.width, objeto.height - 8, this.player, this.chestOpened)
-                else
-                    new key(this,this.x,this.y)
+                new Chest(this, objeto.x + objeto.width / 2, objeto.y - objeto.height / 2, objeto.width, objeto.height - 8, this.player, this.chestOpened)
             } else if (objeto.type === 'SpecialTrigger') {
                 new LevelTrigger(this, objeto.x + objeto.width / 2, objeto.y + 16, objeto.width, objeto.height, this.player, this.level, this.loadLevel, objeto.properties[0].value)
             } else if (objeto.type === 'SecretTrigger') {
@@ -376,10 +372,10 @@ export default class Room extends Phaser.Scene {
                         this.fireArray.push(new Fire(this, objeto.x + objeto.width / 2, (objeto.y + objeto.height / 2) - 8, objeto.width, objeto.height, objeto.rotation))
                     else
                         this.fireArray.push(new Fire(this, (objeto.x - objeto.width / 2) + 32, (objeto.y + objeto.height / 2) - 40, objeto.width, objeto.height, objeto.rotation))
-            }else if(objeto.type === 'BossChest'){
-                new BossChest(this,objeto.x,objeto.y,32,32,this.player,false)
-            }else if(objeto.type === 'HoeChest'){
-                new HoeChest(this,objeto.x,objeto.y,32,32,this.player,false)
+            } else if (objeto.type === 'BossChest') {
+                new BossChest(this, objeto.x, objeto.y, 32, 32, this.player, false)
+            } else if (objeto.type === 'HoeChest') {
+                new HoeChest(this, objeto.x, objeto.y, 32, 32, this.player, false)
             }
         }
     }
@@ -466,9 +462,9 @@ export default class Room extends Phaser.Scene {
         this.scene.stop(sceneKey);
     }
 
-    startCredits(){
+    startCredits() {
         this.scene.stop(this.scene.key)
-        this.scene.start('credits',{jk:this.jukebox})
+        this.scene.start('credits', { jk: this.jukebox })
     }
 
 
@@ -490,43 +486,43 @@ export default class Room extends Phaser.Scene {
 
     loadingBar() {
         // Background
-    let background = this.add.graphics();
-    background.fillStyle(0xad88c6, 1);
-    background.fillRect(0, 0, this.sys.canvas.width, this.sys.canvas.height);
-    
-    //Loading bar 
-    let progressBar = this.add.graphics();
-    let progressBox = this.add.graphics();
-    progressBox.fillStyle(0x8f3ea9, 0.8);
-    progressBox.fillRect(this.sys.canvas.width / 2 - 160, this.sys.canvas.height / 2, 320, 50);
+        let background = this.add.graphics();
+        background.fillStyle(0xad88c6, 1);
+        background.fillRect(0, 0, this.sys.canvas.width, this.sys.canvas.height);
 
-    let canvasWidth = this.sys.canvas.width;
-    let canvasHeight = this.sys.canvas.height;
+        //Loading bar 
+        let progressBar = this.add.graphics();
+        let progressBox = this.add.graphics();
+        progressBox.fillStyle(0x8f3ea9, 0.8);
+        progressBox.fillRect(this.sys.canvas.width / 2 - 160, this.sys.canvas.height / 2, 320, 50);
 
-    this.load.on('progress', function (value) {
-      progressBar.clear();
-      progressBar.fillStyle(0x8f3ea9, 1);
-      progressBar.fillRect(canvasWidth / 2 - 150, canvasHeight / 2 + 10, 300 * value, 30);
-      percentText.setText(parseInt(value * 100) + '%');
-    });
-                
-    this.load.on('fileprogress', function (file) {
-      console.log(file.src);
-    });
-    this.load.on('complete', function () {
-      console.log('complete');
-      progressBar.destroy();
-      progressBox.destroy();
-      loadingText.destroy();
-      percentText.destroy();
-    });
+        let canvasWidth = this.sys.canvas.width;
+        let canvasHeight = this.sys.canvas.height;
 
-    //Loading bar text
-    this.loadFont('pixelFont', font);
-    let loadingText = this.add.text(this.sys.canvas.width / 2, this.sys.canvas.height / 2 - 30, 'Loading...', { fontFamily: 'pixelFont', fontSize: 40, color: '#5e1675ff'}).setOrigin(0.5, 0.5);
+        this.load.on('progress', function (value) {
+            progressBar.clear();
+            progressBar.fillStyle(0x8f3ea9, 1);
+            progressBar.fillRect(canvasWidth / 2 - 150, canvasHeight / 2 + 10, 300 * value, 30);
+            percentText.setText(parseInt(value * 100) + '%');
+        });
 
-    // Percent bar text
-    let percentText = this.add.text(this.sys.canvas.width / 2, this.sys.canvas.height / 2 + 70, '0%', { fontFamily: 'pixelFont', fontSize: 24, color: '#5e1675ff'}).setOrigin(0.5, 0.5);
+        this.load.on('fileprogress', function (file) {
+            console.log(file.src);
+        });
+        this.load.on('complete', function () {
+            console.log('complete');
+            progressBar.destroy();
+            progressBox.destroy();
+            loadingText.destroy();
+            percentText.destroy();
+        });
+
+        //Loading bar text
+        this.loadFont('pixelFont', font);
+        let loadingText = this.add.text(this.sys.canvas.width / 2, this.sys.canvas.height / 2 - 30, 'Loading...', { fontFamily: 'pixelFont', fontSize: 40, color: '#5e1675ff' }).setOrigin(0.5, 0.5);
+
+        // Percent bar text
+        let percentText = this.add.text(this.sys.canvas.width / 2, this.sys.canvas.height / 2 + 70, '0%', { fontFamily: 'pixelFont', fontSize: 24, color: '#5e1675ff' }).setOrigin(0.5, 0.5);
 
     }
 
