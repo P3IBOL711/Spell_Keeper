@@ -219,7 +219,7 @@ export default class BossTree extends Enemy {
 
             
             super.receiveDamage(damage);
-            hudEvents.emit('boss',this.life);
+            hudEvents.emit('bosslife',this.life);
             if(this.life <= 0){
                 this.body.enable = true;
                 this.dieSFX.play()
