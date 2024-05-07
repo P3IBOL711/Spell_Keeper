@@ -49,7 +49,9 @@ export default class MainMenu extends Phaser.Scene {
             this.jukebox.playMainTheme()
         }
 
-        this.controlsButton = this.add.text(180, 230, '> CONTROLS', { fontFamily: 'pixelFont', fontSize: 60, color: '#000000', fontStyle: 'bold' });
+        this.controlsButton = this.add.text(0, 0, '> CONTROLS', { fontFamily: 'pixelFont', fontSize: 60, color: '#000000', fontStyle: 'bold' });
+        this.controlsButton.setX(this.sys.game.canvas.width/2 - text.width + 30);
+        this.controlsButton.setY(this.sys.game.canvas.height/2 - text.height + 60);
 
         this.playButton = this.add.text(0, 0, '> PLAY', { fontFamily: 'pixelFont', fontSize: 60, color: '#000000' , fontStyle: 'bold'});
         this.playButton.setX(this.sys.game.canvas.width/2 - text.width + 30);

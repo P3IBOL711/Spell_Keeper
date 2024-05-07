@@ -13,7 +13,8 @@ export default class ControlsMenu00 extends Phaser.Scene{
     }
 
     create(){
-        this.add.image(0,0,'controlsBackground').setOrigin(0).setDepth(0)//Background
+        let bg = this.add.image(0,0,'controlsBackground').setOrigin(0).setDepth(0)//Background
+        bg.setDisplaySize(this.sys.game.canvas.width, this.sys.game.canvas.height);
 
         this.add.image(190,5,'titleDecoration').setOrigin(0).setDepth(1).setScale(1.5)//Title decoration
 
@@ -27,7 +28,7 @@ export default class ControlsMenu00 extends Phaser.Scene{
 
         this.add.text(400, 28, 'CONTROLS', { fontFamily: 'pixelFont', fontSize: 60, color: '#5e1675ff' , fontStyle: 'bold'}).setDepth(1);
         this.add.text(75, 33, 'BACK', { fontFamily: 'pixelFont', fontSize: 40, color: '#5e1675ff' , fontStyle: 'bold'});
-        this.add.text(855, 405, 'NEXT', { fontFamily: 'pixelFont', fontSize: 40, color: '#5e1675ff' , fontStyle: 'bold'});
+        this.add.text(this.sys.game.canvas.width - 140, this.sys.game.canvas.height - 75, 'NEXT', { fontFamily: 'pixelFont', fontSize: 40, color: '#5e1675ff' , fontStyle: 'bold'});
         this.add.text(115, 190, 'MOVEMENT', { fontFamily: 'pixelFont', fontSize: 50, color: '#5e1675ff' , fontStyle: 'bold'});
         this.add.text(345, 190, 'MELEE ATTACK', { fontFamily: 'pixelFont', fontSize: 50, color: '#5e1675ff' , fontStyle: 'bold'});
         this.add.text(665, 190, 'DISTANCE ATTACK', { fontFamily: 'pixelFont', fontSize: 50, color: '#5e1675ff' , fontStyle: 'bold'});
@@ -47,7 +48,7 @@ export default class ControlsMenu00 extends Phaser.Scene{
             this.scene.start('mainMenu');
        })
 
-       this.nextButton = this.add.image(925, 400, 'nextButton').setOrigin(0).setDepth(1).setScale(1.5);
+       this.nextButton = this.add.image(this.sys.game.canvas.width - 70, this.sys.game.canvas.height - 80, 'nextButton').setOrigin(0).setDepth(1).setScale(1.5);
        this.nextButton.setInteractive();
        this.nextButton.on("pointerover", ()=>{
             this.nextButton.setScale(1.6)
