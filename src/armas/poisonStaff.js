@@ -32,7 +32,7 @@ export default class PoisonStaff extends arma {
     }
 
     getText(){
-        return "Nos costo mucho implementar el veneno x2";
+        return "It was very hard to do the poison x2";
     }
 
 
