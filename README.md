@@ -29,9 +29,9 @@ Además, el mercader tratará de ayudarle vendiéndole objetos mágicos y armas 
 - **Moverse** en 8 direcciones, norte, sur, este, oeste, noreste, noroeste, sureste y suroeste con las teclas WASD.
 - **Recoger** objetos pasando por encima de ellos.
 - **Atacar** cuerpo a cuerpo y a distancia con el click izquierdo para el ataque cuerpo a cuerpo y con el click derecho para el ataque a distancia. Los ataques a distancia consumen un recurso/estadística del jugador, el mana, este se consume usando ataques a distancia.
-- **Equiparse** armas usando las teclas Q y E para rotar a izquierda o derecha tus armas del tipo que estes atacando en ese momento, es decir, si estabas con un arma cuerpo a cuerpo y pulsas Q y E rotaras sobre las armas cuerpo a cuerpo y lo mismo para cuando ataques a distancia.
-- **Interactuar** con ciertos objetos del entorno mediante la tecla F, estos objetos veras un reborde blanco para poder interactuar con ellos.
-- **Escudarse** del daño presionando la tecla SHIFT, durante 3 segundos eres inmune a todo daño que te venga y cuando acaba esa duración el escudo entra en enfriamiento durante 10 segundo en los cuales no podrás usar esta mecánica.
+- **Equiparse** armas usando las teclas Q y E para rotar a izquierda o derecha tus armas del tipo que estés atacando en ese momento, es decir, si estabas con un arma cuerpo a cuerpo y pulsas Q y E rotaras sobre las armas cuerpo a cuerpo y lo mismo para cuando uses ataques a distancia.
+- **Interactuar** con ciertos objetos del entorno mediante la tecla F, en estos objetos verás un reborde blanco para poder interactuar con ellos (o no, jeje).
+- **Escudarse** del daño presionando la tecla SHIFT, durante 3 segundos eres inmune a todo daño que te venga y cuando acaba esa duración el escudo entra en enfriamiento durante 10 segundos en los cuales no podrás usar esta mecánica.
 
 DEPRECADO
 - **Comprar** objetos en la tienda.
