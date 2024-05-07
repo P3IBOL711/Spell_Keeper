@@ -3,84 +3,62 @@
   src: url('../assets/fonts/VT323Regular.ttf');
 }
 
-.bg-image {
-   /* Full height */
-   height: 100%; 
-  
-   /* Center and scale the image nicely */
-   background-position: center;
-   background-repeat: no-repeat;
-   background-size: cover;
+div { 
+  min-width: 1000px; /* Set a minimum width for the div */ 
+} 
+
+body {
+  background-color: #d7ace4;
+  background-size: cover;
 }
 
-.img1 {
-  background-image: url("../assets/prueba3.jpg");
-}
-
-.img2 {
-  background: linear-gradient(to bottom, #8A4DCF, #9773BF);
-  background-color: #8A4DCF;
-  height: 1150px;
-}
-
-.img3{
-  background-color: #9773BF;
-}
-
-h1 {
-  position: absolute;
-  top: 30%; 
-  left: 50%; 
-  transform: translate(-50%, -50%); 
-  background-color: #ffffff00;
-  padding: 10px 20px; 
-  font-size: 20px; 
+.main_title{
+  line-height: 1px;
+  width: 100%;
+  height: 150;
   text-align: center;
-  color:rgb(255, 255, 255);
+  color: #70489c;
+  text-shadow: 5px 5px 0px #370072;
   font-family: 'pixelFont';
-  font-size: 150px;
+  font-size: 100px;
   font-weight: bold; /* Add bold style */
 }
 
-h1 span {
-  display: block;
-  font-size: 150px;
+/*Parte del juego*/
+#juego {
+  margin-top: 150px;
 }
 
-
 .subtitle{
-  position: relative;
-  background-color: #ffffff00;
+
+  line-height:1px;
+  width: 100%;
+  height: 100;
   text-align: center;
-  color:rgb(255, 255, 255);
+  color: #70489c;
+  text-shadow: 2px 2px 0px #370072;
   font-family: 'pixelFont';
   font-size: 75px;
   font-weight: bold; /* Add bold style */
 }
 
 .subtitle span{
-  display: block;
-  position: relative;
-  background-color: #ffffff00;
-  text-align: center;
-  color:rgb(255, 255, 255);
-  font-family: 'pixelFont';
+  line-height:1px;
   font-size: 40px;
-  font-weight: bold; /* Add bold style */
-  margin-bottom: 20px;
 }
 
-/*Parte del juego*/
-
-.subtitle span{
-  display: block;
-  position: relative;
-  background-color: #ffffff00;
+.creators{
+  line-height:1px;
+  width: 100%;
+  height: auto;
   text-align: center;
-  color:rgb(255, 255, 255);
+  color: #70489c;
+  text-shadow: 2px 2px 0px #370072;
   font-family: 'pixelFont';
-  font-size: 40px;
+  font-size: 75px;
   font-weight: bold; /* Add bold style */
-  margin-bottom: 20px;
 }
 
+.creators span{
+  font-size: 40px;
+}
