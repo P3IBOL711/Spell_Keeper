@@ -30,6 +30,8 @@ import BossTree from '../enemies/bossTree/bossTree.js'
 import BossSpawner from '../bossSpawner.js'
 import key from '../objetos/key.js'
 import ChargeSword from '../armas/chargeSword.js'
+import BossChest from '../bossChest.js'
+import HoeChest from '../hoechest.js'
 
 
 
@@ -83,7 +85,7 @@ export default class Room extends Phaser.Scene {
                 weaponMult: 1,       // Multiplier for weapon damage
                 moveSpeed: 0,        // Player movement speed
                 lck: 0,              // Player luck stat
-                MeleeWeaponArray: [new ChargeSword(this, 0, 0, 1)], // Array to store melee weapons
+                MeleeWeaponArray: [new dagger(this, 0, 0, 1)], // Array to store melee weapons
                 RangedWeaponArray: [new FireStaff(this, 0, 0, 1)],// Array to store ranged weapons
                 ActMelIndex: 0,      // Index of the currently active melee weapon
                 ActRangIndex: 0,     // Index of the currently active ranged weapon
@@ -374,6 +376,10 @@ export default class Room extends Phaser.Scene {
                         this.fireArray.push(new Fire(this, objeto.x + objeto.width / 2, (objeto.y + objeto.height / 2) - 8, objeto.width, objeto.height, objeto.rotation))
                     else
                         this.fireArray.push(new Fire(this, (objeto.x - objeto.width / 2) + 32, (objeto.y + objeto.height / 2) - 40, objeto.width, objeto.height, objeto.rotation))
+            }else if(objeto.type === 'BossChest'){
+                new BossChest(this,objeto.x,objeto.y,32,32,this.player,false)
+            }else if(objeto.type === 'HoeChest'){
+                new HoeChest(this,objeto.x,objeto.y,32,32,this.player,false)
             }
         }
     }

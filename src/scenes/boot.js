@@ -76,6 +76,7 @@ import shieldReady from '../../assets/HUD/_UI_shield_ready.png'
 import shieldCD from '../../assets/HUD/_UI_shield_cd.png'
 
 import chest from '../../assets/armory/sprites/chests.png'
+import hoechest from '../../assets/misc/hoechest.png'
 import BossChest from '../../assets/misc/bosschest.png'
 import Fire from '../../assets/misc/fire.png'
 import font from 'url:../../assets/fonts/VT323Regular.ttf'
@@ -130,6 +131,7 @@ import chargingswordSFX from 'url:../../assets/sound/effects/weapons/chargingswo
 import swordSFX from 'url:../../assets/sound/effects/weapons/sword.wav'
 import drainswordSFX from 'url:../../assets/sound/effects/weapons/drainsword.wav'
 import firestaffSFX from 'url:../../assets/sound/effects/weapons/firestaff.wav'
+import chestSFX from 'url:../../assets/sound/effects/chest.wav'
 // Bosses
 // Tree
 import ArbolTrans from '../../assets/bosses/tree/Arbol_Trans.png'
@@ -218,6 +220,7 @@ export default class Boot extends Phaser.Scene {
     //Items
     this.load.spritesheet('chest',chest, { frameWidth: 32, frameHeight:32 });
     this.load.spritesheet('bosschest',BossChest, { frameWidth: 32, frameHeight:32 });
+    this.load.spritesheet('hoechest',hoechest, { frameWidth: 32, frameHeight:32 });
     this.load.image('healingHeart', healingHeart);
     this.load.image('halfHealingHeart', halfHealingHeart);
     this.load.image('potionOfMana', manaPotion);
@@ -257,6 +260,7 @@ export default class Boot extends Phaser.Scene {
 
     //Audio
     this.load.audio('lavagolem',lavaSfx)
+    this.load.audio('chestsfx',chestSFX)
     this.load.audio('icestaffsfx',icestaffSFX)
     this.load.audio('hoesfx',hoeSFX)
     this.load.audio('chargedsword',chargeswordSFX)
