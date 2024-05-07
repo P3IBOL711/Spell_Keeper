@@ -32,7 +32,7 @@ export default class IceStaff extends arma {
         super.preUpdate(t, dt);
     }
     getText(){
-        return "PRUEBA";
+        return "Cuidado que quema";
     }
 
 

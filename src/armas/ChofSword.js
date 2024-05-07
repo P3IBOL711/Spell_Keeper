@@ -36,7 +36,7 @@ export default class ChofSword extends meleeWeapon {
     }
 
     getText(){
-        return "PRUEBA";
+        return "Cuidado, sirve para untar mantequilla";
     }
 
 }

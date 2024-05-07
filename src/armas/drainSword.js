@@ -36,7 +36,7 @@ export default class DrainSword extends meleeWeapon {
     }
 
     getText(){
-        return "PRUEBA";
+        return "Te la absorbo (la vida)";
     }
 
 
