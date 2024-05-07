@@ -769,6 +769,63 @@ export default class Dungeongen {
         return newDungeon;
     }
 
+    *checkForEmptyPathwaysLast(x, y, room, dungeon) {
+
+        for (let direction of ['n', 's', 'e', 'w']) {
+
+            switch (direction) {
+
+                case 'n':
+                    if (y - 1 >= 0) {
+                        if (room.door_north === true && dungeon[y - 1][x].empty === true) { //Si hay un camino que lleva a la nada norte
+                            yield direction;
+                        }
+                    } else {
+                        if (room.door_north === true)
+                            yield direction;
+                    }
+                    yield null;
+                    break;
+                case 's':
+                    if (y + 1 < M) {
+                        if (room.door_south === true && dungeon[y + 1][x].empty === true) { //Si hay un camino que lleva a la nada sur
+                            yield direction;
+                        }
+                    } else {
+                        if (room.door_south === true)
+                            yield direction;
+                    }
+                    yield null;
+                    break;
+                case 'e':
+                    if (x + 1 < N) {
+                        if (room.door_east === true && dungeon[y][x + 1].empty === true) { //Si hay un camino que lleva a la nada este
+                            yield direction;
+                        }
+                    } else {
+                        if (room.door_east === true)
+                            yield direction;
+                    }
+                    yield null;
+                    break;
+                case 'w':
+                    if (x - 1 >= 0) {
+                        if (room.door_west === true && dungeon[y][x - 1].empty === true) { //Si hay un camino que lleva a la nada oeste
+                            yield direction;
+                        }
+                    } else {
+                        if (room.door_west === true)
+                            yield direction;
+                    }
+                    yield null;
+                    break;
+
+            }
+
+        }
+
+    }
+
     *checkForEmptyPathways(x, y, room, dungeon) {
 
         for (let direction of ['n', 's', 'e', 'w']) {
@@ -1013,7 +1070,7 @@ export default class Dungeongen {
 
         for (let x = 0; x < N; x++)
             for (let y = 0; y < M; y++)
-                for (let dir of this.checkForEmptyPathways(x, y, dungeon[y][x], dungeon))
+                for (let dir of this.checkForEmptyPathwaysLast(x, y, dungeon[y][x], dungeon))
                     if (dir !== null)
                         return false;
         return this.thereIsExit //&& this.thereIsShop;

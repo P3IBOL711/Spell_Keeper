@@ -91,7 +91,8 @@ export default class Room extends Phaser.Scene {
                 ActMelIndex: 0,      // Index of the currently active melee weapon
                 ActRangIndex: 0,     // Index of the currently active ranged weapon
                 lastWeaponUsed: null, // Last weapon used (can be set to the name or ID of the weapon)
-                keys: 1
+                keys: 1,
+                usedShield: false
             };
         } else {
             this.globalPlayerStats = obj.playerStat;
@@ -268,7 +269,7 @@ export default class Room extends Phaser.Scene {
         this.globalPlayerStats.RangedWeaponArray = newRangedArray;
 
 
-        this.player = new Player(this, playerX, playerY, this.globalPlayerStats.life, this.globalPlayerStats.maximumLife, this.globalPlayerStats.mana, this.globalPlayerStats.maximumMana, this.globalPlayerStats.weaponMult, this.globalPlayerStats.moveSpeed, this.globalPlayerStats.lck, this.globalPlayerStats.MeleeWeaponArray, this.globalPlayerStats.RangedWeaponArray, this.globalPlayerStats.ActMelIndex, this.globalPlayerStats.ActRangIndex, this.globalPlayerStats.lastWeaponUsed, this.globalPlayerStats.keys);
+        this.player = new Player(this, playerX, playerY, this.globalPlayerStats.life, this.globalPlayerStats.maximumLife, this.globalPlayerStats.mana, this.globalPlayerStats.maximumMana, this.globalPlayerStats.weaponMult, this.globalPlayerStats.moveSpeed, this.globalPlayerStats.lck, this.globalPlayerStats.MeleeWeaponArray, this.globalPlayerStats.RangedWeaponArray, this.globalPlayerStats.ActMelIndex, this.globalPlayerStats.ActRangIndex, this.globalPlayerStats.lastWeaponUsed, this.globalPlayerStats.keys, this.globalPlayerStats.usedShield);
         this.physics.add.collider(this.enviromental, walls, (obj) => {
             if (obj.isProjectile())
                 obj.destroy();
@@ -282,7 +283,7 @@ export default class Room extends Phaser.Scene {
 
 
 
-        let haveGUI = this.scene.launch('gui', { life: this.player.actualLife, maxLife: this.player.maxLife, mana: this.player.actualMana, maxMana: this.player.maxMana, keys: this.player.key, equipedWeapon: this.player.equipedWeapon, fullScreen: this.scale.isFullscreen });
+        let haveGUI = this.scene.launch('gui', { life: this.player.actualLife, maxLife: this.player.maxLife, mana: this.player.actualMana, maxMana: this.player.maxMana, keys: this.player.key, equipedWeapon: this.player.equipedWeapon, fullScreen: this.scale.isFullscreen, shieldUsed: this.player.usedShield });
 
         this.enemies = this.add.group();
 
@@ -483,6 +484,7 @@ export default class Room extends Phaser.Scene {
         this.globalPlayerStats.ActRangIndex = this.player.rangedIndex
         this.globalPlayerStats.lastWeaponUsed = this.player.equipedWeapon
         this.globalPlayerStats.keys = this.player.key
+        this.globalPlayerStats.usedShield = this.player.usedShield
     }
 
     loadingBar() {

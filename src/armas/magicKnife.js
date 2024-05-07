@@ -3,7 +3,7 @@ import Phaser from "phaser";
 import arma from "./arma";
 import Knife from "../projectiles/knife";
 
-const DAMAGE = 2;
+const DAMAGE = 3;
 
 export default class MagicKnife extends arma {
     /**

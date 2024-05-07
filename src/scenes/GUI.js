@@ -30,6 +30,7 @@ export default class GUI extends Phaser.Scene {
         this.weaponEquiped = obj.equipedWeapon;
         this.keys = obj.keys
         this.fullScreen = obj.fullScreen;
+        this.usedShield = obj.usedShield;
     }
 
     create() {
@@ -55,7 +56,7 @@ export default class GUI extends Phaser.Scene {
                     this.playerKeysInfo = new keysDisplay(this, obj.x + 70, obj.y, 'key', this.keys);
                     break;
                 case 'Shield':
-                    this.playerShieldInfo = new shieldDisplay(this, obj.x + 48, obj.y - 4, 'ready_ui_shield', 'cd_ui_shield');
+                    this.playerShieldInfo = new shieldDisplay(this, obj.x + 48, obj.y - 4, 'ready_ui_shield', 'cd_ui_shield', this.usedShield);
                     break;
                 case 'ArmaEquipada':
                     this.displayEquipedWeapon = new weaponDisplay(this, obj.x, obj.y, obj.width, obj.height, this.weaponEquiped.id);
