@@ -104,25 +104,25 @@ ARMAS INICIALES
 
 ARMAS CUERPO A CUERPO:
 con propiedad _haveSlash_
-- **chargeSword**: arma que hace __ de daño y cada 4 ataques hace el cuadruple de daño que el daño original con un delay de 500 milisegundos por ataques y regenera 2 de mana por golpe.
-- **drainSword**: arma que hace __ de daño con la característica de que se cura la mitad del daño infligido a los enemigos con un delay de 500 milisegundos por ataque y no regenera mana.
-- **ChofSword**: arma básica que no hace nada mas que hacer __ de daño con un delay de 300 milisegundos y regenerando 40 de mana por golpe.
+- **chargeSword**: arma que hace 6 de daño y cada 4 ataques hace el cuadruple de daño que el daño original con un delay de 800 milisegundos por ataques y regenera 10 de mana por golpe.
+- **drainSword**: arma que hace 4 de daño con la característica de que se cura la mitad del daño infligido a los enemigos con un delay de 500 milisegundos por ataque y no regenera mana.
+- **ChofSword**: arma básica que no hace nada mas que hacer 1 de daño con un delay de 300 milisegundos y regenerando 45 de mana por golpe.
 - **HOE**: el arma definitiva la cual, por ser el arma definitiva al equiparse tambien viene incluido un gorro de paja a juego con el arma, cada ataque hace INFINITY de daño pero un area muy reducida con un delay de 100 milisegundos entre ataques y si da el ataque regenera todo el mana del jugador.
-- **lethalSword**: arma letal para tus enemigos ya que hace un daño __ por ataque con un delay de 200 milisegundos, pero también es letal para ti porque si recibes daño de cualquier fuente del juego teniendo equipada este arma moriras instantaneamente, regenera 20 de mana por ataque.
-- **magicSword**: arma que hace __ de daño por ataque con un delay de 300 milisegundos entre ataques, con la característica de que si el jugador tiene toda la vida (no ha recibido daño) este arma lanza un proyectil adicional al ataque cuerpo a cuerpo que inflije un tercio del daño del ataque orginal, regenerado 5 de mana por golpe.
-- **megaEspadaMortal**: el arma con el area de ataque más grande de todo el juego, haciendo __ de daño por golpe con un delay de 1000 milisegundos entre ataques y regenerando 170 de mana por golpe.
+- **lethalSword**: arma letal para tus enemigos ya que hace un daño 45 por ataque con un delay de 200 milisegundos, pero también es letal para ti porque si recibes daño de cualquier fuente del juego teniendo equipada este arma moriras instantaneamente, regenera 20 de mana por ataque.
+- **magicSword**: arma que hace 15 de daño por ataque con un delay de 300 milisegundos entre ataques, con la característica de que si el jugador tiene toda la vida (no ha recibido daño) este arma lanza un proyectil adicional al ataque cuerpo a cuerpo que inflije un tercio del daño del ataque orginal, regenerado 12 de mana por golpe.
+- **megaEspadaMortal**: el arma con el area de ataque más grande de todo el juego, haciendo 30 de daño por golpe con un delay de 1000 milisegundos entre ataques y regenerando 170 de mana por golpe.
 
 con propiedad _havePuncture_
-- **posionDagger**: arma que inflige 4 + X segundos de daño en el tiempo a los enemigos impactados con un delay de 250 milisegundos entre ataques y regenerando 20 de mana por golpe.
-- **spear**: arma básica que hace __ de daño con un delay de 250 milisegundos entre ataques, regenerando 30 de mana por golpe.
+- **posionDagger**: arma que inflige 4 + 2 de daño en 2 segundos en el tiempo a los enemigos impactados con un delay de 250 milisegundos entre ataques y regenerando 20 de mana por golpe.
+- **spear**: arma básica que hace 3 de daño con un delay de 250 milisegundos entre ataques, regenerando 15 de mana por golpe.
 
 ARMAS A DISTANCIA:
-- **iceStaff**: arma que lanza un proyectil de hielo infligiendo __ de daño con un delay de 250 milisegundos entre proyectil, con un coste por ataque de 50 de mana. El proyectil tiene una caracteristica que es que cuando impacta con un enemigo este se fragmenta creando una zona en ese sitio que si pasan por encima les hace __ de daño en el tiempo, esta zona tiene una duración de 5000 milisegundos.
-- **magicKnife**: arma que lanza un total de 10 proyectiles por ataque con convergen en en el punto en el cual ha sido lanzado el ataque, cada proyectil hace __ de daño y tiene un delay de 250 milisegundos entre ataques, costando cada ataque 50 de mana.
-- **poisonStaff**: arma que dispara un proyectil donde ese proyectil hace 3 + X segundos de daño en el tiempo al enemigo impactado con un delay de 300 milisegundos entre ataques, costando 10 de mana cada ataque.
-- **shotgun**: arma que dispara 15 proyectiles de la manera en la que se dispararian los perdigones de una escopeta (porque es una) haciendo __ de daño por proyectil con un delay de 250 milisegundos entre ataques, costando cada ataque 5 de mana.
-- **thompson**: arma que dispara proyectiles de manera muy rapida ya que tiene un delay de solo 50 milisegundos haciendo __ de daño por proyectil, costando cada ataque 5 de mana.
+- **iceStaff**: arma que lanza un proyectil de hielo infligiendo 10 de daño con un delay de 250 milisegundos entre proyectil, con un coste por ataque de 75 de mana. El proyectil tiene una caracteristica que es que cuando impacta con un enemigo este se fragmenta creando una zona en ese sitio que si pasan por encima les hace 4 de daño en el tiempo, esta zona tiene una duración de 5000 milisegundos.
+- **magicKnife**: arma que lanza un total de 10 proyectiles por ataque con convergen en en el punto en el cual ha sido lanzado el ataque, cada proyectil hace 2 de daño y tiene un delay de 250 milisegundos entre ataques, costando cada ataque 50 de mana.
+- **poisonStaff**: arma que dispara un proyectil donde ese proyectil hace 10 + 5  de daño en 2 segundos en el tiempo al enemigo impactado con un delay de 300 milisegundos entre ataques, costando 20 de mana cada ataque.
+- **shotgun**: arma que dispara 15 proyectiles de la manera en la que se dispararian los perdigones de una escopeta (porque es una) haciendo 4 de daño por proyectil con un delay de 250 milisegundos entre ataques, costando cada ataque 35 de mana.
+- **thompson**: arma que dispara proyectiles de manera muy rapida ya que tiene un delay de solo 50 milisegundos haciendo 5 de daño por proyectil, costando cada ataque 5 de mana.
 
-
+## BOSSES
 
 

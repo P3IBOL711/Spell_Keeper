@@ -4,7 +4,7 @@ import arma from "./arma";
 import PlayerHitBox from "../playerHitbox";
 import meleeWeapon from "./meleeWeapon";
 
-const DAMAGE = 3;
+const DAMAGE = 5;
 export default class Spear extends meleeWeapon {
  /**
      * Constructor del jugador
@@ -38,6 +38,6 @@ export default class Spear extends meleeWeapon {
     }
 
     manaRegen() {
-        return 30;
+        return 15;
     }
 }
