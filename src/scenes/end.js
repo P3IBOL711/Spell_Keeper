@@ -22,9 +22,9 @@ export default class End extends Phaser.Scene {
    */
   create() {
     this.scene.stop('gui');
-    this.add.text(500, 250, 'Se acabó!\nPulsa cualquier tecla para volver a jugar')
-        .setOrigin(0.5, 0.5)  // Colocamos el pivote en el centro de cuadro de texto 
-        .setAlign('center');  // Centramos el texto dentro del cuadro de texto
+    this.add.text(503, 200,"GAME OVER" , { fontFamily: 'pixelFont', fontSize: 150, color: '#808080' }).setOrigin(0.5, 0.5);
+    this.add.text(500, 190,"GAME OVER" , { fontFamily: 'pixelFont', fontSize: 150, color: '#ffffffff' }).setOrigin(0.5, 0.5);
+    this.add.text(500, 300,"Press any key to restart" , { fontFamily: 'pixelFont', fontSize: 25, color: '#ffffffff' }).setOrigin(0.5, 0.5);
 
     // Añadimos el listener para cuando se haya pulsado una tecla. Es probable que no
     // lleguemos a ver el mensaje porque veníamos con una tecla pulsada del juego (al 
