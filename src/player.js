@@ -16,7 +16,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
      * @param {number} y Coordenada Y
      */
 
-    constructor(scene, x, y, life, maximumLife, mana, maximumMana, weaponMult, moveSpeed, lck, MeleeWeaponArray, RangedWeaponArray, ActMelIndex, ActRangIndex, lastWeaponUsed, keys) {
+    constructor(scene, x, y, life, maximumLife, mana, maximumMana, weaponMult, moveSpeed, lck, MeleeWeaponArray, RangedWeaponArray, ActMelIndex, ActRangIndex, lastWeaponUsed, keys, usedShield) {
         super(scene, x, y, 'player');
 
         if (lastWeaponUsed === null)//Primera vez
@@ -104,6 +104,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.iFrame = false;
         this.shieldCooldown = 0;
         this.shieldUptime = 0;
+        this.usedShield = usedShield;
 
         //SONIDO
         this.initAudio()
@@ -200,7 +201,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
             if (this.shieldCooldown === 0) {
                 this.canBeDamaged = false;
                 this.escudo.setVisible(true);
-
                 let timer = this.scene.time.addEvent({
                     delay: 3000,
                     callback: this.scene.player.shieldOnCD,
@@ -507,6 +507,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.shieldCooldown = 1;
         this.canBeDamaged = true;
         this.escudo.setVisible(false);
+        this.usedShield = true;
         hudEvents.emit('updateShield', false);
 
         let cdShield = this.scene.time.addEvent({
@@ -518,6 +519,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     shieldOffCD() {
         this.shieldCooldown = 0;
+        this.usedShield = false;
         hudEvents.emit('updateShield', true);
     }
 
