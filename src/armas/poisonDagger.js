@@ -36,7 +36,7 @@ export default class PoisonDagger extends meleeWeapon {
     }
 
     getText(){
-        return "Nos costo mucho implementar el veneno";
+        return "It was very hard to do the poison";
     }
 
 

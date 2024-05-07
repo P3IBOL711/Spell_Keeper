@@ -4,7 +4,7 @@ export default class shieldDisplay extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, shieldON, shieldOFF, actualShield) {
         super(scene, x, y, (actualShield) ? shieldOFF : shieldON);
         this.x = x;
-        this.y = y;
+        this.y = y - 10;
         this.scene.add.existing(this);
         //this.setScale(2);
         this.setScale(1.5)

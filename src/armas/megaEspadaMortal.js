@@ -30,7 +30,7 @@ export default class BigSword extends meleeWeapon {
         super.preUpdate(t, dt)
     }
     getText(){
-        return "Es TAAAN larga";
+        return "Its SOOOO big";
     }
 
     haveSlash() {
