@@ -1,8 +1,8 @@
 import Phaser from "phaser";
 
 export default class shieldDisplay extends Phaser.GameObjects.Sprite {
-    constructor(scene, x, y, shieldON, shieldOFF) {
-        super(scene, x, y, shieldON);
+    constructor(scene, x, y, shieldON, shieldOFF, actualShield) {
+        super(scene, x, y, (actualShield) ? shieldOFF : shieldON);
         this.x = x;
         this.y = y;
         this.scene.add.existing(this);
