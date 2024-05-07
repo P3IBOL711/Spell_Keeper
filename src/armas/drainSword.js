@@ -35,6 +35,11 @@ export default class DrainSword extends meleeWeapon {
         this.SFX.play()
     }
 
+    getText(){
+        return "PRUEBA";
+    }
+
+
     manaRegen() {
         return 0;
     }

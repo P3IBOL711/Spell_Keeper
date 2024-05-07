@@ -10,6 +10,7 @@ import FullScreenButton from "../HUD/fullScreenButton";
 
 import { eventManager as hudEvents } from "../eventCenter";
 import BossDisplay from "../HUD/bossDisplay";
+import WeaponInfo from "../HUD/weaponInfo";
 
 export default class GUI extends Phaser.Scene {
 
@@ -66,6 +67,9 @@ export default class GUI extends Phaser.Scene {
                 case 'FullScreen':
                     this.fullScreenButton = new FullScreenButton(this, obj.x, obj.y, 'fullScreenButton', this.fullScreen);
                     break;
+                case 'WeaponInfo':
+                    this.weaponInfo = new WeaponInfo(this,obj.x,obj.y)
+                    break;
                 default:
                     console.warn('Tipo de objeto no reconocido:', obj.name);
             }
@@ -100,8 +104,14 @@ export default class GUI extends Phaser.Scene {
             this.bossBar.placeName(obj.name)
         });
 
-        hudEvents.on('bosslife',(life)=>{
+        hudEvents.on('bosslife', (life) => {
             this.bossBar.setMeterPercentageAnimated(life);
+        })
+
+        hudEvents.on('newweapon', (name) => {
+
+            this.weaponInfo.activates(name)
+           // this.weaponInfo.setName(name)
         })
     }
 }

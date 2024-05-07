@@ -42,6 +42,10 @@ export default class hoe extends meleeWeapon {
         super.attack(target);
     }
 
+    getText(){
+        return "PRUEBA";
+    }
+
     manaRegen() {
         return this.scene.player.maxMana;
     }

@@ -41,6 +41,10 @@ export default class dagger extends meleeWeapon {
         this.attackSfx.play()
     }
 
+    getText(){
+        return "";
+    }
+
 
     manaRegen() {
         return 15;

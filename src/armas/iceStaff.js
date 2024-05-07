@@ -31,6 +31,10 @@ export default class IceStaff extends arma {
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
     }
+    getText(){
+        return "PRUEBA";
+    }
+
 
     attack(target) {
         //super.attackAction();

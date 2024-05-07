@@ -119,6 +119,11 @@ export default class meleeWeapon extends arma {
         this.attackHitbox = new PlayerHitBox(this.scene, hitboxX, hitboxY, hitboxWidth, hitboxHeight, this.damage, this.angle,this.id);
     }
 
+    getText(){
+        return "PRUEBA";
+    }
+
+
     attackFinished() {
         if(this.attackHitbox)
             this.attackHitbox.destroy();

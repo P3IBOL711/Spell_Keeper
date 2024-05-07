@@ -31,7 +31,7 @@ export default class weaponDisplay extends Phaser.GameObjects.Group {
                 color: "#ffffff",
                 align: "center",
             }
-        );
+        )
         this.weaponText.setOrigin(0.5, 0.5);
 
         this.add(this.frame);

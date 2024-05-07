@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-
+import { eventManager as hudEvents } from "../eventCenter";
 export default class arma extends Phaser.GameObjects.Sprite {
     /**
         * Constructor del jugador
@@ -17,6 +17,7 @@ export default class arma extends Phaser.GameObjects.Sprite {
         let overlapCollider = this.scene.physics.add.overlap(this, this.scene.player, (weapon) => {
                 if (weapon.isMelee()) {
                     this.scene.player.takeMeleeWeapon(weapon);
+                    hudEvents.emit('newweapon',weapon.getText())
                 }
                 else {
                     this.scene.player.takeRangedWeapon(weapon);

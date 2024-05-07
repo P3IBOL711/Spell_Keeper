@@ -35,6 +35,11 @@ export default class PoisonDagger extends meleeWeapon {
         super.attack(target);
     }
 
+    getText(){
+        return "PRUEBA";
+    }
+
+
     manaRegen() {
         return 20;
     }

@@ -31,6 +31,11 @@ export default class PoisonStaff extends arma {
         super.preUpdate(t, dt)
     }
 
+    getText(){
+        return "PRUEBA";
+    }
+
+
     attack(target) {
         if(this.x != 0 && this.y != 0)
             new Bullet(this.scene, this.x, this.y, target, true, this.damage);

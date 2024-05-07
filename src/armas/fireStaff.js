@@ -41,6 +41,10 @@ export default class FireStaff extends arma {
         }
     }
 
+    getText(){
+        return "";
+    }
+
     manaCost() {
         return 15;
     }
