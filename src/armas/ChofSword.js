@@ -7,6 +7,7 @@ export default class ChofSword extends meleeWeapon {
     constructor(scene, x, y) {
         super(scene, x, y, 'espadaNormalucha');
         this.scene.add.existing(this);
+        this.SFX = this.scene.sound.add('swordsfx')
         this.scene.physics.add.existing(this);
         this.delay = 300;
         this.damage = 1;
@@ -26,6 +27,7 @@ export default class ChofSword extends meleeWeapon {
     }
 
     attack(target) {
+        this.SFX.play()
         super.attack(target);
     }
 
