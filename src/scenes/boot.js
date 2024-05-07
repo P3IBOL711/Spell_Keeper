@@ -104,6 +104,7 @@ import libIntro from 'url:../../assets/sound/music/libintro.wav'
 import tutloop from 'url:../../assets/sound/music/tutloop.wav'
 import gardintro from 'url:../../assets/sound/music/gardintro.wav'
 import gardloop from 'url:../../assets/sound/music/gardloop.wav'
+import treeintro from 'url:../../assets/sound/music/treeintro.wav'
 import treeloop from 'url:../../assets/sound/music/treeloop.wav'
 import evilintro from 'url:../../assets/sound/music/evilintro.mp3' 
 import evilloop from 'url:../../assets/sound/music/evilloop.mp3' 
@@ -253,6 +254,7 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('gardintro', gardintro)
     this.load.audio('gardloop', gardloop)
     this.load.audio('maintitle',mainTitle)
+    this.load.audio('treeintro',treeintro)
     this.load.audio('treeloop',treeloop)
     this.load.audio('evilintro',evilintro)
     this.load.audio('evilloop',evilloop)

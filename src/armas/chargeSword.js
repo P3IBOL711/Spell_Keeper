@@ -13,10 +13,10 @@ export default class ChargeSword extends meleeWeapon {
         super(scene, x, y, 'chargesword');
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.delay = 500;
-        this.damage = 4;
+        this.delay = 800;
+        this.damage = 6;
         this.level = 0;
-        this.hitboxMultiplier = 3;
+        this.hitboxMultiplier = 2.5;
 
         this.id = 'chargesword';
         this.setActive(true);
@@ -46,13 +46,21 @@ export default class ChargeSword extends meleeWeapon {
         this.anims.create({
             key: 'level3',
             frames: this.anims.generateFrameNumbers('chargesword', { start: 3, end: 4 }),
-            frameRate: 15,
+            frameRate: 7,
             repeat: -1
         });
     }
 
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
+    }
+
+    haveSlash() {
+        return true;
+    }
+
+    attack(target) {
+        this.level++;
         switch (this.level) {
             case 0:
                 this.anims.play('level0')
@@ -66,21 +74,20 @@ export default class ChargeSword extends meleeWeapon {
             case 3:
                 this.anims.play('level3')
                 break;
+            default:
+                this.anims.play('level0')
+                break;
         }
-    }
-
-    haveSlash() {
-        return true;
-    }
-
-    attack(target) {
-        this.level++;
-        if(this.level === 3)
+        if (this.level === 4)
             this.damage = this.damage * 4
-        if (this.level > 3){
+        if (this.level > 4) {
             this.level = 0
             this.damage = this.damage / 4
         }
+        this.attack2(target)
+    }
+
+    attack2(target) {
         super.attack(target);
     }
 

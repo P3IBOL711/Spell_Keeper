@@ -47,7 +47,7 @@ export default class Skeleton extends DistanceEnemy {
 
         this.setScale(1);
 
-        this.speed = 20;
+        this.speed = 30;
 
         this.life = 15;
 
