@@ -33,7 +33,7 @@ export default class lethalSword extends meleeWeapon {
         super.attack(target);
     }
     getText(){
-        return "PRUEBA";
+        return "Cuida tu espalda";
     }
 
     manaRegen() {

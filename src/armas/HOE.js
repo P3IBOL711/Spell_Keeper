@@ -43,7 +43,7 @@ export default class hoe extends meleeWeapon {
     }
 
     getText(){
-        return "PRUEBA";
+        return "Cosecha propia";
     }
 
     manaRegen() {

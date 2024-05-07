@@ -63,7 +63,7 @@ export default class ChargeSword extends meleeWeapon {
     }
 
     getText(){
-        return "PRUEBA";
+        return "Cargando...";
     }
 
 
