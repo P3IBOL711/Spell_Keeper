@@ -173,7 +173,7 @@ export default class CarnivorousPlant extends Enemy {
                 this.meleeTimerAttack.paused = true;
                 this.playAfterRepeat('idle');
             }
-            else if (dist > 50 && dist <= 300) {
+            else if (dist > 50 && dist <= 100) {
                 this.meleeTimerAttack.paused = true;
                 this.distanceTimerAttack.paused = false;
             }
