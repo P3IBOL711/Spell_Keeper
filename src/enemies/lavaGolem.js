@@ -15,7 +15,7 @@ export default class LavaGolem extends MeleeEnemy {
     */
 
     constructor(scene, x, y, target) {
-        super(scene, x, y, target, 'lavaGolem', 1500);
+        super(scene, x, y, target, 'lavagolem', 1500);
 
         this.anims.create({
             key: 'idle',
@@ -45,6 +45,10 @@ export default class LavaGolem extends MeleeEnemy {
             repeat: 0
         });
 
+        this.SFX = this.scene.sound.add('lavagolem')
+
+        this.SFX.play()
+
         this.setScale(1);
 
         this.speed = 20;
@@ -56,7 +60,7 @@ export default class LavaGolem extends MeleeEnemy {
         this.body.setSize(this.width * 0.5, this.height * 0.93, true);
     }
 
-    spawnHitbox(){
+    spawnHitbox() {
         this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? 55 : -55), this.y - 10, 20, 55, this.target, this.damage);
     }
 
@@ -76,6 +80,7 @@ export default class LavaGolem extends MeleeEnemy {
         // Preguntar si podría ser mas eficiente
         if (this.life > 0) {
             this.body.setOffset(this.width * (this.flipX ? 0.3 : 0.25), this.height * 0.08);
-        }
+        } else
+            this.SFX.play()
     }
 }

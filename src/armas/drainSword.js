@@ -12,6 +12,7 @@ export default class DrainSword extends meleeWeapon {
     constructor(scene, x, y) {
         super(scene, x, y, 'drainsword');
         this.scene.add.existing(this);
+        this.SFX = this.scene.sound.add('drainswordsfx')
         this.scene.physics.add.existing(this);
         this.delay = 500;
         this.damage = 4;
@@ -31,6 +32,7 @@ export default class DrainSword extends meleeWeapon {
 
     attack(target) {
         super.attack(target);
+        this.SFX.play()
     }
 
     manaRegen() {

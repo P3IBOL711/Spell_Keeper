@@ -22,6 +22,9 @@ export default class ChargeSword extends meleeWeapon {
         this.setActive(true);
         this.setVisible(true);
 
+        this.chargedSFX = this.scene.sound.add('chargedsword')
+        this.chargingSFX = this.scene.sound.add('chargingsword')
+
         this.anims.create({
             key: 'level0',
             frames: this.anims.generateFrameNumbers('chargesword', { start: 0, end: 0 }),
@@ -63,18 +66,23 @@ export default class ChargeSword extends meleeWeapon {
         this.level++;
         switch (this.level) {
             case 0:
+                this.chargingSFX.play()
                 this.anims.play('level0')
                 break;
             case 1:
+                this.chargingSFX.play()
                 this.anims.play('level1')
                 break;
             case 2:
+                this.chargingSFX.play()
                 this.anims.play('level2')
                 break;
             case 3:
+                this.chargedSFX.play()
                 this.anims.play('level3')
                 break;
             default:
+                this.chargingSFX.play()
                 this.anims.play('level0')
                 break;
         }

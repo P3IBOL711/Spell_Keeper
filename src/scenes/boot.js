@@ -122,6 +122,12 @@ import ErrorPuzzle from 'url:../../assets/sound/effects/error.wav'
 import MageLaugh from 'url:../../assets/sound/effects/magelaugh.wav'
 import DemonSpawn from 'url:../../assets/sound/effects/demonspawn.wav'
 import DemonExplosion from 'url:../../assets/sound/effects/demonexplosion.wav'
+import lavaSfx from 'url:../../assets/sound/effects/lavagolem.wav'
+import chargeswordSFX from 'url:../../assets/sound/effects/weapons/chargedsword.wav'
+import chargingswordSFX from 'url:../../assets/sound/effects/weapons/chargingsword.wav'
+import swordSFX from 'url:../../assets/sound/effects/weapons/sword.wav'
+import drainswordSFX from 'url:../../assets/sound/effects/weapons/drainsword.wav'
+import firestaffSFX from 'url:../../assets/sound/effects/weapons/firestaff.wav'
 // Bosses
 // Tree
 import ArbolTrans from '../../assets/bosses/tree/Arbol_Trans.png'
@@ -248,6 +254,9 @@ export default class Boot extends Phaser.Scene {
 
 
     //Audio
+    this.load.audio('lavagolem',lavaSfx)
+    this.load.audio('chargedsword',chargeswordSFX)
+    this.load.audio('chargingsword',chargingswordSFX)
     this.load.audio('tutloop',tutloop)
     this.load.audio('libloop', libLoop)
     this.load.audio('libintro', libIntro)
@@ -258,7 +267,9 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('treeloop',treeloop)
     this.load.audio('evilintro',evilintro)
     this.load.audio('evilloop',evilloop)
-
+    this.load.audio('firestaffsfx',firestaffSFX)
+    this.load.audio('drainswordsfx',drainswordSFX)
+    this.load.audio('swordsfx',swordSFX)
     this.load.audio('playerhit',playerhit)
     this.load.audio('nomana',nomana)
     this.load.audio('shotgunsfx',ShotgunSFX)

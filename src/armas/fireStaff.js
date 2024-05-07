@@ -18,6 +18,7 @@ export default class FireStaff extends arma {
         super(scene, x, y, 'fireStaff')
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
+        this.SFX = this.scene.sound.add('firestaffsfx')
         this.delay = 350;
         this.x = x;
         this.y = y;
@@ -34,8 +35,10 @@ export default class FireStaff extends arma {
     }
 
     attack(target) {
-        if(this.x != 0 && this.y != 0)
+        if(this.x != 0 && this.y != 0){
+            this.SFX.play()
             new Fireball(this.scene, this.x, this.y, target, true, this.damage);
+        }
     }
 
     manaCost() {
