@@ -26,7 +26,7 @@ export default class EvilWizard extends Enemy {
 
         this.anims.create({
             key: 'spawn',
-            frames: this.anims.generateFrameNumbers('prespawn', { start: 50, end: 108 }),
+            frames: this.anims.generateFrameNumbers('prespawn', { start: 48, end: 108 }),
             frameRate: 7,
             repeat: 0
         });
@@ -84,6 +84,7 @@ export default class EvilWizard extends Enemy {
 
         this.laughSFX = this.scene.sound.add('magelaugh')
         this.spawnSFX = this.scene.sound.add('demonspawn')
+        this.explosionSFX = this.scene.sound.add('demonexplosion')
 
         this.scene.jukebox.stopAllMusic()
         this.scene.jukebox.playEvil()
@@ -196,7 +197,8 @@ export default class EvilWizard extends Enemy {
     }
 
     onTimerAttack3() {
-        if (this.firstFireDirection) {
+        this.explosionSFX.play()
+        if (this.firstFireDirection) {          
             new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 0, 90 * Math.PI / 180);
             new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 90 * Math.PI / 180, 180 * Math.PI / 180);
             new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 180 * Math.PI / 180, 270 * Math.PI / 180);

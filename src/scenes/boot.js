@@ -120,6 +120,7 @@ import TreeDie from 'url:../../assets/sound/effects/treedie.wav'
 import ErrorPuzzle from 'url:../../assets/sound/effects/error.wav'
 import MageLaugh from 'url:../../assets/sound/effects/magelaugh.wav'
 import DemonSpawn from 'url:../../assets/sound/effects/demonspawn.wav'
+import DemonExplosion from 'url:../../assets/sound/effects/demonexplosion.wav'
 // Bosses
 // Tree
 import ArbolTrans from '../../assets/bosses/tree/Arbol_Trans.png'
@@ -268,6 +269,7 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('errorpuzzle', ErrorPuzzle)
     this.load.audio('demonspawn',DemonSpawn)
     this.load.audio('magelaugh',MageLaugh)
+    this.load.audio('demonexplosion',DemonExplosion)
 
     // Background
 

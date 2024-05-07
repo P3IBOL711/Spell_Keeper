@@ -23,7 +23,7 @@ export default class Jukebox {
         this.evilintro = this.scene.sound.add('evilintro', { delay: 0 })
         this.evilloop = this.scene.sound.add('evilloop', { loop: true })
 
-        this.music.push(this.treeloop, this.main, this.tutloop, this.libintro, this.libloop, this.gardintro, this.gardloop);
+        this.music.push( this.evilintro,this.evilloop,this.treeloop, this.main, this.tutloop, this.libintro, this.libloop, this.gardintro, this.gardloop);
     }
 
     playIntro(level) {
