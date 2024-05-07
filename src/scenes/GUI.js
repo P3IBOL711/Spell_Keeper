@@ -97,8 +97,11 @@ export default class GUI extends Phaser.Scene {
 
         hudEvents.on('boss', (obj) => {
             this.bossBar.activates();
-            this.bossBar.setMeterPercentageAnimated(obj.bossLife / 5);
             this.bossBar.placeName(obj.name)
         });
+
+        hudEvents.on('bosslife',(life)=>{
+            this.bossBar.setMeterPercentageAnimated(life);
+        })
     }
 }

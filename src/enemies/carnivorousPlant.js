@@ -168,12 +168,12 @@ export default class CarnivorousPlant extends Enemy {
 
             let dist = Phaser.Math.Distance.Between(this.x, this.y, this.target.x, this.target.y);
 
-            if (dist > 500) {
+            if (dist > 300) {
                 this.distanceTimerAttack.paused = true;
                 this.meleeTimerAttack.paused = true;
                 this.playAfterRepeat('idle');
             }
-            else if (dist > 120 && dist <= 500) {
+            else if (dist > 50 && dist <= 300) {
                 this.meleeTimerAttack.paused = true;
                 this.distanceTimerAttack.paused = false;
             }

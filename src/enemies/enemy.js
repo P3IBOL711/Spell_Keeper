@@ -60,7 +60,8 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
             if (this.anims.getName() === 'die') {
                 this.doSomethingVerySpecificBecauseYoureMyBelovedChild()
                 this.scene.enemies.remove(this);
-                this.scene.enemyHasDied();
+                if (this.id !== "childSlime")
+                    this.scene.enemyHasDied();
                 let loot = new lootGenerator(this.scene, this.x, this.y, this.scene.player.luck)
                 let rnd = Math.random();
                 if (rnd >= 0.85 - (this.scene.player.luck / 20))
@@ -71,7 +72,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
         this.pathFinding = this.scene.time.addEvent({
             delay: 200,
-            callback: this.goTo, 
+            callback: this.goTo,
             callbackScope: this,
             loop: true
         });
@@ -82,7 +83,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
     }
 
-    destroyEnemy(){
+    destroyEnemy() {
         this.destroy();
     }
 
@@ -92,8 +93,8 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
     goTo() {
         // Find a path to the targetdsa
 
-        this.path = this.navMesh.findPath({x: this.x, y: this.y},
-            {x: this.target.x, y: this.target.y});
+        this.path = this.navMesh.findPath({ x: this.x, y: this.y },
+            { x: this.target.x, y: this.target.y });
 
         // If there is a valid path, grab the first point from the path and set it as the target
         if (this.path && this.path.length > 0) this.nextPosition = this.path.shift();
@@ -101,14 +102,14 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
     }
 
 
-    
+
     receiveDamageOverTime(damage, durationInSeconds) {
-        if(this.life > 0) {
+        if (this.life > 0) {
             const totalTicks = durationInSeconds * 60; // Assuming 60 ticks per second
-    
+
             // Calculate the damage per tick
             const damagePerTick = damage / totalTicks;
-        
+
             // Create a tween for the poison effect
             this.tween = this.scene.tweens.add({
                 targets: this,
@@ -123,28 +124,28 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
                         if (this.life <= 0)
                             this.tween.stop();
                     }
-        
+
                     // Check if target is dead
                     else {
                         this.tween.stop();
-                      //  this.scene.enemyHasDied();
+                        //  this.scene.enemyHasDied();
                     }
                 }
             });
         }
     }
- 
-    
+
+
 
     receiveDamage(damage) {
-        if(this.vulnerable){
+        if (this.vulnerable) {
             this.life -= damage;
 
             this.scene.tweens.add({
                 targets: this,
                 alpha: 0,
                 ease: Phaser.Math.Easing.Elastic.InOut,
-                duration: 40, 
+                duration: 40,
                 repeat: 1,
                 yoyo: true,
                 onStart: () => {
@@ -156,10 +157,10 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
                 }
             })
 
-            if (this.life <= 0){
+            if (this.life <= 0) {
                 this.body.setVelocity(0);
                 this.body.enable = false;
-               // this.scene.enemyHasDied();
+                // this.scene.enemyHasDied();
                 this.stop();
                 this.play('die', true);
             }

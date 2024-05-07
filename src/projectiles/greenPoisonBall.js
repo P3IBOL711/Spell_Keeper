@@ -30,7 +30,7 @@ export default class GreenPoisonBall extends Projectile {
             repeat: 0
         });
 
-        this.setScale(2);
+        this.setScale(0.75);
 
         this.speed = 100;
 

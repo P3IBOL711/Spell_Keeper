@@ -26,7 +26,7 @@ export default class EvilWizard extends Enemy {
 
         this.anims.create({
             key: 'spawn',
-            frames: this.anims.generateFrameNumbers('prespawn', { start: 50, end: 108 }),
+            frames: this.anims.generateFrameNumbers('prespawn', { start: 48, end: 108 }),
             frameRate: 7,
             repeat: 0
         });
@@ -78,12 +78,14 @@ export default class EvilWizard extends Enemy {
         this.enemySpawner = new EnemySpawnerEvilWizard(scene, target);
 
         this.speed = 0;
-        this.life = 300;
+        this.maxLife = 1000;
+        this.life = this.maxLife;
 
         this.distanceAttack = 200;
 
         this.laughSFX = this.scene.sound.add('magelaugh')
         this.spawnSFX = this.scene.sound.add('demonspawn')
+        this.explosionSFX = this.scene.sound.add('demonexplosion')
 
         this.scene.jukebox.stopAllMusic()
         this.scene.jukebox.playEvil()
@@ -106,16 +108,21 @@ export default class EvilWizard extends Enemy {
                     this.spawnSFX.play()
                     this.scene.cutsceneStopped()
                     this.scene.player.setActive(true)
-                    hudEvents.emit('boss', {bossLife: this.life,name:"Dahto, el mago negro"});
+                    hudEvents.emit('boss', { bossLife: this.life, name: "Dahto, el mago negro" });
                 }
                 else if (this.anims.getName() === 'attack1') {
-                    this.attackZone.destroy(true);
+
                     this.attacking = false;
                     this.speed = 50;
 
                     this.body.setImmovable(false);
                 }
                 else if (this.anims.getName() === 'attack2') {
+                    for (let i = 0; i < 15; i++) {
+                        let lavaX = Phaser.Math.Between(250, 650);
+                        let lavaY = Phaser.Math.Between(125, 400);
+                        new LavaPuddle(this.scene, lavaX, lavaY);
+                    }
                     this.vulnerable = true;
                     this.attacking = false;
                     this.speed = 50;
@@ -128,6 +135,8 @@ export default class EvilWizard extends Enemy {
 
                     this.body.setImmovable(false);
                 }
+                
+
             }
         });
 
@@ -143,11 +152,7 @@ export default class EvilWizard extends Enemy {
                 else if (this.anims.getName() === 'attack2') {
                     // Invulnerable a los ataques a distancia, crea charcos de lava en el suelo que hacen daño al jugador si pasa por encima
                     this.vulnerable = false;
-                    for (let i = 0; i < 2; i++) {
-                        let lavaX = Phaser.Math.Between(250, 650);
-                        let lavaY = Phaser.Math.Between(125, 400);
-                        new LavaPuddle(this.scene, lavaX, lavaY);
-                    }
+
                 }
                 else if (this.anims.getName() === 'attack3') {
                     // Crea un ciruclo de fuego alrededor suya que se mueve hacia 
@@ -161,19 +166,25 @@ export default class EvilWizard extends Enemy {
             if (this.life > 0) {
                 if (this.anims.getName() === 'attack1' && this.anims.currentFrame.index === 7) {
                     // Carga un puñetazo hacia el jugador
-                    this.attackZone = new HitBox(this.scene, this.x + 20, this.y - 10, 100, 100, this.target, this.damage);
+                    this.speed = 250
+
                 }
             }
         });
 
         this.timerAttack3 = this.scene.time.addEvent({
-            delay: 1000,
+            delay: 700,
             callback: this.onTimerAttack3,
             callbackScope: this,
             loop: true
         });
 
         this.timerAttack3.paused = true;
+
+
+        this.scene.physics.add.overlap(this.scene.player,this, (player)=>{ 
+            player.receiveDamage(1);
+        })
     }
 
     destroyEnemy() {
@@ -186,6 +197,7 @@ export default class EvilWizard extends Enemy {
         this.anims.remove('die');
         this.stop();
         this.play('stayDead', true);
+        this.scene.start('credits')
     }
     onTimerAttack() {
         this.body.setImmovable(true);
@@ -196,6 +208,7 @@ export default class EvilWizard extends Enemy {
     }
 
     onTimerAttack3() {
+        this.explosionSFX.play()
         if (this.firstFireDirection) {
             new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 0, 90 * Math.PI / 180);
             new DevilFire(this.scene, this.x, this.y, this.target, false, 1, 90 * Math.PI / 180, 180 * Math.PI / 180);
@@ -221,7 +234,7 @@ export default class EvilWizard extends Enemy {
     receiveDamage(damage) {
         if (this.vulnerable && this.life > 0) {
             super.receiveDamage(damage);
-
+            hudEvents.emit('bosslife', this.life / this.maxLife);
             if (this.life <= 0) {
                 this.body.enable = true;
                 this.body.setImmovable(true);

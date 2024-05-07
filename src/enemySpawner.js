@@ -16,7 +16,7 @@ export default class EnemySpawner {
             this.enemyPool = [MagicSkeleton, Knight, StandardSkeleton, Skeleton, Book]
         else if (level === 'gr')
             if (scene.key !== 'grX1' && scene.key !== 'grX2' && scene.key !== 'grX3' && scene.key !== 'grX4')
-                this.enemyPool = [PoisonousGoblin, Slime, CarnivorousPlant, LavaGolem]
+                this.enemyPool = [PoisonousGoblin, Slime, CarnivorousPlant,Skeleton]
             else
                 this.enemyPool = [BossTree]
         else

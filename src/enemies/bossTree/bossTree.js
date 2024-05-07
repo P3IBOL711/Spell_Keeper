@@ -28,14 +28,14 @@ export default class BossTree extends Enemy {
 
         this.body.setImmovable(true);
 
-        this.spawnSFX = this.scene.sound.add('treespawn');
-        this.dieSFX = this.scene.sound.add('treedie')
+        this.spawnSFX = this.scene.sound.add('treespawn').setVolume(1.5).setDetune(50);
+        this.dieSFX = this.scene.sound.add('treedie').setVolume(1.5)
 
         this.anims.create({
             key: 'prespawn',
             frames: this.anims.generateFrameNumbers('arbolSpawn', { start: 0, end: 0 }),
             frameRate: 6,
-            repeat: 10
+            repeat: 15
         });
 
         this.anims.create({
@@ -80,7 +80,8 @@ export default class BossTree extends Enemy {
         this.enemySpawner = new EnemySpawnerBoss(scene, target);
 
         this.speed = 0;
-        this.life = 200;
+        this.maxLife = 600;
+        this.life = this.maxLife;
         this.distanceAttack = 1000;
 
         this.spawning = true;
@@ -124,7 +125,7 @@ export default class BossTree extends Enemy {
         });
 
         this.surpriseRootTimer = this.scene.time.addEvent({
-            delay: 700,
+            delay: 600,
             callback: this.onSurpriseRootAttack,
             callbackScope: this,
             loop: true
@@ -219,7 +220,7 @@ export default class BossTree extends Enemy {
 
             
             super.receiveDamage(damage);
-            hudEvents.emit('boss',this.life);
+            hudEvents.emit('bosslife',this.life/this.maxLife);
             if(this.life <= 0){
                 this.body.enable = true;
                 this.dieSFX.play()
