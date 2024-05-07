@@ -78,7 +78,8 @@ export default class EvilWizard extends Enemy {
         this.enemySpawner = new EnemySpawnerEvilWizard(scene, target);
 
         this.speed = 0;
-        this.life = 100;
+        this.maxLife = 100;
+        this.life = this.maxLife;
 
         this.distanceAttack = 200;
 
@@ -223,7 +224,7 @@ export default class EvilWizard extends Enemy {
     receiveDamage(damage) {
         if (this.vulnerable && this.life > 0) {
             super.receiveDamage(damage);
-            hudEvents.emit('boss',this.life);
+            hudEvents.emit('boss',this.life/this.maxLife);
             if (this.life <= 0) {
                 this.body.enable = true;
                 this.body.setImmovable(true);

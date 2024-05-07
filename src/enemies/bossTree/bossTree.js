@@ -80,7 +80,8 @@ export default class BossTree extends Enemy {
         this.enemySpawner = new EnemySpawnerBoss(scene, target);
 
         this.speed = 0;
-        this.life = 200;
+        this.maxLife = 200;
+        this.life = this.maxLife;
         this.distanceAttack = 1000;
 
         this.spawning = true;
@@ -219,7 +220,7 @@ export default class BossTree extends Enemy {
 
             
             super.receiveDamage(damage);
-            hudEvents.emit('bosslife',this.life);
+            hudEvents.emit('bosslife',this.life/this.maxLife);
             if(this.life <= 0){
                 this.body.enable = true;
                 this.dieSFX.play()

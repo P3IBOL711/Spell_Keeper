@@ -21,11 +21,12 @@ export default class BossDisplay extends Phaser.GameObjects.Graphics {
         this.bossBar.setVisible(false);
         this.bossBar.setActive(false);
         this.life = this.scene.add.image(this.x + 9, this.y + 36, 'bossLife').setOrigin(0).setDepth(99);
+        this.maxLife = this.bossBar.displayWidth - 12;
+        this.life.displayWidth = this.maxLife;
         this.life.setVisible(false);
         this.life.setActive(false);
 
-        this.maxLife = this.bossBar.displayWidth - 12;
-        this.life.displayWidth = this.maxLife;
+        
     }
     
     activates() {
