@@ -104,7 +104,7 @@ ARMAS INICIALES
 
 ARMAS CUERPO A CUERPO:
 con propiedad _haveSlash_
-- **chargeSword**: arma que hace __ de daño y cada 4 ataques hace el triple de daño que el daño original con un delay de 500 milisegundos por ataques y regenera 2 de mana por golpe.
+- **chargeSword**: arma que hace __ de daño y cada 4 ataques hace el cuadruple de daño que el daño original con un delay de 500 milisegundos por ataques y regenera 2 de mana por golpe.
 - **drainSword**: arma que hace __ de daño con la característica de que se cura la mitad del daño infligido a los enemigos con un delay de 500 milisegundos por ataque y no regenera mana.
 - **ChofSword**: arma básica que no hace nada mas que hacer __ de daño con un delay de 300 milisegundos y regenerando 40 de mana por golpe.
 - **HOE**: el arma definitiva la cual, por ser el arma definitiva al equiparse tambien viene incluido un gorro de paja a juego con el arma, cada ataque hace INFINITY de daño pero un area muy reducida con un delay de 100 milisegundos entre ataques y si da el ataque regenera todo el mana del jugador.

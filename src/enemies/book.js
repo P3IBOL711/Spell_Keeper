@@ -41,7 +41,7 @@ export default class Book extends MeleeEnemy {
 
         this.setScale(1);
 
-        this.speed = 40;
+        this.speed = 70;
 
         this.life = 20;
 

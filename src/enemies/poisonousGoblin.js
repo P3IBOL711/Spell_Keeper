@@ -48,7 +48,7 @@ export default class PoisonousGoblin extends DistanceEnemy {
 
         this.setScale(1);
 
-        this.speed = 30;
+        this.speed = 40;
 
         this.life = 10;
 
