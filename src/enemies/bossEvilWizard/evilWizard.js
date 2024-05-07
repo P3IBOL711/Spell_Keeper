@@ -184,6 +184,7 @@ export default class EvilWizard extends Enemy {
 
         this.scene.physics.add.overlap(this.scene.player,this, (player)=>{ 
             player.receiveDamage(1);
+            player.startIFrame();
         })
     }
 

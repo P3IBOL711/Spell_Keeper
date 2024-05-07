@@ -92,6 +92,6 @@ export default class ChargeSword extends meleeWeapon {
     }
 
     manaRegen() {
-        return 20;
+        return 10;
     }
 }

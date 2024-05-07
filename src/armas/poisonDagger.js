@@ -1,7 +1,5 @@
 import Phaser from "phaser";
 
-import arma from "./arma";
-import PlayerHitBox from "../playerHitbox";
 import meleeWeapon from "./meleeWeapon";
 
 const DAMAGE = 4;
