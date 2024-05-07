@@ -101,6 +101,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.meleeMode = true;
         this.canAttack = true;
         this.canBeDamaged = true;
+        this.iFrame = false;
         this.shieldCooldown = 0;
         this.shieldUptime = 0;
 
@@ -400,7 +401,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         if(this.playerDead === false) {
             if (this.actualLife > 0) {
                 if (this.active === false) { return; }
-                if (this.canBeDamaged) {
+                if (this.canBeDamaged && !this.iFrame) {
                     if (this.equipedWeapon.isLethalForYouCarefull())
                         this.actualLife = 0;
                     else
@@ -426,9 +427,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
                             this.setAlpha(1);
                         }
                     });
-    
+
                     this.playerHitSfx.play();
-    
                 }
             }
             else if (this.actualLife <= 0)
@@ -452,6 +452,20 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.anims.remove('walkRight');
         this.anims.remove('walkUp');
         this.play('dying', true);
+    }
+
+    startIFrame() {
+        this.iFrame = true;
+        this.invFrames = this.scene.time.addEvent( {
+            delay: 1000,
+            callback: this.scene.player.iFrameEnded,
+            callbackScope: this
+        });
+    }
+
+    iFrameEnded() {
+        this.iFrame = false;
+        this.invFrames.remove(false);
     }
 
     //Relativo a las armas
