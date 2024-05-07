@@ -59,6 +59,10 @@ export default class LavaGolem extends MeleeEnemy {
     spawnHitbox(){
         this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? 55 : -55), this.y - 10, 55, 120, this.target, this.damage);
     }
+
+    flipEnemy() {
+        this.setFlipX(this.body.velocity.x > 0);
+    }
     /**
      * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
      * Como se puede ver, no se tratan las colisiones con las estrellas, ya que estas colisiones 
