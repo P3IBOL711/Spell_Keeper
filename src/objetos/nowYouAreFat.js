@@ -7,7 +7,8 @@ export default class nowYouAreFat extends item {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.increasedHealth = 4;
-        this.movSpeedDecreased = 50;
+        this.movSpeedDecreased = 30;
+        this.manaIncreased = 50;
         this.x = x;
         this.y = y;
     }
@@ -15,5 +16,6 @@ export default class nowYouAreFat extends item {
     itemFuction() {
         this.scene.player.decreaseMovSpeed(this.movSpeedDecreased);
         this.scene.player.increaseHealth(this.increasedHealth);
+        this.scene.player.increaseMana(this.manaIncreased);
     }
 }
