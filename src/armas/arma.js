@@ -17,11 +17,11 @@ export default class arma extends Phaser.GameObjects.Sprite {
         let overlapCollider = this.scene.physics.add.overlap(this, this.scene.player, (weapon) => {
                 if (weapon.isMelee()) {
                     this.scene.player.takeMeleeWeapon(weapon);
-                    hudEvents.emit('newweapon',weapon.getText())
                 }
                 else {
                     this.scene.player.takeRangedWeapon(weapon);
                 }
+                hudEvents.emit('newweapon',weapon.getText())
                 weapon.setActive(false);
                 weapon.setVisible(false);
                 this.scene.physics.world.removeCollider(overlapCollider);

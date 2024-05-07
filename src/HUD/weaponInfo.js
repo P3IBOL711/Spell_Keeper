@@ -13,7 +13,7 @@ export default class WeaponInfo extends Phaser.GameObjects.Graphics{
         this.y = y;
         this.x = x;
         this.banner = this.scene.add.image(this.x,this.y,'flatbanner').setOrigin(0).setDepth(999).setVisible(false).setScale(4)
-        this.text = this.scene.add.text(x + 70, y +45,"" , { fontFamily: 'pixelFont', fontSize: 30, color: '#000000' }).setDepth(1000).setVisible(false);
+        this.text = this.scene.add.text(x + 70, y +50,"" , { fontFamily: 'pixelFont', fontSize: 20, color: '#000000' }).setDepth(1000).setVisible(false);
   
     }
 
