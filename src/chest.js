@@ -21,6 +21,8 @@ export default class Chest extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, width, height, player, opened) {
         super(scene, x, y, 'chest');
 
+        this.SFX = this.scene.sound.add('chestsfx')
+
         // Añadir el cofre a la escena y habilitar la física
         scene.add.existing(this);
         scene.physics.add.existing(this);
@@ -93,6 +95,7 @@ export default class Chest extends Phaser.GameObjects.Sprite {
                 this.open = true;
                 this.jug.decreaseKey()
                 this.scene.chestWasOpened();
+                this.SFX.play()
                 this.anims.play('open_chest');
                 this.generateLoot()
             }

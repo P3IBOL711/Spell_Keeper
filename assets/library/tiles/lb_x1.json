@@ -215,7 +215,7 @@
                  "id":18,
                  "name":"",
                  "rotation":0,
-                 "type":"Fire",
+                 "type":"BossFire",
                  "visible":true,
                  "width":32,
                  "x":416,
@@ -227,7 +227,7 @@
                  "id":19,
                  "name":"",
                  "rotation":0,
-                 "type":"Fire",
+                 "type":"BossFire",
                  "visible":true,
                  "width":32,
                  "x":448,
@@ -308,7 +308,7 @@
                 {
                  "id":0,
                  "image":"..\/..\/Pixel Art PNGs\/LlamaArriba.png",
-                 "type":"Fire"
+                 "type":"BossFire"
                 }, 
                 {
                  "id":2,

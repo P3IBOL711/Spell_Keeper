@@ -424,11 +424,11 @@
                  "id":27,
                  "name":"",
                  "rotation":0,
-                 "type":"Chest",
+                 "type":"HoeChest",
                  "visible":true,
                  "width":32,
-                 "x":400,
-                 "y":256.333
+                 "x":415,
+                 "y":236.333
                 }, 
                 {
                  "gid":359,
@@ -436,11 +436,11 @@
                  "id":28,
                  "name":"",
                  "rotation":0,
-                 "type":"Chest",
+                 "type":"BossChest",
                  "visible":true,
                  "width":32,
-                 "x":349,
-                 "y":253.5
+                 "x":364,
+                 "y":233.5
                 }, 
                 {
                  "gid":359,
@@ -448,11 +448,11 @@
                  "id":29,
                  "name":"",
                  "rotation":0,
-                 "type":"Chest",
+                 "type":"BossChest",
                  "visible":true,
                  "width":32,
-                 "x":446.75,
-                 "y":253.25
+                 "x":470,
+                 "y":233.25
                 }],
          "opacity":1,
          "type":"objectgroup",
