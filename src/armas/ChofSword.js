@@ -34,4 +34,9 @@ export default class ChofSword extends meleeWeapon {
     manaRegen() {
         return 50;
     }
+
+    getText(){
+        return "PRUEBA";
+    }
+
 }

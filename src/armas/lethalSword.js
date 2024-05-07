@@ -32,6 +32,9 @@ export default class lethalSword extends meleeWeapon {
     attack(target) {
         super.attack(target);
     }
+    getText(){
+        return "PRUEBA";
+    }
 
     manaRegen() {
         return 10;

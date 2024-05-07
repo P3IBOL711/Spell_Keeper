@@ -72,7 +72,17 @@
                  "width":960,
                  "x":32,
                  "y":424
-                }, 
+                },            {
+                     "height":64,
+                     "id":25,
+                     "name":"WeaponInfo",
+                     "rotation":0,
+                     "type":"WeaponInfo",
+                     "visible":true,
+                     "width":960,
+                     "x":32,
+                     "y":424
+                    },
                 {
                  "height":32,
                  "id":26,

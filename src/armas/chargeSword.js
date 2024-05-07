@@ -62,6 +62,11 @@ export default class ChargeSword extends meleeWeapon {
         return true;
     }
 
+    getText(){
+        return "PRUEBA";
+    }
+
+
     attack(target) {
         this.level++;
         switch (this.level) {

@@ -54,6 +54,11 @@ export default class Thompson extends arma {
         this.attackSfx.play()
     }
 
+    getText(){
+        return "PRUEBA";
+    }
+
+
     attack(target) {
         if (this.x != 0 && this.y != 0) {
             this.anims.play('shooting')

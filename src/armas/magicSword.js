@@ -25,6 +25,9 @@ export default class magicSword extends meleeWeapon {
     haveSlash() {
         return true;
     }
+    getText(){
+        return "PRUEBA";
+    }
 
     attack(target) {
         super.attack(target);

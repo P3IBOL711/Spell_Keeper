@@ -37,6 +37,11 @@ export default class Spear extends meleeWeapon {
        super.attack(target);
     }
 
+    getText(){
+        return "PRUEBA";
+    }
+
+
     manaRegen() {
         return 15;
     }

@@ -78,6 +78,11 @@ export default class Shotgun extends arma {
         }
     }
 
+    getText(){
+        return "PRUEBA";
+    }
+
+
     playAttackSfx(){
         this.attackSfx.play()
     }

@@ -28,6 +28,9 @@ export default class MagicKnife extends arma {
 
         this.damage = DAMAGE;
     }
+    getText(){
+        return "PRUEBA";
+    }
 
     preUpdate(t, dt) {
         super.preUpdate(t, dt);

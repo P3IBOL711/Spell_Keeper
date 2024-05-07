@@ -29,6 +29,9 @@ export default class BigSword extends meleeWeapon {
     preUpdate(t, dt) {
         super.preUpdate(t, dt)
     }
+    getText(){
+        return "PRUEBA";
+    }
 
     haveSlash() {
         return true;
