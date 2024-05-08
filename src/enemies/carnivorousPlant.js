@@ -123,7 +123,10 @@ export default class CarnivorousPlant extends Enemy {
 
         this.body.setSize(this.width * 0.7, this.height * 1.1, true);
 
+        this.body.setImmovable(true);
+
         this.play('idle', true);
+
     }
 
     doSomethingVerySpecificBecauseYoureMyBelovedChild() {

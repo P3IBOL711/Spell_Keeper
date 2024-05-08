@@ -57,7 +57,7 @@ export default class MagicSkeleton extends DistanceEnemy {
     }
 
     spawnProjectile(){
-        new PurpleMagicBall(this.scene, this.x + (this.flipX ? -35 : 35), this.y - 30, this.target, false, this.damage);
+        new PurpleMagicBall(this.scene, this.x + (this.flipX ? -30 : 30), this.y - 10, this.target, false, this.damage);
     }
 
     /**

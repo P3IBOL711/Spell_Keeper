@@ -20,7 +20,8 @@ export default class EnemySpawner {
             else
                 this.enemyPool = [BossTree]
         else
-            this.enemyPool = [Skeleton, Knight, PoisonousGoblin]
+            //this.enemyPool = [Skeleton, Knight, PoisonousGoblin]
+            this.enemyPool = [MagicSkeleton]
         this.scene = scene
         this.x = x
         this.y = y
