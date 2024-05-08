@@ -74,7 +74,7 @@ export default class CarnivorousPlant extends Enemy {
         this.on(Phaser.Animations.Events.ANIMATION_START, () => {
             if (this.life > 0) {
                 if (this.anims.getName() === 'attack1') {
-                    this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -35 : 35), this.y, 60, 60, this.target, this.damage);
+                    this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -45 : 45), this.y - 20, 40, 60, this.target, this.damage);
                 }
             }
 
@@ -105,7 +105,7 @@ export default class CarnivorousPlant extends Enemy {
         this.on(Phaser.Animations.Events.ANIMATION_UPDATE, () => {
             if (this.life > 0) {
                 if (this.anims.getName() === 'attack2' && this.anims.currentFrame.index === 3 && !this.distAttack) {
-                    new GreenPoisonBall(this.scene, this.x , this.y , this.target, false, this.damage);
+                    new GreenPoisonBall(this.scene, this.x + (this.flipX ? -10 : 10), this.y - 30, this.target, false, this.damage);
                     this.distAttack = true;
                 }
             }
@@ -115,12 +115,13 @@ export default class CarnivorousPlant extends Enemy {
         this.distAttack = false;
         this.distanceTimerAttack.paused = true;
 
-        this.setScale(0.6);
+        this.setScale(1.2);
 
         this.speed = 0;
 
         this.life = 30;
 
+        this.body.setImmovable(true);
         this.body.setSize(this.width * 0.7, this.height * 1.1, true);
 
         this.body.setImmovable(true);
