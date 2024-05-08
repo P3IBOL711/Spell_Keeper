@@ -168,16 +168,16 @@ export default class BossTree extends Enemy {
         let angle = (angleRadians * 180) / Math.PI;
 
         if ((angle >= 45 && angle <= 135) || (angle >= -135 && angle <= -45)) {
-             for (let i = 0; i < 41; i++) {
-                 new MovingRoot(this.scene, this.x - 200 + (i * 10), this.y, false, 1, angleRadians)
+             for (let i = 0; i < 31; i++) {
+                 new MovingRoot(this.scene, this.x - 150 + (i * 10), this.y, false, 1, angleRadians)
              }
            /* for(let i = 0; i < 16; i++){
                 new MovingRoot(this.scene, this.x - 50 + (i * 40), this.y, false, 1, angleRadians);
             }*/
         }
         else {
-             for (let i = 0; i < 41; i++) {
-                 new MovingRoot(this.scene, this.x, this.y - 200 + (i * 10), false, 1, angleRadians)
+             for (let i = 0; i < 31; i++) {
+                 new MovingRoot(this.scene, this.x, this.y - 150 + (i * 10), false, 1, angleRadians)
              }
           /*  for(let i = 0; i < 16; i++){
                 new MovingRoot(this.scene, this.x, this.y - 50 + (i * 40), false, 1, angleRadians);
