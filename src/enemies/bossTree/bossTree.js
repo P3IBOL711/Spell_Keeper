@@ -100,8 +100,8 @@ export default class BossTree extends Enemy {
             if (this.life > 0) {
                 if (this.anims.getName() === 'spawn') {
                     this.spawning = false;
-                    this.body.setSize(this.width * 0.35, this.height * 0.85, true);
-                    this.body.setOffset(this.width * 0.07, this.height * 0.14);
+                    this.body.setSize(this.width * 0.35, this.height * 0.7, true);
+                    this.body.setOffset(this.width * 0.07, this.height * 0.3);
                     this.body.enable = true;
                     this.scene.cutsceneStopped()
                     this.scene.player.setActive(true)
