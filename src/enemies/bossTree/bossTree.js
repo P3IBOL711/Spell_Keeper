@@ -30,7 +30,6 @@ export default class BossTree extends Enemy {
 
         this.spawnSFX = this.scene.sound.add('treespawn').setVolume(1.5).setDetune(50);
         this.dieSFX = this.scene.sound.add('treedie').setVolume(1.5)
-        this.pathFinding.paused = true;
 
         this.anims.create({
             key: 'prespawn',
