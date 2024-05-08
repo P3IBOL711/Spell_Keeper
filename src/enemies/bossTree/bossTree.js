@@ -81,7 +81,7 @@ export default class BossTree extends Enemy {
         this.enemySpawner = new EnemySpawnerBoss(scene, target);
 
         this.speed = 0;
-        this.maxLife = 600;
+        this.maxLife = 250;
         this.life = this.maxLife;
         this.distanceAttack = 1000;
 
@@ -172,16 +172,16 @@ export default class BossTree extends Enemy {
             // for (let i = 0; i < 41; i++) {
             //     new MovingRoot(this.scene, this.x - 200 + (i * 10), this.y, false, 1, angleRadians)
             // }
-            for(let i = 0; i < 12; i++){
-                new MovingRoot(this.scene, this.x - 40 + (i * 40), this.y, false, 1, angleRadians);
+            for(let i = 0; i < 16; i++){
+                new MovingRoot(this.scene, this.x - 50 + (i * 40), this.y, false, 1, angleRadians);
             }
         }
         else {
             // for (let i = 0; i < 41; i++) {
             //     new MovingRoot(this.scene, this.x, this.y - 200 + (i * 10), false, 1, angleRadians)
             // }
-            for(let i = 0; i < 12; i++){
-                new MovingRoot(this.scene, this.x, this.y - 40 + (i * 40), false, 1, angleRadians);
+            for(let i = 0; i < 16; i++){
+                new MovingRoot(this.scene, this.x, this.y - 50 + (i * 40), false, 1, angleRadians);
             }
         }
     }
