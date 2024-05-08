@@ -30,7 +30,6 @@ export default class BossTree extends Enemy {
 
         this.spawnSFX = this.scene.sound.add('treespawn').setVolume(1.5).setDetune(50);
         this.dieSFX = this.scene.sound.add('treedie').setVolume(1.5)
-        this.pathFinding.paused = true;
 
         this.anims.create({
             key: 'prespawn',
@@ -81,7 +80,7 @@ export default class BossTree extends Enemy {
         this.enemySpawner = new EnemySpawnerBoss(scene, target);
 
         this.speed = 0;
-        this.maxLife = 600;
+        this.maxLife = 250;
         this.life = this.maxLife;
         this.distanceAttack = 1000;
 
@@ -101,8 +100,8 @@ export default class BossTree extends Enemy {
             if (this.life > 0) {
                 if (this.anims.getName() === 'spawn') {
                     this.spawning = false;
-                    this.body.setSize(this.width * 0.35, this.height * 0.85, true);
-                    this.body.setOffset(this.width * 0.07, this.height * 0.14);
+                    this.body.setSize(this.width * 0.35, this.height * 0.7, true);
+                    this.body.setOffset(this.width * 0.07, this.height * 0.3);
                     this.body.enable = true;
                     this.scene.cutsceneStopped()
                     this.scene.player.setActive(true)
@@ -169,20 +168,20 @@ export default class BossTree extends Enemy {
         let angle = (angleRadians * 180) / Math.PI;
 
         if ((angle >= 45 && angle <= 135) || (angle >= -135 && angle <= -45)) {
-            // for (let i = 0; i < 41; i++) {
-            //     new MovingRoot(this.scene, this.x - 200 + (i * 10), this.y, false, 1, angleRadians)
-            // }
-            for(let i = 0; i < 12; i++){
-                new MovingRoot(this.scene, this.x - 40 + (i * 40), this.y, false, 1, angleRadians);
-            }
+             for (let i = 0; i < 31; i++) {
+                 new MovingRoot(this.scene, this.x - 150 + (i * 10), this.y, false, 1, angleRadians)
+             }
+           /* for(let i = 0; i < 16; i++){
+                new MovingRoot(this.scene, this.x - 50 + (i * 40), this.y, false, 1, angleRadians);
+            }*/
         }
         else {
-            // for (let i = 0; i < 41; i++) {
-            //     new MovingRoot(this.scene, this.x, this.y - 200 + (i * 10), false, 1, angleRadians)
-            // }
-            for(let i = 0; i < 12; i++){
-                new MovingRoot(this.scene, this.x, this.y - 40 + (i * 40), false, 1, angleRadians);
-            }
+             for (let i = 0; i < 31; i++) {
+                 new MovingRoot(this.scene, this.x, this.y - 150 + (i * 10), false, 1, angleRadians)
+             }
+          /*  for(let i = 0; i < 16; i++){
+                new MovingRoot(this.scene, this.x, this.y - 50 + (i * 40), false, 1, angleRadians);
+            }*/
         }
     }
 

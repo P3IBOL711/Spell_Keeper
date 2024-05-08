@@ -44,7 +44,7 @@ export default class lootGenerator {
         let dataGenerator = new Phaser.Math.RandomDataGenerator();
         let tier = Math.random();
         let index = -1;
-        if (weaponsPool.length > 0)
+        if (weaponsPool.length > 0 && weaponsPool !== undefined)
             do {
                 tier += this.playerLuck/10
                 if (tier >= 0 && tier <= 0.4) {//Tier C

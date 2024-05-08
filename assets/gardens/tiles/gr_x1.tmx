@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="13">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="17">
  <tileset firstgid="1" name="Base" tilewidth="32" tileheight="32" tilecount="80" columns="10">
   <image source="Base.png" width="320" height="256"/>
   <tile id="0">
@@ -1065,7 +1065,7 @@
    </properties>
    <point/>
   </object>
-  <object id="7" type="EnemySpawn" x="496" y="145.333">
+  <object id="7" type="EnemySpawn" x="497" y="167.333">
    <point/>
   </object>
   <object id="8" type="Fire" gid="209" x="448" y="64" width="32" height="32"/>
@@ -1078,6 +1078,9 @@
   </object>
  </objectgroup>
  <objectgroup id="9" name="navmesh">
-  <object id="12" x="216" y="48" width="560" height="376"/>
+  <object id="13" x="216" y="48" width="256" height="376"/>
+  <object id="14" x="472" y="184" width="304" height="240"/>
+  <object id="15" x="472" y="48" width="304" height="88"/>
+  <object id="16" x="520" y="136" width="256" height="48"/>
  </objectgroup>
 </map>

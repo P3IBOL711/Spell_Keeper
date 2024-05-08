@@ -1,10 +1,85 @@
 {
-    "activeFile": "lb_r13.tmx",
+    "activeFile": "/home/pablo/Documents/University/Spell_Keeper/assets/gardens/tiles/gr_x1.tmx",
     "expandedProjectPaths": [
         "."
     ],
-    "file.lastUsedOpenFilter": "Todos los archivos (*)",
+    "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
+        "/home/pablo/Documents/University/Spell_Keeper/assets/gardens/tiles/gr_x1.tmx": {
+            "scale": 1.004736328125,
+            "selectedLayer": 7,
+            "viewCenter": {
+                "x": 495.15478446809556,
+                "y": 235.38513874714488
+            }
+        },
+        "/home/pablo/Documents/University/Spell_Keeper/assets/gardens/tiles/gr_x1.tmx#Base": {
+            "scaleInDock": 1
+        },
+        "/home/pablo/Documents/University/Spell_Keeper/assets/gardens/tiles/gr_x1.tmx#Flames": {
+            "scaleInDock": 1
+        },
+        "/home/pablo/Documents/University/Spell_Keeper/assets/gardens/tiles/gr_x1.tmx#Objects": {
+            "scaleInDock": 1
+        },
+        "/home/pablo/Documents/University/Spell_Keeper/assets/gardens/tiles/gr_x2.tmx": {
+            "expandedObjectLayers": [
+                7,
+                9
+            ],
+            "scale": 1.004736328125,
+            "selectedLayer": 7,
+            "viewCenter": {
+                "x": 491.1736404723722,
+                "y": 143.81882684550712
+            }
+        },
+        "/home/pablo/Documents/University/Spell_Keeper/assets/gardens/tiles/gr_x2.tmx#Base": {
+            "scaleInDock": 1
+        },
+        "/home/pablo/Documents/University/Spell_Keeper/assets/gardens/tiles/gr_x2.tmx#Flames": {
+            "scaleInDock": 1
+        },
+        "/home/pablo/Documents/University/Spell_Keeper/assets/gardens/tiles/gr_x2.tmx#Objects": {
+            "scaleInDock": 1
+        },
+        "/home/pablo/Documents/University/Spell_Keeper/assets/gardens/tiles/gr_x3.tmx": {
+            "scale": 1.004736328125,
+            "selectedLayer": 8,
+            "viewCenter": {
+                "x": 652.409972299169,
+                "y": 235.38513874714488
+            }
+        },
+        "/home/pablo/Documents/University/Spell_Keeper/assets/gardens/tiles/gr_x3.tmx#Base": {
+            "scaleInDock": 1
+        },
+        "/home/pablo/Documents/University/Spell_Keeper/assets/gardens/tiles/gr_x3.tmx#Flames": {
+            "scaleInDock": 1
+        },
+        "/home/pablo/Documents/University/Spell_Keeper/assets/gardens/tiles/gr_x3.tmx#Objects": {
+            "scaleInDock": 1
+        },
+        "/home/pablo/Documents/University/Spell_Keeper/assets/gardens/tiles/gr_x4.tmx": {
+            "expandedObjectLayers": [
+                9
+            ],
+            "scale": 1.5,
+            "selectedLayer": 8,
+            "viewCenter": {
+                "x": 646.3333333333333,
+                "y": 159.66666666666669
+            }
+        },
+        "/home/pablo/Documents/University/Spell_Keeper/assets/gardens/tiles/gr_x4.tmx#Base": {
+            "scaleInDock": 1
+        },
+        "/home/pablo/Documents/University/Spell_Keeper/assets/gardens/tiles/gr_x4.tmx#Flames": {
+            "scaleInDock": 1
+        },
+        "/home/pablo/Documents/University/Spell_Keeper/assets/gardens/tiles/gr_x4.tmx#Objects": {
+            "scaleInDock": 1
+        },
         "Base.tsx": {
             "dynamicWrapping": false,
             "scaleInDock": 1,
@@ -55,8 +130,8 @@
             "scale": 2,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 511.25,
-                "y": 184.25
+                "x": 510.75,
+                "y": 183.75
             }
         },
         "lb_r1.tmx#Flames": {
@@ -69,8 +144,8 @@
             "scale": 1.5,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 511.66666666666663,
-                "y": 255.66666666666669
+                "x": 510.99999999999994,
+                "y": 254.99999999999997
             }
         },
         "lb_r11.tmx": {
@@ -80,8 +155,8 @@
             "scale": 2,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 511.75,
-                "y": 255.75
+                "x": 511.25,
+                "y": 255.25
             }
         },
         "lb_r12.tmx": {
@@ -91,8 +166,8 @@
             "scale": 2,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 511.75,
-                "y": 255.75
+                "x": 511.25,
+                "y": 255.25
             }
         },
         "lb_r13.tmx": {
@@ -102,8 +177,8 @@
             "scale": 1,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 484.5,
-                "y": 262.5
+                "x": 842.5,
+                "y": 390.5
             }
         },
         "lb_r14.tmx": {
@@ -113,8 +188,8 @@
             "scale": 1.5,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 511.66666666666663,
-                "y": 255.66666666666669
+                "x": 510.99999999999994,
+                "y": 254.99999999999997
             }
         },
         "lb_r15.tmx": {
@@ -124,8 +199,8 @@
             "scale": 1.5,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 511.66666666666663,
-                "y": 255.66666666666669
+                "x": 510.99999999999994,
+                "y": 254.99999999999997
             }
         },
         "lb_r16.json": {
@@ -149,8 +224,8 @@
             "scale": 2,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 511.75,
-                "y": 255.75
+                "x": 511.25,
+                "y": 255.25
             }
         },
         "lb_r2.tmx": {
@@ -160,8 +235,8 @@
             "scale": 2,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 511.75,
-                "y": 255.75
+                "x": 511.25,
+                "y": 255.25
             }
         },
         "lb_r3.tmx": {
@@ -171,8 +246,8 @@
             "scale": 2,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 511.75,
-                "y": 255.75
+                "x": 511.25,
+                "y": 255.25
             }
         },
         "lb_r4.tmx": {
@@ -182,8 +257,8 @@
             "scale": 2,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 511.75,
-                "y": 255.75
+                "x": 511.25,
+                "y": 255.25
             }
         },
         "lb_r5.tmx": {
@@ -193,8 +268,8 @@
             "scale": 2,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 511.75,
-                "y": 255.75
+                "x": 511.25,
+                "y": 255.25
             }
         },
         "lb_r6.tmx": {
@@ -204,8 +279,8 @@
             "scale": 1.5,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 511.66666666666663,
-                "y": 255.66666666666669
+                "x": 510.99999999999994,
+                "y": 254.99999999999997
             }
         },
         "lb_r7.tmx": {
@@ -215,8 +290,8 @@
             "scale": 3,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 511.8333333333333,
-                "y": 255.83333333333331
+                "x": 511.49999999999994,
+                "y": 255.49999999999997
             }
         },
         "lb_r8.tmx": {
@@ -226,8 +301,8 @@
             "scale": 1.5,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 527.6666666666666,
-                "y": 239.66666666666669
+                "x": 527,
+                "y": 238.99999999999997
             }
         },
         "lb_r9.tmx": {
@@ -237,8 +312,8 @@
             "scale": 2,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 511.75,
-                "y": 255.75
+                "x": 511.25,
+                "y": 255.25
             }
         },
         "lb_x1.tmx": {
@@ -248,8 +323,8 @@
             "scale": 1.004736328125,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 511.07936045098904,
-                "y": 256.2861447246927
+                "x": 510.08407445205825,
+                "y": 256.28614472469263
             }
         },
         "lb_x2.tmx": {
@@ -259,8 +334,8 @@
             "scale": 1.004736328125,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 511.07936045098904,
-                "y": 256.2861447246927
+                "x": 510.08407445205825,
+                "y": 256.28614472469263
             }
         },
         "lb_x3.tmx": {
@@ -270,8 +345,8 @@
             "scale": 1.004736328125,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 511.07936045098904,
-                "y": 256.2861447246927
+                "x": 510.08407445205825,
+                "y": 256.28614472469263
             }
         },
         "lb_x4.tmx": {
@@ -282,47 +357,29 @@
             "selectedLayer": 6,
             "viewCenter": {
                 "x": 511.07936045098904,
-                "y": 256.2861447246927
+                "y": 255.78850172522723
             }
         }
     },
-    "last.exportedFilePath": "C:/Users/pablo/Documents/Universidad/DVI/Proyecto_DVI/assets/library/tiles",
-    "map.lastUsedExportFilter": "Todos los archivos (*)",
+    "last.exportedFilePath": "/home/pablo/Documents/University/Spell_Keeper/assets/gardens/tiles",
+    "map.lastUsedExportFilter": "All Files (*)",
     "openFiles": [
-        "lb_r1.tmx",
-        "lb_r10.tmx",
-        "lb_r11.tmx",
-        "lb_r12.tmx",
-        "lb_r13.tmx",
-        "lb_r14.tmx",
-        "lb_r15.tmx",
-        "lb_r16.tmx",
-        "lb_r2.tmx",
-        "lb_r3.tmx",
-        "lb_r4.tmx",
-        "lb_r5.tmx",
-        "lb_r6.tmx",
-        "lb_r7.tmx",
-        "lb_r8.tmx",
-        "lb_r9.tmx",
-        "lb_x1.tmx",
-        "lb_x2.tmx",
-        "lb_x3.tmx",
-        "lb_x4.tmx"
+        "/home/pablo/Documents/University/Spell_Keeper/assets/gardens/tiles/gr_x1.tmx",
+        "/home/pablo/Documents/University/Spell_Keeper/assets/gardens/tiles/gr_x2.tmx"
     ],
     "project": "Library.tiled-project",
     "recentFiles": [
-        "lb_r1.tmx",
-        "lb_r10.tmx",
-        "lb_r11.tmx",
+        "/home/pablo/Documents/University/Spell_Keeper/assets/gardens/tiles/gr_x2.tmx",
+        "/home/pablo/Documents/University/Spell_Keeper/assets/gardens/tiles/gr_x1.tmx",
+        "/home/pablo/Documents/University/Spell_Keeper/assets/gardens/tiles/gr_x4.tmx",
+        "/home/pablo/Documents/University/Spell_Keeper/assets/gardens/tiles/gr_x3.tmx",
+        "lb_r16.tmx",
+        "lb_r15.tmx",
+        "lb_r14.tmx",
+        "lb_r13.tmx",
         "lb_r12.tmx",
-        "lb_x4.tmx",
-        "lb_x3.tmx",
-        "lb_x2.tmx",
-        "lb_x1.tmx",
-        "lb_r9.tmx",
-        "lb_r8.tmx",
-        "lb_r7.tmx",
-        "lb_r6.tmx"
+        "lb_r11.tmx",
+        "lb_r10.tmx",
+        "lb_r1.tmx"
     ]
 }

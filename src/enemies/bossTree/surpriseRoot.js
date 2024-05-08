@@ -17,7 +17,7 @@ export default class SurpriseRoot extends Projectile {
         super(scene, x, y, 'surpriseRoot', targetEnemy, damage, true);
 
         this.setScale(1.5);
-        this.setDepth(7)
+        this.setDepth(6)
         this.anims.create({
             key: 'spawn',
             frames: this.anims.generateFrameNumbers('surpriseRootSpritesheet', { start: 0, end: 8 }),
