@@ -154,7 +154,7 @@ export default class Room extends Phaser.Scene {
         if (dungeon[y][x].name !== "EM")
             this.scene.start(level + dungeon[y][x].name, { X: x, Y: y, dg: dungeon, dir: direction, SSM: this.saveStateMatrix, playerStat: this.globalPlayerStats, jukebox: this.jukebox });
         else
-            this.scene.start(level+'X1',{ X: x, Y: y, dg: dungeon, dir: direction, SSM: this.saveStateMatrix, playerStat: this.globalPlayerStats, jukebox: this.jukebox })
+            this.scene.start(level + 'X1', { X: x, Y: y, dg: dungeon, dir: direction, SSM: this.saveStateMatrix, playerStat: this.globalPlayerStats, jukebox: this.jukebox })
         this.unloadScene(this.key)
 
     }
@@ -226,7 +226,8 @@ export default class Room extends Phaser.Scene {
         }
 
         const objectLayer = this.map.getObjectLayer("navmesh");
-        this.navMesh = this.navMeshPlugin.buildMeshFromTiled("mesh1", objectLayer, 1);
+        if (objectLayer.objects.length > 0)
+            this.navMesh = this.navMeshPlugin.buildMeshFromTiled("mesh1", objectLayer, 1);
 
 
 
