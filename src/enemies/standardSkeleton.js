@@ -50,7 +50,7 @@ export default class StandardSkeleton extends MeleeEnemy {
     }
 
     spawnHitbox(){
-        this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -65 : 65), this.y - 10, 60, 120, this.target, this.damage);
+        this.attackZone = new HitBox(this.scene, this.x + (this.flipX ? -65 : 65), this.y - 10, 40, 80, this.target, this.damage);
     }
 
     /**

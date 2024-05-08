@@ -10,7 +10,7 @@ export default class magicSword extends meleeWeapon {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.delay = 300;
-        this.damage = 10;
+        this.damage = 6;
         this.hitboxMultiplier = 3;
 
         this.id = 'magicSword';
