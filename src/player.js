@@ -280,7 +280,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     preUpdate(t, dt) {
         //Si no está muerto
         super.preUpdate(t, dt);
-        if (this.playerDead === false && this.actualLife > 0) {
+        if (!this.playerDead && this.actualLife > 0) {
             if(!this.canAttack) {
                 this.weaponDelay += dt;
                 if (this.weaponDelay >= this.equipedWeapon.delay) {
@@ -369,7 +369,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     /**FUNCION PARA QUE EL JUGADOR ATAQUE */
     playerAttacks() {
-        if (this.active === false) { return; }
+        if (!this.active) { return; }
         if (this.canAttack) {
             if (!this.meleeMode) {
                 if (this.actualMana - this.equipedWeapon.manaCost() >= 0) {

@@ -13,6 +13,7 @@ export default class arma extends Phaser.GameObjects.Sprite {
         this.setDepth(8);
         this.delayAttackAction = 150;
         this.setOrigin(0, 0.5);
+        
 
         let overlapCollider = this.scene.physics.add.overlap(this, this.scene.player, (weapon) => {
                 if (weapon.isMelee()) {
