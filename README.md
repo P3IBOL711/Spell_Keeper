@@ -80,15 +80,16 @@ DEPRECADO
     - Diablo
 
 ### ESPECIFICACIÓN DE LOS ENEMIGOS
-- **archerSkeleton:** enemigo que tiene __ de vida y __ de velocidad de movimiento, este enemigo persigue al jugador hasta que esta dentro de un rango donde empieza a disparar flechas que infligen 1 de daño cada 1000 milisegundos hacia donde se encuentra el jugador.
-- **book:** enemigo que tiene __ de vida y __ de velocidad de movimiento, este enemigo se dirige al jugador hasta que esta al lado de el y le ataca, si puede atacar mas de una vez lo hace cada 2000 milisegundos.
-- **carnivorousPlant:** enemigo que tiene __ de vida y 0 de velocidad de movimeinto por lo que no se mueve pero que cuando se encuentra dentro de un rango de ataque empieza a lazar proyectiles cada 1500 milisegundos con un daño de 1 por proyectil y si te acercas a una distancia todavia menor hace un ataque cuerpo a cuerpo cada 1500 milisegundos.
-- **slime:** enemigo que tiene __ de vida y __ de velocidad de movimiento, este enemigo se acerca al jugador y cuando esta en rango cada 1500 milsegundos hace un ataque cuerpo a cuerpo infligiendo 1 de daño, cuando muere crea 3 hijos suyos los cuales tienen __ de vida y __ de velocidad de movimiento cada uno, tienen el mismo comportamiento que su padre.
-- **knight:** enemigo que tiene __ de vida y __ de velocidad de movimiento, el enemigo se va acercano al jugador y cuando puede atacar desde cualquier ángulo aunque no te vea por ejemplo, si te encuentras abajo de el tambien te puede atacar infligiendo 1 de daño cada 1500 milisegundos.
-- **lavaGolem:** enemigo que tiene __ de vida y __ de velocidad de movimiento, el enemigo se acerca al jugador y cuando puede atacar; ataca al jugador cada 1500 milisegundos haciendo 1 de daño por ataque. 
-- **magicSkeleton:** enemigo que tiene __ de vida y __ de velocidad de movimiento, se mueve lentamente y ataca al jugador creando un proyectil desde donde este en direccion del jugador cada 1000 milisegundos donde si impacta hace 1 de daño.
-- **poisonousGoblin:** enemigo con __ de vida y __ de velocidad de movimiento donde ataca al jugador lanzado flechas/proyectiles cada 900 milisegundos que si impactan en el jugador le hacen 1 de daño.
-- **standardSkeleton:** enemigo con __ de vida y __ de velocidad de movimiento donde va persiguiendo al jugador y cuando puede atacar cada 1500 milisegundos ataca al jugador haciendole 1 de daño si impacta.
+- **archerSkeleton:** enemigo que tiene 15 de vida y 30 de velocidad de movimiento, este enemigo persigue al jugador hasta que esta dentro de un rango donde empieza a disparar flechas que infligen 1 de daño cada 1000 milisegundos hacia donde se encuentra el jugador.
+- **book:** enemigo que tiene 20 de vida y 70 de velocidad de movimiento, este enemigo se dirige al jugador hasta que esta al lado de el y le ataca, si puede atacar mas de una vez lo hace cada 2000 milisegundos.
+- **carnivorousPlant:** enemigo que tiene 30 de vida y 0 de velocidad de movimeinto por lo que no se mueve pero que cuando se encuentra dentro de un rango de ataque empieza a lazar proyectiles cada 1500 milisegundos con un daño de 1 por proyectil y si te acercas a una distancia todavia menor hace un ataque cuerpo a cuerpo cada 1500 milisegundos.
+- **slime:** enemigo que tiene 10 de vida y 30 de velocidad de movimiento, este enemigo se acerca al jugador y cuando esta en rango cada 1500 milsegundos hace un ataque cuerpo a cuerpo infligiendo 1 de daño, cuando muere crea 3 hijos suyos.
+- **childSlime:** Tienen un tamaño menor que su padre slime, con 2 de vida y 50 de velocidad de movimiento cada uno, tienen el mismo comportamiento que su padre.
+- **knight:** enemigo que tiene 20 de vida y 40 de velocidad de movimiento, el enemigo se va acercano al jugador y cuando puede atacar desde cualquier ángulo aunque no te vea por ejemplo, si te encuentras abajo de el tambien te puede atacar infligiendo 1 de daño cada 1500 milisegundos.
+- **lavaGolem:** enemigo que tiene 50 de vida y 20 de velocidad de movimiento, el enemigo se acerca al jugador y cuando puede atacar; ataca al jugador cada 1500 milisegundos haciendo 1 de daño por ataque. 
+- **magicSkeleton:** enemigo que tiene 15 de vida y 20 de velocidad de movimiento, se mueve lentamente y ataca al jugador creando un proyectil desde donde este en direccion del jugador cada 1000 milisegundos donde si impacta hace 1 de daño.
+- **poisonousGoblin:** enemigo con 10 de vida y 40 de velocidad de movimiento donde ataca al jugador lanzado flechas/proyectiles cada 900 milisegundos que si impactan en el jugador le hacen 1 de daño.
+- **standardSkeleton:** enemigo con 20 de vida y 40 de velocidad de movimiento donde va persiguiendo al jugador y cuando puede atacar cada 1500 milisegundos ataca al jugador haciendole 1 de daño si impacta.
 
 ## ARMAS
 ### ESTADÍSTICAS DE LAS ARMAS
@@ -100,8 +101,8 @@ Las armas se dividen en dos subgrupos grandes: cuerpo a cuerpo y a distancia. La
 
 ### ESPECIFICACIÓN DE LAS ARMAS
 ARMAS INICIALES
-- **dagger**: arma inicial cuerpo a cuerpo la cual tiene la propiedad de _havePuncture_ basicamente hace que el ataque del arma arremeta hacía delante y no la blande de por si, tiene un daño de __, regenera 20 de mana por golpe y tiene un delay por ataque de 250 milisegundos.
-- **fireStaff**: arma incial a distancia, simplemente lanza una bola de fuego cada 350 milisegundos, cada proyectil cuesta 5 de mana y hace __ de daño.
+- **dagger**: arma inicial cuerpo a cuerpo la cual tiene la propiedad de _havePuncture_ basicamente hace que el ataque del arma arremeta hacía delante y no la blande de por si, tiene un daño de 2, regenera 20 de mana por golpe y tiene un delay por ataque de 250 milisegundos.
+- **fireStaff**: arma incial a distancia, simplemente lanza una bola de fuego cada 350 milisegundos, cada proyectil cuesta 5 de mana y hace 4p de daño.
 
 ARMAS CUERPO A CUERPO:
 con propiedad _haveSlash_
