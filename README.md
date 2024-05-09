@@ -102,7 +102,7 @@ Las armas se dividen en dos subgrupos grandes: cuerpo a cuerpo y a distancia. La
 ### ESPECIFICACIÓN DE LAS ARMAS
 ARMAS INICIALES
 - **dagger**: arma inicial cuerpo a cuerpo la cual tiene la propiedad de _havePuncture_ basicamente hace que el ataque del arma arremeta hacía delante y no la blande de por si, tiene un daño de 2, regenera 20 de mana por golpe y tiene un delay por ataque de 250 milisegundos.
-- **fireStaff**: arma incial a distancia, simplemente lanza una bola de fuego cada 350 milisegundos, cada proyectil cuesta 5 de mana y hace 4p de daño.
+- **fireStaff**: arma incial a distancia, simplemente lanza una bola de fuego cada 350 milisegundos, cada proyectil cuesta 5 de mana y hace 4 de daño.
 
 ARMAS CUERPO A CUERPO:
 con propiedad _haveSlash_
